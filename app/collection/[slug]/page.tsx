@@ -58,7 +58,7 @@ export default async function BagDetailPage({
           <div className="grid gap-5 rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card sm:grid-cols-3">
             <Spec label="Material" value={bag.material} />
             <Spec label="Dimensions" value={bag.dimensions} />
-            <Spec label="MOQ" value="50 units" />
+            <Spec label="MOQ" value="100 units" />
           </div>
 
           <div className="rounded-[2rem] border border-charcoal/10 bg-light-bone p-6">
@@ -90,10 +90,14 @@ export default async function BagDetailPage({
                 <tbody>
                   {bag.pricingTiers.map((tier) => (
                     <tr key={tier.quantity} className="border-t border-charcoal/10">
-                      <td className="px-6 py-4 font-medium">{tier.quantity} units</td>
+                      <td className="px-6 py-4 font-medium">{tier.quantity.toLocaleString()} units</td>
                       <td className="px-6 py-4">{tier.unitPrice}</td>
                     </tr>
                   ))}
+                  <tr className="border-t border-charcoal/10 bg-light-bone">
+                    <td className="px-6 py-4 font-medium">5,000+ units</td>
+                    <td className="px-6 py-4 font-semibold text-blue">Custom quote</td>
+                  </tr>
                 </tbody>
               </table>
             </div>

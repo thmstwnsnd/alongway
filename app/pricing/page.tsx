@@ -18,9 +18,10 @@ export default function PricingPage() {
                 <th className="px-6 py-4 font-semibold">Bag</th>
                 {quantityTiers.map((tier) => (
                   <th key={tier} className="px-6 py-4 font-semibold">
-                    {tier}
+                    {tier.toLocaleString()}
                   </th>
                 ))}
+                <th className="px-6 py-4 font-semibold">5,000+</th>
               </tr>
             </thead>
             <tbody>
@@ -35,6 +36,7 @@ export default function PricingPage() {
                       {tier.unitPrice}
                     </td>
                   ))}
+                  <td className="px-6 py-5 font-semibold text-blue">Custom quote</td>
                 </tr>
               ))}
             </tbody>
@@ -43,7 +45,7 @@ export default function PricingPage() {
       </div>
 
       <p className="mt-6 max-w-3xl text-sm leading-6 text-charcoal/70">
-        Prices include production, standard customization, and shipping to one US address. Setup fee: $50 one-time.
+        MOQ is 100 units. Prices include production, standard customization, and shipping to one US address. Setup fee: $50 one-time. Orders of 5,000+ units receive a custom quote.
       </p>
     </div>
   );

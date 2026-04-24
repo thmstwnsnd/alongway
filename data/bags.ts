@@ -18,10 +18,13 @@ export type Bag = {
 };
 
 const basePricingBySize: Record<BagSize, Record<number, number>> = {
-  small: { 50: 8.5, 100: 7.5, 250: 6.5, 500: 5.75 },
-  medium: { 50: 12.5, 100: 11, 250: 9.5, 500: 8.5 },
-  large: { 50: 16.5, 100: 14.5, 250: 12.5, 500: 11 },
+  small:  { 100: 7.5,  250: 6.5,  500: 5.75, 1000: 5.25, 2000: 4.75 },
+  medium: { 100: 11.0, 250: 9.5,  500: 8.5,  1000: 7.75, 2000: 7.00 },
+  large:  { 100: 14.5, 250: 12.5, 500: 11.0, 1000: 9.75, 2000: 8.75 },
 };
+
+export const quantityTiers = [100, 250, 500, 1000, 2000];
+export const customQuoteTier = 5000;
 
 function buildPricingTiers(size: BagSize): PricingTier[] {
   return Object.entries(basePricingBySize[size]).map(([quantity, price]) => ({
@@ -149,7 +152,7 @@ export const bags: Bag[] = rawBags.map((bag) => ({
   pricingTiers: buildPricingTiers(bag.size),
 }));
 
-export const quantityTiers = [50, 100, 250, 500];
+// quantityTiers and customQuoteTier defined above with pricing
 
 export function getBagBySlug(slug: string) {
   return bags.find((bag) => bag.slug === slug);
