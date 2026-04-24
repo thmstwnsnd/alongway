@@ -6,8 +6,13 @@ const navLinks = [
   { href: "/collection", label: "Collection" },
   { href: "/pricing", label: "Pricing" },
   { href: "/how-it-works", label: "How It Works" },
-  { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
+];
+
+const footerLinks = [
+  ...navLinks,
+  { href: "/blog", label: "Blog" },
+  { href: "/start", label: "Start Your Order" },
 ];
 
 export function SiteShell({ children }: { children: ReactNode }) {
@@ -49,17 +54,14 @@ export function SiteShell({ children }: { children: ReactNode }) {
             </Link>
             <p className="max-w-md text-sm text-bone/80">Made to carry.</p>
             <p className="text-sm text-bone/80">
-              📱 Text us:{" "}
+              Text us:{" "}
               <a href="tel:3105550100" className="hover:text-white">
                 (310) 555-0100
               </a>
             </p>
           </div>
           <div className="grid gap-3 text-sm text-bone/80 sm:grid-cols-2">
-            {[
-              ...navLinks,
-              { href: "/start", label: "Start Your Order" },
-            ].map((link) => (
+            {footerLinks.map((link) => (
               <Link key={link.href} href={link.href} className="hover:text-white">
                 {link.label}
               </Link>
