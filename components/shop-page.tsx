@@ -11,9 +11,12 @@ import {
   ORDER_DRAFT_STORAGE_KEY,
   decorationOptions,
   emptyOrderDraft,
+  formatCurrency,
   getOrderAmounts,
   type OrderDraft,
 } from "@/lib/order-flow";
+import { getFabricBySlug } from "@/data/fabrics";
+import { addOns } from "@/data/addons";
 
 export function ShopPage() {
   const router = useRouter();
@@ -25,9 +28,31 @@ export function ShopPage() {
     const savedOrder = window.localStorage.getItem(ORDER_DRAFT_STORAGE_KEY);
     const nextOrder = savedOrder ? { ...emptyOrderDraft, ...JSON.parse(savedOrder) } : emptyOrderDraft;
     const requestedBag = searchParams.get("bag");
+    const requestedQuantity = searchParams.get("quantity");
+    const requestedFabric = searchParams.get("fabric");
+    const requestedAddOns = searchParams.get("addons");
 
     if (requestedBag && bags.some((bag) => bag.slug === requestedBag)) {
       nextOrder.bagSlug = requestedBag;
+    }
+
+    if (requestedQuantity) {
+      const parsedQuantity = Number.parseInt(requestedQuantity, 10);
+      if (Number.isFinite(parsedQuantity)) {
+        nextOrder.quantity = parsedQuantity;
+      }
+    }
+
+    if (requestedFabric && getFabricBySlug(requestedFabric)) {
+      nextOrder.fabricSlug = requestedFabric;
+    }
+
+    if (requestedAddOns) {
+      const validAddOnIds = requestedAddOns
+        .split(",")
+        .map((item) => item.trim())
+        .filter((item) => addOns.some((addOn) => addOn.id === item));
+      nextOrder.addOnIds = validAddOnIds;
     }
 
     setOrder(nextOrder);
@@ -46,7 +71,7 @@ export function ShopPage() {
     () => bags.find((bag) => bag.slug === order.bagSlug),
     [order.bagSlug],
   );
-  const { unitPrice, total } = getOrderAmounts(order);
+  const { unitPrice, total, fabric, selectedAddOns, baseUnitPrice, addOnUnitTotal } = getOrderAmounts(order);
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
@@ -142,6 +167,30 @@ export function ShopPage() {
                   <p className="mt-1 text-sm text-charcoal/70">Contact us for a custom quote</p>
                 </Link>
               </div>
+
+              {fabric ? (
+                <div className="mt-6 rounded-[1.5rem] border border-charcoal/10 bg-light-bone p-5">
+                  <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                    <div>
+                      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">Configured build</p>
+                      <p className="mt-2 text-base font-bold tracking-tight text-charcoal">{fabric.name}</p>
+                      <p className="mt-1 text-sm leading-6 text-charcoal/68">
+                        {fabric.upcharge > 0 ? `Fabric upcharge: +${formatCurrency(fabric.upcharge)} per unit.` : "Starter fabric included."}
+                      </p>
+                      <p className="mt-3 text-sm leading-6 text-charcoal/68">
+                        {selectedAddOns.length
+                          ? `Add-ons: ${selectedAddOns.map((addOn) => addOn.name).join(", ")}.`
+                          : "No add-ons selected yet."}
+                      </p>
+                    </div>
+                    <div className="rounded-[1.25rem] bg-white px-4 py-3 text-sm text-charcoal/72">
+                      <p>Base: {baseUnitPrice ? formatCurrency(baseUnitPrice) : "TBD"}</p>
+                      <p>Add-ons: {formatCurrency(addOnUnitTotal)}</p>
+                      <p className="font-semibold text-charcoal">Estimated unit total: {unitPrice ? formatCurrency(unitPrice) : "TBD"}</p>
+                    </div>
+                  </div>
+                </div>
+              ) : null}
             </section>
           ) : null}
 

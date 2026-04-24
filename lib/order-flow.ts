@@ -1,4 +1,6 @@
 import { type Bag, getBagBySlug } from "@/data/bags";
+import { addOns } from "@/data/addons";
+import { getFabricBySlug } from "@/data/fabrics";
 
 export const ORDER_DRAFT_STORAGE_KEY = "alongway-order-draft";
 export const LAST_ORDER_STORAGE_KEY = "alongway-last-order";
@@ -24,6 +26,8 @@ export type DecorationType = (typeof decorationOptions)[number] | "";
 export type OrderDraft = {
   bagSlug: string;
   quantity: number | null;
+  fabricSlug: string;
+  addOnIds: string[];
   brandName: string;
   primaryColor: string;
   decorationType: DecorationType;
@@ -34,6 +38,8 @@ export type OrderDraft = {
 export const emptyOrderDraft: OrderDraft = {
   bagSlug: "",
   quantity: null,
+  fabricSlug: "cotton-canvas-12oz",
+  addOnIds: [],
   brandName: "",
   primaryColor: "",
   decorationType: "",
@@ -62,10 +68,18 @@ export function getUnitPrice(bag: Bag | undefined, quantity: number | null) {
   return Number.parseFloat(tier.unitPrice.replace("$", ""));
 }
 
+export function getSelectedAddOns(addOnIds: string[]) {
+  return addOns.filter((addOn) => addOnIds.includes(addOn.id));
+}
+
 export function getOrderAmounts(order: OrderDraft) {
   const bag = getBagBySlug(order.bagSlug);
-  const unitPrice = getUnitPrice(bag, order.quantity);
-  const total = unitPrice && order.quantity ? unitPrice * order.quantity : null;
+  const fabric = getFabricBySlug(order.fabricSlug) ?? getFabricBySlug("cotton-canvas-12oz");
+  const selectedAddOns = getSelectedAddOns(order.addOnIds);
+  const baseUnitPrice = getUnitPrice(bag, order.quantity);
+  const addOnUnitTotal = selectedAddOns.reduce((sum, addOn) => sum + addOn.pricePerUnit, 0);
+  const unitPrice = baseUnitPrice === null ? null : baseUnitPrice + (fabric?.upcharge ?? 0) + addOnUnitTotal;
+  const total = unitPrice !== null && order.quantity ? unitPrice * order.quantity : null;
 
-  return { bag, unitPrice, total };
+  return { bag, fabric, selectedAddOns, baseUnitPrice, addOnUnitTotal, unitPrice, total };
 }

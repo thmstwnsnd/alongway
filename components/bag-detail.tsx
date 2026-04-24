@@ -3,6 +3,7 @@
 import Link from "next/link";
 import type { Bag } from "@/data/bags";
 import { getBagImageUrl } from "@/data/bags";
+import { BagConfigurator } from "@/components/bag-configurator";
 
 const channelToteSizes = [
   { slug: "channel-tote-small", label: "Small" },
@@ -120,6 +121,10 @@ export function BagDetail({ bag }: { bag: Bag }) {
             </Link>
           </div>
         </div>
+      </div>
+
+      <div className="mt-12">
+        <BagConfigurator bag={bag} />
       </div>
     </div>
   );

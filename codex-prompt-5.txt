@@ -1,0 +1,149 @@
+Add three major features to the Alongway Next.js site. Work on branch: feature/initial-site. Do NOT open a new PR. Just commit and push.
+
+---
+
+## 1. SWATCHES SECTION
+
+### Data file: data/fabrics.ts
+Create a fabric data file with these fabrics:
+
+```ts
+export type FabricTier = "starter" | "upgrade1" | "upgrade2" | "upgrade3";
+
+export type Fabric = {
+  slug: string;
+  name: string;
+  category: string;
+  tier: FabricTier;
+  upcharge: number; // per unit, 0 for starter
+  description: string;
+  weightOrStyle?: string; // e.g. "12oz", "thick wale"
+  swatchCount: number; // number of placeholder swatch colors to show
+};
+```
+
+Fabric data:
+- cotton-canvas-10oz: 10oz Cotton Canvas, starter, $0, "Lightweight and versatile. Great for everyday totes and promotional bags.", swatchCount: 20
+- cotton-canvas-12oz: 12oz Cotton Canvas, starter, $0, "Our most popular weight. Durable enough for daily use, soft enough to print clean.", swatchCount: 40
+- cotton-canvas-14oz: 14oz Cotton Canvas, upgrade1, $1.50, "Heavier hand feel than 12oz. More structure, more substance.", swatchCount: 30
+- cotton-canvas-16oz: 16oz Cotton Canvas, upgrade1, $1.50, "Noticeably heavier. Holds shape well, great for structured styles.", swatchCount: 30
+- cotton-canvas-18oz: 18oz Cotton Canvas, upgrade2, $2.50, "Premium weight. Used in high-end retail bags. Serious substance.", swatchCount: 20
+- cotton-canvas-20oz: 20oz Cotton Canvas, upgrade2, $2.50, "Heavy duty. Structured, premium, built to last years.", swatchCount: 20
+- cotton-canvas-24oz: 24oz Cotton Canvas, upgrade3, $4.00, "Our heaviest canvas. Used in the Channel Tote. Maximum structure and longevity.", swatchCount: 15
+- denim: Denim, starter, $0, "Classic denim construction. Distinctive texture and fade character.", swatchCount: 15
+- corduroy-thick: Thick Wale Corduroy, starter, $0, "Bold ridges, rich texture. Stands out on a shelf.", swatchCount: 20
+- corduroy-thin: Thin Wale Corduroy, starter, $0, "Finer texture than thick wale. More refined, easier to print on.", swatchCount: 20
+- nylon: Nylon, starter, $0, "Clean, smooth, water-resistant. Great for structured and utility styles.", swatchCount: 25
+- nylon-ripstop: Nylon Ripstop, upgrade1, $1.50, "Reinforced grid weave. Tear-resistant and lightweight.", swatchCount: 15
+- organic-cotton: Organic Cotton Canvas, upgrade1, $1.50, "GOTS-certified organic cotton. For brands that care about the supply chain.", swatchCount: 20
+- tyvek: Tyvek, upgrade1, $1.50, "Synthetic, water-resistant, tear-resistant. Distinctive crinkle texture.", swatchCount: 10
+- camo: Camo Print Canvas, starter, $0, "Classic camo pattern on canvas. Printed or woven — bold and recognizable.", swatchCount: 8
+- cotton-twill: Cotton Twill, starter, $0, "Diagonal weave gives it a soft drape and clean print surface.", swatchCount: 25
+- ripstop: Ripstop Canvas, upgrade1, $1.50, "Grid-reinforced canvas. Lightweight but tough.", swatchCount: 15
+- waxed-canvas: Waxed Canvas, upgrade2, $2.50, "Traditional waxed finish. Water-resistant, develops a patina over time.", swatchCount: 12
+
+### Swatch color palettes
+For placeholder swatches, generate colored divs using a realistic set of hex colors per fabric. Use earthy, neutral, and brand-appropriate tones. For each fabric generate the appropriate swatchCount of colored boxes with a label like "Natural", "Black", "Navy", "Forest", "Camel", "Stone", "Slate", "Rust", "Cream", "Olive", etc. Use plausible color names and hex codes.
+
+### /swatches page (app/swatches/page.tsx)
+- Hero: "Find your fabric." subline "Every Alongway bag starts with the right material. Browse our full fabric library, feel the weights, and find what fits your brand."
+- Two sections:
+  - "Starter fabrics" — included at no extra cost
+  - "Upgrade fabrics" — grouped by tier (Upgrade 1, 2, 3) with upcharge badge
+- Each fabric: card with fabric name, weight/style, tier badge (color-coded: green=starter, blue=upgrade1, orange=upgrade2, red=upgrade3), short description, "View swatches →" link
+- Add /swatches to footer links
+
+### /swatches/[slug] page (app/swatches/[slug]/page.tsx)
+- Fabric name + description
+- Tier badge + upcharge (or "Included — no extra cost" for starter)
+- Descriptor paragraph
+- "How it feels" section: placeholder lifestyle image (Unsplash warm texture/fabric photo)
+- Swatch grid: show swatchCount colored boxes in a grid. Each box: 80x80px rounded square, hex color background, color name below. Make them look like real fabric swatches.
+- CTA: "Want to use [fabric name] in your order? Start here." → /shop
+- Back link to /swatches
+
+---
+
+## 2. PRODUCT CONFIGURATOR ON BAG PAGES
+
+### Data: add-ons in data/addons.ts
+```ts
+export type AddOn = {
+  id: string;
+  name: string;
+  description: string;
+  pricePerUnit: number;
+};
+
+export const addOns: AddOn[] = [
+  { id: "printed-straps", name: "Printed Straps", description: "Custom print on the straps — color, pattern, or text.", pricePerUnit: 1.50 },
+  { id: "extra-pocket", name: "Additional Exterior Pocket", description: "Add a second exterior pocket for more utility.", pricePerUnit: 1.25 },
+  { id: "interior-pocket", name: "Interior Organizer Pocket", description: "Slip pocket, card slots, or pen loops inside.", pricePerUnit: 1.00 },
+  { id: "key-hook", name: "Key Hook", description: "Metal D-ring with swivel hook on interior.", pricePerUnit: 0.75 },
+  { id: "extra-label", name: "Additional Label", description: "Second branded label — hem tag, hang tag, or care label.", pricePerUnit: 0.50 },
+  { id: "extra-decoration", name: "Additional Decoration", description: "Second decoration placement (e.g. back print + front embroidery).", pricePerUnit: 2.00 },
+  { id: "zipper-closure", name: "Zipper Closure", description: "Add a top zipper to any open-top bag style.", pricePerUnit: 1.75 },
+];
+```
+
+### Update bag detail component (components/bag-detail.tsx)
+Below the pricing table, add a "Configure your order" section with:
+
+**Fabric selector:**
+- Show all fabrics from data/fabrics.ts grouped by tier
+- Starter fabrics: selectable, no upcharge shown
+- Each fabric: radio-style card (click to select), shows name, weight, tier badge, +$X.XX per unit for upgrades
+- Selected fabric gets orange border highlight
+- Default: 12oz Cotton Canvas selected
+
+**Add-ons:**
+- Checkbox list of all add-ons from data/addons.ts
+- Each: checkbox, name, description, +$X.XX per unit
+- Can select multiple
+
+**Live price calculator:**
+- Shows: Base price (from selected quantity tier) + Fabric upcharge + Add-ons total = Total per unit
+- And: Total per unit × quantity = Order total
+- Default quantity shown: 100
+- Quantity selector: button group (100 / 250 / 500 / 1,000 / 2,000)
+- Updates live as fabric and add-ons are toggled
+- "Prices are estimates. Final quote confirmed at checkout."
+
+**CTA:** "Build this order" button → /shop?bag=[slug] with pre-selected config
+
+This whole section should be a "use client" component called BagConfigurator, imported into bag-detail.tsx.
+
+---
+
+## 3. SWATCH KIT STORE PRODUCT
+
+In app/store (or wherever the store section ends up — check if it exists, create if not):
+
+Add a $5 Swatch Kit product:
+- Name: "Fabric Swatch Kit"
+- Price: $5.00
+- Description: "Not sure which fabric is right for you? We'll mail you a curated set of fabric swatches — cotton canvas weights from 10oz to 24oz, plus denim, corduroy, nylon, waxed canvas, and more. Feel the difference before you commit."
+- Image: Unsplash placeholder (fabric/textile photo)
+- "Add to cart" button (mock — shows a toast/confirmation "Swatch kit added! We'll contact you to confirm your address.")
+- Note: "Ships within 3 business days. US only. Credit applied to your first order."
+
+If no /store page exists yet, create app/store/page.tsx as a simple product page for the swatch kit only, with a header "Alongway Store" and a note "More products coming soon — including Alongway branded totes."
+
+Add "Store" to the main nav (between Collection and Pricing) and to footer links.
+
+---
+
+## Style
+- Match brand throughout: Bone/Charcoal/Orange/Blue, Figtree, rounded-[2rem] cards
+- Tier badge colors: green pill for starter, blue for upgrade1, orange for upgrade2, red for upgrade3
+- Swatch grid: clean, tight, 4-6 columns on desktop, 3 on mobile
+- Configurator: clean card layout, responsive
+
+## Branch & commit
+- Stay on feature/initial-site
+- Commit: "feat: fabric swatches explorer, bag configurator with add-ons + live pricing, swatch kit store"
+- Push to origin
+- Do NOT merge or open a new PR
+
+When completely finished:
+openclaw system event --text "Done: swatches, bag configurator, swatch kit store all live" --mode now

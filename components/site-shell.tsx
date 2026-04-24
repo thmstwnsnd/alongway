@@ -7,6 +7,8 @@ import { usePathname } from "next/navigation";
 
 const navLinks = [
   { href: "/collection", label: "Collection" },
+  { href: "/swatches", label: "Swatches" },
+  { href: "/store", label: "Store" },
   { href: "/pricing", label: "Pricing" },
   { href: "/how-it-works", label: "How It Works" },
   { href: "/about", label: "About" },
@@ -14,6 +16,8 @@ const navLinks = [
 
 const footerLinks = [
   { href: "/collection", label: "Collection" },
+  { href: "/swatches", label: "Swatches" },
+  { href: "/store", label: "Store" },
   { href: "/shop", label: "Shop" },
   { href: "/pricing", label: "Pricing" },
   { href: "/how-it-works", label: "How It Works" },
