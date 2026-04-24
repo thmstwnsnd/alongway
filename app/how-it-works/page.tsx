@@ -1,68 +1,156 @@
+import Link from "next/link";
 import { SectionHeading } from "@/components/section-heading";
 
 const steps = [
   {
-    icon: "👜",
-    title: "Pick your bag",
-    description:
-      "Choose from a focused set of silhouettes built to cover gifting, retail, hospitality, and everyday carry without overcomplicating the decision.",
+    emoji: "🛍️",
+    title: "Choose your bag",
+    body: "Browse our curated line of 12 silhouettes. Pick the one that fits your brand — size, material, and carry style. Not sure? Request a free swatch kit and feel the fabrics before you commit.",
   },
   {
-    icon: "🎨",
+    emoji: "🎨",
     title: "Share your artwork",
-    description:
-      "Send existing files or a rough direction. We can work from production-ready art or help clarify how your brand should show up on the bag.",
+    body: "Upload your artwork files (.ai, .pdf, or .eps). Choose your decoration type — screen print, embroidery, patch, or woven label. Pick your fabric color and strap color. No artwork yet? Our design team can help.",
   },
   {
-    icon: "🏭",
+    emoji: "📐",
+    title: "Approve your techpack",
+    body: "Within two business days of your order, we send a detailed techpack showing your exact bag with artwork placement, print areas, and size specs. Nothing goes to production until you sign off.",
+  },
+  {
+    emoji: "🏭",
     title: "We handle production",
-    description:
-      "Alongway manages setup, manufacturing, and the details that usually slow custom bag projects down. You stay informed without having to source every step.",
+    body: "Your bags are produced in our China factory — the same facilities supplying major retail brands. Typical production timeline is 6–8 weeks from artwork approval.",
   },
   {
-    icon: "📦",
+    emoji: "📦",
     title: "Delivered to your door",
-    description:
-      "Your order ships to one US address with clear all-in pricing, so the final handoff feels as straightforward as the kickoff.",
+    body: "We ship to one address per order. US shipping is always free. International shipping available — pricing depends on destination. Tracking info sent as soon as your order ships.",
   },
 ];
 
 const faqs = [
   {
-    question: "What is the minimum order quantity?",
-    answer: "Our standard MOQ is 50 units per style.",
+    category: "Ordering",
+    items: [
+      {
+        q: "What's the minimum order quantity?",
+        a: "100 units per bag style. This is our MOQ across the full line.",
+      },
+      {
+        q: "Can I order multiple bag styles in one order?",
+        a: "Yes — each style requires a minimum of 100 units. So an order with 3 styles would be a minimum of 300 units total.",
+      },
+      {
+        q: "How does payment work?",
+        a: "All orders are paid in full at checkout. We accept all major credit cards via Stripe, or we can send an invoice.",
+      },
+      {
+        q: "Do you offer rush orders?",
+        a: "In certain cases, yes. Message us your desired timeline and we'll do our best to accommodate.",
+      },
+      {
+        q: "Can I get a swatch before ordering?",
+        a: "Yes — we offer a $5 swatch kit with fabric samples in 10oz and 24oz canvas so you can feel the materials before committing. Order one from our shop.",
+      },
+    ],
   },
   {
-    question: "What turnaround should I expect?",
-    answer: "Most projects move from approval to delivery in a few weeks depending on quantity, bag style, and seasonality.",
+    category: "Artwork & Design",
+    items: [
+      {
+        q: "What file formats do you accept?",
+        a: "We accept .ai, .pdf, and .eps files only. These are true vector formats that guarantee clean, sharp results at any size. PNG and JPEG are not accepted for production.",
+      },
+      {
+        q: "What if I don't have artwork?",
+        a: "No problem. Our design team can help. Just note it on your order form and we'll reach out to get started after checkout.",
+      },
+      {
+        q: "What decoration methods are available?",
+        a: "Screen print, embroidery, patch, and woven label. Every order includes your chosen main decoration plus an interior branded woven label at no extra cost.",
+      },
+      {
+        q: "How many colors can I use?",
+        a: "There's no hard limit — more colors means a higher price. Standard orders use a focused color palette. Complex multi-color or block-style decorations are priced on a custom quote basis. Contact us to discuss.",
+      },
+      {
+        q: "Can I choose my bag color?",
+        a: "Yes. For each order you choose a main fabric color and a strap color — these can match or contrast. Color options vary by bag style.",
+      },
+      {
+        q: "Do I get to approve the design before production starts?",
+        a: "Always. We send a techpack within two business days of your order. Production doesn't start until you've reviewed and approved it. Nothing moves without your sign-off.",
+      },
+    ],
   },
   {
-    question: "What artwork formats do you accept?",
-    answer: "Vector files are ideal, but we can also review high-resolution PDFs or image files and advise on next steps.",
+    category: "Timeline",
+    items: [
+      {
+        q: "How long does production take?",
+        a: "6–8 weeks from artwork approval. The clock starts when you approve your techpack — not when you place your order.",
+      },
+      {
+        q: "How quickly will I get my techpack?",
+        a: "Within two business days of your order, assuming you've provided clean vector files (.ai, .pdf, or .eps) and your artwork doesn't require major questions.",
+      },
+      {
+        q: "Can you rush an order?",
+        a: "In some cases, yes. Message us your timeline and we'll do our best.",
+      },
+    ],
   },
   {
-    question: "What customization is included?",
-    answer: "Standard customization is included in starting pricing and covers the core production setup for clean branded applications.",
+    category: "Shipping",
+    items: [
+      {
+        q: "Is shipping really free?",
+        a: "For US orders, yes — always. Free shipping to one US address is included in every order.",
+      },
+      {
+        q: "Do you ship internationally?",
+        a: "Yes, we ship worldwide. International shipping costs depend on destination and will be quoted at checkout.",
+      },
+      {
+        q: "Can you ship to multiple locations?",
+        a: "Each order ships to one address. Need to split a shipment? Contact us and we'll work something out.",
+      },
+    ],
   },
   {
-    question: "How does payment work?",
-    answer: "All orders are paid in full at checkout. We accept all major credit cards via Stripe.",
+    category: "Quality & Production",
+    items: [
+      {
+        q: "Where are the bags made?",
+        a: "Our bags are produced in China in factories that supply major retail brands worldwide. Every order goes through a quality check before it ships.",
+      },
+      {
+        q: "What materials are available?",
+        a: "Depending on the style: 10oz canvas, 24oz canvas, Tyvek (water-resistant), waxed canvas, and polypropylene. Each bag page lists the exact material.",
+      },
+      {
+        q: "What's included in every order?",
+        a: "Every Alongway order includes: your chosen main decoration (screen print, embroidery, patch, or woven label), an interior branded woven label, free setup, and free US shipping.",
+      },
+    ],
   },
   {
-    question: "What happens after I pay?",
-    answer: "You&apos;re not done — you&apos;re just starting. Within 24 hours we send a techpack showing your bag with artwork placement guides. Nothing goes to production until you approve the design.",
-  },
-  {
-    question: "Do you offer payment plans?",
-    answer: "Not currently. All orders are paid in full upfront.",
-  },
-  {
-    question: "Can I reorder later?",
-    answer: "Yes. Reorders are built to be simple once your bag style and artwork are approved.",
-  },
-  {
-    question: "Do you help if artwork is not ready?",
-    answer: "Yes. You can still start the process and we&apos;ll help shape what needs to happen before production begins.",
+    category: "Pricing",
+    items: [
+      {
+        q: "Are prices really all-in?",
+        a: "Yes. The prices on our pricing page include production, decoration, setup, and US shipping. No hidden fees.",
+      },
+      {
+        q: "How do I get a quote for 5,000+ units?",
+        a: "Orders of 5,000+ units are priced on a custom basis. Fill out our order form or email hello@alongway.co and we'll get back to you quickly.",
+      },
+      {
+        q: "Do you offer payment plans?",
+        a: "Not currently. All orders are paid in full at checkout.",
+      },
+    ],
   },
 ];
 
@@ -71,36 +159,81 @@ export default function HowItWorksPage() {
     <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
       <SectionHeading
         eyebrow="How it works"
-        title="A premium process without the usual sourcing drag."
-        body="Built for teams that want clear decisions, clean pricing, and bags worth keeping."
+        title="Simple from first idea to final delivery."
+        body="Five steps. No sourcing headaches. We handle everything — you just approve the design and tell us where to ship."
       />
 
-      <div className="mt-12 grid gap-6 lg:grid-cols-2">
-        {steps.map((step, index) => (
-          <article key={step.title} className="rounded-[2rem] border border-charcoal/10 bg-white p-8 shadow-card">
-            <div className="flex items-center justify-between gap-4">
-              <span className="text-4xl">{step.icon}</span>
-              <span className="rounded-full bg-light-bone px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/60">
-                Step {index + 1}
+      {/* Steps */}
+      <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-5">
+        {steps.map((step, i) => (
+          <div key={step.title} className="rounded-[1.75rem] border border-charcoal/10 bg-white p-6 shadow-card">
+            <div className="mb-4 flex items-center gap-3">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-orange text-sm font-bold text-white">
+                {i + 1}
               </span>
+              <span className="text-2xl">{step.emoji}</span>
             </div>
-            <h2 className="mt-6 text-3xl font-bold tracking-tight">{step.title}</h2>
-            <p className="mt-3 text-base leading-7 text-charcoal/72">{step.description}</p>
-          </article>
+            <h3 className="text-lg font-bold tracking-tight">{step.title}</h3>
+            <p className="mt-2 text-sm leading-6 text-charcoal/70">{step.body}</p>
+          </div>
         ))}
       </div>
 
-      <section className="mt-20">
-        <SectionHeading eyebrow="FAQ" title="Common questions, answered clearly." />
-        <div className="mt-10 grid gap-4">
-          {faqs.map((faq) => (
-            <article key={faq.question} className="rounded-[1.5rem] border border-charcoal/10 bg-light-bone p-6">
-              <h3 className="text-xl font-bold tracking-tight">{faq.question}</h3>
-              <p className="mt-2 text-sm leading-6 text-charcoal/72">{faq.answer}</p>
-            </article>
+      {/* CTA */}
+      <div className="mt-10 rounded-[2rem] bg-bone px-8 py-10 text-center">
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-orange">Ready?</p>
+        <h2 className="mt-2 text-3xl font-extrabold tracking-tight">Start your order in minutes.</h2>
+        <p className="mt-3 text-base text-charcoal/70">Pick your bag, choose your quantity, upload your artwork. We take it from there.</p>
+        <div className="mt-6 flex flex-wrap justify-center gap-4">
+          <Link href="/shop" className="rounded-full bg-orange px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-charcoal">
+            Start Your Order
+          </Link>
+          <Link href="/pricing" className="rounded-full border border-charcoal/20 bg-white px-6 py-3 text-sm font-semibold text-charcoal hover:-translate-y-0.5 hover:border-charcoal">
+            See Pricing
+          </Link>
+        </div>
+      </div>
+
+      {/* FAQ */}
+      <div className="mt-20">
+        <SectionHeading eyebrow="FAQ" title="Common questions, straight answers." />
+
+        <div className="mt-10 space-y-12">
+          {faqs.map((section) => (
+            <div key={section.category}>
+              <h3 className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-orange">
+                {section.category}
+              </h3>
+              <div className="space-y-4">
+                {section.items.map((item) => (
+                  <details
+                    key={item.q}
+                    className="group rounded-[1.5rem] border border-charcoal/10 bg-white px-6 py-5 shadow-card open:bg-light-bone"
+                  >
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
+                      {item.q}
+                      <span className="ml-auto flex-shrink-0 text-charcoal/40 transition-transform group-open:rotate-45">＋</span>
+                    </summary>
+                    <p className="mt-4 text-sm leading-7 text-charcoal/75">{item.a}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
-      </section>
+      </div>
+
+      {/* Still have questions */}
+      <div className="mt-16 rounded-[2rem] border border-charcoal/10 bg-white p-8 text-center shadow-card">
+        <p className="text-lg font-bold">Still have questions?</p>
+        <p className="mt-2 text-sm text-charcoal/70">We're easy to reach.</p>
+        <a
+          href="mailto:hello@alongway.co"
+          className="mt-4 inline-flex rounded-full border border-charcoal/20 px-6 py-3 text-sm font-semibold hover:bg-charcoal hover:text-white"
+        >
+          hello@alongway.co
+        </a>
+      </div>
     </div>
   );
 }
