@@ -1,34 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import type { Bag, BagVariant } from "@/data/bags";
+import type { Bag } from "@/data/bags";
 import { getBagImageUrl } from "@/data/bags";
 
+const channelToteSizes = [
+  { slug: "channel-tote-small", label: "Small" },
+  { slug: "channel-tote-medium", label: "Medium" },
+  { slug: "channel-tote-large", label: "Large" },
+];
+
+const isChannelTote = (slug: string) => slug.startsWith("channel-tote");
+
 export function BagDetail({ bag }: { bag: Bag }) {
-  const [selectedVariant, setSelectedVariant] = useState<BagVariant | null>(
-    bag.variants ? bag.variants[1] ?? bag.variants[0] : null // default to medium if exists
-  );
-
-  const active = selectedVariant ?? bag;
-  const activePricingTiers = selectedVariant
-    ? bag.variants?.find((v) => v.key === selectedVariant.key)
-      ? (() => {
-          // build pricing tiers for the selected variant's size
-          const sizeMap: Record<string, Record<number, number>> = {
-            small:  { 100: 7.5,  250: 6.5,  500: 5.75, 1000: 5.25, 2000: 4.75 },
-            medium: { 100: 11.0, 250: 9.5,  500: 8.5,  1000: 7.75, 2000: 7.00 },
-            large:  { 100: 14.5, 250: 12.5, 500: 11.0, 1000: 9.75, 2000: 8.75 },
-          };
-          const prices = sizeMap[selectedVariant.size];
-          return Object.entries(prices).map(([qty, price]) => ({
-            quantity: Number(qty),
-            unitPrice: `$${price.toFixed(2)}`,
-          }));
-        })()
-      : bag.pricingTiers
-    : bag.pricingTiers;
-
   return (
     <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
       <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr]">
@@ -44,26 +28,26 @@ export function BagDetail({ bag }: { bag: Bag }) {
               {bag.material}
             </p>
             <h1 className="text-5xl font-extrabold tracking-tight">{bag.name}</h1>
-            <p className="text-lg leading-8 text-charcoal/75">{active.tagline}</p>
+            <p className="text-lg leading-8 text-charcoal/75">{bag.tagline}</p>
           </div>
 
-          {/* Size selector for variants */}
-          {bag.variants && (
+          {/* Channel Tote size switcher */}
+          {isChannelTote(bag.slug) && (
             <div className="space-y-3">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Size</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Also available in</p>
               <div className="flex gap-3">
-                {bag.variants.map((v) => (
-                  <button
-                    key={v.key}
-                    onClick={() => setSelectedVariant(v)}
+                {channelToteSizes.map((s) => (
+                  <Link
+                    key={s.slug}
+                    href={`/collection/${s.slug}`}
                     className={`rounded-full border px-5 py-2 text-sm font-semibold transition-all hover:-translate-y-0.5 ${
-                      selectedVariant?.key === v.key
+                      bag.slug === s.slug
                         ? "border-orange bg-orange text-white shadow-card"
                         : "border-charcoal/15 bg-white text-charcoal hover:border-charcoal"
                     }`}
                   >
-                    {v.label}
-                  </button>
+                    {s.label}
+                  </Link>
                 ))}
               </div>
             </div>
@@ -72,7 +56,7 @@ export function BagDetail({ bag }: { bag: Bag }) {
           {/* Specs */}
           <div className="grid gap-5 rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card sm:grid-cols-2">
             <Spec label="Material" value={bag.material} />
-            <Spec label="Dimensions" value={active.dimensions} />
+            <Spec label="Dimensions" value={bag.dimensions} />
             <Spec label="MOQ" value="100 units" />
             <Spec label="Includes" value="Free setup · Free shipping · Main decoration · Interior woven label" />
           </div>
@@ -81,7 +65,7 @@ export function BagDetail({ bag }: { bag: Bag }) {
           <div className="rounded-[2rem] border border-charcoal/10 bg-light-bone p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Features</p>
             <div className="mt-4 flex flex-wrap gap-3">
-              {active.features.map((feature) => (
+              {bag.features.map((feature) => (
                 <span
                   key={feature}
                   className="rounded-full border border-charcoal/10 bg-white px-4 py-2 text-sm font-medium text-charcoal/80"
@@ -95,12 +79,7 @@ export function BagDetail({ bag }: { bag: Bag }) {
           {/* Pricing */}
           <div className="overflow-hidden rounded-[2rem] border border-charcoal/10 bg-white shadow-card">
             <div className="border-b border-charcoal/10 px-6 py-4">
-              <h2 className="text-2xl font-bold tracking-tight">
-                Pricing tiers
-                {selectedVariant && (
-                  <span className="ml-2 text-base font-normal text-charcoal/50">— {selectedVariant.label}</span>
-                )}
-              </h2>
+              <h2 className="text-2xl font-bold tracking-tight">Pricing tiers</h2>
             </div>
             <div className="overflow-x-auto">
               <table className="min-w-full text-left text-sm">
@@ -111,7 +90,7 @@ export function BagDetail({ bag }: { bag: Bag }) {
                   </tr>
                 </thead>
                 <tbody>
-                  {activePricingTiers.map((tier) => (
+                  {bag.pricingTiers.map((tier) => (
                     <tr key={tier.quantity} className="border-t border-charcoal/10">
                       <td className="px-6 py-4 font-medium">{tier.quantity.toLocaleString()} units</td>
                       <td className="px-6 py-4">{tier.unitPrice}</td>

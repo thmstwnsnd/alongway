@@ -5,15 +5,6 @@ export type PricingTier = {
 
 export type BagSize = "small" | "medium" | "large";
 
-export type BagVariant = {
-  key: string;       // e.g. "small"
-  label: string;     // e.g. "Small"
-  tagline: string;
-  dimensions: string;
-  features: string[];
-  size: BagSize;     // pricing size tier
-};
-
 export type Bag = {
   slug: string;
   name: string;
@@ -24,7 +15,6 @@ export type Bag = {
   size: BagSize;
   startingPrice: number;
   pricingTiers: PricingTier[];
-  variants?: BagVariant[]; // only for multi-size bags like Channel Tote
 };
 
 const basePricingBySize: Record<BagSize, Record<number, number>> = {
@@ -118,39 +108,31 @@ const rawBags = [
     size: "large",
   },
   {
-    slug: "channel-tote",
-    name: "Channel Tote",
-    tagline: "24oz canvas. Structured, premium, built to last.",
+    slug: "channel-tote-small",
+    name: "Channel Tote — Small",
+    tagline: "The everyday carry. Compact enough for a commute, roomy enough for the essentials.",
     material: "24oz Canvas",
-    features: ["Structured body", "Premium 24oz canvas", "Available in 3 sizes"],
-    dimensions: 'Small: 9.5"W x 10.5"H x 5"D | Medium: 13"W x 12"H x 6"D | Large: 17"W x 15"H x 7.5"D',
+    features: ["Compact size", "Dual handle lengths", "Structured 24oz canvas"],
+    dimensions: '9.5"W x 10.5"H x 5"D | Handles: Regular 5", Long 14"',
+    size: "small",
+  },
+  {
+    slug: "channel-tote-medium",
+    name: "Channel Tote — Medium",
+    tagline: "The workhorse. Fits a laptop, a lunch, and everything in between.",
+    material: "24oz Canvas",
+    features: ["Laptop-friendly", "Dual handle lengths", "Structured 24oz canvas"],
+    dimensions: '13"W x 12"H x 6"D | Handles: Regular 6", Long 14"',
     size: "medium",
-    variants: [
-      {
-        key: "small",
-        label: "Small",
-        tagline: "The everyday carry. Compact enough for a commute, roomy enough for the essentials.",
-        dimensions: '9.5"W x 10.5"H x 5"D | Handles: Regular 5", Long 14"',
-        features: ["Compact size", "Dual handle lengths", "Structured 24oz canvas"],
-        size: "small",
-      },
-      {
-        key: "medium",
-        label: "Medium",
-        tagline: "The workhorse. Fits a laptop, a lunch, and everything in between.",
-        dimensions: '13"W x 12"H x 6"D | Handles: Regular 6", Long 14"',
-        features: ["Laptop-friendly", "Dual handle lengths", "Structured 24oz canvas"],
-        size: "medium",
-      },
-      {
-        key: "large",
-        label: "Large",
-        tagline: "The statement piece. Oversized structure, premium feel, maximum presence.",
-        dimensions: '17"W x 15"H x 7.5"D | Handles: Regular 8", Long 14"',
-        features: ["Oversized capacity", "Dual handle lengths", "Structured 24oz canvas"],
-        size: "large",
-      },
-    ],
+  },
+  {
+    slug: "channel-tote-large",
+    name: "Channel Tote — Large",
+    tagline: "The statement piece. Oversized structure, premium feel, maximum presence.",
+    material: "24oz Canvas",
+    features: ["Oversized capacity", "Dual handle lengths", "Structured 24oz canvas"],
+    dimensions: '17"W x 15"H x 7.5"D | Handles: Regular 8", Long 14"',
+    size: "large",
   },
   {
     slug: "big-sur-tote",

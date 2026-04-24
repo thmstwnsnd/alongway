@@ -60,6 +60,18 @@ export default function AboutPage() {
           <p className="mt-4 text-base leading-7 text-charcoal/72">
             Reach out when you&apos;re ready to launch a new bag, restock a proven style, or get a fast read on fit and pricing.
           </p>
+          <div className="mt-8 border-t border-charcoal/10 pt-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/40">A brand by</p>
+            <a
+              href="https://orangegoods.co"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-charcoal hover:text-orange"
+            >
+              Orange Goods →
+            </a>
+            <p className="mt-1 text-xs text-charcoal/50">Custom branded goods &amp; design studio, Los Angeles.</p>
+          </div>
         </article>
       </section>
     </div>
