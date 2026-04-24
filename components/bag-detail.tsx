@@ -107,7 +107,7 @@ export function BagDetail({ bag }: { bag: Bag }) {
 
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link
-              href={`/shop?bag=${bag.slug}${selectedVariant ? `&variant=${selectedVariant.key}` : ""}`}
+              href={`/shop?bag=${bag.slug}`}
               className="inline-flex justify-center rounded-full bg-orange px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-charcoal"
             >
               Start Your Order

@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import type { ReactNode } from "react";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { href: "/collection", label: "Collection" },
@@ -20,6 +23,13 @@ const footerLinks = [
 ];
 
 export function SiteShell({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
+  const isPortalRoute = pathname.startsWith("/portal");
+
+  if (isPortalRoute) {
+    return <div className="min-h-screen">{children}</div>;
+  }
+
   return (
     <div className="min-h-screen">
       <header className="sticky top-0 z-50 border-b border-charcoal/10 bg-white/90 backdrop-blur">
@@ -34,12 +44,17 @@ export function SiteShell({ children }: { children: ReactNode }) {
               </Link>
             ))}
           </nav>
-          <Link
-            href="/start"
-            className="rounded-full bg-orange px-5 py-3 text-sm font-semibold text-white shadow-card hover:-translate-y-0.5 hover:bg-charcoal"
-          >
-            Start Your Order
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link href="/portal" className="hidden text-sm font-medium text-charcoal/70 hover:text-blue sm:inline-flex">
+              Sign in
+            </Link>
+            <Link
+              href="/start"
+              className="rounded-full bg-orange px-5 py-3 text-sm font-semibold text-white shadow-card hover:-translate-y-0.5 hover:bg-charcoal"
+            >
+              Start Your Order
+            </Link>
+          </div>
         </div>
         <nav className="flex gap-5 overflow-x-auto border-t border-charcoal/10 px-6 py-3 text-sm font-medium md:hidden">
           {navLinks.map((link) => (
@@ -47,6 +62,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
               {link.label}
             </Link>
           ))}
+          <Link href="/portal" className="whitespace-nowrap text-charcoal/70 hover:text-blue">
+            Sign in
+          </Link>
         </nav>
       </header>
       <main>{children}</main>
