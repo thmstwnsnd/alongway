@@ -6,7 +6,7 @@ export function BagCard({ bag }: { bag: Bag }) {
   return (
     <article className="group overflow-hidden rounded-[1.75rem] border border-charcoal/10 bg-white shadow-card">
       <img
-        src={getBagImageUrl(bag.name)}
+        src={getBagImageUrl(bag.slug)}
         alt={bag.name}
         className="aspect-[6/5] w-full border-b border-charcoal/10 object-cover"
       />

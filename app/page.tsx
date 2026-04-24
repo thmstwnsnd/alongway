@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { BagCard } from "@/components/bag-card";
 import { SectionHeading } from "@/components/section-heading";
-import { bags, getBagImageUrl } from "@/data/bags";
+import { bags, getBagImageUrl, getLifestyleImageUrl } from "@/data/bags";
 
 const featuredBags = bags.slice(0, 3);
 const steps = [
@@ -34,23 +34,12 @@ export default function HomePage() {
               See the Collection
             </Link>
           </div>
-          <div className="rounded-[2.5rem] border border-charcoal/10 bg-gradient-to-br from-white via-light-bone to-blue/20 p-6 shadow-card">
-            <div className="flex h-full min-h-[320px] flex-col justify-between rounded-[2rem] border border-charcoal/10 bg-white/70 p-8">
-              <p className="max-w-sm text-sm uppercase tracking-[0.2em] text-charcoal/55">
-                Premium custom totes and bags with clean silhouettes and factory-direct quality.
-              </p>
-              <div className="grid grid-cols-3 gap-3">
-                {featuredBags.map((bag) => (
-                  <img
-                    key={bag.slug}
-                    src={getBagImageUrl(bag.name)}
-                    alt={bag.name}
-                    className="aspect-[3/4] w-full rounded-[1.5rem] object-cover"
-                    loading="lazy"
-                  />
-                ))}
-              </div>
-            </div>
+          <div className="overflow-hidden rounded-[2.5rem] shadow-card">
+            <img
+              src={getLifestyleImageUrl(0, "square")}
+              alt="Lifestyle"
+              className="h-full min-h-[380px] w-full object-cover"
+            />
           </div>
         </div>
       </section>

@@ -44,7 +44,7 @@ export default async function BagDetailPage({
     <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
       <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr]">
         <img
-          src={getBagImageUrl(bag.name, "hero")}
+          src={getBagImageUrl(bag.slug, "hero")}
           alt={bag.name}
           className="min-h-[420px] w-full rounded-[2.5rem] border border-charcoal/10 object-cover shadow-card"
         />

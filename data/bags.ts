@@ -155,7 +155,47 @@ export function getBagBySlug(slug: string) {
   return bags.find((bag) => bag.slug === slug);
 }
 
-export function getBagImageUrl(bagName: string, size: "card" | "hero" = "card") {
-  const dimensions = size === "hero" ? "800x600" : "600x500";
-  return `https://placehold.co/${dimensions}/EEE6D2/262626?text=${bagName.replace(/\s+/g, "+")}`;
+// Curated Unsplash photo IDs — real lifestyle/tote photography
+// Format: https://images.unsplash.com/photo-{id}?w=800&q=80&fit=crop
+const bagPhotos: Record<string, string> = {
+  "beach-tote":    "1622560048-2f3e5abf3e28", // beach bag lifestyle
+  "hauler-tote":   "1553062407-98eeb64c6a62", // large structured tote
+  "everyday-tote": "1544816565-9d2be1e2c44b", // canvas tote everyday
+  "shoulder-tote": "1590874103328-eac38a683ce7", // shoulder bag lifestyle
+  "oversized-tote":"1547949003-9792a18a2841", // oversized market tote
+  "basic-tote":    "1558769132-cb1aea458c5e", // simple flat tote
+  "mini-tote":     "1548036161-2ddff1aafc29", // mini tote compact
+  "the-sunday":    "1609709295948-17d77cb2a69a", // open top market bag
+  "channel-tote":  "1548036161-2ddff1aafc29", // structured canvas
+  "big-sur-tote":  "1553062407-98eeb64c6a62", // california lifestyle tote
+  "otis-tote":     "1548036161-2ddff1aafc29", // waxed canvas bag
+  "camper-pouch":  "1585386959595-9ff92f53e61c", // small pouch accessories
+};
+
+// Lifestyle hero images for home/collection sections
+export const lifestylePhotos = [
+  "1556742049-0cfed4f6a45d", // person at farmers market with tote
+  "1473093295043-cdd812d0e601", // coffee shop morning lifestyle
+  "1509316785289-025f5b846b35", // beach lifestyle warm tones
+  "1441986300917-64674bd600d8", // shopping lifestyle
+  "1528360983277-13d401cdc186", // outdoor lifestyle warm
+  "1524758631624-e2822e304c36", // california beach lifestyle
+];
+
+export function getBagImageUrl(slug: string, size: "card" | "hero" = "card") {
+  const photoId = bagPhotos[slug];
+  const w = size === "hero" ? 1200 : 800;
+  const h = size === "hero" ? 900 : 800;
+  if (photoId) {
+    return `https://images.unsplash.com/photo-${photoId}?w=${w}&h=${h}&q=80&fit=crop&auto=format`;
+  }
+  // fallback
+  return `https://placehold.co/${w}x${h}/EEE6D2/262626?text=${slug}`;
+}
+
+export function getLifestyleImageUrl(index: number, size: "wide" | "square" = "wide") {
+  const photoId = lifestylePhotos[index % lifestylePhotos.length];
+  const w = size === "wide" ? 1600 : 800;
+  const h = size === "wide" ? 900 : 800;
+  return `https://images.unsplash.com/photo-${photoId}?w=${w}&h=${h}&q=80&fit=crop&auto=format`;
 }
