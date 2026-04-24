@@ -45,6 +45,18 @@ const faqs = [
     answer: "Standard customization is included in starting pricing and covers the core production setup for clean branded applications.",
   },
   {
+    question: "How does payment work?",
+    answer: "All orders are paid in full at checkout. We accept all major credit cards via Stripe.",
+  },
+  {
+    question: "What happens after I pay?",
+    answer: "You&apos;re not done — you&apos;re just starting. Within 24 hours we send a techpack showing your bag with artwork placement guides. Nothing goes to production until you approve the design.",
+  },
+  {
+    question: "Do you offer payment plans?",
+    answer: "Not currently. All orders are paid in full upfront.",
+  },
+  {
     question: "Can I reorder later?",
     answer: "Yes. Reorders are built to be simple once your bag style and artwork are approved.",
   },

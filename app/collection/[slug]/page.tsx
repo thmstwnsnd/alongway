@@ -104,12 +104,20 @@ export default async function BagDetailPage({
             </div>
           </div>
 
-          <Link
-            href="/start"
-            className="inline-flex rounded-full bg-orange px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-charcoal"
-          >
-            Start Your Order
-          </Link>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/start"
+              className="inline-flex justify-center rounded-full bg-orange px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-charcoal"
+            >
+              Start Your Order
+            </Link>
+            <Link
+              href={`/shop?bag=${bag.slug}`}
+              className="inline-flex justify-center rounded-full border border-charcoal/15 bg-white px-6 py-3 text-sm font-semibold text-charcoal hover:-translate-y-0.5 hover:border-blue hover:text-blue"
+            >
+              Buy Now
+            </Link>
+          </div>
         </div>
       </div>
     </div>
