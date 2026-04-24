@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { BagCard } from "@/components/bag-card";
 import { SectionHeading } from "@/components/section-heading";
-import { bags } from "@/data/bags";
+import { bags, getBagImageUrl } from "@/data/bags";
 
 const featuredBags = bags.slice(0, 3);
 const steps = [
@@ -41,10 +41,12 @@ export default function HomePage() {
               </p>
               <div className="grid grid-cols-3 gap-3">
                 {featuredBags.map((bag) => (
-                  <div
+                  <img
                     key={bag.slug}
-                    className="aspect-[3/4] rounded-[1.5rem]"
-                    style={{ backgroundColor: bag.accent }}
+                    src={getBagImageUrl(bag.name)}
+                    alt={bag.name}
+                    className="aspect-[3/4] w-full rounded-[1.5rem] object-cover"
+                    loading="lazy"
                   />
                 ))}
               </div>

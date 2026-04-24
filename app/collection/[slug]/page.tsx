@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { bags, getBagBySlug } from "@/data/bags";
+import { bags, getBagBySlug, getBagImageUrl } from "@/data/bags";
 
 export function generateStaticParams() {
   return bags.map((bag) => ({ slug: bag.slug }));
@@ -24,7 +24,7 @@ export async function generateMetadata({
 
   return {
     title: `${bag.name} | Alongway`,
-    description: bag.description,
+    description: bag.tagline,
   };
 }
 
@@ -43,23 +43,36 @@ export default async function BagDetailPage({
   return (
     <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
       <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr]">
-        <div
-          className="min-h-[420px] rounded-[2.5rem] border border-charcoal/10 shadow-card"
-          style={{
-            background: `linear-gradient(145deg, ${bag.accent} 0%, #EEE6D2 100%)`,
-          }}
+        <img
+          src={getBagImageUrl(bag.name, "hero")}
+          alt={bag.name}
+          className="min-h-[420px] w-full rounded-[2.5rem] border border-charcoal/10 object-cover shadow-card"
         />
         <div className="space-y-8">
           <div className="space-y-4">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-orange">{bag.size} silhouette</p>
             <h1 className="text-5xl font-extrabold tracking-tight">{bag.name}</h1>
-            <p className="text-lg leading-8 text-charcoal/75">{bag.description}</p>
+            <p className="text-lg leading-8 text-charcoal/75">{bag.tagline}</p>
           </div>
 
           <div className="grid gap-5 rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card sm:grid-cols-3">
-            <Spec label="Materials" value="Premium canvas, reinforced stitching" />
+            <Spec label="Material" value={bag.material} />
             <Spec label="Dimensions" value={bag.dimensions} />
             <Spec label="MOQ" value="50 units" />
+          </div>
+
+          <div className="rounded-[2rem] border border-charcoal/10 bg-light-bone p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Features</p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              {bag.features.map((feature) => (
+                <span
+                  key={feature}
+                  className="rounded-full border border-charcoal/10 bg-white px-4 py-2 text-sm font-medium text-charcoal/80"
+                >
+                  {feature}
+                </span>
+              ))}
+            </div>
           </div>
 
           <div className="overflow-hidden rounded-[2rem] border border-charcoal/10 bg-white shadow-card">

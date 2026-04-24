@@ -1,12 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import type { ReactNode } from "react";
 
 import { bags } from "@/data/bags";
 
 export function StartOrderForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [artworkReady, setArtworkReady] = useState("");
+
+  const minDate = useMemo(() => {
+    const d = new Date();
+    d.setDate(d.getDate() + 42); // 6 weeks minimum
+    return d.toISOString().split("T")[0];
+  }, []);
 
   if (submitted) {
     return (
@@ -50,34 +57,51 @@ export function StartOrderForm() {
           <input
             name="quantity"
             type="number"
-            min="50"
-            placeholder="250"
+            min="100"
+            placeholder="Minimum order of 100"
             required
             className="w-full rounded-2xl border border-charcoal/15 bg-light-bone px-4 py-3 text-sm outline-none focus:border-blue"
           />
         </Field>
-        <Field label="Timeline">
+        <Field label="Need it by">
           <input
             name="timeline"
-            type="text"
-            placeholder="Needed by September"
+            type="date"
+            min={minDate}
             required
             className="w-full rounded-2xl border border-charcoal/15 bg-light-bone px-4 py-3 text-sm outline-none focus:border-blue"
           />
+          <p className="mt-1 text-xs text-charcoal/50">Typical turnaround is 6–8 weeks. Dates sooner than 6 weeks from today are unavailable.</p>
         </Field>
-        <Field label="Artwork ready?">
+        <Field label="Artwork ready?" className="md:col-span-2">
           <select
             name="artworkReady"
             required
-            defaultValue=""
+            value={artworkReady}
+            onChange={(e) => setArtworkReady(e.target.value)}
             className="w-full rounded-2xl border border-charcoal/15 bg-light-bone px-4 py-3 text-sm outline-none focus:border-blue"
           >
             <option value="" disabled>
               Select one
             </option>
             <option value="yes">Yes</option>
-            <option value="no">No</option>
+            <option value="no">No — I need help</option>
           </select>
+          {artworkReady === "yes" && (
+            <div className="mt-3">
+              <label className="block text-xs font-medium text-charcoal/60 mb-1">Upload your artwork</label>
+              <input
+                name="artwork"
+                type="file"
+                accept=".ai,.eps,.pdf,.svg,.png,.jpg,.jpeg"
+                className="w-full rounded-2xl border border-charcoal/15 bg-light-bone px-4 py-3 text-sm outline-none focus:border-blue file:mr-3 file:rounded-full file:border-0 file:bg-orange file:px-4 file:py-1 file:text-xs file:font-semibold file:text-white"
+              />
+              <p className="mt-1 text-xs text-charcoal/50">Accepted: AI, EPS, PDF, SVG, PNG, JPG</p>
+            </div>
+          )}
+          {artworkReady === "no" && (
+            <p className="mt-2 text-xs text-blue font-medium">No problem — our team can help with design. Tell us more in the notes below.</p>
+          )}
         </Field>
         <Field label="Name">
           <input

@@ -1,15 +1,14 @@
 import Link from "next/link";
 
-import type { Bag } from "@/data/bags";
+import { type Bag, getBagImageUrl } from "@/data/bags";
 
 export function BagCard({ bag }: { bag: Bag }) {
   return (
     <article className="group overflow-hidden rounded-[1.75rem] border border-charcoal/10 bg-white shadow-card">
-      <div
-        className="aspect-[4/3] w-full border-b border-charcoal/10"
-        style={{
-          background: `linear-gradient(135deg, ${bag.accent} 0%, #EEE6D2 100%)`,
-        }}
+      <img
+        src={getBagImageUrl(bag.name)}
+        alt={bag.name}
+        className="aspect-[6/5] w-full border-b border-charcoal/10 object-cover"
       />
       <div className="space-y-4 p-6">
         <div className="space-y-2">
@@ -19,7 +18,7 @@ export function BagCard({ bag }: { bag: Bag }) {
               {bag.size}
             </span>
           </div>
-          <p className="text-sm leading-6 text-charcoal/70">{bag.shortDescription}</p>
+          <p className="text-sm leading-6 text-charcoal/70">{bag.tagline}</p>
         </div>
         <div className="flex items-center justify-between gap-4">
           <p className="text-sm font-semibold">

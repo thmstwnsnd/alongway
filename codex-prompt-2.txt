@@ -1,44 +1,17 @@
-export type PricingTier = {
-  quantity: number;
-  unitPrice: string;
-};
+Update the Alongway Next.js site with the following changes. Work on the existing branch feature/initial-site.
 
-export type BagSize = "small" | "medium" | "large";
+## 1. Update bag data (data/bags.ts)
+Replace the placeholder bag names with the real Alongway lineup. Use this exact data:
 
-export type Bag = {
-  slug: string;
-  name: string;
-  tagline: string;
-  material: string;
-  features: string[];
-  dimensions: string;
-  size: BagSize;
-  startingPrice: number;
-  pricingTiers: PricingTier[];
-};
-
-const basePricingBySize: Record<BagSize, Record<number, number>> = {
-  small: { 50: 8.5, 100: 7.5, 250: 6.5, 500: 5.75 },
-  medium: { 50: 12.5, 100: 11, 250: 9.5, 500: 8.5 },
-  large: { 50: 16.5, 100: 14.5, 250: 12.5, 500: 11 },
-};
-
-function buildPricingTiers(size: BagSize): PricingTier[] {
-  return Object.entries(basePricingBySize[size]).map(([quantity, price]) => ({
-    quantity: Number(quantity),
-    unitPrice: `$${price.toFixed(2)}`,
-  }));
-}
-
-const rawBags = [
+```
+const bags = [
   {
     slug: "beach-tote",
     name: "Beach Tote",
     tagline: "Water-resistant, zippered, built for the shore.",
     material: "Tyvek",
     features: ["Water-resistant", "Zippered closure", "Front pocket", "Interior pocket"],
-    dimensions:
-      '19.5"W x 14.5"H x 6" Gusset | Straps: 22" long x 1.5" wide | Front pocket: 7" | Interior pocket: 7"',
+    dimensions: '19.5"W x 14.5"H x 6" Gusset | Straps: 22" long x 1.5" wide | Front pocket: 7" | Interior pocket: 7"',
     size: "large",
   },
   {
@@ -110,8 +83,7 @@ const rawBags = [
     tagline: "24oz canvas. Structured, premium, available in 4 sizes.",
     material: "24oz Canvas",
     features: ["Structured body", "Premium canvas", "4 sizes available"],
-    dimensions:
-      'Mini: 10"W x 7"H x 6"D | Small: 9.5"W x 10.5"H x 5"D | Medium: 13"W x 12"H x 6"D | Large: 17"W x 15"H x 7.5"D',
+    dimensions: "Mini: 10\"W x 7\"H x 6\"D | Small: 9.5\"W x 10.5\"H x 5\"D | Medium: 13\"W x 12\"H x 6\"D | Large: 17\"W x 15\"H x 7.5\"D",
     size: "medium",
   },
   {
@@ -141,21 +113,52 @@ const rawBags = [
     dimensions: "Dimensions TBD",
     size: "small",
   },
-] satisfies Array<Omit<Bag, "startingPrice" | "pricingTiers">>;
+]
+```
 
-export const bags: Bag[] = rawBags.map((bag) => ({
-  ...bag,
-  startingPrice: basePricingBySize[bag.size][50],
-  pricingTiers: buildPricingTiers(bag.size),
-}));
+Update the pricing tiers in the bag data too. Use these starting prices based on size:
+- small: { 50: 8.50, 100: 7.50, 250: 6.50, 500: 5.75 }
+- medium: { 50: 12.50, 100: 11.00, 250: 9.50, 500: 8.50 }
+- large: { 50: 16.50, 100: 14.50, 250: 12.50, 500: 11.00 }
 
-export const quantityTiers = [50, 100, 250, 500];
+## 2. Placeholder images using placehold.co
+Replace ALL placeholder colored boxes with actual <img> tags using placehold.co. Use these exact formats:
+- Collection grid cards: https://placehold.co/600x500/EEE6D2/262626?text=Bag+Name (use the bag name in the text param, replace spaces with +)
+- Individual bag page hero: https://placehold.co/800x600/EEE6D2/262626?text=Bag+Name
+- Home page featured bags: https://placehold.co/600x500/EEE6D2/262626?text=Bag+Name
+- Blog post thumbnails: https://placehold.co/800x450/364FA0/EEE6D2?text=Blog+Post
 
-export function getBagBySlug(slug: string) {
-  return bags.find((bag) => bag.slug === slug);
-}
+Use Next.js Image component where appropriate or regular img tags. Make sure images have proper aspect ratios and look good in the grid.
 
-export function getBagImageUrl(bagName: string, size: "card" | "hero" = "card") {
-  const dimensions = size === "hero" ? "800x600" : "600x500";
-  return `https://placehold.co/${dimensions}/EEE6D2/262626?text=${bagName.replace(/\s+/g, "+")}`;
-}
+## 3. Add Blog page (/blog)
+Create app/blog/page.tsx with:
+- Page header: "From the Field" with subline "Stories, tips, and ideas from the Alongway team."
+- Grid of 6 placeholder blog post cards, each with:
+  - Placeholder image (placehold.co 800x450, blue bg, bone text)
+  - Category tag (rotate through: "Behind the Brand", "Style Guide", "How We Make It", "Client Stories")
+  - Title (write 6 real-sounding blog post titles relevant to custom bags/brand merch — make them good)
+  - Short excerpt (2 sentences)
+  - "Read more →" link (href="#" for now)
+  - Date (stagger dates across April/March 2026)
+- Add /blog to the nav links in site-shell.tsx between "How It Works" and "About"
+- Add /blog to the footer links too
+
+## 4. "Text us" in footer
+In components/site-shell.tsx, add a "Text us" line to the footer left column, below the tagline:
+- Text: 📱 Text us: (310) 555-0100  ← use a placeholder number for now, Easton will update
+- Style it small, bone/80 color, same as the tagline text
+- Make the number a tel: link so it's tappable on mobile
+
+## 5. Favicon
+In app/layout.tsx, add the favicon. The icon file is at /logo-icon.png in the public folder.
+Add to the metadata: icons: { icon: '/logo-icon.png' }
+
+## Branch & commit
+- Stay on branch feature/initial-site
+- Commit all changes with message: "feat: real bag data, placeholder images, blog page, text us footer, favicon"
+- Push to origin
+- Do NOT open another PR — one already exists (PR #1). Just push to the branch.
+- Do NOT merge anything.
+
+When completely finished, run:
+openclaw system event --text "Done: bag data, placeholder images, blog, footer updates pushed to feature/initial-site" --mode now

@@ -6,6 +6,7 @@ const navLinks = [
   { href: "/collection", label: "Collection" },
   { href: "/pricing", label: "Pricing" },
   { href: "/how-it-works", label: "How It Works" },
+  { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
 ];
 
@@ -47,6 +48,12 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <Image src="/logo-wordmark.jpeg" alt="Alongway" width={140} height={36} className="h-8 w-auto object-contain brightness-0 invert" />
             </Link>
             <p className="max-w-md text-sm text-bone/80">Made to carry.</p>
+            <p className="text-sm text-bone/80">
+              📱 Text us:{" "}
+              <a href="tel:3105550100" className="hover:text-white">
+                (310) 555-0100
+              </a>
+            </p>
           </div>
           <div className="grid gap-3 text-sm text-bone/80 sm:grid-cols-2">
             {[

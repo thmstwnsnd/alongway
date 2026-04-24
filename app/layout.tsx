@@ -15,6 +15,9 @@ export const metadata: Metadata = {
   title: "Alongway | Made to carry.",
   description:
     "Premium custom totes and bags with curated silhouettes, all-in pricing, and factory-direct quality.",
+  icons: {
+    icon: "/logo-icon.png",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
