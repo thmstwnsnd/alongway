@@ -7,7 +7,7 @@ export default function PricingPage() {
       <SectionHeading
         eyebrow="Pricing"
         title="No quotes. No surprises. Just clear pricing."
-        body="All prices below are marked as starting from and give you a consistent baseline across the full line."
+        body="All prices are starting-from per unit. Every order includes free setup, free shipping, and your choice of main decoration."
       />
 
       <div className="mt-12 overflow-hidden rounded-[2rem] border border-charcoal/10 bg-white shadow-card">
@@ -44,9 +44,16 @@ export default function PricingPage() {
         </div>
       </div>
 
-      <p className="mt-6 max-w-3xl text-sm leading-6 text-charcoal/70">
-        MOQ is 100 units. Prices include production, standard customization, and shipping to one US address. Setup fee: $50 one-time. Orders of 5,000+ units receive a custom quote.
-      </p>
+      <div className="mt-8 rounded-[1.5rem] border border-charcoal/10 bg-light-bone px-6 py-5">
+        <p className="text-sm font-semibold text-charcoal">Every order includes:</p>
+        <ul className="mt-3 grid gap-2 text-sm text-charcoal/75 sm:grid-cols-2">
+          <li>✓ Main decoration — screen print, embroidery, patch, or woven label</li>
+          <li>✓ Interior branded woven label</li>
+          <li>✓ Free setup</li>
+          <li>✓ Free shipping to one US address</li>
+        </ul>
+        <p className="mt-4 text-xs text-charcoal/50">MOQ is 100 units. Orders of 5,000+ units receive a custom quote.</p>
+      </div>
     </div>
   );
 }

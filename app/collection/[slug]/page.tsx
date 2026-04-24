@@ -59,6 +59,7 @@ export default async function BagDetailPage({
             <Spec label="Material" value={bag.material} />
             <Spec label="Dimensions" value={bag.dimensions} />
             <Spec label="MOQ" value="100 units" />
+            <Spec label="Includes" value="Free setup · Free shipping · Main decoration · Interior woven label" />
           </div>
 
           <div className="rounded-[2rem] border border-charcoal/10 bg-light-bone p-6">

@@ -148,7 +148,7 @@ const rawBags = [
 
 export const bags: Bag[] = rawBags.map((bag) => ({
   ...bag,
-  startingPrice: basePricingBySize[bag.size][50],
+  startingPrice: basePricingBySize[bag.size][100],
   pricingTiers: buildPricingTiers(bag.size),
 }));
 
