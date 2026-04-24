@@ -13,6 +13,7 @@ import {
   emptyOrderDraft,
   formatCurrency,
   getOrderAmounts,
+  shippingOptions,
   type OrderDraft,
 } from "@/lib/order-flow";
 
@@ -84,7 +85,7 @@ export function CheckoutPage() {
     window.localStorage.setItem(ORDER_DRAFT_STORAGE_KEY, JSON.stringify(order));
   }, [isHydrated, order]);
 
-  const { bag, unitPrice, total } = useMemo(() => getOrderAmounts(order), [order]);
+  const { bag, shippingOption, shippingSavings, unitPrice, total } = useMemo(() => getOrderAmounts(order), [order]);
   const isOrderReady = Boolean(bag && order.quantity && total);
 
   return (
@@ -138,6 +139,46 @@ export function CheckoutPage() {
                 Contact us.
               </Link>
             </p>
+            <div className="mt-6 grid gap-4">
+              {Object.values(shippingOptions).map((option) => {
+                const isSelected = order.shippingMethod === option.id;
+
+                return (
+                  <label
+                    key={option.id}
+                    className={`cursor-pointer rounded-[1.75rem] border p-5 ${
+                      isSelected ? "border-charcoal bg-bone" : "border-charcoal/10 bg-white"
+                    }`}
+                  >
+                    <div className="flex items-start gap-4">
+                      <input
+                        type="radio"
+                        name="shippingMethod"
+                        checked={isSelected}
+                        onChange={() => setOrder((current) => ({ ...current, shippingMethod: option.id }))}
+                        className="mt-1 h-4 w-4 border-charcoal text-charcoal focus:ring-charcoal"
+                      />
+                      <div className="space-y-2">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <p className="text-base font-semibold text-charcoal">{option.label}</p>
+                          {option.id === "standard" ? (
+                            <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-charcoal/65">
+                              Default
+                            </span>
+                          ) : null}
+                        </div>
+                        <p className="text-sm leading-6 text-charcoal/68">{option.description}</p>
+                        {option.id === "economy" && order.quantity ? (
+                          <p className="text-sm font-semibold text-charcoal">
+                            At {order.quantity.toLocaleString()} units, that&apos;s {formatCurrency(shippingSavings)} savings with a longer wait.
+                          </p>
+                        ) : null}
+                      </div>
+                    </div>
+                  </label>
+                );
+              })}
+            </div>
             <div className="mt-5 grid gap-5 md:grid-cols-2">
               <Field label="Full name">
                 <input
@@ -258,6 +299,7 @@ export function CheckoutPage() {
             unitPrice={unitPrice}
             total={total}
             showCheckoutBreakdown
+            shippingLabel={shippingOption.label}
           />
         </div>
       </div>

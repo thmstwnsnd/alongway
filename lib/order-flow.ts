@@ -20,6 +20,7 @@ export const includedOrderItems = [
 ] as const;
 
 export type ArtworkStatus = "yes" | "no" | "";
+export type ShippingMethod = "standard" | "economy";
 
 export type DecorationType = (typeof decorationOptions)[number] | "";
 
@@ -33,6 +34,7 @@ export type OrderDraft = {
   decorationType: DecorationType;
   notes: string;
   artworkReady: ArtworkStatus;
+  shippingMethod: ShippingMethod;
 };
 
 export const emptyOrderDraft: OrderDraft = {
@@ -45,7 +47,23 @@ export const emptyOrderDraft: OrderDraft = {
   decorationType: "",
   notes: "",
   artworkReady: "",
+  shippingMethod: "standard",
 };
+
+export const shippingOptions = {
+  standard: {
+    id: "standard",
+    label: "Standard (Air Shipping)",
+    description: "Included in price, ~2-3 weeks from production complete",
+    perUnitAdjustment: 0,
+  },
+  economy: {
+    id: "economy",
+    label: "Economy (Sea Freight)",
+    description: "Subtract $2/unit from total, +30-35 days transit",
+    perUnitAdjustment: -2,
+  },
+} as const;
 
 export function formatCurrency(amount: number) {
   return new Intl.NumberFormat("en-US", {
@@ -78,8 +96,14 @@ export function getOrderAmounts(order: OrderDraft) {
   const selectedAddOns = getSelectedAddOns(order.addOnIds);
   const baseUnitPrice = getUnitPrice(bag, order.quantity);
   const addOnUnitTotal = selectedAddOns.reduce((sum, addOn) => sum + addOn.pricePerUnit, 0);
-  const unitPrice = baseUnitPrice === null ? null : baseUnitPrice + (fabric?.upcharge ?? 0) + addOnUnitTotal;
+  const shippingOption = shippingOptions[order.shippingMethod];
+  const unitPrice =
+    baseUnitPrice === null
+      ? null
+      : baseUnitPrice + (fabric?.upcharge ?? 0) + addOnUnitTotal + shippingOption.perUnitAdjustment;
   const total = unitPrice !== null && order.quantity ? unitPrice * order.quantity : null;
+  const shippingSavings =
+    order.shippingMethod === "economy" && order.quantity ? Math.abs(shippingOption.perUnitAdjustment) * order.quantity : 0;
 
-  return { bag, fabric, selectedAddOns, baseUnitPrice, addOnUnitTotal, unitPrice, total };
+  return { bag, fabric, selectedAddOns, baseUnitPrice, addOnUnitTotal, shippingOption, shippingSavings, unitPrice, total };
 }

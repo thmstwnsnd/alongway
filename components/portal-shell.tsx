@@ -8,6 +8,7 @@ import type { ReactNode } from "react";
 const portalLinks = [
   { href: "/portal/dashboard", label: "Dashboard" },
   { href: "/portal/orders", label: "Orders" },
+  { href: "/portal/referral", label: "Referrals" },
   { href: "/portal/account", label: "Account" },
 ];
 

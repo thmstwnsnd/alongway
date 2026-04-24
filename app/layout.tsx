@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
 import type { ReactNode } from "react";
 
+import { EmailCaptureModal } from "@/components/email-capture-modal";
 import { SiteShell } from "@/components/site-shell";
 
 import "./globals.css";
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     <html lang="en">
       <body className={`${figtree.variable} font-sans antialiased`}>
         <SiteShell>{children}</SiteShell>
+        <EmailCaptureModal />
       </body>
     </html>
   );

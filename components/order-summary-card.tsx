@@ -9,6 +9,7 @@ type OrderSummaryCardProps = {
   unitPrice?: number | null;
   total?: number | null;
   showCheckoutBreakdown?: boolean;
+  shippingLabel?: string;
   ctaLabel?: string;
   ctaHref?: string;
   onCtaClick?: () => void;
@@ -22,6 +23,7 @@ export function OrderSummaryCard({
   unitPrice,
   total,
   showCheckoutBreakdown = false,
+  shippingLabel = "Free",
   ctaLabel,
   ctaHref,
   onCtaClick,
@@ -52,7 +54,7 @@ export function OrderSummaryCard({
           <>
             <div className="border-t border-charcoal/10 pt-4">
               <SummaryRow label="Subtotal" value={total ? formatCurrency(total) : "TBD"} />
-              <SummaryRow label="Shipping" value="Free" />
+              <SummaryRow label="Shipping" value={shippingLabel} />
               <SummaryRow label="Setup" value="Free" />
             </div>
           </>

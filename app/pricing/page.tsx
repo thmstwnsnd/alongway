@@ -52,6 +52,9 @@ export default function PricingPage() {
           <li>✓ Free setup</li>
           <li>✓ Free shipping to one US address</li>
         </ul>
+        <p className="mt-4 text-sm leading-6 text-charcoal/75">
+          Want to save on large orders? Economy sea freight shipping (-$2/unit) is available at checkout. Add 30-35 days to your delivery timeline.
+        </p>
         <p className="mt-4 text-xs text-charcoal/50">MOQ is 100 units. Orders of 5,000+ units receive a custom quote.</p>
       </div>
     </div>
