@@ -77,6 +77,89 @@ export function BagDetail({ bag }: { bag: Bag }) {
             </div>
           </div>
 
+          <div className="space-y-4">
+            <details className="group rounded-[1.5rem] border border-charcoal/10 bg-white px-6 py-5 shadow-card open:bg-light-bone">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
+                Customization
+                <span className="ml-auto flex-shrink-0 text-2xl leading-none text-charcoal/40 transition-transform group-open:rotate-45">
+                  +
+                </span>
+              </summary>
+              <div className="mt-4 space-y-3 text-sm leading-7 text-charcoal/75">
+                <p>
+                  <strong>Screen Print</strong> – Bold, flat coverage. Best for clean logos and simple graphics.
+                </p>
+                <p>
+                  <strong>Embroidery</strong> – Stitched texture. Premium feel, great for hats and heavyweight bags.
+                </p>
+                <p>
+                  <strong>Woven Patch</strong> – Iron-on or sew-on. Adds dimension and a retail-quality finish.
+                </p>
+                <p>
+                  <strong>Woven Label</strong> – Interior or exterior. The cleanest branding detail we offer.
+                </p>
+                <p>
+                  Every order includes one main decoration plus an interior branded woven label at no extra
+                  charge.
+                </p>
+              </div>
+            </details>
+
+            <details className="group rounded-[1.5rem] border border-charcoal/10 bg-white px-6 py-5 shadow-card open:bg-light-bone">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
+                Style &amp; Sizing
+                <span className="ml-auto flex-shrink-0 text-2xl leading-none text-charcoal/40 transition-transform group-open:rotate-45">
+                  +
+                </span>
+              </summary>
+              <div className="mt-4 space-y-3 text-sm leading-7 text-charcoal/75">
+                <p>{bag.dimensions}</p>
+                <p>
+                  Not sure on size? The Channel Tote comes in Small, Medium, and Large. Browse the collection to
+                  compare.
+                </p>
+              </div>
+            </details>
+
+            <details className="group rounded-[1.5rem] border border-charcoal/10 bg-white px-6 py-5 shadow-card open:bg-light-bone">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
+                Material Possibilities
+                <span className="ml-auto flex-shrink-0 text-2xl leading-none text-charcoal/40 transition-transform group-open:rotate-45">
+                  +
+                </span>
+              </summary>
+              <div className="mt-4 text-sm leading-7 text-charcoal/75">
+                <p>
+                  Every bag starts with a fabric choice. Starter fabrics are included at no extra cost – canvas,
+                  denim, corduroy, nylon, and camo. Upgrade tiers unlock waxed canvas, heavier canvas weights,
+                  and specialty materials. Use the configurator below to see how fabric choice affects your unit
+                  price. Want to feel it first? Order a{" "}
+                  <Link href="/swatches" className="font-semibold text-blue hover:text-charcoal">
+                    swatch kit
+                  </Link>
+                  .
+                </p>
+              </div>
+            </details>
+
+            <details className="group rounded-[1.5rem] border border-charcoal/10 bg-white px-6 py-5 shadow-card open:bg-light-bone">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
+                Production Details
+                <span className="ml-auto flex-shrink-0 text-2xl leading-none text-charcoal/40 transition-transform group-open:rotate-45">
+                  +
+                </span>
+              </summary>
+              <ul className="mt-4 space-y-2 text-sm leading-7 text-charcoal/75">
+                <li>Artwork approval – Tech pack within 2 business days</li>
+                <li>Production: 30 days</li>
+                <li>Air shipping: 10–15 days (included in price)</li>
+                <li>Ships to one US address per order</li>
+                <li>Accepted files: .ai, .pdf, .eps only</li>
+                <li>Artwork must be clean vector – no PNG or JPEG for production</li>
+              </ul>
+            </details>
+          </div>
+
           {/* Pricing */}
           <div className="overflow-hidden rounded-[2rem] border border-charcoal/10 bg-white shadow-card">
             <div className="border-b border-charcoal/10 px-6 py-4">

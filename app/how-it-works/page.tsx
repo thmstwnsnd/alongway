@@ -20,7 +20,7 @@ const steps = [
   {
     emoji: "🏭",
     title: "We handle production",
-    body: "Your bags are produced in our China factory — the same facilities supplying major retail brands. Typical production timeline is 6–8 weeks from artwork approval.",
+    body: "Your bags are produced in our China factory — the same facilities supplying major retail brands. Typical production timeline is 30 days from artwork approval.",
   },
   {
     emoji: "📦",
@@ -51,7 +51,7 @@ const faqs = [
       },
       {
         q: "Can I get a swatch before ordering?",
-        a: "Yes — we offer a $5 swatch kit with fabric samples in 10oz and 24oz canvas so you can feel the materials before committing. Order one from our shop.",
+        a: "Yes — we offer an $8 swatch kit with fabric samples so you can feel the materials before committing.",
       },
     ],
   },
@@ -89,7 +89,7 @@ const faqs = [
     items: [
       {
         q: "How long does production take?",
-        a: "6–8 weeks from artwork approval. The clock starts when you approve your techpack — not when you place your order.",
+        a: "30 days from artwork approval. Add air shipping (10–15 days) and you are typically at your door in 6–7 weeks from order.",
       },
       {
         q: "How quickly will I get my techpack?",
@@ -212,7 +212,7 @@ export default function HowItWorksPage() {
                   >
                     <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
                       {item.q}
-                      <span className="ml-auto flex-shrink-0 text-charcoal/40 transition-transform group-open:rotate-45">＋</span>
+                      <span className="ml-auto flex-shrink-0 text-2xl leading-none text-charcoal/40 transition-transform group-open:rotate-45">+</span>
                     </summary>
                     <p className="mt-4 text-sm leading-7 text-charcoal/75">{item.a}</p>
                   </details>
