@@ -1,0 +1,85 @@
+Build a customer portal for the Alongway Next.js site. This is a placeholder/UI-only build — no real auth backend yet. The goal is to show the complete portal experience so Easton can see the UI before wiring up real authentication and data.
+
+Work on branch: feature/initial-site. Do NOT open a new PR. Just commit and push.
+
+---
+
+## Pages to build
+
+### /portal (login page)
+- Clean centered card, Alongway branding
+- Heading: "Welcome back."
+- Email + Password fields
+- "Sign in" button (orange)
+- "Forgot your password?" link (href="#")
+- "New customer? Your account is created automatically when you place your first order."
+- On submit: navigate to /portal/dashboard (mock, no real auth)
+
+### /portal/dashboard
+- Header: "Good to see you, [Name]." (use "Alex" as placeholder name)
+- 4 summary cards across top:
+  - Active orders: 2
+  - Last order: "Beach Tote × 250"
+  - Next milestone: "In Production"
+  - Ready to reorder: 1 item
+- Recent orders section (see order list below)
+- Quick actions: "Start a new order" → /shop | "Request reorder" → /shop | "Contact us" → mailto:hello@alongway.co
+
+### /portal/orders (order list)
+- Table/card list of past orders
+- 3 placeholder orders:
+  1. Order #AW-1042 | Beach Tote × 250 | Placed: Mar 14, 2026 | Status: In Production | Est. ship: Jun 2, 2026
+  2. Order #AW-0987 | Everyday Tote × 100 | Placed: Jan 28, 2026 | Status: Delivered | Delivered: Mar 15, 2026
+  3. Order #AW-0911 | Channel Tote (Medium) × 500 | Placed: Nov 4, 2025 | Status: Delivered | Delivered: Jan 10, 2026
+- Each order row: order number, bag name, quantity, date, status badge (colored: orange=In Production, green=Delivered, blue=Processing), action button
+- Clicking an order → /portal/orders/[id]
+
+### /portal/orders/[id] (order detail)
+- Order number + bag name as heading
+- Order details: bag, quantity, decoration type, artwork status
+- Status timeline — vertical, showing completed/current/upcoming steps:
+  1. ✅ Order placed
+  2. ✅ Payment confirmed
+  3. ✅ Techpack sent (with date)
+  4. ✅ Artwork approved (with date) — or ⏳ Awaiting approval
+  5. 🏭 In production — or ✅ Complete
+  6. 📦 Shipped (with tracking number placeholder) — or upcoming
+  7. 🎉 Delivered
+- "Download invoice" button (placeholder, href="#")
+- "Reorder this bag" button → /shop?bag=[slug]
+- Back link to /portal/orders
+
+### /portal/account (account settings)
+- Name, email, company, phone (editable fields, mock — no real save)
+- "Save changes" button
+- Shipping address section (same fields)
+- Password change section (current password, new password, confirm)
+- "Delete account" link (small, muted, at bottom)
+
+---
+
+## Navigation
+Add a portal nav bar inside all /portal/* pages (separate from the main site nav):
+- Logo + "Customer Portal" label
+- Links: Dashboard, Orders, Account
+- "Back to site" link → /
+- On mobile: hamburger or simple stacked links
+
+Add "Sign in" link to the main site nav (far right, next to "Start Your Order" button) — small text link, not a button
+
+---
+
+## Style
+- Match brand: Bone/Charcoal/Orange/Blue, Figtree, rounded cards
+- Status badges: rounded-full pill, color-coded
+- Timeline: vertical line connecting steps, filled circles for completed, outlined for upcoming
+- Mobile responsive
+
+## Branch & commit
+- Stay on feature/initial-site
+- Commit: "feat: customer portal — login, dashboard, orders, order detail, account"
+- Push to origin
+- Do NOT merge or open a new PR
+
+When completely finished:
+openclaw system event --text "Done: Customer portal built — login, dashboard, order tracking, account pages live" --mode now

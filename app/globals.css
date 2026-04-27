@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bone: #eee6d2;
+  --light-bone: #f2ece2;
+  --blue: #364fa0;
+  --orange: #eb4628;
+  --charcoal: #262626;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(235, 70, 40, 0.08), transparent 28%),
+    linear-gradient(180deg, #f7f1e8 0%, #ffffff 36%, #f2ece2 100%);
+  color: var(--charcoal);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+::selection {
+  background: rgba(54, 79, 160, 0.18);
+}

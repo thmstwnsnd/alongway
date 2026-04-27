@@ -1,0 +1,128 @@
+Add a full Stripe-style checkout flow to the Alongway Next.js site. This is mock/UI-only for now — no real Stripe keys needed. The goal is to show the complete purchase experience so we can review the UI before wiring up real payments.
+
+Work on branch: feature/initial-site. Do NOT open a new PR. Just commit and push.
+
+---
+
+## 1. Shop / Order page (/shop)
+
+Create app/shop/page.tsx — a product configurator page.
+
+Layout: 2-column on desktop (left: bag selector + config, right: order summary sticky sidebar)
+
+Left side:
+- Step 1: "Choose your bag" — card grid of all 12 bags (use BagCard style but smaller, selectable — highlight selected with orange border + checkmark). Clicking a card selects it.
+- Step 2: "Choose your quantity" — shows after a bag is selected. Button group: 100 / 250 / 500 / 1,000 / 2,000 units. Each button shows the quantity and per-unit price. 5,000+ shows "Contact us" and links to /start instead.
+- Step 3: "Your brand" — shows after quantity is selected. Fields: Brand name, Primary color (text field e.g. "Navy blue"), Decoration type (select: Screen print / Embroidery / Patch / Woven label), Notes (textarea: "Anything else we should know?")
+- Step 4: "Artwork" — Artwork ready? Yes (shows file uploader, accepts AI/EPS/PDF/SVG/PNG/JPG) / No — I need help (shows friendly note: "No problem — our design team will reach out after your order to get started.")
+
+Right sidebar (sticky):
+- "Your order" heading
+- Selected bag name (or "No bag selected yet" in muted text)
+- Quantity
+- Per-unit price
+- Total (quantity × per-unit)
+- What's included checklist: ✓ Main decoration, ✓ Interior woven label, ✓ Free setup, ✓ Free shipping
+- "Proceed to checkout" button (orange, full width, disabled until bag + quantity selected)
+- Small note: "All orders paid in full. Production begins after artwork approval."
+
+---
+
+## 2. Checkout page (/checkout)
+
+Create app/checkout/page.tsx
+
+This is a mock checkout — no real Stripe. Show the UI as if Stripe Elements were embedded.
+
+Layout: 2-column (left: form, right: order summary)
+
+Left side — 3 sections:
+
+### Contact
+- Email
+- Phone (optional)
+
+### Shipping / Delivery
+- Note: "We ship to one US address per order. Need multiple locations? Contact us."
+- Full name
+- Company
+- Address line 1
+- Address line 2 (optional)
+- City, State, ZIP (3 columns)
+
+### Payment (mock Stripe Elements UI)
+- Card number field (styled to look like Stripe — light gray bg, rounded, subtle border)
+- Expiry + CVC side by side
+- Name on card
+- A small Stripe logo badge + "Secured by Stripe" text below the fields (use text, no actual logo needed — just "🔒 Secured by Stripe" in small gray text)
+
+Right side — Order summary:
+- Bag name, quantity, per-unit price
+- Subtotal
+- Shipping: Free
+- Setup: Free
+- Total (bold, large)
+- What's included: same checklist as shop page
+- Small print: "All orders paid in full. Production begins after artwork approval."
+
+Submit button: "Place Order — $[total]" in orange, full width
+
+---
+
+## 3. Order confirmation page (/order-confirmation)
+
+Create app/order-confirmation/page.tsx
+
+This is what they see after "placing" the order (mock submit).
+
+Large checkmark icon (use ✓ emoji or SVG — styled large, orange circle background)
+
+Heading: "Order confirmed."
+Subheading: "You're not just done — you're just getting started."
+
+Timeline/steps — show what happens next as a vertical timeline:
+1. ✅ Order confirmed — "We've received your order and payment. You'll get a confirmation email shortly."
+2. 📐 Techpack sent within 24hrs — "We'll send you a detailed techpack showing your bag with exact artwork placement guides, print areas, and size specs."
+3. ✏️ Artwork approval — "You review and approve the design before anything goes to production. Nothing moves forward without your sign-off."
+4. 🏭 Production begins — "Once approved, your bags go into production. Typical timeline: 6–8 weeks."
+5. 📦 Shipped + tracking — "We'll send tracking info as soon as your order ships."
+6. 🎉 Delivered — "Your bags arrive. And when you're ready to reorder, we make it easy."
+
+Below timeline:
+- "Questions? Text us: (310) 555-0100" (tappable tel: link)
+- "Or email hello@alongway.co"
+- Button: "Back to Collection" → /collection
+
+---
+
+## 4. Wire up the flow
+
+- In /shop: "Proceed to checkout" button → /checkout (pass order state via URL params or localStorage)
+- In /checkout: "Place Order" button → /order-confirmation
+- Add "Shop" to footer links (between Collection and Pricing)
+- On each individual bag page (/collection/[slug]), add a second CTA button next to "Start Your Order": "Buy Now" → /shop?bag=[slug] (pre-selects that bag)
+
+---
+
+## 5. Update FAQ (app/how-it-works/page.tsx)
+
+Add these FAQ entries:
+- "How does payment work?" → "All orders are paid in full at checkout. We accept all major credit cards via Stripe."
+- "What happens after I pay?" → "You're not done — you're just starting. Within 24 hours we send a techpack showing your bag with artwork placement guides. Nothing goes to production until you approve the design."
+- "Do you offer payment plans?" → "Not currently. All orders are paid in full upfront."
+
+---
+
+## Style notes
+- Match existing brand: Bone/Charcoal/Orange/Blue palette, Figtree font, rounded-[2rem] cards, shadow-card
+- Form fields: rounded-2xl, border border-charcoal/15, bg-light-bone, focus:border-blue
+- All pages mobile responsive
+
+## Branch & commit
+- Stay on feature/initial-site
+- Commit: "feat: shop configurator, mock checkout, order confirmation flow"
+- Push to origin
+- Do NOT merge or open a new PR
+
+When completely finished:
+openclaw system event --text "Done: Stripe checkout UI built — shop, checkout, confirmation pages live" --mode now

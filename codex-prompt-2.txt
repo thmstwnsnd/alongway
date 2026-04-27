@@ -1,0 +1,164 @@
+Update the Alongway Next.js site with the following changes. Work on the existing branch feature/initial-site.
+
+## 1. Update bag data (data/bags.ts)
+Replace the placeholder bag names with the real Alongway lineup. Use this exact data:
+
+```
+const bags = [
+  {
+    slug: "beach-tote",
+    name: "Beach Tote",
+    tagline: "Water-resistant, zippered, built for the shore.",
+    material: "Tyvek",
+    features: ["Water-resistant", "Zippered closure", "Front pocket", "Interior pocket"],
+    dimensions: '19.5"W x 14.5"H x 6" Gusset | Straps: 22" long x 1.5" wide | Front pocket: 7" | Interior pocket: 7"',
+    size: "large",
+  },
+  {
+    slug: "hauler-tote",
+    name: "Hauler Tote",
+    tagline: "Oversized, structured, and built to haul.",
+    material: "Polypropylene",
+    features: ["Oversized", "Structured body", "Heavy-duty"],
+    dimensions: '17.75"L x 7"D x 17.75"H',
+    size: "large",
+  },
+  {
+    slug: "everyday-tote",
+    name: "Everyday Tote",
+    tagline: "The reliable one. Gusseted canvas for daily carry.",
+    material: "10oz Canvas",
+    features: ["Gusseted", "Standard carry", "Durable canvas"],
+    dimensions: '16.5"W x 16.5"H | Gusset: 3.75" | Strap length: 28.5"',
+    size: "medium",
+  },
+  {
+    slug: "shoulder-tote",
+    name: "Shoulder Tote",
+    tagline: "Longer handles, easy shoulder carry.",
+    material: "10oz Canvas",
+    features: ["Shoulder carry", "Longer handles", "Gusseted"],
+    dimensions: '18.25"W x 14.5"H | Gusset: 5" | Strap length: 23.5"',
+    size: "medium",
+  },
+  {
+    slug: "oversized-tote",
+    name: "Oversized Tote",
+    tagline: "The market haul. Wide gusset, maximum volume.",
+    material: "10oz Canvas",
+    features: ["Oversized", "Wide gusset", "Market carry"],
+    dimensions: '26.75"W x 14.5"H | Gusset: 18" x 8" | Strap length: 23.5"',
+    size: "large",
+  },
+  {
+    slug: "basic-tote",
+    name: "Basic Tote",
+    tagline: "Clean, flat, minimal. The purist's tote.",
+    material: "10oz Canvas",
+    features: ["Flat body", "No gusset", "Minimalist"],
+    dimensions: '14"W x 15.25"H | Strap length: 27.5"',
+    size: "small",
+  },
+  {
+    slug: "mini-tote",
+    name: "Mini Tote",
+    tagline: "Compact and gift-friendly. Big on brand.",
+    material: "10oz Canvas",
+    features: ["Compact", "Gift-friendly", "Mini size"],
+    dimensions: '8"W x 8"H x 1.5"D | Handle length: 14"',
+    size: "small",
+  },
+  {
+    slug: "the-sunday",
+    name: "The Sunday",
+    tagline: "Open top, wide body. Made for slow mornings.",
+    material: "10oz Canvas",
+    features: ["Open top", "Wide body", "Market carry"],
+    dimensions: '20.5"W x 14.5"H | Gusset: 6.25"',
+    size: "large",
+  },
+  {
+    slug: "channel-tote",
+    name: "Channel Tote",
+    tagline: "24oz canvas. Structured, premium, available in 4 sizes.",
+    material: "24oz Canvas",
+    features: ["Structured body", "Premium canvas", "4 sizes available"],
+    dimensions: "Mini: 10\"W x 7\"H x 6\"D | Small: 9.5\"W x 10.5\"H x 5\"D | Medium: 13\"W x 12\"H x 6\"D | Large: 17\"W x 15\"H x 7.5\"D",
+    size: "medium",
+  },
+  {
+    slug: "big-sur-tote",
+    name: "Big Sur Tote",
+    tagline: "Tapered base, structured, open top. California-born.",
+    material: "10oz Canvas",
+    features: ["Tapered base", "Structured", "Open top"],
+    dimensions: '22" top width x 15" base width x 10"H x 4.5"D',
+    size: "large",
+  },
+  {
+    slug: "otis-tote",
+    name: "Otis Tote",
+    tagline: "Waxed canvas. Long strap. Built for weather.",
+    material: "Waxed Canvas",
+    features: ["Weather-resistant", "Long strap", "Front pocket"],
+    dimensions: '17"W x 17"H | Gusset: 6.5" | Strap: 33" long x 1.5" wide | Front pocket: 6"',
+    size: "medium",
+  },
+  {
+    slug: "camper-pouch",
+    name: "Camper Pouch",
+    tagline: "Zippered pouch. Compact, clean, goes anywhere.",
+    material: "Canvas",
+    features: ["Zippered", "Compact", "Travel-friendly"],
+    dimensions: "Dimensions TBD",
+    size: "small",
+  },
+]
+```
+
+Update the pricing tiers in the bag data too. Use these starting prices based on size:
+- small: { 50: 8.50, 100: 7.50, 250: 6.50, 500: 5.75 }
+- medium: { 50: 12.50, 100: 11.00, 250: 9.50, 500: 8.50 }
+- large: { 50: 16.50, 100: 14.50, 250: 12.50, 500: 11.00 }
+
+## 2. Placeholder images using placehold.co
+Replace ALL placeholder colored boxes with actual <img> tags using placehold.co. Use these exact formats:
+- Collection grid cards: https://placehold.co/600x500/EEE6D2/262626?text=Bag+Name (use the bag name in the text param, replace spaces with +)
+- Individual bag page hero: https://placehold.co/800x600/EEE6D2/262626?text=Bag+Name
+- Home page featured bags: https://placehold.co/600x500/EEE6D2/262626?text=Bag+Name
+- Blog post thumbnails: https://placehold.co/800x450/364FA0/EEE6D2?text=Blog+Post
+
+Use Next.js Image component where appropriate or regular img tags. Make sure images have proper aspect ratios and look good in the grid.
+
+## 3. Add Blog page (/blog)
+Create app/blog/page.tsx with:
+- Page header: "From the Field" with subline "Stories, tips, and ideas from the Alongway team."
+- Grid of 6 placeholder blog post cards, each with:
+  - Placeholder image (placehold.co 800x450, blue bg, bone text)
+  - Category tag (rotate through: "Behind the Brand", "Style Guide", "How We Make It", "Client Stories")
+  - Title (write 6 real-sounding blog post titles relevant to custom bags/brand merch — make them good)
+  - Short excerpt (2 sentences)
+  - "Read more →" link (href="#" for now)
+  - Date (stagger dates across April/March 2026)
+- Add /blog to the nav links in site-shell.tsx between "How It Works" and "About"
+- Add /blog to the footer links too
+
+## 4. "Text us" in footer
+In components/site-shell.tsx, add a "Text us" line to the footer left column, below the tagline:
+- Text: 📱 Text us: (310) 555-0100  ← use a placeholder number for now, Easton will update
+- Style it small, bone/80 color, same as the tagline text
+- Make the number a tel: link so it's tappable on mobile
+
+## 5. Favicon
+In app/layout.tsx, add the favicon. The icon file is at /logo-icon.png in the public folder.
+Add to the metadata: icons: { icon: '/logo-icon.png' }
+
+## Branch & commit
+- Stay on branch feature/initial-site
+- Commit all changes with message: "feat: real bag data, placeholder images, blog page, text us footer, favicon"
+- Push to origin
+- Do NOT open another PR — one already exists (PR #1). Just push to the branch.
+- Do NOT merge anything.
+
+When completely finished, run:
+openclaw system event --text "Done: bag data, placeholder images, blog, footer updates pushed to feature/initial-site" --mode now
