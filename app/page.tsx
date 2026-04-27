@@ -8,19 +8,19 @@ const featuredBags = bags.slice(0, 3);
 const steps = [
   {
     title: "Pick your bag",
-    body: "Browse 12 silhouettes. Real materials, not catalog fillers.",
+    body: "Browse our silhouettes. Real materials, not catalog fillers. Not sure on feel? Order a swatch kit – $8.",
   },
   {
     title: "Share your artwork",
-    body: "AI, EPS, or PDF. We'll handle the rest.",
+    body: ".ai, .eps, or .pdf. Clean vector files only. No artwork yet? We can help.",
   },
   {
-    title: "We handle production",
-    body: "Factory-direct. No middleman markup.",
+    title: "Approve your tech pack",
+    body: "We send a detailed tech pack within 2 business days of artwork approval. Nothing goes to production until you sign off.",
   },
   {
     title: "Delivered to your door",
-    body: "Shipped air freight to one address. Included.",
+    body: "30 days production + air freight to one US address. Included in your price.",
   },
 ];
 const trustedBrands = [
@@ -46,7 +46,7 @@ export default function HomePage() {
                 Made to carry.
               </h1>
               <p className="max-w-2xl text-lg leading-8 text-charcoal/72 sm:text-xl">
-                The finest bags in all the land.
+                Custom bags for brands that give a damn. From $12/unit – 100 minimum, air shipping included.
               </p>
             </div>
             <Link
@@ -141,6 +141,7 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
+        <p className="mt-6 text-center text-sm text-charcoal/40">The finest bags in all the land.</p>
       </section>
     </div>
   );
