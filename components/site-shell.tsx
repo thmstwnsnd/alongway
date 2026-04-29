@@ -97,7 +97,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-50 border-b border-charcoal/10 bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-10">
           <Link href="/" className="flex items-center">
-            <Image src="/logo-wordmark.jpeg" alt="Alongway" width={160} height={40} className="h-9 w-auto object-contain" priority />
+            <Image src="/logo-blue.svg" alt="Alongway" width={200} height={48} className="h-9 w-auto object-contain" priority />
           </Link>
           <nav className="hidden items-center gap-7 text-sm font-medium md:flex">
             <div
@@ -206,7 +206,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 lg:grid-cols-[1.2fr_1fr] lg:px-10">
           <div className="space-y-3">
             <Link href="/" className="flex items-center">
-              <Image src="/logo-wordmark.jpeg" alt="Alongway" width={140} height={36} className="h-8 w-auto object-contain brightness-0 invert" />
+              <Image src="/logo-tan.svg" alt="Alongway" width={180} height={44} className="h-8 w-auto object-contain" />
             </Link>
             <p className="max-w-md text-sm text-bone/80">Made to carry.</p>
             <a
