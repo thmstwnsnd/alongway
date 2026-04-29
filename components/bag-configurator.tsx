@@ -33,7 +33,7 @@ const embroideryPlacementOptions = [
 
 type DecorationType = (typeof decorationTypes)[number];
 
-export function BagConfigurator({ bag }: { bag: Bag }) {
+export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: boolean }) {
   const [selectedFabricSlug, setSelectedFabricSlug] = useState(defaultFabricSlug);
   const [selectedAddOnIds, setSelectedAddOnIds] = useState<string[]>([]);
   const [quantity, setQuantity] = useState(100);
@@ -230,71 +230,83 @@ export function BagConfigurator({ bag }: { bag: Bag }) {
         </div>
       </div>
     </div>
-    <section className="rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card sm:p-8">
-      <div className="space-y-3">
-        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-orange">Configure your order</p>
-        <h2 className="text-3xl font-bold tracking-tight">Dial in the material, add-ons, and quantity.</h2>
-        <p className="max-w-3xl text-base leading-7 text-charcoal/72">
-          Start with the standard bag price, then see how upgraded fabrics and extra details change the estimate in real time.
-        </p>
-      </div>
+    <section className={compact ? "space-y-0" : "rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card sm:p-8"}>
+      {!compact && (
+        <div className="space-y-3">
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-orange">Configure your order</p>
+          <h2 className="text-3xl font-bold tracking-tight">Dial in the material, add-ons, and quantity.</h2>
+          <p className="max-w-3xl text-base leading-7 text-charcoal/72">
+            Start with the standard bag price, then see how upgraded fabrics and extra details change the estimate in real time.
+          </p>
+        </div>
+      )}
 
-      {/* ── Quantity slider ── */}
-      <div className="mt-8 rounded-[2rem] border border-charcoal/10 bg-light-bone p-5">
-        <div className="flex items-center justify-between gap-4 mb-4">
-          <h3 className="text-base font-bold tracking-tight">Quantity</h3>
-          <div className="text-right">
+      {/* ── Quantity control ── */}
+      {compact ? (
+        /* Compact inline quantity row for right-column layout */
+        <div className="mt-6 flex items-center gap-3 rounded-[1.25rem] border border-charcoal/10 bg-light-bone px-4 py-3">
+          <span className="text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/50 flex-shrink-0">Qty</span>
+          <input
+            type="range"
+            min={100}
+            max={2000}
+            step={50}
+            value={isCustomQuote ? 2000 : quantity}
+            onChange={(e) => { const v = Number(e.target.value); setIsCustomQuote(false); setQuantity(v); setQtyInput(String(v)); }}
+            className="flex-1 accent-orange cursor-pointer h-1"
+          />
+          <span className="text-sm font-bold text-charcoal flex-shrink-0 w-16 text-right">
+            {isCustomQuote ? "5k+" : quantity >= 1000 ? `${(quantity/1000).toFixed(quantity%1000===0?0:1)}k` : quantity}
+          </span>
+          <div className="flex gap-1 flex-shrink-0">
+            {quantityOptions.map((opt) => (
+              <button key={opt} type="button" onClick={() => applyQty(opt)}
+                className={`rounded-full border px-2 py-0.5 text-xs font-semibold transition-all ${
+                  !isCustomQuote && quantity === opt ? "border-orange bg-orange text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-orange/50"
+                }`}>
+                {opt >= 1000 ? `${opt/1000}k` : opt}
+              </button>
+            ))}
+            <button type="button" onClick={applyCustomQuote}
+              className={`rounded-full border px-2 py-0.5 text-xs font-semibold transition-all ${
+                isCustomQuote ? "border-blue bg-blue text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-blue/50"
+              }`}>5k+</button>
+          </div>
+        </div>
+      ) : (
+        /* Full-width slider for standalone layout */
+        <div className="mt-8 rounded-[2rem] border border-charcoal/10 bg-light-bone p-5">
+          <div className="flex items-center justify-between gap-4 mb-4">
+            <h3 className="text-base font-bold tracking-tight">Quantity</h3>
             <p className="text-2xl font-extrabold tracking-tight text-charcoal">
               {isCustomQuote ? "5,000+" : quantity.toLocaleString()} <span className="text-sm font-semibold text-charcoal/50">units</span>
             </p>
           </div>
-        </div>
-        <input
-          type="range"
-          min={100}
-          max={2000}
-          step={50}
-          value={isCustomQuote ? 2000 : quantity}
-          onChange={(e) => {
-            const val = Number(e.target.value);
-            setIsCustomQuote(false);
-            setQuantity(val);
-            setQtyInput(String(val));
-          }}
-          className="w-full accent-orange cursor-pointer"
-        />
-        <div className="flex justify-between mt-1">
-          <span className="text-xs text-charcoal/45">100</span>
-          <div className="flex gap-2">
-            {quantityOptions.map((opt) => (
-              <button
-                key={opt}
-                type="button"
-                onClick={() => applyQty(opt)}
+          <input type="range" min={100} max={2000} step={50}
+            value={isCustomQuote ? 2000 : quantity}
+            onChange={(e) => { const v = Number(e.target.value); setIsCustomQuote(false); setQuantity(v); setQtyInput(String(v)); }}
+            className="w-full accent-orange cursor-pointer"
+          />
+          <div className="flex justify-between mt-1">
+            <span className="text-xs text-charcoal/45">100</span>
+            <div className="flex gap-2">
+              {quantityOptions.map((opt) => (
+                <button key={opt} type="button" onClick={() => applyQty(opt)}
+                  className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all ${
+                    !isCustomQuote && quantity === opt ? "border-orange bg-orange text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-orange/50"
+                  }`}>{opt >= 1000 ? `${opt/1000}k` : opt}</button>
+              ))}
+              <button type="button" onClick={applyCustomQuote}
                 className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all ${
-                  !isCustomQuote && quantity === opt
-                    ? "border-orange bg-orange text-white"
-                    : "border-charcoal/15 bg-white text-charcoal hover:border-orange/50"
-                }`}
-              >
-                {opt >= 1000 ? `${opt / 1000}k` : opt}
-              </button>
-            ))}
-            <button
-              type="button"
-              onClick={applyCustomQuote}
-              className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all ${
-                isCustomQuote ? "border-blue bg-blue text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-blue/50"
-              }`}
-            >
-              5k+
-            </button>
+                  isCustomQuote ? "border-blue bg-blue text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-blue/50"
+                }`}>5k+</button>
+            </div>
+            <span className="text-xs text-charcoal/45">2,000</span>
           </div>
-          <span className="text-xs text-charcoal/45">2,000</span>
         </div>
-      </div>
+      )}
 
-      <div className="mt-6 grid gap-8 xl:grid-cols-[1.2fr_0.8fr]">
+      <div className={compact ? "mt-4 space-y-4" : "mt-6 grid gap-8 xl:grid-cols-[1.2fr_0.8fr]"}>
         <div className="space-y-6">
 
           {/* ── Fabric selector ── */}
