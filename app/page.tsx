@@ -37,31 +37,37 @@ const trustedBrands = [
 export default function HomePage() {
   return (
     <div>
-      <section className="border-b border-charcoal/10 bg-bone">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-20 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:py-28">
-          <div className="space-y-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-kelly">For now, for later.</p>
-            <div className="space-y-5">
-              <h1 className="max-w-3xl text-5xl font-extrabold tracking-tight text-charcoal sm:text-6xl lg:text-7xl">
-                Made to carry.
-              </h1>
-              <p className="max-w-2xl text-lg leading-8 text-charcoal/72 sm:text-xl">
-                Custom bags, made simple. From $12/unit – 100 minimum, air shipping included.
-              </p>
-            </div>
+      {/* Full-bleed hero banner */}
+      <section className="relative h-[90vh] min-h-[560px] w-full overflow-hidden">
+        <img
+          src={getLifestyleImageUrl(0, "wide")}
+          alt="Alongway custom bags"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-charcoal/40" />
+        {/* Content */}
+        <div className="relative flex h-full flex-col items-start justify-end px-8 pb-16 lg:px-16 lg:pb-20">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.26em] text-bone/80">For now, for later.</p>
+          <h1 className="max-w-3xl text-5xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl">
+            Made to carry.
+          </h1>
+          <p className="mt-5 max-w-xl text-lg leading-8 text-white/80">
+            Custom bags, made simple. From $12/unit – 100 minimum, air shipping included.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/collection"
-              className="inline-flex rounded-full bg-charcoal px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-blue"
+              className="inline-flex rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-charcoal hover:-translate-y-0.5 hover:bg-bone"
             >
               See the Collection
             </Link>
-          </div>
-          <div className="overflow-hidden rounded-[2.5rem] shadow-card">
-            <img
-              src={getLifestyleImageUrl(0, "square")}
-              alt="Lifestyle"
-              className="h-full min-h-[380px] w-full object-cover"
-            />
+            <Link
+              href="/start"
+              className="inline-flex rounded-full border border-white/50 px-7 py-3.5 text-sm font-semibold text-white hover:-translate-y-0.5 hover:border-white"
+            >
+              Start Your Order
+            </Link>
           </div>
         </div>
       </section>
