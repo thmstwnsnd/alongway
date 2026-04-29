@@ -78,9 +78,14 @@ export function getUnitPrice(bag: Bag | undefined, quantity: number | null) {
     return null;
   }
 
-  const tier = bag.pricingTiers.find((entry) => entry.quantity === quantity);
+  // Find the highest tier whose quantity is <= the requested quantity
+  // (e.g. qty=350 → uses the 250-unit tier price)
+  const sorted = [...bag.pricingTiers].sort((a, b) => b.quantity - a.quantity);
+  const tier = sorted.find((entry) => entry.quantity <= quantity);
   if (!tier) {
-    return null;
+    // Quantity below minimum — use the lowest tier
+    const lowest = sorted[sorted.length - 1];
+    return lowest ? Number.parseFloat(lowest.unitPrice.replace("$", "")) : null;
   }
 
   return Number.parseFloat(tier.unitPrice.replace("$", ""));

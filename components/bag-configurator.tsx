@@ -136,42 +136,19 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
           <p className="truncate text-sm font-semibold text-charcoal">{bag.name}</p>
           <p className="text-xs text-charcoal/50">{selectedFabric.name} · {decorationSummary} · {quantity.toLocaleString()} units</p>
         </div>
-        {/* Qty button + popover */}
-        <div className="relative" ref={qtyPopoverRef}>
-          <button
-            type="button"
-            onClick={() => { setQtyInput(String(quantity)); setQtyPopoverOpen((v) => !v); }}
-            className="flex items-center gap-2 rounded-full border border-charcoal/15 bg-white px-4 py-2 text-sm font-semibold text-charcoal hover:border-charcoal"
-          >
-            <span className="text-charcoal/50 text-xs">Qty</span>
-            {isCustomQuote ? "5,000+" : quantity.toLocaleString()}
-            <span className="text-charcoal/40 text-xs">{qtyPopoverOpen ? "▲" : "▼"}</span>
-          </button>
-          {qtyPopoverOpen && (
-            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 w-64 rounded-[1.5rem] border border-charcoal/10 bg-white p-4 shadow-[0_8px_32px_rgba(0,0,0,0.12)] z-50">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/50 mb-3">Set quantity</p>
-              {/* Exact number input */}
-              <div className="flex gap-2 mb-3">
-                <input
-                  type="number"
-                  min={100}
-                  value={qtyInput}
-                  onChange={(e) => setQtyInput(e.target.value)}
-                  onKeyDown={(e) => e.key === "Enter" && applyQty(Number(qtyInput))}
-                  placeholder="e.g. 572"
-                  className="min-w-0 flex-1 rounded-full border border-charcoal/15 px-4 py-2 text-sm font-semibold text-charcoal focus:border-blue focus:outline-none"
-                />
-                <button
-                  type="button"
-                  onClick={() => applyQty(Number(qtyInput))}
-                  className="rounded-full bg-blue px-4 py-2 text-sm font-semibold text-white hover:bg-charcoal"
-                >
-                  Set
-                </button>
-              </div>
-
-            </div>
-          )}
+        {/* Inline qty display */}
+        <div className="flex items-center gap-2 rounded-full border border-charcoal/15 bg-white px-4 py-2">
+          <span className="text-xs font-semibold text-charcoal/50">Qty</span>
+          <input
+            type="number"
+            min={100}
+            value={isCustomQuote ? "" : qtyInput}
+            placeholder={isCustomQuote ? "5,000+" : ""}
+            onChange={(e) => { setQtyInput(e.target.value); setIsCustomQuote(false); }}
+            onBlur={(e) => { const v = Number(e.target.value); if (v >= 100) applyQty(v); }}
+            onKeyDown={(e) => { if (e.key === "Enter") { const v = Number(qtyInput); if (v >= 100) applyQty(v); } }}
+            className="w-20 text-sm font-bold text-charcoal text-center focus:outline-none bg-transparent"
+          />
         </div>
         <div className="flex items-center gap-5">
           {isCustomQuote ? (
