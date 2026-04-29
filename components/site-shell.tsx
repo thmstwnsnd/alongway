@@ -6,7 +6,7 @@ import type { FormEvent, ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
-import { bags } from "@/data/bags";
+import { bags, getBagImageUrl } from "@/data/bags";
 import {
   dismissEmailCapture,
   storeCapturedEmail,
@@ -41,6 +41,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
   const [isFooterSubmitted, setIsFooterSubmitted] = useState(false);
   const [showFooterCapture, setShowFooterCapture] = useState(false);
   const [isCollectionMenuOpen, setIsCollectionMenuOpen] = useState(false);
+  const [hoveredBagSlug, setHoveredBagSlug] = useState<string | null>(null);
   const collectionMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -123,18 +124,42 @@ export function SiteShell({ children }: { children: ReactNode }) {
                   isCollectionMenuOpen ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"
                 }`}
               >
-                <div className="w-[52rem] rounded-[1.5rem] border border-charcoal/10 bg-white p-5 shadow-card">
-                  <div className="grid grid-cols-4 gap-1">
-                    {bags.map((bag) => (
-                      <Link
-                        key={bag.slug}
-                        href={`/collection/${bag.slug}`}
-                        onClick={() => setIsCollectionMenuOpen(false)}
-                        className="rounded-[0.75rem] px-3 py-2.5 transition-colors hover:bg-light-bone"
-                      >
-                        <p className="text-sm font-semibold text-charcoal leading-snug">{bag.name}</p>
-                      </Link>
-                    ))}
+                <div className="w-[56rem] rounded-[1.5rem] border border-charcoal/10 bg-white shadow-card overflow-hidden">
+                  <div className="flex">
+                    {/* Bag list — left */}
+                    <div className="flex-1 p-4">
+                      <div className="grid grid-cols-4 gap-0.5">
+                        {bags.map((bag) => (
+                          <Link
+                            key={bag.slug}
+                            href={`/collection/${bag.slug}`}
+                            onClick={() => { setIsCollectionMenuOpen(false); setHoveredBagSlug(null); }}
+                            onMouseEnter={() => setHoveredBagSlug(bag.slug)}
+                            onMouseLeave={() => setHoveredBagSlug(null)}
+                            className={`rounded-[0.75rem] px-3 py-2.5 transition-colors ${
+                              hoveredBagSlug === bag.slug ? "bg-light-bone" : "hover:bg-light-bone"
+                            }`}
+                          >
+                            <p className="text-sm font-semibold text-charcoal leading-snug">{bag.name}</p>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                    {/* Preview image — right */}
+                    <div className="w-48 flex-shrink-0 bg-light-bone">
+                      {hoveredBagSlug ? (
+                        <img
+                          key={hoveredBagSlug}
+                          src={getBagImageUrl(hoveredBagSlug, "card")}
+                          alt={bags.find(b => b.slug === hoveredBagSlug)?.name ?? ""}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        <div className="flex h-full items-center justify-center p-6">
+                          <p className="text-center text-xs font-medium text-charcoal/40">Hover a bag to preview</p>
+                        </div>
+                      )}
+                    </div>
                   </div>
                   <div className="mt-4 border-t border-charcoal/10 pt-4">
                     <Link

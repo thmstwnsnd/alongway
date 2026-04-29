@@ -71,8 +71,7 @@ export function BagDetail({ bag }: { bag: Bag }) {
           )}
 
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-kelly">{bag.material}</p>
-            <h1 className="mt-2 text-4xl font-extrabold tracking-tight lg:text-5xl">{bag.name}</h1>
+            <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">{bag.name}</h1>
             <p className="mt-2 text-base leading-7 text-charcoal/70">{bag.tagline}</p>
           </div>
 
