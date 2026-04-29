@@ -9,7 +9,7 @@ import {
   shouldHideEmailCapture,
 } from "@/lib/email-capture";
 
-const MODAL_DELAY_MS = 5000;
+const MODAL_DELAY_MS = 15000;
 
 export function EmailCaptureModal() {
   const pathname = usePathname();

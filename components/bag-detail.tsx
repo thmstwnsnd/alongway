@@ -15,7 +15,7 @@ const isChannelTote = (slug: string) => slug.startsWith("channel-tote");
 
 export function BagDetail({ bag }: { bag: Bag }) {
   return (
-    <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+    <div className="mx-auto max-w-7xl px-6 py-20 pb-28 lg:px-10">
       <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr]">
         <img
           src={getBagImageUrl(bag.slug, "hero")}

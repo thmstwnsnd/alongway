@@ -79,54 +79,77 @@ export function ShopPage() {
         <div className="space-y-8">
           <section className="rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card sm:p-8">
             <StepHeading number="01" title="Choose your bag" body="Select the silhouette that best fits your brand and use case." />
-            <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-              {bags.map((bag) => {
-                const isSelected = bag.slug === order.bagSlug;
-
-                return (
-                  <button
-                    key={bag.slug}
-                    type="button"
-                    onClick={() =>
-                      setOrder((current) => ({
-                        ...current,
-                        bagSlug: bag.slug,
-                        quantity: current.bagSlug === bag.slug ? current.quantity : null,
-                      }))
-                    }
-                    className={`group relative overflow-hidden rounded-[1.75rem] border bg-white text-left shadow-card ${
-                      isSelected ? "border-orange ring-2 ring-orange/20" : "border-charcoal/10 hover:border-blue/30"
-                    }`}
-                  >
-                    <img
-                      src={getBagImageUrl(bag.slug)}
-                      alt={bag.name}
-                      className="aspect-[6/5] w-full object-cover"
-                    />
-                    <div className="space-y-2 p-4">
-                      <div className="flex items-start justify-between gap-3">
-                        <div>
-                          <h3 className="text-lg font-bold tracking-tight">{bag.name}</h3>
-                          <p className="mt-1 text-sm leading-6 text-charcoal/65">{bag.tagline}</p>
+            {selectedBag ? (
+              <div className="mt-6 flex items-center gap-4 rounded-[1.75rem] border border-orange bg-light-bone p-4 ring-2 ring-orange/20">
+                <img
+                  src={getBagImageUrl(selectedBag.slug)}
+                  alt={selectedBag.name}
+                  className="h-16 w-16 flex-shrink-0 rounded-2xl object-cover"
+                />
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-orange text-xs font-bold text-white">✓</span>
+                    <p className="text-base font-bold tracking-tight">{selectedBag.name}</p>
+                  </div>
+                  <p className="mt-0.5 text-sm text-charcoal/60">{selectedBag.tagline}</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setOrder((current) => ({ ...current, bagSlug: "", quantity: null }))}
+                  className="flex-shrink-0 rounded-full border border-charcoal/15 px-4 py-2 text-xs font-semibold text-charcoal hover:border-charcoal"
+                >
+                  Change
+                </button>
+              </div>
+            ) : (
+              <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                {bags.map((bag) => {
+                  const isSelected = bag.slug === order.bagSlug;
+                  return (
+                    <button
+                      key={bag.slug}
+                      type="button"
+                      onClick={() =>
+                        setOrder((current) => ({
+                          ...current,
+                          bagSlug: bag.slug,
+                          quantity: current.bagSlug === bag.slug ? current.quantity : null,
+                        }))
+                      }
+                      className={`group relative overflow-hidden rounded-[1.75rem] border bg-white text-left shadow-card ${
+                        isSelected ? "border-orange ring-2 ring-orange/20" : "border-charcoal/10 hover:border-blue/30"
+                      }`}
+                    >
+                      <img
+                        src={getBagImageUrl(bag.slug)}
+                        alt={bag.name}
+                        className="aspect-[6/5] w-full object-cover"
+                      />
+                      <div className="space-y-2 p-4">
+                        <div className="flex items-start justify-between gap-3">
+                          <div>
+                            <h3 className="text-lg font-bold tracking-tight">{bag.name}</h3>
+                            <p className="mt-1 text-sm leading-6 text-charcoal/65">{bag.tagline}</p>
+                          </div>
+                          <span
+                            className={`inline-flex h-7 w-7 items-center justify-center rounded-full border text-sm font-bold ${
+                              isSelected
+                                ? "border-orange bg-orange text-white"
+                                : "border-charcoal/15 bg-light-bone text-charcoal/35"
+                            }`}
+                          >
+                            ✓
+                          </span>
                         </div>
-                        <span
-                          className={`inline-flex h-7 w-7 items-center justify-center rounded-full border text-sm font-bold ${
-                            isSelected
-                              ? "border-orange bg-orange text-white"
-                              : "border-charcoal/15 bg-light-bone text-charcoal/35"
-                          }`}
-                        >
-                          ✓
-                        </span>
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">
+                          Starting at ${bag.startingPrice.toFixed(2)}
+                        </p>
                       </div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">
-                        Starting at ${bag.startingPrice.toFixed(2)}
-                      </p>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
           </section>
 
           {selectedBag ? (
@@ -292,11 +315,11 @@ export function ShopPage() {
                       Upload your artwork
                       <input
                         type="file"
-                        accept=".ai,.eps,.pdf,.svg,.png,.jpg,.jpeg"
+                        accept=".ai,.eps,.pdf"
                         className="mt-3 w-full rounded-2xl border border-charcoal/15 bg-white px-4 py-3 text-sm outline-none file:mr-4 file:rounded-full file:border-0 file:bg-orange file:px-4 file:py-2 file:text-xs file:font-semibold file:text-white focus:border-blue"
                       />
                     </label>
-                    <p className="mt-2 text-sm text-charcoal/55">Accepted: AI, EPS, PDF, SVG, PNG, JPG</p>
+                    <p className="mt-2 text-sm text-charcoal/55">Accepted: .ai, .eps, .pdf — vector files only</p>
                   </div>
                 ) : null}
 

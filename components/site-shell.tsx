@@ -161,12 +161,29 @@ export function SiteShell({ children }: { children: ReactNode }) {
               </p>
             ) : null}
           </div>
+          <div className="space-y-6">
+            <Link
+              href="/start"
+              className="inline-flex rounded-full bg-orange px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-white hover:text-charcoal"
+            >
+              Start Your Order
+            </Link>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-bone/40">Questions? Text us.</p>
+              <a
+                href="sms:+10000000000"
+                className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-bone hover:text-orange"
+              >
+                +1 (000) 000-0000
+              </a>
+            </div>
           <div className="grid gap-3 text-sm text-bone/80 sm:grid-cols-2">
             {footerLinks.map((link) => (
               <Link key={link.href} href={link.href} className="hover:text-white">
                 {link.label}
               </Link>
             ))}
+          </div>
           </div>
         </div>
         <div className="border-t border-white/10 px-6 py-5 text-center text-xs text-bone/70 lg:px-10">

@@ -41,3 +41,12 @@ textarea {
 ::selection {
   background: rgba(54, 79, 160, 0.18);
 }
+
+/* Hide scrollbar but keep scroll functionality */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}

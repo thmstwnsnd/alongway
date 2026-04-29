@@ -46,7 +46,7 @@ export default function HomePage() {
                 Made to carry.
               </h1>
               <p className="max-w-2xl text-lg leading-8 text-charcoal/72 sm:text-xl">
-                Custom bags for brands that give a damn. From $12/unit – 100 minimum, air shipping included.
+                Custom bags, made simple. From $12/unit – 100 minimum, air shipping included.
               </p>
             </div>
             <Link
@@ -103,6 +103,14 @@ export default function HomePage() {
           {featuredBags.map((bag) => (
             <BagCard key={bag.slug} bag={bag} />
           ))}
+        </div>
+        <div className="mt-10 flex justify-center">
+          <Link
+            href="/collection"
+            className="inline-flex rounded-full border border-charcoal/20 bg-white px-8 py-3 text-sm font-semibold text-charcoal hover:-translate-y-0.5 hover:border-charcoal hover:shadow-card"
+          >
+            View the full bag lineup →
+          </Link>
         </div>
       </section>
 

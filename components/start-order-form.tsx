@@ -93,10 +93,10 @@ export function StartOrderForm() {
               <input
                 name="artwork"
                 type="file"
-                accept=".ai,.eps,.pdf,.svg,.png,.jpg,.jpeg"
+                accept=".ai,.eps,.pdf"
                 className="w-full rounded-2xl border border-charcoal/15 bg-light-bone px-4 py-3 text-sm outline-none focus:border-blue file:mr-3 file:rounded-full file:border-0 file:bg-orange file:px-4 file:py-1 file:text-xs file:font-semibold file:text-white"
               />
-              <p className="mt-1 text-xs text-charcoal/50">Accepted: AI, EPS, PDF, SVG, PNG, JPG</p>
+              <p className="mt-1 text-xs text-charcoal/50">Accepted: .ai, .eps, .pdf — vector files only</p>
             </div>
           )}
           {artworkReady === "no" && (

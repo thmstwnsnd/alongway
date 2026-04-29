@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { ReactNode } from "react";
 
 import type { Bag } from "@/data/bags";
@@ -11,12 +11,42 @@ import { formatCurrency, getUnitPrice } from "@/lib/order-flow";
 
 const defaultFabricSlug = "cotton-canvas-12oz";
 const quantityOptions = [100, 250, 500, 1000, 2000];
+const CUSTOM_QUOTE_KEY = "5000+";
 const tierOrder: FabricTier[] = ["starter", "upgrade1", "upgrade2", "upgrade3"];
 
 export function BagConfigurator({ bag }: { bag: Bag }) {
   const [selectedFabricSlug, setSelectedFabricSlug] = useState(defaultFabricSlug);
   const [selectedAddOnIds, setSelectedAddOnIds] = useState<string[]>([]);
   const [quantity, setQuantity] = useState(100);
+  const [isCustomQuote, setIsCustomQuote] = useState(false);
+  const [qtyPopoverOpen, setQtyPopoverOpen] = useState(false);
+  const [qtyInput, setQtyInput] = useState("100");
+  const qtyPopoverRef = useRef<HTMLDivElement>(null);
+
+  // Close popover on outside click
+  useEffect(() => {
+    if (!qtyPopoverOpen) return;
+    function handleClick(e: MouseEvent) {
+      if (qtyPopoverRef.current && !qtyPopoverRef.current.contains(e.target as Node)) {
+        setQtyPopoverOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [qtyPopoverOpen]);
+
+  function applyQty(val: number) {
+    const clamped = Math.max(100, val);
+    setQuantity(clamped);
+    setQtyInput(String(clamped));
+    setIsCustomQuote(false);
+    setQtyPopoverOpen(false);
+  }
+
+  function applyCustomQuote() {
+    setIsCustomQuote(true);
+    setQtyPopoverOpen(false);
+  }
 
   const selectedFabric = useMemo(
     () => fabrics.find((fabric) => fabric.slug === selectedFabricSlug) ?? fabrics[0],
@@ -48,6 +78,108 @@ export function BagConfigurator({ bag }: { bag: Bag }) {
   }, [bag.slug, quantity, selectedFabric.slug, selectedAddOnIds]);
 
   return (
+    <>
+    {/* Sticky bottom price bar */}
+    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-charcoal/10 bg-white/90 shadow-[0_-4px_24px_rgba(0,0,0,0.08)] backdrop-blur-md">
+      <div className="mx-auto flex max-w-7xl items-center gap-4 px-6 py-3 lg:px-10">
+        <div className="hidden min-w-0 flex-1 sm:block">
+          <p className="truncate text-sm font-semibold text-charcoal">{bag.name}</p>
+          <p className="text-xs text-charcoal/50">{selectedFabric.name} · {quantity.toLocaleString()} units</p>
+        </div>
+        {/* Qty button + popover */}
+        <div className="relative" ref={qtyPopoverRef}>
+          <button
+            type="button"
+            onClick={() => { setQtyInput(String(quantity)); setQtyPopoverOpen((v) => !v); }}
+            className="flex items-center gap-2 rounded-full border border-charcoal/15 bg-white px-4 py-2 text-sm font-semibold text-charcoal hover:border-charcoal"
+          >
+            <span className="text-charcoal/50 text-xs">Qty</span>
+            {isCustomQuote ? "5,000+" : quantity.toLocaleString()}
+            <span className="text-charcoal/40 text-xs">{qtyPopoverOpen ? "▲" : "▼"}</span>
+          </button>
+          {qtyPopoverOpen && (
+            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 w-64 rounded-[1.5rem] border border-charcoal/10 bg-white p-4 shadow-[0_8px_32px_rgba(0,0,0,0.12)] z-50">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/50 mb-3">Set quantity</p>
+              {/* Exact number input */}
+              <div className="flex gap-2 mb-3">
+                <input
+                  type="number"
+                  min={100}
+                  value={qtyInput}
+                  onChange={(e) => setQtyInput(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && applyQty(Number(qtyInput))}
+                  placeholder="e.g. 572"
+                  className="min-w-0 flex-1 rounded-full border border-charcoal/15 px-4 py-2 text-sm font-semibold text-charcoal focus:border-orange focus:outline-none"
+                />
+                <button
+                  type="button"
+                  onClick={() => applyQty(Number(qtyInput))}
+                  className="rounded-full bg-orange px-4 py-2 text-sm font-semibold text-white hover:bg-charcoal"
+                >
+                  Set
+                </button>
+              </div>
+              {/* Quick picks */}
+              <div className="grid grid-cols-3 gap-1.5">
+                {quantityOptions.map((opt) => (
+                  <button
+                    key={opt}
+                    type="button"
+                    onClick={() => applyQty(opt)}
+                    className={`rounded-full border py-1.5 text-xs font-semibold ${
+                      !isCustomQuote && quantity === opt
+                        ? "border-orange bg-orange text-white"
+                        : "border-charcoal/10 bg-light-bone text-charcoal hover:border-orange/50"
+                    }`}
+                  >
+                    {opt.toLocaleString()}
+                  </button>
+                ))}
+                <button
+                  type="button"
+                  onClick={applyCustomQuote}
+                  className={`rounded-full border py-1.5 text-xs font-semibold ${
+                    isCustomQuote
+                      ? "border-blue bg-blue text-white"
+                      : "border-charcoal/10 bg-light-bone text-charcoal hover:border-blue/50"
+                  }`}
+                >
+                  5,000+
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="flex items-center gap-5">
+          {isCustomQuote ? (
+            <div className="text-right">
+              <p className="text-sm font-bold text-charcoal">Custom pricing</p>
+              <p className="text-xs text-charcoal/50">Volume quote required</p>
+            </div>
+          ) : (
+            <div className="text-right">
+              <p className="text-lg font-extrabold tracking-tight text-charcoal">{formatCurrency(totalPerUnit)}<span className="text-xs font-semibold text-charcoal/50"> / unit</span></p>
+              <p className="text-xs font-semibold text-blue">{formatCurrency(orderTotal)} total</p>
+            </div>
+          )}
+          {isCustomQuote ? (
+            <Link
+              href={`/start?bag=${bag.slug}&qty=5000plus`}
+              className="inline-flex rounded-full bg-blue px-5 py-2.5 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-charcoal"
+            >
+              Get a quote
+            </Link>
+          ) : (
+            <Link
+              href={buildOrderHref}
+              className="inline-flex rounded-full bg-orange px-5 py-2.5 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-charcoal"
+            >
+              Build this order
+            </Link>
+          )}
+        </div>
+      </div>
+    </div>
     <section className="rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card sm:p-8">
       <div className="space-y-3">
         <p className="text-sm font-semibold uppercase tracking-[0.22em] text-orange">Configure your order</p>
@@ -58,103 +190,128 @@ export function BagConfigurator({ bag }: { bag: Bag }) {
       </div>
 
       <div className="mt-8 grid gap-8 xl:grid-cols-[1.2fr_0.8fr]">
-        <div className="space-y-8">
-          <div className="space-y-4">
-            <div className="flex items-center justify-between gap-4">
-              <h3 className="text-xl font-bold tracking-tight">Fabric selector</h3>
-              <Link href="/swatches" className="text-sm font-semibold text-blue hover:text-charcoal">
-                Browse the full swatch library
-              </Link>
+        <div className="space-y-6">
+
+          {/* ── Fabric selector ── */}
+          <div className="rounded-[2rem] border border-charcoal/10 bg-light-bone p-5 min-w-0 overflow-hidden">
+            <div className="flex items-center justify-between gap-4 mb-4">
+              <h3 className="text-base font-bold tracking-tight">Fabric</h3>
+              <Link href="/swatches" className="text-xs font-semibold text-blue hover:text-charcoal">Browse swatches →</Link>
             </div>
 
+            {/* Tier tabs */}
+            <div className="flex gap-2 overflow-x-auto pb-1 mb-4 scrollbar-none -mx-1 px-1">
+              {tierOrder.map((tier) => {
+                const tierFabrics = fabrics.filter((f) => f.tier === tier);
+                if (!tierFabrics.length) return null;
+                const tierMeta = fabricTierMeta[tier];
+                const tierActive = tierFabrics.some((f) => f.slug === selectedFabricSlug);
+                return (
+                  <button
+                    key={tier}
+                    type="button"
+                    onClick={() => setSelectedFabricSlug(tierFabrics[0].slug)}
+                    className={`flex-shrink-0 rounded-full border px-4 py-1.5 text-xs font-semibold transition-all ${
+                      tierActive ? "border-orange bg-orange text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-orange/50"
+                    }`}
+                  >
+                    {tierMeta.label}
+                    {tier !== "starter" && (
+                      <span className={`ml-1.5 ${tierActive ? "text-white/70" : "text-charcoal/45"}`}>
+                        +{formatCurrency(tierFabrics[0].upcharge)}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Horizontal scroll of fabric chips for active tier */}
             {tierOrder.map((tier) => {
-              const tierFabrics = fabrics.filter((fabric) => fabric.tier === tier);
-              if (!tierFabrics.length) {
-                return null;
-              }
-
-              const tierMeta = fabricTierMeta[tier];
-
+              const tierFabrics = fabrics.filter((f) => f.tier === tier);
+              const tierActive = tierFabrics.some((f) => f.slug === selectedFabricSlug);
+              if (!tierActive || !tierFabrics.length) return null;
               return (
-                <div key={tier} className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">{tierMeta.label}</h4>
-                    <span className="text-sm text-charcoal/55">
-                      {tier === "starter" ? "Included at no extra cost" : `+${formatCurrency(tierFabrics[0].upcharge)} per unit`}
-                    </span>
-                  </div>
-                  <div className="grid gap-4 md:grid-cols-2">
+                <div key={tier}>
+                  <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none -mx-1 px-1">
                     {tierFabrics.map((fabric) => {
                       const isSelected = fabric.slug === selectedFabricSlug;
-
                       return (
                         <button
                           key={fabric.slug}
                           type="button"
                           onClick={() => setSelectedFabricSlug(fabric.slug)}
-                          className={`rounded-[1.75rem] border p-5 text-left ${
-                            isSelected ? "border-orange ring-2 ring-orange/20" : "border-charcoal/10 bg-light-bone hover:border-blue/30"
+                          className={`flex-shrink-0 rounded-full border px-4 py-2 text-sm font-semibold transition-all ${
+                            isSelected ? "border-orange bg-white text-charcoal ring-2 ring-orange/25" : "border-charcoal/15 bg-white text-charcoal hover:border-charcoal/40"
                           }`}
                         >
-                          <div className="flex items-start justify-between gap-4">
-                            <div>
-                              <p className="text-lg font-bold tracking-tight">{fabric.name}</p>
-                              <p className="mt-1 text-sm text-charcoal/60">{fabric.weightOrStyle ?? fabric.category}</p>
-                            </div>
-                            <span className={`rounded-full border px-3 py-1 text-xs font-semibold ${tierMeta.badgeClassName}`}>
-                              {tierMeta.label}
-                            </span>
-                          </div>
-                          <p className="mt-3 text-sm leading-6 text-charcoal/72">{fabric.description}</p>
-                          <p className="mt-4 text-sm font-semibold text-charcoal">
-                            {fabric.upcharge > 0 ? `+${formatCurrency(fabric.upcharge)} / unit` : "Included"}
-                          </p>
+                          {fabric.name}
                         </button>
                       );
                     })}
                   </div>
+                  {/* Selected fabric detail */}
+                  {(() => {
+                    const fabric = tierFabrics.find((f) => f.slug === selectedFabricSlug);
+                    if (!fabric) return null;
+                    return (
+                      <div className="mt-3 rounded-[1.25rem] border border-orange/20 bg-white px-4 py-3">
+                        <div className="flex items-center justify-between gap-3">
+                          <p className="text-sm font-bold">{fabric.name}</p>
+                          <p className="text-xs font-semibold text-charcoal/60">{fabric.upcharge > 0 ? `+${formatCurrency(fabric.upcharge)} / unit` : "Included"}</p>
+                        </div>
+                        <p className="mt-1 text-xs leading-5 text-charcoal/60">{fabric.description}</p>
+                      </div>
+                    );
+                  })()}
                 </div>
               );
             })}
           </div>
 
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold tracking-tight">Add-ons</h3>
-            <div className="grid gap-4">
+          {/* ── Add-ons ── */}
+          <div className="rounded-[2rem] border border-charcoal/10 bg-light-bone p-5">
+            <h3 className="text-base font-bold tracking-tight mb-4">Add-ons</h3>
+            <div className="flex flex-wrap gap-2">
               {addOns.map((addOn) => {
                 const isSelected = selectedAddOnIds.includes(addOn.id);
-
                 return (
-                  <label
+                  <button
                     key={addOn.id}
-                    className={`flex cursor-pointer items-start gap-4 rounded-[1.5rem] border p-5 ${
-                      isSelected ? "border-orange bg-orange/5" : "border-charcoal/10 bg-light-bone hover:border-blue/30"
+                    type="button"
+                    onClick={() =>
+                      setSelectedAddOnIds((current) =>
+                        current.includes(addOn.id)
+                          ? current.filter((item) => item !== addOn.id)
+                          : [...current, addOn.id],
+                      )
+                    }
+                    className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all ${
+                      isSelected ? "border-orange bg-orange text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-charcoal/40"
                     }`}
+                    title={addOn.description}
                   >
-                    <input
-                      type="checkbox"
-                      checked={isSelected}
-                      onChange={() =>
-                        setSelectedAddOnIds((current) =>
-                          current.includes(addOn.id)
-                            ? current.filter((item) => item !== addOn.id)
-                            : [...current, addOn.id],
-                        )
-                      }
-                      className="mt-1 h-4 w-4 rounded border-charcoal/20 text-orange focus:ring-orange"
-                    />
-                    <div className="min-w-0 flex-1">
-                      <div className="flex flex-wrap items-center justify-between gap-3">
-                        <p className="text-base font-bold tracking-tight">{addOn.name}</p>
-                        <p className="text-sm font-semibold text-charcoal">+{formatCurrency(addOn.pricePerUnit)} / unit</p>
-                      </div>
-                      <p className="mt-2 text-sm leading-6 text-charcoal/70">{addOn.description}</p>
-                    </div>
-                  </label>
+                    {addOn.name}
+                    <span className={`ml-1.5 text-xs ${isSelected ? "text-white/75" : "text-charcoal/45"}`}>
+                      +{formatCurrency(addOn.pricePerUnit)}
+                    </span>
+                  </button>
                 );
               })}
             </div>
+            {selectedAddOnIds.length > 0 && (
+              <div className="mt-3 space-y-1">
+                {selectedAddOnIds.map((id) => {
+                  const addOn = addOns.find((a) => a.id === id);
+                  if (!addOn) return null;
+                  return (
+                    <p key={id} className="text-xs text-charcoal/55">✓ {addOn.name} — {addOn.description}</p>
+                  );
+                })}
+              </div>
+            )}
           </div>
+
         </div>
 
         <aside className="h-fit rounded-[2rem] border border-charcoal/10 bg-light-bone p-6 xl:sticky xl:top-28">
@@ -164,13 +321,12 @@ export function BagConfigurator({ bag }: { bag: Bag }) {
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">Quantity</p>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-5 xl:grid-cols-2">
               {quantityOptions.map((option) => {
-                const isSelected = quantity === option;
-
+                const isSelected = !isCustomQuote && quantity === option;
                 return (
                   <button
                     key={option}
                     type="button"
-                    onClick={() => setQuantity(option)}
+                    onClick={() => { setQuantity(option); setIsCustomQuote(false); }}
                     className={`rounded-full border px-4 py-3 text-sm font-semibold ${
                       isSelected ? "border-orange bg-orange text-white" : "border-charcoal/10 bg-white text-charcoal hover:border-blue/30"
                     }`}
@@ -179,42 +335,63 @@ export function BagConfigurator({ bag }: { bag: Bag }) {
                   </button>
                 );
               })}
+              <button
+                type="button"
+                onClick={() => setIsCustomQuote(true)}
+                className={`rounded-full border px-4 py-3 text-sm font-semibold ${
+                  isCustomQuote ? "border-blue bg-blue text-white" : "border-charcoal/10 bg-white text-charcoal hover:border-blue/30"
+                }`}
+              >
+                5,000+
+              </button>
             </div>
           </div>
 
-          <div className="mt-6 space-y-4 rounded-[1.5rem] bg-white p-5">
-            <SummaryRow label="Base price" value={formatCurrency(basePrice)} />
-            <SummaryRow
-              label={`Fabric (${selectedFabric.name})`}
-              value={fabricUpcharge > 0 ? `+${formatCurrency(fabricUpcharge)}` : "Included"}
-            />
-            <SummaryRow
-              label="Add-ons"
-              value={addOnTotal > 0 ? `+${formatCurrency(addOnTotal)}` : "$0.00"}
-            />
-            <div className="border-t border-charcoal/10 pt-4">
-              <SummaryRow
-                label={<span className="text-base font-bold text-charcoal">Total per unit</span>}
-                value={<span className="text-xl font-bold tracking-tight text-charcoal">{formatCurrency(totalPerUnit)}</span>}
-              />
-              <SummaryRow
-                label={`${quantity.toLocaleString()} units`}
-                value={<span className="text-base font-bold text-blue">{formatCurrency(orderTotal)}</span>}
-              />
+          {isCustomQuote ? (
+            <div className="mt-6 rounded-[1.5rem] border border-blue/20 bg-blue/5 p-5 text-center">
+              <p className="text-sm font-bold text-charcoal">Volume pricing available</p>
+              <p className="mt-1 text-sm leading-6 text-charcoal/65">Orders of 5,000+ units are custom quoted. We&apos;ll get back to you fast.</p>
             </div>
-          </div>
+          ) : (
+            <div className="mt-6 space-y-4 rounded-[1.5rem] bg-white p-5">
+              <SummaryRow label="Base price" value={formatCurrency(basePrice)} />
+              <SummaryRow
+                label={`Fabric (${selectedFabric.name})`}
+                value={fabricUpcharge > 0 ? `+${formatCurrency(fabricUpcharge)}` : "Included"}
+              />
+              <SummaryRow
+                label="Add-ons"
+                value={addOnTotal > 0 ? `+${formatCurrency(addOnTotal)}` : "$0.00"}
+              />
+              <div className="border-t border-charcoal/10 pt-4">
+                <SummaryRow
+                  label={<span className="text-base font-bold text-charcoal">Total per unit</span>}
+                  value={<span className="text-xl font-bold tracking-tight text-charcoal">{formatCurrency(totalPerUnit)}</span>}
+                />
+                <SummaryRow
+                  label={`${quantity.toLocaleString()} units`}
+                  value={<span className="text-base font-bold text-blue">{formatCurrency(orderTotal)}</span>}
+                />
+              </div>
+            </div>
+          )}
 
-          <p className="mt-4 text-sm leading-6 text-charcoal/60">Prices are estimates. Final quote confirmed at checkout.</p>
+          <p className="mt-4 text-sm leading-6 text-charcoal/60">
+            {isCustomQuote ? "We\'ll confirm pricing before anything is produced." : "Prices are estimates. Final quote confirmed at checkout."}
+          </p>
 
           <Link
-            href={buildOrderHref}
-            className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-orange px-6 py-3 text-sm font-semibold text-white shadow-card hover:-translate-y-0.5 hover:bg-charcoal"
+            href={isCustomQuote ? `/start?bag=${bag.slug}&qty=5000plus` : buildOrderHref}
+            className={`mt-6 inline-flex w-full items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white shadow-card hover:-translate-y-0.5 ${
+              isCustomQuote ? "bg-blue hover:bg-charcoal" : "bg-orange hover:bg-charcoal"
+            }`}
           >
-            Build this order
+            {isCustomQuote ? "Get a quote" : "Build this order"}
           </Link>
         </aside>
       </div>
     </section>
+    </>
   );
 }
 
