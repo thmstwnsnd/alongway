@@ -227,7 +227,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
           </div>
         </div>
       </section>
-      <footer className="border-t border-charcoal/10 bg-charcoal text-bone">
+      <footer className="bg-blue text-bone">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 lg:grid-cols-[1.2fr_1fr] lg:px-10">
           <div className="space-y-3">
             <Link href="/" className="flex items-center">
@@ -255,11 +255,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
                     value={footerEmail}
                     onChange={(event) => setFooterEmail(event.target.value)}
                     placeholder="Email address"
-                    className="min-w-0 flex-1 rounded-full border border-white/15 bg-white px-4 py-3 text-sm text-charcoal outline-none focus:border-blue"
+                    className="min-w-0 flex-1 rounded-full border border-white/20 bg-white/10 px-4 py-3 text-sm text-white outline-none placeholder:text-white/50 focus:bg-white focus:text-charcoal focus:outline-none"
                   />
                   <button
                     type="submit"
-                    className="inline-flex items-center justify-center rounded-full bg-blue px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-charcoal"
+                    className="inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-charcoal hover:bg-bone"
                   >
                     Join
                   </button>
@@ -284,7 +284,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <div className="space-y-6">
             <Link
               href="/start"
-              className="inline-flex rounded-full bg-blue px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-white hover:text-charcoal"
+              className="inline-flex rounded-full bg-white px-6 py-3 text-sm font-semibold text-charcoal hover:-translate-y-0.5 hover:bg-bone"
             >
               Start Your Order
             </Link>
