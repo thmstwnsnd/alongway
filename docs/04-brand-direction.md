@@ -60,20 +60,18 @@
 
 ## Visual Direction
 
-### Color Palette
+### Color Palette (Confirmed — updated 2026-04-29)
 
-**Primary:**
-- A warm, earthy tone OR a bold, confident color (avoid orange — that's OG's territory)
-- Suggestions:
-  - **Desert Sand / Warm Tan** (#C4A77D) — earthy, bags/canvas feel, premium but not pretentious
-  - **Terracotta** (#CC5A3B) — warm, LA vibes, stands out on IG, pairs well with neutrals
-  - **Deep Olive** (#4A5D3A) — earthy, premium, works for outdoor/eco angle
-  - **Ocean Blue** (#2B6B8A) — clean, fresh, stands out from competitor earthy tones
+| Color | Hex | Role |
+|---|---|---|
+| Blue | #364FA0 | Main / primary / CTAs |
+| Bone | #EEE6D2 | Main / backgrounds |
+| Kelly | #3A7D44 | Accent |
+| Light Bone | #F2ECE2 | Secondary backgrounds |
+| Light Blue | #94A6D2 | Accent |
+| Charcoal | #262626 | Most copy / accents |
 
-**Secondary:**
-- Off-white / cream (#F5F0E8) — for backgrounds, clean space
-- Charcoal (#2C2C2C) — for text, contrast
-- A warm accent for CTAs and highlights
+**Orange is NOT part of the Alongway palette** — that belongs to Orange Goods.
 
 ### Typography
 - **Headlines:** Something with character — slightly rounded, confident, not too serious. Think: something between a sans-serif and a display font.
