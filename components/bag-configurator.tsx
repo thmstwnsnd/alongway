@@ -169,34 +169,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                   Set
                 </button>
               </div>
-              {/* Quick picks */}
-              <div className="grid grid-cols-3 gap-1.5">
-                {quantityOptions.map((opt) => (
-                  <button
-                    key={opt}
-                    type="button"
-                    onClick={() => applyQty(opt)}
-                    className={`rounded-full border py-1.5 text-xs font-semibold ${
-                      !isCustomQuote && quantity === opt
-                        ? "border-blue bg-blue text-white"
-                        : "border-charcoal/10 bg-light-bone text-charcoal hover:border-blue/50"
-                    }`}
-                  >
-                    {opt.toLocaleString()}
-                  </button>
-                ))}
-                <button
-                  type="button"
-                  onClick={applyCustomQuote}
-                  className={`rounded-full border py-1.5 text-xs font-semibold ${
-                    isCustomQuote
-                      ? "border-blue bg-blue text-white"
-                      : "border-charcoal/10 bg-light-bone text-charcoal hover:border-blue/50"
-                  }`}
-                >
-                  5,000+
-                </button>
-              </div>
+
             </div>
           )}
         </div>
@@ -255,32 +228,32 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
             onChange={(e) => { const v = Number(e.target.value); setIsCustomQuote(false); setQuantity(v); setQtyInput(String(v)); }}
             className="flex-1 accent-blue cursor-pointer h-1"
           />
-          <span className="text-sm font-bold text-charcoal flex-shrink-0 w-16 text-right">
-            {isCustomQuote ? "5k+" : quantity >= 1000 ? `${(quantity/1000).toFixed(quantity%1000===0?0:1)}k` : quantity}
-          </span>
-          <div className="flex gap-1 flex-shrink-0">
-            {quantityOptions.map((opt) => (
-              <button key={opt} type="button" onClick={() => applyQty(opt)}
-                className={`rounded-full border px-2 py-0.5 text-xs font-semibold transition-all ${
-                  !isCustomQuote && quantity === opt ? "border-blue bg-blue text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-blue/50"
-                }`}>
-                {opt >= 1000 ? `${opt/1000}k` : opt}
-              </button>
-            ))}
-            <button type="button" onClick={applyCustomQuote}
-              className={`rounded-full border px-2 py-0.5 text-xs font-semibold transition-all ${
-                isCustomQuote ? "border-blue bg-blue text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-blue/50"
-              }`}>5k+</button>
-          </div>
+          <input
+            type="number"
+            min={100}
+            value={isCustomQuote ? "" : qtyInput}
+            placeholder={isCustomQuote ? "5,000+" : ""}
+            onChange={(e) => { setQtyInput(e.target.value); setIsCustomQuote(false); }}
+            onBlur={(e) => { const v = Number(e.target.value); if (v >= 100) applyQty(v); }}
+            onKeyDown={(e) => { if (e.key === "Enter") { const v = Number(qtyInput); if (v >= 100) applyQty(v); } }}
+            className="w-20 flex-shrink-0 rounded-full border border-charcoal/15 bg-white px-3 py-1.5 text-sm font-bold text-charcoal text-center focus:border-blue focus:outline-none"
+          />
         </div>
       ) : (
         /* Full-width slider for standalone layout */
         <div className="mt-8 rounded-[2rem] border border-charcoal/10 bg-light-bone p-5">
           <div className="flex items-center justify-between gap-4 mb-4">
             <h3 className="text-base font-bold tracking-tight">Quantity</h3>
-            <p className="text-2xl font-extrabold tracking-tight text-charcoal">
-              {isCustomQuote ? "5,000+" : quantity.toLocaleString()} <span className="text-sm font-semibold text-charcoal/50">units</span>
-            </p>
+            <input
+              type="number"
+              min={100}
+              value={isCustomQuote ? "" : qtyInput}
+              placeholder={isCustomQuote ? "5,000+" : ""}
+              onChange={(e) => { setQtyInput(e.target.value); setIsCustomQuote(false); }}
+              onBlur={(e) => { const v = Number(e.target.value); if (v >= 100) applyQty(v); }}
+              onKeyDown={(e) => { if (e.key === "Enter") { const v = Number(qtyInput); if (v >= 100) applyQty(v); } }}
+              className="w-28 rounded-full border border-charcoal/15 bg-white px-4 py-2 text-xl font-extrabold text-charcoal text-center focus:border-blue focus:outline-none"
+            />
           </div>
           <input type="range" min={100} max={2000} step={50}
             value={isCustomQuote ? 2000 : quantity}
@@ -289,18 +262,6 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
           />
           <div className="flex justify-between mt-1">
             <span className="text-xs text-charcoal/45">100</span>
-            <div className="flex gap-2">
-              {quantityOptions.map((opt) => (
-                <button key={opt} type="button" onClick={() => applyQty(opt)}
-                  className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all ${
-                    !isCustomQuote && quantity === opt ? "border-blue bg-blue text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-blue/50"
-                  }`}>{opt >= 1000 ? `${opt/1000}k` : opt}</button>
-              ))}
-              <button type="button" onClick={applyCustomQuote}
-                className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all ${
-                  isCustomQuote ? "border-blue bg-blue text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-blue/50"
-                }`}>5k+</button>
-            </div>
             <span className="text-xs text-charcoal/45">2,000</span>
           </div>
         </div>
