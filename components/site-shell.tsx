@@ -123,17 +123,16 @@ export function SiteShell({ children }: { children: ReactNode }) {
                   isCollectionMenuOpen ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"
                 }`}
               >
-                <div className="w-[34rem] rounded-[1.5rem] border border-charcoal/10 bg-white p-5 shadow-card">
-                  <div className="grid gap-2 sm:grid-cols-2">
+                <div className="w-[52rem] rounded-[1.5rem] border border-charcoal/10 bg-white p-5 shadow-card">
+                  <div className="grid grid-cols-4 gap-1">
                     {bags.map((bag) => (
                       <Link
                         key={bag.slug}
                         href={`/collection/${bag.slug}`}
                         onClick={() => setIsCollectionMenuOpen(false)}
-                        className="rounded-[1rem] px-4 py-3 transition-colors hover:bg-light-bone"
+                        className="rounded-[0.75rem] px-3 py-2.5 transition-colors hover:bg-light-bone"
                       >
-                        <p className="text-sm font-bold text-charcoal">{bag.name}</p>
-                        <p className="mt-1 text-xs leading-5 text-charcoal/60">{bag.tagline}</p>
+                        <p className="text-sm font-semibold text-charcoal leading-snug">{bag.name}</p>
                       </Link>
                     ))}
                   </div>
