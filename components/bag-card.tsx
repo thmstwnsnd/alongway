@@ -21,9 +21,12 @@ export function BagCard({ bag }: { bag: Bag }) {
           <p className="text-sm leading-6 text-charcoal/70">{bag.tagline}</p>
         </div>
         <div className="flex items-center justify-between gap-4">
-          <p className="text-sm font-semibold">
-            Starting at <span className="text-blue">${bag.startingPrice.toFixed(2)}</span>
-          </p>
+          <div>
+            <p className="text-sm font-semibold">
+              Starting at <span className="text-blue">${bag.startingPrice.toFixed(2)}</span>
+            </p>
+            <p className="text-xs text-charcoal/50">Min. 100 units · Mix &amp; match styles OK</p>
+          </div>
           <Link
             href={`/collection/${bag.slug}`}
             className="text-sm font-semibold text-orange hover:text-charcoal"

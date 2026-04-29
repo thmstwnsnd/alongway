@@ -3,9 +3,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { FormEvent, ReactNode } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
+import { bags } from "@/data/bags";
 import {
   dismissEmailCapture,
   storeCapturedEmail,
@@ -39,6 +40,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
   const [footerEmail, setFooterEmail] = useState("");
   const [isFooterSubmitted, setIsFooterSubmitted] = useState(false);
   const [showFooterCapture, setShowFooterCapture] = useState(false);
+  const [isCollectionMenuOpen, setIsCollectionMenuOpen] = useState(false);
+  const collectionMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setShowFooterCapture(!shouldHideEmailCapture());
@@ -55,6 +58,26 @@ export function SiteShell({ children }: { children: ReactNode }) {
       window.removeEventListener("alongway-email-captured", handleCapture);
     };
   }, []);
+
+  useEffect(() => {
+    if (!isCollectionMenuOpen) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (collectionMenuRef.current && !collectionMenuRef.current.contains(event.target as Node)) {
+        setIsCollectionMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isCollectionMenuOpen]);
+
+  useEffect(() => {
+    setIsCollectionMenuOpen(false);
+  }, [pathname]);
 
   const handleFooterSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -77,7 +100,56 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <Image src="/logo-wordmark.jpeg" alt="Alongway" width={160} height={40} className="h-9 w-auto object-contain" priority />
           </Link>
           <nav className="hidden items-center gap-7 text-sm font-medium md:flex">
-            {navLinks.map((link) => (
+            <div
+              ref={collectionMenuRef}
+              className="relative"
+              onMouseEnter={() => setIsCollectionMenuOpen(true)}
+              onMouseLeave={() => setIsCollectionMenuOpen(false)}
+            >
+              <button
+                type="button"
+                onClick={() => setIsCollectionMenuOpen((current) => !current)}
+                className="inline-flex items-center gap-2 hover:text-blue"
+              >
+                <span>Collection</span>
+                <span
+                  className={`text-[10px] text-charcoal/45 transition-transform ${isCollectionMenuOpen ? "rotate-180" : ""}`}
+                >
+                  ▼
+                </span>
+              </button>
+              <div
+                className={`absolute left-0 top-full pt-4 transition-all duration-200 ${
+                  isCollectionMenuOpen ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"
+                }`}
+              >
+                <div className="w-[34rem] rounded-[1.5rem] border border-charcoal/10 bg-white p-5 shadow-card">
+                  <div className="grid gap-2 sm:grid-cols-2">
+                    {bags.map((bag) => (
+                      <Link
+                        key={bag.slug}
+                        href={`/collection/${bag.slug}`}
+                        onClick={() => setIsCollectionMenuOpen(false)}
+                        className="rounded-[1rem] px-4 py-3 transition-colors hover:bg-light-bone"
+                      >
+                        <p className="text-sm font-bold text-charcoal">{bag.name}</p>
+                        <p className="mt-1 text-xs leading-5 text-charcoal/60">{bag.tagline}</p>
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="mt-4 border-t border-charcoal/10 pt-4">
+                    <Link
+                      href="/collection"
+                      onClick={() => setIsCollectionMenuOpen(false)}
+                      className="text-sm font-semibold text-orange hover:text-charcoal"
+                    >
+                      View All →
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {navLinks.filter((link) => link.href !== "/collection").map((link) => (
               <Link key={link.href} href={link.href} className="hover:text-blue">
                 {link.label}
               </Link>
@@ -86,6 +158,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <div className="flex items-center gap-4">
             <Link href="/portal" className="hidden text-sm font-medium text-charcoal/70 hover:text-blue sm:inline-flex">
               Sign in
+            </Link>
+            <Link href="/swatches" className="hidden text-sm font-semibold text-charcoal/70 hover:text-orange md:inline-flex">
+              Get Swatches
             </Link>
             <Link
               href="/start"
@@ -101,12 +176,33 @@ export function SiteShell({ children }: { children: ReactNode }) {
               {link.label}
             </Link>
           ))}
+          <Link href="/swatches" className="whitespace-nowrap hover:text-blue">
+            Get Swatches
+          </Link>
           <Link href="/portal" className="whitespace-nowrap text-charcoal/70 hover:text-blue">
             Sign in
           </Link>
         </nav>
       </header>
       <main>{children}</main>
+      <section className="bg-charcoal px-6 py-12 text-white lg:px-10">
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-5 text-center">
+          <div className="space-y-2">
+            <h2 className="text-3xl font-bold tracking-tight">Need a hand?</h2>
+            <p className="max-w-2xl text-sm leading-7 text-white/75 sm:text-base">
+              Not sure which bag is right? Want to talk through your project?
+            </p>
+          </div>
+          <div className="flex flex-col items-center gap-3 sm:flex-row">
+            <Link href="/start" className="text-sm font-semibold text-orange hover:text-white">
+              Start a conversation →
+            </Link>
+            <a href="mailto:hello@alongway.co" className="text-sm font-semibold text-white/80 hover:text-white">
+              hello@alongway.co
+            </a>
+          </div>
+        </div>
+      </section>
       <footer className="border-t border-charcoal/10 bg-charcoal text-bone">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 lg:grid-cols-[1.2fr_1fr] lg:px-10">
           <div className="space-y-3">

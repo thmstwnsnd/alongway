@@ -78,6 +78,30 @@ export function BagDetail({ bag }: { bag: Bag }) {
           </div>
 
           <div className="space-y-4">
+            <div className="rounded-[1.5rem] border border-charcoal/10 bg-light-bone px-6 py-5">
+              <p className="text-lg font-bold tracking-tight text-charcoal">Artwork Templates</p>
+              <p className="mt-2 text-sm leading-6 text-charcoal/70">
+                Download the template for {bag.name} to prep your artwork file.
+              </p>
+              <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href={`/templates/${bag.slug}.pdf`}
+                  className="inline-flex justify-center rounded-full border border-charcoal/15 bg-white px-5 py-3 text-sm font-semibold text-charcoal hover:border-orange hover:text-orange"
+                >
+                  ↓ PDF Template
+                </Link>
+                <Link
+                  href={`/templates/${bag.slug}.ai`}
+                  className="inline-flex justify-center rounded-full border border-charcoal/15 bg-white px-5 py-3 text-sm font-semibold text-charcoal hover:border-orange hover:text-orange"
+                >
+                  ↓ AI Template
+                </Link>
+              </div>
+              <p className="mt-4 text-xs leading-5 text-charcoal/55">
+                Templates are sized to exact print dimensions. Use these for clean press-ready artwork.
+              </p>
+            </div>
+
             <details className="group rounded-[1.5rem] border border-charcoal/10 bg-white px-6 py-5 shadow-card open:bg-light-bone">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
                 Customization

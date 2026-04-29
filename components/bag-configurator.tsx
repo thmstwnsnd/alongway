@@ -13,6 +13,25 @@ const defaultFabricSlug = "cotton-canvas-12oz";
 const quantityOptions = [100, 250, 500, 1000, 2000];
 const CUSTOM_QUOTE_KEY = "5000+";
 const tierOrder: FabricTier[] = ["starter", "upgrade1", "upgrade2", "upgrade3"];
+const decorationTypes = ["Screen Print", "Embroidery", "Patch", "Woven Label"] as const;
+const frontColorOptions = [
+  { label: "1 color", value: 1, upcharge: 0 },
+  { label: "2 colors", value: 2, upcharge: 0.35 },
+  { label: "3 colors", value: 3, upcharge: 0.7 },
+  { label: "4 colors", value: 4, upcharge: 1.05 },
+] as const;
+const backColorOptions = [
+  { label: "None", value: 0, upcharge: 0 },
+  { label: "1 color", value: 1, upcharge: 0.3 },
+  { label: "2 colors", value: 2, upcharge: 0.6 },
+  { label: "3 colors", value: 3, upcharge: 0.9 },
+] as const;
+const embroideryPlacementOptions = [
+  { label: "One placement", value: 1, upcharge: 0 },
+  { label: "Two placements", value: 2, upcharge: 1.25 },
+] as const;
+
+type DecorationType = (typeof decorationTypes)[number];
 
 export function BagConfigurator({ bag }: { bag: Bag }) {
   const [selectedFabricSlug, setSelectedFabricSlug] = useState(defaultFabricSlug);
@@ -21,6 +40,10 @@ export function BagConfigurator({ bag }: { bag: Bag }) {
   const [isCustomQuote, setIsCustomQuote] = useState(false);
   const [qtyPopoverOpen, setQtyPopoverOpen] = useState(false);
   const [qtyInput, setQtyInput] = useState("100");
+  const [decorationType, setDecorationType] = useState<DecorationType>("Screen Print");
+  const [frontColors, setFrontColors] = useState(1);
+  const [backColors, setBackColors] = useState(0);
+  const [embroideryPlacements, setEmbroideryPlacements] = useState(1);
   const qtyPopoverRef = useRef<HTMLDivElement>(null);
 
   // Close popover on outside click
@@ -60,22 +83,49 @@ export function BagConfigurator({ bag }: { bag: Bag }) {
   const basePrice = getUnitPrice(bag, quantity) ?? 0;
   const fabricUpcharge = selectedFabric.upcharge;
   const addOnTotal = selectedAddOns.reduce((sum, addOn) => sum + addOn.pricePerUnit, 0);
-  const totalPerUnit = basePrice + fabricUpcharge + addOnTotal;
+  const screenPrintFrontCharge = frontColorOptions.find((option) => option.value === frontColors)?.upcharge ?? 0;
+  const screenPrintBackCharge = backColorOptions.find((option) => option.value === backColors)?.upcharge ?? 0;
+  const embroideryCharge = embroideryPlacementOptions.find((option) => option.value === embroideryPlacements)?.upcharge ?? 0;
+  const decorationUpcharge =
+    decorationType === "Screen Print"
+      ? screenPrintFrontCharge + screenPrintBackCharge
+      : decorationType === "Embroidery"
+        ? embroideryCharge
+        : 0;
+  const totalPerUnit = basePrice + fabricUpcharge + decorationUpcharge + addOnTotal;
   const orderTotal = totalPerUnit * quantity;
+  const decorationSummary =
+    decorationType === "Screen Print"
+      ? `Screen Print · Front ${frontColors} color${frontColors > 1 ? "s" : ""} · Back ${
+          backColors === 0 ? "none" : `${backColors} color${backColors > 1 ? "s" : ""}`
+        }`
+      : decorationType === "Embroidery"
+        ? `Embroidery · ${embroideryPlacements === 1 ? "One placement" : "Two placements"}`
+        : decorationType;
 
   const buildOrderHref = useMemo(() => {
     const params = new URLSearchParams({
       bag: bag.slug,
       quantity: String(quantity),
       fabric: selectedFabric.slug,
+      decoration: decorationType,
     });
 
     if (selectedAddOnIds.length) {
       params.set("addons", selectedAddOnIds.join(","));
     }
 
+    if (decorationType === "Screen Print") {
+      params.set("frontColors", String(frontColors));
+      params.set("backColors", String(backColors));
+    }
+
+    if (decorationType === "Embroidery") {
+      params.set("embroideryPlacements", String(embroideryPlacements));
+    }
+
     return `/shop?${params.toString()}`;
-  }, [bag.slug, quantity, selectedFabric.slug, selectedAddOnIds]);
+  }, [bag.slug, quantity, selectedFabric.slug, selectedAddOnIds, decorationType, frontColors, backColors, embroideryPlacements]);
 
   return (
     <>
@@ -84,7 +134,7 @@ export function BagConfigurator({ bag }: { bag: Bag }) {
       <div className="mx-auto flex max-w-7xl items-center gap-4 px-6 py-3 lg:px-10">
         <div className="hidden min-w-0 flex-1 sm:block">
           <p className="truncate text-sm font-semibold text-charcoal">{bag.name}</p>
-          <p className="text-xs text-charcoal/50">{selectedFabric.name} · {quantity.toLocaleString()} units</p>
+          <p className="text-xs text-charcoal/50">{selectedFabric.name} · {decorationSummary} · {quantity.toLocaleString()} units</p>
         </div>
         {/* Qty button + popover */}
         <div className="relative" ref={qtyPopoverRef}>
@@ -189,7 +239,62 @@ export function BagConfigurator({ bag }: { bag: Bag }) {
         </p>
       </div>
 
-      <div className="mt-8 grid gap-8 xl:grid-cols-[1.2fr_0.8fr]">
+      {/* ── Quantity slider ── */}
+      <div className="mt-8 rounded-[2rem] border border-charcoal/10 bg-light-bone p-5">
+        <div className="flex items-center justify-between gap-4 mb-4">
+          <h3 className="text-base font-bold tracking-tight">Quantity</h3>
+          <div className="text-right">
+            <p className="text-2xl font-extrabold tracking-tight text-charcoal">
+              {isCustomQuote ? "5,000+" : quantity.toLocaleString()} <span className="text-sm font-semibold text-charcoal/50">units</span>
+            </p>
+          </div>
+        </div>
+        <input
+          type="range"
+          min={100}
+          max={2000}
+          step={50}
+          value={isCustomQuote ? 2000 : quantity}
+          onChange={(e) => {
+            const val = Number(e.target.value);
+            setIsCustomQuote(false);
+            setQuantity(val);
+            setQtyInput(String(val));
+          }}
+          className="w-full accent-orange cursor-pointer"
+        />
+        <div className="flex justify-between mt-1">
+          <span className="text-xs text-charcoal/45">100</span>
+          <div className="flex gap-2">
+            {quantityOptions.map((opt) => (
+              <button
+                key={opt}
+                type="button"
+                onClick={() => applyQty(opt)}
+                className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all ${
+                  !isCustomQuote && quantity === opt
+                    ? "border-orange bg-orange text-white"
+                    : "border-charcoal/15 bg-white text-charcoal hover:border-orange/50"
+                }`}
+              >
+                {opt >= 1000 ? `${opt / 1000}k` : opt}
+              </button>
+            ))}
+            <button
+              type="button"
+              onClick={applyCustomQuote}
+              className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all ${
+                isCustomQuote ? "border-blue bg-blue text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-blue/50"
+              }`}
+            >
+              5k+
+            </button>
+          </div>
+          <span className="text-xs text-charcoal/45">2,000</span>
+        </div>
+      </div>
+
+      <div className="mt-6 grid gap-8 xl:grid-cols-[1.2fr_0.8fr]">
         <div className="space-y-6">
 
           {/* ── Fabric selector ── */}
@@ -267,6 +372,103 @@ export function BagConfigurator({ bag }: { bag: Bag }) {
                 </div>
               );
             })}
+          </div>
+
+          <div className="rounded-[2rem] border border-charcoal/10 bg-light-bone p-5">
+            <h3 className="mb-4 text-base font-bold tracking-tight">Decoration</h3>
+            <div className="flex flex-wrap gap-2">
+              {decorationTypes.map((option) => {
+                const isSelected = decorationType === option;
+                return (
+                  <button
+                    key={option}
+                    type="button"
+                    onClick={() => setDecorationType(option)}
+                    className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all ${
+                      isSelected ? "border-orange bg-white text-charcoal ring-2 ring-orange/25" : "border-charcoal/15 bg-white text-charcoal hover:border-charcoal/40"
+                    }`}
+                  >
+                    {option}
+                  </button>
+                );
+              })}
+            </div>
+
+            {decorationType === "Screen Print" && (
+              <div className="mt-5 grid gap-5 lg:grid-cols-2">
+                <div className="space-y-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Front placement</p>
+                  <div className="flex flex-wrap gap-2">
+                    {frontColorOptions.map((option) => {
+                      const isSelected = frontColors === option.value;
+                      return (
+                        <button
+                          key={option.value}
+                          type="button"
+                          onClick={() => setFrontColors(option.value)}
+                          className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all ${
+                            isSelected ? "border-orange bg-orange text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-charcoal/40"
+                          }`}
+                        >
+                          {option.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Back placement</p>
+                  <div className="flex flex-wrap gap-2">
+                    {backColorOptions.map((option) => {
+                      const isSelected = backColors === option.value;
+                      return (
+                        <button
+                          key={option.value}
+                          type="button"
+                          onClick={() => setBackColors(option.value)}
+                          className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all ${
+                            isSelected ? "border-orange bg-orange text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-charcoal/40"
+                          }`}
+                        >
+                          {option.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {decorationType === "Embroidery" && (
+              <div className="mt-5 space-y-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Placement</p>
+                <div className="flex flex-wrap gap-2">
+                  {embroideryPlacementOptions.map((option) => {
+                    const isSelected = embroideryPlacements === option.value;
+                    return (
+                      <button
+                        key={option.value}
+                        type="button"
+                        onClick={() => setEmbroideryPlacements(option.value)}
+                        className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all ${
+                          isSelected ? "border-orange bg-orange text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-charcoal/40"
+                        }`}
+                      >
+                        {option.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            <p className="mt-4 text-xs leading-5 text-charcoal/55">
+              {decorationType === "Screen Print"
+                ? "Each extra front color adds $0.35 per unit. Each back print color adds $0.30 per unit."
+                : decorationType === "Embroidery"
+                  ? "A second embroidery placement adds $1.25 per unit."
+                  : "This decoration is included in the current estimate."}
+            </p>
           </div>
 
           {/* ── Add-ons ── */}
@@ -356,8 +558,12 @@ export function BagConfigurator({ bag }: { bag: Bag }) {
             <div className="mt-6 space-y-4 rounded-[1.5rem] bg-white p-5">
               <SummaryRow label="Base price" value={formatCurrency(basePrice)} />
               <SummaryRow
-                label={`Fabric (${selectedFabric.name})`}
+                label="Fabric"
                 value={fabricUpcharge > 0 ? `+${formatCurrency(fabricUpcharge)}` : "Included"}
+              />
+              <SummaryRow
+                label="Decoration"
+                value={decorationUpcharge > 0 ? `+${formatCurrency(decorationUpcharge)}` : "Included"}
               />
               <SummaryRow
                 label="Add-ons"
@@ -365,11 +571,11 @@ export function BagConfigurator({ bag }: { bag: Bag }) {
               />
               <div className="border-t border-charcoal/10 pt-4">
                 <SummaryRow
-                  label={<span className="text-base font-bold text-charcoal">Total per unit</span>}
+                  label={<span className="text-base font-bold text-charcoal">Per unit</span>}
                   value={<span className="text-xl font-bold tracking-tight text-charcoal">{formatCurrency(totalPerUnit)}</span>}
                 />
                 <SummaryRow
-                  label={`${quantity.toLocaleString()} units`}
+                  label={<span className="text-base font-bold text-charcoal">Order total</span>}
                   value={<span className="text-base font-bold text-blue">{formatCurrency(orderTotal)}</span>}
                 />
               </div>
