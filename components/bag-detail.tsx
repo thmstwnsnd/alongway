@@ -18,7 +18,7 @@ export function BagDetail({ bag }: { bag: Bag }) {
     <div className="mx-auto max-w-7xl px-6 py-12 pb-28 lg:px-10">
 
       {/* ── Hero grid: image LEFT, config RIGHT ── */}
-      <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-start">
+      <div className="grid gap-8 lg:grid-cols-[2fr_1fr] lg:items-start">
 
         {/* Left: image + key specs */}
         <div className="space-y-5">
