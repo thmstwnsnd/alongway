@@ -57,7 +57,7 @@ export default async function FabricDetailPage({
       <section className="mt-6 grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
         <div className="space-y-6">
           <div className="space-y-4">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-orange">{fabric.category}</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-kelly">{fabric.category}</p>
             <h1 className="text-5xl font-extrabold tracking-tight">{fabric.name}</h1>
             <p className="text-lg leading-8 text-charcoal/72">{fabric.description}</p>
           </div>
@@ -131,7 +131,7 @@ export default async function FabricDetailPage({
             </p>
             <Link
               href={`/shop?fabric=${fabric.slug}`}
-              className="mt-6 inline-flex rounded-full bg-orange px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-white hover:text-charcoal"
+              className="mt-6 inline-flex rounded-full bg-blue px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-white hover:text-charcoal"
             >
               Start here
             </Link>

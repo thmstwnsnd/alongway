@@ -80,7 +80,7 @@ export function ShopPage() {
           <section className="rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card sm:p-8">
             <StepHeading number="01" title="Choose your bag" body="Select the silhouette that best fits your brand and use case." />
             {selectedBag ? (
-              <div className="mt-6 flex items-center gap-4 rounded-[1.75rem] border border-orange bg-light-bone p-4 ring-2 ring-orange/20">
+              <div className="mt-6 flex items-center gap-4 rounded-[1.75rem] border border-blue bg-light-bone p-4 ring-2 ring-blue/20">
                 <img
                   src={getBagImageUrl(selectedBag.slug)}
                   alt={selectedBag.name}
@@ -88,7 +88,7 @@ export function ShopPage() {
                 />
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
-                    <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-orange text-xs font-bold text-white">✓</span>
+                    <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-blue text-xs font-bold text-white">✓</span>
                     <p className="text-base font-bold tracking-tight">{selectedBag.name}</p>
                   </div>
                   <p className="mt-0.5 text-sm text-charcoal/60">{selectedBag.tagline}</p>
@@ -117,7 +117,7 @@ export function ShopPage() {
                         }))
                       }
                       className={`group relative overflow-hidden rounded-[1.75rem] border bg-white text-left shadow-card ${
-                        isSelected ? "border-orange ring-2 ring-orange/20" : "border-charcoal/10 hover:border-blue/30"
+                        isSelected ? "border-blue ring-2 ring-blue/20" : "border-charcoal/10 hover:border-blue/30"
                       }`}
                     >
                       <img
@@ -134,7 +134,7 @@ export function ShopPage() {
                           <span
                             className={`inline-flex h-7 w-7 items-center justify-center rounded-full border text-sm font-bold ${
                               isSelected
-                                ? "border-orange bg-orange text-white"
+                                ? "border-blue bg-blue text-white"
                                 : "border-charcoal/15 bg-light-bone text-charcoal/35"
                             }`}
                           >
@@ -170,7 +170,7 @@ export function ShopPage() {
                       type="button"
                       onClick={() => setOrder((current) => ({ ...current, quantity }))}
                       className={`rounded-[1.5rem] border px-5 py-4 text-left ${
-                        isSelected ? "border-orange bg-orange text-white" : "border-charcoal/10 bg-light-bone hover:border-blue/30"
+                        isSelected ? "border-blue bg-blue text-white" : "border-charcoal/10 bg-light-bone hover:border-blue/30"
                       }`}
                     >
                       <p className={`text-2xl font-bold tracking-tight ${isSelected ? "text-white" : "text-charcoal"}`}>
@@ -284,7 +284,7 @@ export function ShopPage() {
                     onClick={() => setOrder((current) => ({ ...current, artworkReady: "yes" }))}
                     className={`flex-1 rounded-[1.5rem] border px-5 py-4 text-left ${
                       order.artworkReady === "yes"
-                        ? "border-orange bg-orange text-white"
+                        ? "border-blue bg-blue text-white"
                         : "border-charcoal/10 bg-light-bone hover:border-blue/30"
                     }`}
                   >
@@ -298,7 +298,7 @@ export function ShopPage() {
                     onClick={() => setOrder((current) => ({ ...current, artworkReady: "no" }))}
                     className={`flex-1 rounded-[1.5rem] border px-5 py-4 text-left ${
                       order.artworkReady === "no"
-                        ? "border-orange bg-orange text-white"
+                        ? "border-blue bg-blue text-white"
                         : "border-charcoal/10 bg-light-bone hover:border-blue/30"
                     }`}
                   >
@@ -316,7 +316,7 @@ export function ShopPage() {
                       <input
                         type="file"
                         accept=".ai,.eps,.pdf"
-                        className="mt-3 w-full rounded-2xl border border-charcoal/15 bg-white px-4 py-3 text-sm outline-none file:mr-4 file:rounded-full file:border-0 file:bg-orange file:px-4 file:py-2 file:text-xs file:font-semibold file:text-white focus:border-blue"
+                        className="mt-3 w-full rounded-2xl border border-charcoal/15 bg-white px-4 py-3 text-sm outline-none file:mr-4 file:rounded-full file:border-0 file:bg-blue file:px-4 file:py-2 file:text-xs file:font-semibold file:text-white focus:border-blue"
                       />
                     </label>
                     <p className="mt-2 text-sm text-charcoal/55">Accepted: .ai, .eps, .pdf — vector files only</p>
@@ -363,7 +363,7 @@ function StepHeading({
 }) {
   return (
     <div>
-      <p className="text-sm font-semibold uppercase tracking-[0.22em] text-orange">{number}</p>
+      <p className="text-sm font-semibold uppercase tracking-[0.22em] text-kelly">{number}</p>
       <h2 className="mt-3 text-3xl font-bold tracking-tight">{title}</h2>
       <p className="mt-2 max-w-2xl text-base leading-7 text-charcoal/72">{body}</p>
     </div>

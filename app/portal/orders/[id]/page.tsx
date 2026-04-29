@@ -28,7 +28,7 @@ export default async function PortalOrderDetailPage({
         </Link>
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div className="space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-orange">Order detail</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Order detail</p>
             <h1 className="text-4xl font-extrabold tracking-tight text-charcoal sm:text-5xl">
               {order.orderNumber} | {order.bagName}
             </h1>
@@ -46,7 +46,7 @@ export default async function PortalOrderDetailPage({
             </Link>
             <Link
               href={`/shop?bag=${order.bagSlug}`}
-              className="inline-flex rounded-full bg-orange px-5 py-3 text-sm font-semibold text-white shadow-card hover:-translate-y-0.5 hover:bg-charcoal"
+              className="inline-flex rounded-full bg-blue px-5 py-3 text-sm font-semibold text-white shadow-card hover:-translate-y-0.5 hover:bg-charcoal"
             >
               Reorder this bag
             </Link>

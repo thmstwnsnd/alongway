@@ -44,10 +44,10 @@ export function OrderConfirmationPage() {
     <div className="mx-auto max-w-5xl px-6 py-16 lg:px-10 lg:py-20">
       <section className="rounded-[2.5rem] border border-charcoal/10 bg-white p-8 shadow-card sm:p-12">
         <div className="mx-auto max-w-3xl text-center">
-          <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-orange/12 text-5xl text-orange">
+          <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-blue/12 text-5xl text-kelly">
             ✓
           </div>
-          <p className="mt-8 text-sm font-semibold uppercase tracking-[0.24em] text-orange">Order confirmed</p>
+          <p className="mt-8 text-sm font-semibold uppercase tracking-[0.24em] text-kelly">Order confirmed</p>
           <h1 className="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">Order confirmed.</h1>
           <p className="mt-4 text-lg leading-8 text-charcoal/72">
             You&apos;re not just done — you&apos;re just getting started.
@@ -91,7 +91,7 @@ export function OrderConfirmationPage() {
         <div className="mt-10 flex justify-center">
           <Link
             href="/collection"
-            className="inline-flex rounded-full bg-orange px-6 py-3 text-sm font-semibold text-white shadow-card hover:-translate-y-0.5 hover:bg-charcoal"
+            className="inline-flex rounded-full bg-blue px-6 py-3 text-sm font-semibold text-white shadow-card hover:-translate-y-0.5 hover:bg-charcoal"
           >
             Back to Collection
           </Link>

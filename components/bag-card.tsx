@@ -29,7 +29,7 @@ export function BagCard({ bag }: { bag: Bag }) {
           </div>
           <Link
             href={`/collection/${bag.slug}`}
-            className="text-sm font-semibold text-orange hover:text-charcoal"
+            className="text-sm font-semibold text-kelly hover:text-charcoal"
           >
             View bag
           </Link>

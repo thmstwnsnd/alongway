@@ -5,7 +5,7 @@ import type { PortalOrder, PortalOrderStatus } from "@/data/portal";
 
 const statusStyles: Record<PortalOrderStatus, string> = {
   Processing: "bg-blue/10 text-blue border-blue/20",
-  "In Production": "bg-orange/10 text-orange border-orange/20",
+  "In Production": "bg-blue/10 text-kelly border-blue/20",
   Delivered: "bg-emerald-100 text-emerald-700 border-emerald-200",
 };
 
@@ -131,7 +131,7 @@ export function PortalOrderTimeline({ order }: { order: PortalOrder }) {
                   isComplete
                     ? "border-charcoal bg-charcoal text-white"
                     : isCurrent
-                      ? "border-orange bg-orange/10 text-orange"
+                      ? "border-blue bg-blue/10 text-kelly"
                       : "border-charcoal/15 bg-white text-charcoal/45"
                 }`}
               >

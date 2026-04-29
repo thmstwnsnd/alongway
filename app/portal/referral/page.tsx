@@ -22,7 +22,7 @@ export default function PortalReferralPage() {
   return (
     <div className="space-y-8">
       <section className="space-y-3">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-orange">Referrals</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Referrals</p>
         <h1 className="text-4xl font-extrabold tracking-tight text-charcoal sm:text-5xl">Refer a Friend, Get $50</h1>
         <p className="max-w-3xl text-base leading-7 text-charcoal/66">
           Send the link. Look generous. Pocket the credit when their first order ships.
@@ -53,7 +53,7 @@ export default function PortalReferralPage() {
             <button
               type="button"
               onClick={handleCopy}
-              className="inline-flex items-center justify-center rounded-full bg-orange px-5 py-3 text-sm font-semibold text-white hover:bg-charcoal"
+              className="inline-flex items-center justify-center rounded-full bg-blue px-5 py-3 text-sm font-semibold text-white hover:bg-charcoal"
             >
               {isCopied ? "Copied" : "Copy link"}
             </button>

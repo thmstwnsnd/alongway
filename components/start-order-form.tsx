@@ -18,7 +18,7 @@ export function StartOrderForm() {
   if (submitted) {
     return (
       <div className="rounded-[2rem] border border-charcoal/10 bg-white p-8 shadow-card sm:p-10">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-orange">Request received</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Request received</p>
         <h2 className="mt-3 text-3xl font-extrabold tracking-tight">Thank you for reaching out.</h2>
         <p className="mt-4 max-w-2xl text-base leading-7 text-charcoal/75">
           We&apos;ll review your bag style, artwork status, and timeline, then follow up with next steps.
@@ -94,7 +94,7 @@ export function StartOrderForm() {
                 name="artwork"
                 type="file"
                 accept=".ai,.eps,.pdf"
-                className="w-full rounded-2xl border border-charcoal/15 bg-light-bone px-4 py-3 text-sm outline-none focus:border-blue file:mr-3 file:rounded-full file:border-0 file:bg-orange file:px-4 file:py-1 file:text-xs file:font-semibold file:text-white"
+                className="w-full rounded-2xl border border-charcoal/15 bg-light-bone px-4 py-3 text-sm outline-none focus:border-blue file:mr-3 file:rounded-full file:border-0 file:bg-blue file:px-4 file:py-1 file:text-xs file:font-semibold file:text-white"
               />
               <p className="mt-1 text-xs text-charcoal/50">Accepted: .ai, .eps, .pdf — vector files only</p>
             </div>
@@ -137,7 +137,7 @@ export function StartOrderForm() {
       </div>
       <button
         type="submit"
-        className="mt-6 inline-flex rounded-full bg-orange px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-charcoal"
+        className="mt-6 inline-flex rounded-full bg-blue px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-charcoal"
       >
         Submit request
       </button>

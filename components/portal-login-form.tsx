@@ -40,7 +40,7 @@ export function PortalLoginForm() {
       </label>
       <button
         type="submit"
-        className="flex w-full items-center justify-center rounded-full bg-orange px-5 py-3 text-sm font-semibold text-white shadow-card hover:-translate-y-0.5 hover:bg-charcoal"
+        className="flex w-full items-center justify-center rounded-full bg-blue px-5 py-3 text-sm font-semibold text-white shadow-card hover:-translate-y-0.5 hover:bg-charcoal"
       >
         Sign in
       </button>

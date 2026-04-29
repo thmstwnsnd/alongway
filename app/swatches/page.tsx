@@ -14,7 +14,7 @@ export default function SwatchesPage() {
   return (
     <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
       <section className="rounded-[2.5rem] border border-charcoal/10 bg-bone px-8 py-12 shadow-card sm:px-12">
-        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-orange">Swatches</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-kelly">Swatches</p>
         <h1 className="mt-4 text-5xl font-extrabold tracking-tight text-charcoal sm:text-6xl">Find your fabric.</h1>
         <p className="mt-5 max-w-3xl text-lg leading-8 text-charcoal/72">
           Every Alongway bag starts with the right material. Browse our full fabric library, feel the weights, and find what fits your brand.
@@ -101,7 +101,7 @@ function FabricCard({ slug }: { slug: string }) {
         <p className="text-sm font-semibold text-charcoal">
           {fabric.upcharge > 0 ? `+${formatCurrency(fabric.upcharge)} / unit` : "Included"}
         </p>
-        <Link href={`/swatches/${fabric.slug}`} className="text-sm font-semibold text-orange hover:text-charcoal">
+        <Link href={`/swatches/${fabric.slug}`} className="text-sm font-semibold text-kelly hover:text-charcoal">
           View swatches →
         </Link>
       </div>

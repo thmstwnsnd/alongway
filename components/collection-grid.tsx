@@ -70,7 +70,7 @@ export function CollectionGrid() {
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value as SortKey)}
-            className="appearance-none rounded-full border border-charcoal/15 bg-white py-2.5 pl-4 pr-9 text-sm font-semibold text-charcoal focus:outline-none focus:ring-2 focus:ring-orange/30 cursor-pointer"
+            className="appearance-none rounded-full border border-charcoal/15 bg-white py-2.5 pl-4 pr-9 text-sm font-semibold text-charcoal focus:outline-none focus:ring-2 focus:ring-blue/30 cursor-pointer"
           >
             {sortOptions.map((o) => (
               <option key={o.key} value={o.key}>{o.label}</option>
@@ -89,7 +89,7 @@ export function CollectionGrid() {
             onClick={() => setSizeFilter(s)}
             className={`rounded-full border px-4 py-2 text-sm font-semibold capitalize transition-all ${
               sizeFilter === s
-                ? "border-orange bg-orange text-white"
+                ? "border-blue bg-blue text-white"
                 : "border-charcoal/15 bg-white text-charcoal hover:border-charcoal/40"
             }`}
           >
@@ -143,7 +143,7 @@ export function CollectionGrid() {
         ))}
 
         {/* Fully Custom card — always last */}
-        <article className="group overflow-hidden rounded-[1.75rem] border-2 border-dashed border-charcoal/20 bg-charcoal shadow-card transition-all hover:border-orange">
+        <article className="group overflow-hidden rounded-[1.75rem] border-2 border-dashed border-charcoal/20 bg-charcoal shadow-card transition-all hover:border-blue">
           <div className="flex aspect-[6/5] w-full items-center justify-center border-b border-white/10 bg-charcoal/90">
             <span className="text-5xl">✦</span>
           </div>
@@ -151,7 +151,7 @@ export function CollectionGrid() {
             <div className="space-y-2">
               <div className="flex items-center justify-between gap-4">
                 <h3 className="text-2xl font-bold tracking-tight text-bone">Fully Custom</h3>
-                <span className="rounded-full bg-orange px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-white">
+                <span className="rounded-full bg-blue px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-white">
                   bespoke
                 </span>
               </div>
@@ -161,9 +161,9 @@ export function CollectionGrid() {
             </div>
             <div className="flex items-center justify-between gap-4">
               <p className="text-sm font-semibold text-bone/60">
-                Starting at <span className="text-orange">$18.00</span> / unit
+                Starting at <span className="text-kelly">$18.00</span> / unit
               </p>
-              <Link href="/collection/custom" className="text-sm font-semibold text-orange hover:text-white">
+              <Link href="/collection/custom" className="text-sm font-semibold text-kelly hover:text-white">
                 Learn more
               </Link>
             </div>
@@ -177,7 +177,7 @@ export function CollectionGrid() {
           <button
             type="button"
             onClick={() => { setSizeFilter("all"); setMaterialFilter("all"); setSort("popular"); }}
-            className="mt-4 text-sm font-semibold text-orange hover:text-charcoal"
+            className="mt-4 text-sm font-semibold text-kelly hover:text-charcoal"
           >
             Clear all filters
           </button>

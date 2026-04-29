@@ -141,7 +141,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
                     <Link
                       href="/collection"
                       onClick={() => setIsCollectionMenuOpen(false)}
-                      className="text-sm font-semibold text-orange hover:text-charcoal"
+                      className="text-sm font-semibold text-kelly hover:text-charcoal"
                     >
                       View All →
                     </Link>
@@ -159,12 +159,12 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <Link href="/portal" className="hidden text-sm font-medium text-charcoal/70 hover:text-blue sm:inline-flex">
               Sign in
             </Link>
-            <Link href="/swatches" className="hidden text-sm font-semibold text-charcoal/70 hover:text-orange md:inline-flex">
+            <Link href="/swatches" className="hidden text-sm font-semibold text-charcoal/70 hover:text-kelly md:inline-flex">
               Get Swatches
             </Link>
             <Link
               href="/start"
-              className="rounded-full bg-orange px-5 py-3 text-sm font-semibold text-white shadow-card hover:-translate-y-0.5 hover:bg-charcoal"
+              className="rounded-full bg-blue px-5 py-3 text-sm font-semibold text-white shadow-card hover:-translate-y-0.5 hover:bg-charcoal"
             >
               Start Your Order
             </Link>
@@ -194,7 +194,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             </p>
           </div>
           <div className="flex flex-col items-center gap-3 sm:flex-row">
-            <Link href="/start" className="text-sm font-semibold text-orange hover:text-white">
+            <Link href="/start" className="text-sm font-semibold text-kelly hover:text-white">
               Start a conversation →
             </Link>
             <a href="mailto:hello@alongway.co" className="text-sm font-semibold text-white/80 hover:text-white">
@@ -231,11 +231,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
                     value={footerEmail}
                     onChange={(event) => setFooterEmail(event.target.value)}
                     placeholder="Email address"
-                    className="min-w-0 flex-1 rounded-full border border-white/15 bg-white px-4 py-3 text-sm text-charcoal outline-none focus:border-orange"
+                    className="min-w-0 flex-1 rounded-full border border-white/15 bg-white px-4 py-3 text-sm text-charcoal outline-none focus:border-blue"
                   />
                   <button
                     type="submit"
-                    className="inline-flex items-center justify-center rounded-full bg-orange px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-charcoal"
+                    className="inline-flex items-center justify-center rounded-full bg-blue px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-charcoal"
                   >
                     Join
                   </button>
@@ -260,7 +260,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <div className="space-y-6">
             <Link
               href="/start"
-              className="inline-flex rounded-full bg-orange px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-white hover:text-charcoal"
+              className="inline-flex rounded-full bg-blue px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-white hover:text-charcoal"
             >
               Start Your Order
             </Link>
@@ -268,7 +268,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-bone/40">Questions? Text us.</p>
               <a
                 href="sms:+10000000000"
-                className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-bone hover:text-orange"
+                className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-bone hover:text-kelly"
               >
                 +1 (000) 000-0000
               </a>

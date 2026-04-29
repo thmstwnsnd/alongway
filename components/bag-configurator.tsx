@@ -159,12 +159,12 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                   onChange={(e) => setQtyInput(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && applyQty(Number(qtyInput))}
                   placeholder="e.g. 572"
-                  className="min-w-0 flex-1 rounded-full border border-charcoal/15 px-4 py-2 text-sm font-semibold text-charcoal focus:border-orange focus:outline-none"
+                  className="min-w-0 flex-1 rounded-full border border-charcoal/15 px-4 py-2 text-sm font-semibold text-charcoal focus:border-blue focus:outline-none"
                 />
                 <button
                   type="button"
                   onClick={() => applyQty(Number(qtyInput))}
-                  className="rounded-full bg-orange px-4 py-2 text-sm font-semibold text-white hover:bg-charcoal"
+                  className="rounded-full bg-blue px-4 py-2 text-sm font-semibold text-white hover:bg-charcoal"
                 >
                   Set
                 </button>
@@ -178,8 +178,8 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                     onClick={() => applyQty(opt)}
                     className={`rounded-full border py-1.5 text-xs font-semibold ${
                       !isCustomQuote && quantity === opt
-                        ? "border-orange bg-orange text-white"
-                        : "border-charcoal/10 bg-light-bone text-charcoal hover:border-orange/50"
+                        ? "border-blue bg-blue text-white"
+                        : "border-charcoal/10 bg-light-bone text-charcoal hover:border-blue/50"
                     }`}
                   >
                     {opt.toLocaleString()}
@@ -222,7 +222,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
           ) : (
             <Link
               href={buildOrderHref}
-              className="inline-flex rounded-full bg-orange px-5 py-2.5 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-charcoal"
+              className="inline-flex rounded-full bg-blue px-5 py-2.5 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-charcoal"
             >
               Build this order
             </Link>
@@ -233,7 +233,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
     <section className={compact ? "space-y-0" : "rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card sm:p-8"}>
       {!compact && (
         <div className="space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-orange">Configure your order</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-kelly">Configure your order</p>
           <h2 className="text-3xl font-bold tracking-tight">Dial in the material, add-ons, and quantity.</h2>
           <p className="max-w-3xl text-base leading-7 text-charcoal/72">
             Start with the standard bag price, then see how upgraded fabrics and extra details change the estimate in real time.
@@ -253,7 +253,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
             step={50}
             value={isCustomQuote ? 2000 : quantity}
             onChange={(e) => { const v = Number(e.target.value); setIsCustomQuote(false); setQuantity(v); setQtyInput(String(v)); }}
-            className="flex-1 accent-orange cursor-pointer h-1"
+            className="flex-1 accent-blue cursor-pointer h-1"
           />
           <span className="text-sm font-bold text-charcoal flex-shrink-0 w-16 text-right">
             {isCustomQuote ? "5k+" : quantity >= 1000 ? `${(quantity/1000).toFixed(quantity%1000===0?0:1)}k` : quantity}
@@ -262,7 +262,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
             {quantityOptions.map((opt) => (
               <button key={opt} type="button" onClick={() => applyQty(opt)}
                 className={`rounded-full border px-2 py-0.5 text-xs font-semibold transition-all ${
-                  !isCustomQuote && quantity === opt ? "border-orange bg-orange text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-orange/50"
+                  !isCustomQuote && quantity === opt ? "border-blue bg-blue text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-blue/50"
                 }`}>
                 {opt >= 1000 ? `${opt/1000}k` : opt}
               </button>
@@ -285,7 +285,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
           <input type="range" min={100} max={2000} step={50}
             value={isCustomQuote ? 2000 : quantity}
             onChange={(e) => { const v = Number(e.target.value); setIsCustomQuote(false); setQuantity(v); setQtyInput(String(v)); }}
-            className="w-full accent-orange cursor-pointer"
+            className="w-full accent-blue cursor-pointer"
           />
           <div className="flex justify-between mt-1">
             <span className="text-xs text-charcoal/45">100</span>
@@ -293,7 +293,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
               {quantityOptions.map((opt) => (
                 <button key={opt} type="button" onClick={() => applyQty(opt)}
                   className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all ${
-                    !isCustomQuote && quantity === opt ? "border-orange bg-orange text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-orange/50"
+                    !isCustomQuote && quantity === opt ? "border-blue bg-blue text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-blue/50"
                   }`}>{opt >= 1000 ? `${opt/1000}k` : opt}</button>
               ))}
               <button type="button" onClick={applyCustomQuote}
@@ -329,7 +329,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                     type="button"
                     onClick={() => setSelectedFabricSlug(tierFabrics[0].slug)}
                     className={`flex-shrink-0 rounded-full border px-4 py-1.5 text-xs font-semibold transition-all ${
-                      tierActive ? "border-orange bg-orange text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-orange/50"
+                      tierActive ? "border-blue bg-blue text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-blue/50"
                     }`}
                   >
                     {tierMeta.label}
@@ -359,7 +359,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                           type="button"
                           onClick={() => setSelectedFabricSlug(fabric.slug)}
                           className={`flex-shrink-0 rounded-full border px-4 py-2 text-sm font-semibold transition-all ${
-                            isSelected ? "border-orange bg-white text-charcoal ring-2 ring-orange/25" : "border-charcoal/15 bg-white text-charcoal hover:border-charcoal/40"
+                            isSelected ? "border-blue bg-white text-charcoal ring-2 ring-blue/25" : "border-charcoal/15 bg-white text-charcoal hover:border-charcoal/40"
                           }`}
                         >
                           {fabric.name}
@@ -372,7 +372,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                     const fabric = tierFabrics.find((f) => f.slug === selectedFabricSlug);
                     if (!fabric) return null;
                     return (
-                      <div className="mt-3 rounded-[1.25rem] border border-orange/20 bg-white px-4 py-3">
+                      <div className="mt-3 rounded-[1.25rem] border border-blue/20 bg-white px-4 py-3">
                         <div className="flex items-center justify-between gap-3">
                           <p className="text-sm font-bold">{fabric.name}</p>
                           <p className="text-xs font-semibold text-charcoal/60">{fabric.upcharge > 0 ? `+${formatCurrency(fabric.upcharge)} / unit` : "Included"}</p>
@@ -397,7 +397,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                     type="button"
                     onClick={() => setDecorationType(option)}
                     className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all ${
-                      isSelected ? "border-orange bg-white text-charcoal ring-2 ring-orange/25" : "border-charcoal/15 bg-white text-charcoal hover:border-charcoal/40"
+                      isSelected ? "border-blue bg-white text-charcoal ring-2 ring-blue/25" : "border-charcoal/15 bg-white text-charcoal hover:border-charcoal/40"
                     }`}
                   >
                     {option}
@@ -419,7 +419,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                           type="button"
                           onClick={() => setFrontColors(option.value)}
                           className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all ${
-                            isSelected ? "border-orange bg-orange text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-charcoal/40"
+                            isSelected ? "border-blue bg-blue text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-charcoal/40"
                           }`}
                         >
                           {option.label}
@@ -439,7 +439,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                           type="button"
                           onClick={() => setBackColors(option.value)}
                           className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all ${
-                            isSelected ? "border-orange bg-orange text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-charcoal/40"
+                            isSelected ? "border-blue bg-blue text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-charcoal/40"
                           }`}
                         >
                           {option.label}
@@ -463,7 +463,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                         type="button"
                         onClick={() => setEmbroideryPlacements(option.value)}
                         className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all ${
-                          isSelected ? "border-orange bg-orange text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-charcoal/40"
+                          isSelected ? "border-blue bg-blue text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-charcoal/40"
                         }`}
                       >
                         {option.label}
@@ -501,7 +501,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                       )
                     }
                     className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all ${
-                      isSelected ? "border-orange bg-orange text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-charcoal/40"
+                      isSelected ? "border-blue bg-blue text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-charcoal/40"
                     }`}
                     title={addOn.description}
                   >
@@ -542,7 +542,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                     type="button"
                     onClick={() => { setQuantity(option); setIsCustomQuote(false); }}
                     className={`rounded-full border px-4 py-3 text-sm font-semibold ${
-                      isSelected ? "border-orange bg-orange text-white" : "border-charcoal/10 bg-white text-charcoal hover:border-blue/30"
+                      isSelected ? "border-blue bg-blue text-white" : "border-charcoal/10 bg-white text-charcoal hover:border-blue/30"
                     }`}
                   >
                     {option.toLocaleString()}
@@ -601,7 +601,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
           <Link
             href={isCustomQuote ? `/start?bag=${bag.slug}&qty=5000plus` : buildOrderHref}
             className={`mt-6 inline-flex w-full items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white shadow-card hover:-translate-y-0.5 ${
-              isCustomQuote ? "bg-blue hover:bg-charcoal" : "bg-orange hover:bg-charcoal"
+              isCustomQuote ? "bg-blue hover:bg-charcoal" : "bg-blue hover:bg-charcoal"
             }`}
           >
             {isCustomQuote ? "Get a quote" : "Build this order"}

@@ -31,7 +31,7 @@ export function OrderSummaryCard({
   note = "All orders paid in full. Production begins after artwork approval.",
 }: OrderSummaryCardProps) {
   const ctaClassName =
-    "mt-8 inline-flex w-full items-center justify-center rounded-full bg-orange px-6 py-3 text-sm font-semibold text-white shadow-card hover:-translate-y-0.5 hover:bg-charcoal disabled:cursor-not-allowed disabled:bg-charcoal/20 disabled:text-charcoal/45 disabled:hover:translate-y-0";
+    "mt-8 inline-flex w-full items-center justify-center rounded-full bg-blue px-6 py-3 text-sm font-semibold text-white shadow-card hover:-translate-y-0.5 hover:bg-charcoal disabled:cursor-not-allowed disabled:bg-charcoal/20 disabled:text-charcoal/45 disabled:hover:translate-y-0";
 
   return (
     <aside className="rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card sm:p-8">
@@ -76,7 +76,7 @@ export function OrderSummaryCard({
         <ul className="mt-4 space-y-3 text-sm text-charcoal/80">
           {includedOrderItems.map((item) => (
             <li key={item} className="flex items-center gap-3">
-              <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-orange/10 text-sm font-bold text-orange">
+              <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-blue/10 text-sm font-bold text-kelly">
                 ✓
               </span>
               <span>{item}</span>

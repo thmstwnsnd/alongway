@@ -27,7 +27,7 @@ export default function AboutPage() {
             className="h-40 w-40 rounded-full object-cover shadow-card ring-4 ring-bone"
           />
           <div className="space-y-4">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-orange">Founder</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-kelly">Founder</p>
             <h2 className="text-3xl font-bold tracking-tight">Easton Jones</h2>
             <p className="max-w-2xl text-base leading-7 text-charcoal/75">
               Easton has spent years in the custom goods and design world — working with brands from scrappy startups to household names. He built Alongway out of frustration with the status quo: sourcing bags shouldn&apos;t require a procurement team, and branded merchandise shouldn&apos;t feel disposable.
@@ -55,7 +55,7 @@ export default function AboutPage() {
         </article>
 
         <article className="rounded-[2rem] border border-charcoal/10 bg-bone p-8">
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-orange">Contact</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-kelly">Contact</p>
           <p className="mt-5 text-3xl font-extrabold tracking-tight">hello@alongway.co</p>
           <p className="mt-4 text-base leading-7 text-charcoal/72">
             Reach out when you&apos;re ready to launch a new bag, restock a proven style, or get a fast read on fit and pricing.
@@ -66,7 +66,7 @@ export default function AboutPage() {
               href="https://orangegoods.co"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-charcoal hover:text-orange"
+              className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-charcoal hover:text-kelly"
             >
               Orange Goods →
             </a>

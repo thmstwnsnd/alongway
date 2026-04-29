@@ -9,7 +9,7 @@ export default function CustomInquirePage() {
   if (submitted) {
     return (
       <div className="mx-auto max-w-2xl px-6 py-24 text-center lg:px-10">
-        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-orange text-2xl text-white">
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-blue text-2xl text-white">
           ✓
         </div>
         <h1 className="text-4xl font-extrabold tracking-tight">We got your idea.</h1>
@@ -29,7 +29,7 @@ export default function CustomInquirePage() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-20 lg:px-10">
       <div className="mb-10">
-        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-orange">Custom inquiry</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-kelly">Custom inquiry</p>
         <h1 className="mt-3 text-4xl font-extrabold tracking-tight">Build your tote from scratch.</h1>
         <p className="mt-4 text-base text-charcoal/70">
           Tell us as much or as little as you know. We'll fill in the gaps and come back with a quote.
@@ -170,7 +170,7 @@ export default function CustomInquirePage() {
 
         <button
           type="submit"
-          className="w-full rounded-full bg-orange py-4 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-charcoal sm:w-auto sm:px-8"
+          className="w-full rounded-full bg-blue py-4 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-charcoal sm:w-auto sm:px-8"
         >
           Submit custom inquiry
         </button>
@@ -198,7 +198,7 @@ function Field({ label, children, required, className = "" }: {
 }) {
   return (
     <label className={`block space-y-2 text-sm font-medium text-charcoal ${className}`}>
-      <span>{label}{required && <span className="ml-1 text-orange">*</span>}</span>
+      <span>{label}{required && <span className="ml-1 text-kelly">*</span>}</span>
       {children}
     </label>
   );

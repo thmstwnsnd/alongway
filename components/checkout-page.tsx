@@ -286,7 +286,7 @@ export function CheckoutPage() {
           <button
             type="submit"
             disabled={!isOrderReady}
-            className="inline-flex w-full items-center justify-center rounded-full bg-orange px-6 py-4 text-sm font-semibold text-white shadow-card hover:-translate-y-0.5 hover:bg-charcoal disabled:cursor-not-allowed disabled:bg-charcoal/20 disabled:text-charcoal/45 disabled:hover:translate-y-0"
+            className="inline-flex w-full items-center justify-center rounded-full bg-blue px-6 py-4 text-sm font-semibold text-white shadow-card hover:-translate-y-0.5 hover:bg-charcoal disabled:cursor-not-allowed disabled:bg-charcoal/20 disabled:text-charcoal/45 disabled:hover:translate-y-0"
           >
             Place Order — {total ? formatCurrency(total) : "$0.00"}
           </button>

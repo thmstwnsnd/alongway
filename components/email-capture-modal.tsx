@@ -58,12 +58,12 @@ export function EmailCaptureModal() {
       <div className="w-full max-w-xl rounded-3xl bg-bone p-8 text-charcoal shadow-card sm:p-10">
         {isSubmitted ? (
           <div className="space-y-4 text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-orange">You&apos;re in</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-kelly">You&apos;re in</p>
             <h2 className="text-3xl font-extrabold tracking-tight">Nice. We&apos;ll be in touch when you&apos;re ready to order. 🍊</h2>
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="inline-flex rounded-full bg-charcoal px-5 py-3 text-sm font-semibold text-white hover:bg-orange"
+              className="inline-flex rounded-full bg-charcoal px-5 py-3 text-sm font-semibold text-white hover:bg-blue"
             >
               Close
             </button>
@@ -71,7 +71,7 @@ export function EmailCaptureModal() {
         ) : (
           <div className="space-y-6">
             <div className="space-y-3 text-center">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-orange">First order perk</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-kelly">First order perk</p>
               <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Get 10 free totes with your first order.</h2>
               <p className="text-base leading-7 text-charcoal/72">
                 A $150 value added to your first custom run. Enter your email and we&apos;ll reach out.
@@ -93,11 +93,11 @@ export function EmailCaptureModal() {
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 placeholder="Email address"
-                className="w-full rounded-3xl border border-charcoal/15 bg-white px-5 py-4 text-base outline-none focus:border-orange"
+                className="w-full rounded-3xl border border-charcoal/15 bg-white px-5 py-4 text-base outline-none focus:border-blue"
               />
               <button
                 type="submit"
-                className="inline-flex w-full items-center justify-center rounded-3xl bg-orange px-6 py-4 text-sm font-semibold text-white hover:bg-charcoal"
+                className="inline-flex w-full items-center justify-center rounded-3xl bg-blue px-6 py-4 text-sm font-semibold text-white hover:bg-charcoal"
               >
                 Claim My Free Totes
               </button>

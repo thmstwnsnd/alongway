@@ -317,7 +317,7 @@ export const fabricTierMeta: Record<FabricTier, TierMeta> = {
   },
   upgrade2: {
     label: "Upgrade 2",
-    badgeClassName: "bg-orange-100 text-orange-800 border-orange-200",
+    badgeClassName: "bg-blue-100 text-kelly-800 border-blue-200",
   },
   upgrade3: {
     label: "Upgrade 3",

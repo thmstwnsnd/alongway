@@ -14,7 +14,7 @@ export default function CustomTotePage() {
     <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
       {/* Hero */}
       <div className="rounded-[2.5rem] bg-charcoal px-8 py-16 text-bone sm:px-12 lg:px-16">
-        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-orange">Fully custom</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-kelly">Fully custom</p>
         <h1 className="mt-4 max-w-3xl text-5xl font-extrabold tracking-tight sm:text-6xl">
           Build your tote from scratch.
         </h1>
@@ -24,7 +24,7 @@ export default function CustomTotePage() {
         <div className="mt-8 flex flex-wrap gap-4">
           <Link
             href="/collection/custom/inquire"
-            className="inline-flex rounded-full bg-orange px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-white hover:text-charcoal"
+            className="inline-flex rounded-full bg-blue px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-white hover:text-charcoal"
           >
             Start your custom inquiry
           </Link>
@@ -65,7 +65,7 @@ export default function CustomTotePage() {
         <div className="mt-8 space-y-4">
           {steps.map((step, i) => (
             <div key={step.title} className="flex gap-6 rounded-[1.75rem] border border-charcoal/10 bg-white p-6 shadow-card">
-              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-orange text-sm font-bold text-white">
+              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-blue text-sm font-bold text-white">
                 {i + 1}
               </div>
               <div>
@@ -79,14 +79,14 @@ export default function CustomTotePage() {
 
       {/* CTA */}
       <div className="mt-14 rounded-[2rem] bg-bone px-8 py-10 text-center">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-orange">Ready to build?</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Ready to build?</p>
         <h2 className="mt-2 text-3xl font-extrabold tracking-tight">Tell us about your idea.</h2>
         <p className="mt-3 max-w-xl mx-auto text-base text-charcoal/70">
           Fill out our custom inquiry form. No commitment — just tell us what you're thinking and we'll come back with a quote and a direction.
         </p>
         <Link
           href="/collection/custom/inquire"
-          className="mt-6 inline-flex rounded-full bg-orange px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-charcoal"
+          className="mt-6 inline-flex rounded-full bg-blue px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-charcoal"
         >
           Start your custom inquiry
         </Link>

@@ -7,7 +7,7 @@ export default function PortalOrdersPage() {
   return (
     <div className="space-y-8">
       <section className="space-y-3">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-orange">Orders</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Orders</p>
         <h1 className="text-4xl font-extrabold tracking-tight text-charcoal sm:text-5xl">Past and active orders.</h1>
         <p className="max-w-3xl text-base leading-7 text-charcoal/66">
           Review production status, delivery history, and reorder details for every Alongway program.

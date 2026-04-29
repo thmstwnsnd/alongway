@@ -62,7 +62,7 @@ export function BagDetail({ bag }: { bag: Bag }) {
               {channelToteSizes.map((s) => (
                 <Link key={s.slug} href={`/collection/${s.slug}`}
                   className={`rounded-full border px-4 py-1.5 text-sm font-semibold transition-all ${
-                    bag.slug === s.slug ? "border-orange bg-orange text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-charcoal"
+                    bag.slug === s.slug ? "border-blue bg-blue text-white" : "border-charcoal/15 bg-white text-charcoal hover:border-charcoal"
                   }`}>
                   {s.label}
                 </Link>
@@ -71,7 +71,7 @@ export function BagDetail({ bag }: { bag: Bag }) {
           )}
 
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-orange">{bag.material}</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-kelly">{bag.material}</p>
             <h1 className="mt-2 text-4xl font-extrabold tracking-tight lg:text-5xl">{bag.name}</h1>
             <p className="mt-2 text-base leading-7 text-charcoal/70">{bag.tagline}</p>
           </div>
@@ -167,8 +167,8 @@ export function BagDetail({ bag }: { bag: Bag }) {
           <p className="text-base font-bold tracking-tight text-charcoal">Artwork templates</p>
           <p className="mt-1 text-sm text-charcoal/65">Sized to exact print dimensions. Use for press-ready artwork.</p>
           <div className="mt-4 flex gap-3">
-            <Link href={`/templates/${bag.slug}.pdf`} className="inline-flex rounded-full border border-charcoal/15 bg-white px-5 py-2.5 text-sm font-semibold text-charcoal hover:border-orange hover:text-orange">↓ PDF</Link>
-            <Link href={`/templates/${bag.slug}.ai`} className="inline-flex rounded-full border border-charcoal/15 bg-white px-5 py-2.5 text-sm font-semibold text-charcoal hover:border-orange hover:text-orange">↓ Illustrator</Link>
+            <Link href={`/templates/${bag.slug}.pdf`} className="inline-flex rounded-full border border-charcoal/15 bg-white px-5 py-2.5 text-sm font-semibold text-charcoal hover:border-blue hover:text-kelly">↓ PDF</Link>
+            <Link href={`/templates/${bag.slug}.ai`} className="inline-flex rounded-full border border-charcoal/15 bg-white px-5 py-2.5 text-sm font-semibold text-charcoal hover:border-blue hover:text-kelly">↓ Illustrator</Link>
           </div>
         </div>
 

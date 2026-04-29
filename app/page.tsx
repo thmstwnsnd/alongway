@@ -40,7 +40,7 @@ export default function HomePage() {
       <section className="border-b border-charcoal/10 bg-bone">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-20 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:py-28">
           <div className="space-y-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-orange">For now, for later.</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-kelly">For now, for later.</p>
             <div className="space-y-5">
               <h1 className="max-w-3xl text-5xl font-extrabold tracking-tight text-charcoal sm:text-6xl lg:text-7xl">
                 Made to carry.
@@ -95,7 +95,7 @@ export default function HomePage() {
             eyebrow="Featured bags"
             title="A focused assortment of premium silhouettes."
           />
-          <Link href="/collection" className="hidden text-sm font-semibold text-orange hover:text-charcoal sm:block">
+          <Link href="/collection" className="hidden text-sm font-semibold text-kelly hover:text-charcoal sm:block">
             Browse all bags
           </Link>
         </div>
@@ -133,7 +133,7 @@ export default function HomePage() {
 
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
         <div className="rounded-[2.5rem] bg-charcoal px-8 py-12 text-bone sm:px-12">
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-orange">Ready to start?</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-kelly">Ready to start?</p>
           <div className="mt-4 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="space-y-2">
               <h2 className="text-4xl font-extrabold tracking-tight">Bring your bag program together.</h2>
@@ -143,7 +143,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/start"
-              className="inline-flex rounded-full bg-orange px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-white hover:text-charcoal"
+              className="inline-flex rounded-full bg-blue px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-white hover:text-charcoal"
             >
               Start Your Order
             </Link>
