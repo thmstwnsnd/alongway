@@ -71,7 +71,7 @@ input[type="range"]::-webkit-slider-thumb {
   width: 36px;
   height: 36px;
   margin-top: -16px;
-  background: url('/bird-blue.svg') center / contain no-repeat;
+  background: url('/bird-right.svg') center / contain no-repeat;
   cursor: pointer;
   transition: transform 0.15s;
 }
@@ -87,7 +87,7 @@ input[type="range"]::-moz-range-thumb {
   width: 36px;
   height: 36px;
   border: none;
-  background: url('/bird-blue.svg') center / contain no-repeat;
+  background: url('/bird-right.svg') center / contain no-repeat;
   background-color: transparent;
   cursor: pointer;
 }
