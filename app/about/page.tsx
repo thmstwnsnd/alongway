@@ -19,23 +19,27 @@ export default function AboutPage() {
         body="Alongway is for brands that want custom bags to feel premium, clear, and manageable. The line stays intentionally tight so every silhouette can do more work, hold better shape, and support repeat orders without friction."
       />
 
-      <section className="mt-14 mb-14 rounded-[2rem] border border-charcoal/10 bg-white p-8 shadow-card lg:p-12">
-        <div className="grid gap-10 lg:grid-cols-[auto_1fr] lg:items-start">
-          <img
-            src={getLifestyleImageUrl(1, "square")}
-            alt="Easton Jones"
-            className="h-40 w-40 rounded-full object-cover shadow-card ring-4 ring-bone"
+      <section className="mt-14 mb-14 space-y-5">
+        <h2 className="text-2xl font-bold tracking-tight">The team</h2>
+        <div className="grid gap-5 lg:grid-cols-3">
+          <TeamMember
+            image={getLifestyleImageUrl(1, "square")}
+            name="Easton Jones"
+            role="Co-founder"
+            bio="Easton has spent years in the custom goods and design world, working with brands from scrappy startups to household names. He built Alongway because sourcing bags shouldn't require a procurement team."
           />
-          <div className="space-y-4">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-kelly">Founder</p>
-            <h2 className="text-3xl font-bold tracking-tight">Easton Jones</h2>
-            <p className="max-w-2xl text-base leading-7 text-charcoal/75">
-              Easton has spent years in the custom goods and design world — working with brands from scrappy startups to household names. He built Alongway out of frustration with the status quo: sourcing bags shouldn&apos;t require a procurement team, and branded merchandise shouldn&apos;t feel disposable.
-            </p>
-            <p className="max-w-2xl text-base leading-7 text-charcoal/75">
-              Based in Los Angeles. Into surfing, music, and products that are actually worth keeping.
-            </p>
-          </div>
+          <TeamMember
+            image={getLifestyleImageUrl(2, "square")}
+            name="Hana Jones"
+            role="Co-founder"
+            bio="Hana brings a sharp engineering and systems mind to Alongway — building the infrastructure that makes the whole operation run cleanly. LA-based, detail-obsessed."
+          />
+          <TeamMember
+            image={getLifestyleImageUrl(3, "square")}
+            name="Josh Geduld"
+            role="Designer"
+            bio="Josh shapes the Alongway visual identity — from the brand system to the look and feel of every touchpoint. He makes sure the brand is as considered as the product."
+          />
         </div>
       </section>
 
@@ -74,6 +78,19 @@ export default function AboutPage() {
           </div>
         </article>
       </section>
+    </div>
+  );
+}
+
+function TeamMember({ image, name, role, bio }: { image: string; name: string; role: string; bio: string }) {
+  return (
+    <div className="rounded-[2rem] border border-charcoal/10 bg-white p-7 shadow-card space-y-4">
+      <img src={image} alt={name} className="h-20 w-20 rounded-full object-cover shadow-card ring-4 ring-bone" />
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-kelly">{role}</p>
+        <h3 className="mt-1 text-xl font-bold tracking-tight">{name}</h3>
+      </div>
+      <p className="text-sm leading-7 text-charcoal/70">{bio}</p>
     </div>
   );
 }
