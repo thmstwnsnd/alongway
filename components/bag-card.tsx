@@ -11,6 +11,8 @@ export function BagCard({ bag }: { bag: Bag }) {
         className="aspect-[6/5] w-full border-b border-charcoal/10 object-cover"
       />
       <div className="space-y-4 p-6">
+        {/* Kelly green accent bar */}
+        <div className="h-0.5 w-8 rounded-full bg-kelly/50" />
         <div className="space-y-2">
           <div className="flex items-center justify-between gap-4">
             <h3 className="text-2xl font-bold tracking-tight">{bag.name}</h3>

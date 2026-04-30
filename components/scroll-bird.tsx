@@ -28,7 +28,7 @@ export function ScrollBird() {
   return (
     <div
       ref={sectionRef}
-      className="relative w-full overflow-hidden border-b border-charcoal/8 py-10"
+      className="relative w-full overflow-hidden border-y border-charcoal/8 py-10"
       aria-hidden="true"
     >
       <img

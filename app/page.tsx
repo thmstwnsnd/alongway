@@ -49,7 +49,10 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-charcoal/40" />
         {/* Content */}
         <div className="relative flex h-full flex-col items-start justify-end px-8 pb-16 lg:px-16 lg:pb-20">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.26em] text-bone/80">For now, for later.</p>
+          <p className="mb-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.26em] text-bone/80">
+            <span className="h-3 w-0.5 rounded-full bg-kelly/70" />
+            For now, for later.
+          </p>
           <h1 className="max-w-3xl text-5xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl">
             Made to carry.
           </h1>
