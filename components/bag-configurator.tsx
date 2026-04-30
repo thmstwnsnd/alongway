@@ -301,8 +301,9 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
               const tierActive = tierFabrics.some((f) => f.slug === selectedFabricSlug);
               if (!tierActive || !tierFabrics.length) return null;
               return (
-                <div key={tier}>
-                  <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none -mx-1 px-1">
+                <div key={tier} className="space-y-3">
+                  {/* Fixed-height chip row — prevents layout shift when switching tiers */}
+                  <div className="min-h-[44px] flex gap-2 overflow-x-auto pb-1 scrollbar-none -mx-1 px-1 items-start">
                     {tierFabrics.map((fabric) => {
                       const isSelected = fabric.slug === selectedFabricSlug;
                       return (
@@ -319,17 +320,17 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                       );
                     })}
                   </div>
-                  {/* Selected fabric detail */}
+                  {/* Selected fabric detail — fixed min-height so box doesn't jump */}
                   {(() => {
                     const fabric = tierFabrics.find((f) => f.slug === selectedFabricSlug);
                     if (!fabric) return null;
                     return (
-                      <div className="mt-3 rounded-[1.25rem] border border-blue/20 bg-white px-4 py-3">
+                      <div className="min-h-[72px] rounded-[1.25rem] border border-blue/20 bg-white px-4 py-3">
                         <div className="flex items-center justify-between gap-3">
                           <p className="text-sm font-bold">{fabric.name}</p>
                           <p className="text-xs font-semibold text-charcoal/60">{fabric.upcharge > 0 ? `+${formatCurrency(fabric.upcharge)} / unit` : "Included"}</p>
                         </div>
-                        <p className="mt-1 text-xs leading-5 text-charcoal/60">{fabric.description}</p>
+                        <p className="mt-1 text-xs leading-5 text-charcoal/60 line-clamp-2">{fabric.description}</p>
                       </div>
                     );
                   })()}
