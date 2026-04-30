@@ -31,8 +31,9 @@ export function ScrollBird() {
       className="relative w-full overflow-hidden border-y border-charcoal/8 py-10"
       aria-hidden="true"
     >
+      {/* Right-aligned bird when flying right, mirrored (left-aligned) when flying left */}
       <img
-        src="/bird-blue.svg"
+        src="/bird-right.svg"
         alt=""
         className="pointer-events-none select-none"
         style={{
