@@ -22,7 +22,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <Link href="/portal/dashboard" className="flex items-center">
-                <Image src="/logo-wordmark.jpeg" alt="Alongway" width={140} height={36} className="h-8 w-auto object-contain" priority />
+                <Image src="/logo-blue.svg" alt="Alongway" width={180} height={44} className="h-8 w-auto object-contain" priority />
               </Link>
               <span className="hidden rounded-full border border-charcoal/10 bg-light-bone px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/60 sm:inline-flex">
                 Customer Portal
