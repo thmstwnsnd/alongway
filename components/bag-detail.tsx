@@ -40,42 +40,28 @@ export function BagDetail({ bag }: { bag: Bag }) {
       {/* ── Hero grid: image LEFT, config RIGHT ── */}
       <div className="grid gap-8 lg:grid-cols-[2fr_1fr] lg:items-start">
 
-        {/* Left: image gallery + key specs */}
-        <div className="space-y-5">
-          {/* Main image */}
-          <button
-            type="button"
-            onClick={() => setLightboxOpen(true)}
-            className="group relative w-full overflow-hidden rounded-[2.5rem] border border-charcoal/10 shadow-card aspect-square block"
-            aria-label="Zoom in"
-          >
-            <img
-              src={photos[activeIdx]}
-              alt={bag.name}
-              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-            />
-            <div className="absolute bottom-3 right-3 flex items-center gap-1.5 rounded-full bg-black/40 px-3 py-1.5 text-xs font-semibold text-white opacity-0 group-hover:opacity-100 transition-opacity">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
-              Zoom
-            </div>
-          </button>
-          {/* Thumbnail strip */}
-          {photos.length > 1 && (
-            <div className="flex gap-2 overflow-x-auto scrollbar-none">
-              {photos.map((src, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => setActiveIdx(i)}
-                  className={`flex-shrink-0 h-16 w-16 overflow-hidden rounded-[0.875rem] border-2 transition-all ${
-                    i === activeIdx ? "border-blue shadow-md" : "border-charcoal/10 opacity-60 hover:opacity-100"
-                  }`}
-                >
-                  <img src={src.replace("w=1200", "w=200").replace("h=900", "h=200")} alt="" className="h-full w-full object-cover" />
-                </button>
-              ))}
-            </div>
-          )}
+        {/* Left: vertical scroll gallery + key specs */}
+        <div className="space-y-3">
+          {/* All photos same size, stacked vertically */}
+          {photos.map((src, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => { setActiveIdx(i); setLightboxOpen(true); }}
+              className="group relative w-full overflow-hidden rounded-[2rem] border border-charcoal/10 shadow-card aspect-square block"
+              aria-label="Zoom in"
+            >
+              <img
+                src={src}
+                alt={`${bag.name} photo ${i + 1}`}
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+              />
+              <div className="absolute bottom-3 right-3 flex items-center gap-1.5 rounded-full bg-black/40 px-3 py-1.5 text-xs font-semibold text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                Zoom
+              </div>
+            </button>
+          ))}
 
           {/* Lightbox */}
           {lightboxOpen && (
