@@ -244,8 +244,8 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
         </div>
       )}
 
-      <div className={compact ? "mt-4 space-y-4" : "mt-6 grid gap-8 xl:grid-cols-[1.2fr_0.8fr]"}>
-        <div className="space-y-6">
+      <div className={compact ? "mt-5 space-y-5" : "mt-6 grid gap-8 xl:grid-cols-[1.2fr_0.8fr]"}>
+        <div className="space-y-5">
 
           {/* ── Fabric selector ── */}
           <div className="rounded-[2rem] border border-charcoal/10 bg-light-bone p-5 min-w-0 overflow-hidden">
@@ -470,32 +470,30 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
           <h3 className="text-xl font-bold tracking-tight">Live price calculator</h3>
 
           <div className="mt-5 space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">Quantity</p>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-5 xl:grid-cols-2">
-              {quantityOptions.map((option) => {
-                const isSelected = !isCustomQuote && quantity === option;
-                return (
-                  <button
-                    key={option}
-                    type="button"
-                    onClick={() => { setQuantity(option); setIsCustomQuote(false); }}
-                    className={`rounded-full border px-4 py-3 text-sm font-semibold ${
-                      isSelected ? "border-blue bg-blue text-white" : "border-charcoal/10 bg-white text-charcoal hover:border-blue/30"
-                    }`}
-                  >
-                    {option.toLocaleString()}
-                  </button>
-                );
-              })}
-              <button
-                type="button"
-                onClick={() => setIsCustomQuote(true)}
-                className={`rounded-full border px-4 py-3 text-sm font-semibold ${
-                  isCustomQuote ? "border-blue bg-blue text-white" : "border-charcoal/10 bg-white text-charcoal hover:border-blue/30"
-                }`}
-              >
-                5,000+
-              </button>
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">Quantity</p>
+              <input
+                type="number"
+                min={100}
+                value={isCustomQuote ? "" : qtyInput}
+                placeholder={isCustomQuote ? "5,000+" : ""}
+                onChange={(e) => { setQtyInput(e.target.value); setIsCustomQuote(false); }}
+                onBlur={(e) => { const v = Number(e.target.value); if (v >= 100) applyQty(v); }}
+                onKeyDown={(e) => { if (e.key === "Enter") { const v = Number(qtyInput); if (v >= 100) applyQty(v); } }}
+                className="w-24 rounded-full border border-charcoal/15 bg-white px-3 py-1.5 text-sm font-bold text-charcoal text-center focus:border-blue focus:outline-none"
+              />
+            </div>
+            <input
+              type="range"
+              min={100}
+              max={2000}
+              step={50}
+              value={isCustomQuote ? 2000 : quantity}
+              onChange={(e) => { const v = Number(e.target.value); setIsCustomQuote(false); setQuantity(v); setQtyInput(String(v)); }}
+              className="w-full accent-blue cursor-pointer"
+            />
+            <div className="flex justify-between text-xs text-charcoal/40">
+              <span>100</span><span>2,000</span>
             </div>
           </div>
 
