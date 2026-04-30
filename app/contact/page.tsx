@@ -3,8 +3,6 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 
-export const metadata = undefined; // client component
-
 const reasons = [
   "I want to place an order",
   "I have a question about a bag",
