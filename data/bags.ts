@@ -177,20 +177,34 @@ export function getBagBySlug(slug: string) {
 
 // Curated Unsplash photo IDs — real lifestyle/tote photography
 // Format: https://images.unsplash.com/photo-{id}?w=800&q=80&fit=crop
-const bagPhotos: Record<string, string> = {
-  "beach-tote":    "1622560048-2f3e5abf3e28", // beach bag lifestyle
-  "hauler-tote":   "1553062407-98eeb64c6a62", // large structured tote
-  "everyday-tote": "1544816565-9d2be1e2c44b", // canvas tote everyday
-  "shoulder-tote": "1590874103328-eac38a683ce7", // shoulder bag lifestyle
-  "oversized-tote":"1547949003-9792a18a2841", // oversized market tote
-  "basic-tote":    "1558769132-cb1aea458c5e", // simple flat tote
-  "mini-tote":     "1548036161-2ddff1aafc29", // mini tote compact
-  "the-sunday":    "1609709295948-17d77cb2a69a", // open top market bag
-  "channel-tote":  "1548036161-2ddff1aafc29", // structured canvas
-  "big-sur-tote":  "1553062407-98eeb64c6a62", // california lifestyle tote
-  "otis-tote":     "1548036161-2ddff1aafc29", // waxed canvas bag
-  "camper-pouch":  "1585386959595-9ff92f53e61c", // small pouch accessories
+// Multiple photos per bag: [hero/main, angle2, detail, lifestyle]
+const bagPhotoSets: Record<string, string[]> = {
+  "beach-tote":    ["1622560048-2f3e5abf3e28","1509316785289-025f5b846b35","1441986300917-64674bd600d8","1524758631624-e2822e304c36"],
+  "hauler-tote":   ["1553062407-98eeb64c6a62","1547949003-9792a18a2841","1556742049-0cfed4f6a45d","1441986300917-64674bd600d8"],
+  "everyday-tote": ["1544816565-9d2be1e2c44b","1558769132-cb1aea458c5e","1556742049-0cfed4f6a45d","1473093295043-cdd812d0e601"],
+  "shoulder-tote": ["1590874103328-eac38a683ce7","1547949003-9792a18a2841","1528360983277-13d401cdc186","1524758631624-e2822e304c36"],
+  "oversized-tote":["1547949003-9792a18a2841","1553062407-98eeb64c6a62","1556742049-0cfed4f6a45d","1509316785289-025f5b846b35"],
+  "basic-tote":    ["1558769132-cb1aea458c5e","1544816565-9d2be1e2c44b","1473093295043-cdd812d0e601","1441986300917-64674bd600d8"],
+  "mini-tote":     ["1548036161-2ddff1aafc29","1585386959595-9ff92f53e61c","1558769132-cb1aea458c5e","1473093295043-cdd812d0e601"],
+  "the-sunday":    ["1609709295948-17d77cb2a69a","1547949003-9792a18a2841","1556742049-0cfed4f6a45d","1528360983277-13d401cdc186"],
+  "channel-tote":  ["1548036161-2ddff1aafc29","1553062407-98eeb64c6a62","1590874103328-eac38a683ce7","1524758631624-e2822e304c36"],
+  "big-sur-tote":  ["1553062407-98eeb64c6a62","1622560048-2f3e5abf3e28","1528360983277-13d401cdc186","1509316785289-025f5b846b35"],
+  "otis-tote":     ["1548036161-2ddff1aafc29","1558769132-cb1aea458c5e","1590874103328-eac38a683ce7","1524758631624-e2822e304c36"],
+  "camper-pouch":  ["1585386959595-9ff92f53e61c","1548036161-2ddff1aafc29","1473093295043-cdd812d0e601","1441986300917-64674bd600d8"],
 };
+// Legacy single-photo lookup (used by bag cards)
+const bagPhotos: Record<string, string> = Object.fromEntries(
+  Object.entries(bagPhotoSets).map(([k, v]) => [k, v[0]])
+);
+
+export function getBagPhotoSet(slug: string, size: "card" | "hero" = "hero"): string[] {
+  const ids = bagPhotoSets[slug] ?? [bagPhotos[slug] ?? ""];
+  const w = size === "hero" ? 1200 : 800;
+  const h = size === "hero" ? 900 : 800;
+  return ids.filter(Boolean).map(
+    (id) => `https://images.unsplash.com/photo-${id}?w=${w}&h=${h}&q=80&fit=crop&auto=format`
+  );
+}
 
 // Lifestyle hero images for home/collection sections
 export const lifestylePhotos = [

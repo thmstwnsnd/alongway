@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { useState, useEffect, useCallback } from "react";
 import type { Bag } from "@/data/bags";
-import { getBagImageUrl } from "@/data/bags";
+import { getBagPhotoSet } from "@/data/bags";
 import { BagConfigurator } from "@/components/bag-configurator";
 
 const channelToteSizes = [
@@ -14,19 +15,94 @@ const channelToteSizes = [
 const isChannelTote = (slug: string) => slug.startsWith("channel-tote");
 
 export function BagDetail({ bag }: { bag: Bag }) {
+  const photos = getBagPhotoSet(bag.slug, "hero");
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+
+  const closeLightbox = useCallback(() => setLightboxOpen(false), []);
+  const prevPhoto = useCallback(() => setActiveIdx((i) => (i - 1 + photos.length) % photos.length), [photos.length]);
+  const nextPhoto = useCallback(() => setActiveIdx((i) => (i + 1) % photos.length), [photos.length]);
+
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") prevPhoto();
+      if (e.key === "ArrowRight") nextPhoto();
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightboxOpen, closeLightbox, prevPhoto, nextPhoto]);
+
   return (
     <div className="mx-auto max-w-7xl px-6 py-12 pb-28 lg:px-10">
 
       {/* ── Hero grid: image LEFT, config RIGHT ── */}
       <div className="grid gap-8 lg:grid-cols-[2fr_1fr] lg:items-start">
 
-        {/* Left: image + key specs */}
+        {/* Left: image gallery + key specs */}
         <div className="space-y-5">
-          <img
-            src={getBagImageUrl(bag.slug, "hero")}
-            alt={bag.name}
-            className="w-full rounded-[2.5rem] border border-charcoal/10 object-cover shadow-card aspect-square"
-          />
+          {/* Main image */}
+          <button
+            type="button"
+            onClick={() => setLightboxOpen(true)}
+            className="group relative w-full overflow-hidden rounded-[2.5rem] border border-charcoal/10 shadow-card aspect-square block"
+            aria-label="Zoom in"
+          >
+            <img
+              src={photos[activeIdx]}
+              alt={bag.name}
+              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+            />
+            <div className="absolute bottom-3 right-3 flex items-center gap-1.5 rounded-full bg-black/40 px-3 py-1.5 text-xs font-semibold text-white opacity-0 group-hover:opacity-100 transition-opacity">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+              Zoom
+            </div>
+          </button>
+          {/* Thumbnail strip */}
+          {photos.length > 1 && (
+            <div className="flex gap-2 overflow-x-auto scrollbar-none">
+              {photos.map((src, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setActiveIdx(i)}
+                  className={`flex-shrink-0 h-16 w-16 overflow-hidden rounded-[0.875rem] border-2 transition-all ${
+                    i === activeIdx ? "border-blue shadow-md" : "border-charcoal/10 opacity-60 hover:opacity-100"
+                  }`}
+                >
+                  <img src={src.replace("w=1200", "w=200").replace("h=900", "h=200")} alt="" className="h-full w-full object-cover" />
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Lightbox */}
+          {lightboxOpen && (
+            <div
+              className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4"
+              onClick={closeLightbox}
+            >
+              <button type="button" onClick={closeLightbox} className="absolute top-4 right-4 text-white/70 hover:text-white text-3xl leading-none">&times;</button>
+              <button type="button" onClick={(e) => { e.stopPropagation(); prevPhoto(); }} className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-4xl leading-none px-2">&#8249;</button>
+              <img
+                src={photos[activeIdx]?.replace("w=1200", "w=1800").replace("h=900", "h=1350")}
+                alt={bag.name}
+                className="max-h-[90vh] max-w-[90vw] rounded-[1.5rem] object-contain shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+              />
+              <button type="button" onClick={(e) => { e.stopPropagation(); nextPhoto(); }} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-4xl leading-none px-2">&#8250;</button>
+              <div className="absolute bottom-4 flex gap-2">
+                {photos.map((_, i) => (
+                  <button key={i} type="button" onClick={(e) => { e.stopPropagation(); setActiveIdx(i); }}
+                    className={`h-2 rounded-full transition-all ${
+                      i === activeIdx ? "w-6 bg-white" : "w-2 bg-white/40"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
           {/* Mini specs strip */}
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-[1.25rem] border border-charcoal/10 bg-white px-4 py-3 shadow-card">
