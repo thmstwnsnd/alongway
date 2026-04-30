@@ -20,6 +20,7 @@ const navLinks = [
   { href: "/pricing", label: "Pricing" },
   { href: "/how-it-works", label: "How It Works" },
   { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 const footerLinks = [
@@ -31,6 +32,7 @@ const footerLinks = [
   { href: "/how-it-works", label: "How It Works" },
   { href: "/about", label: "About" },
   { href: "/blog", label: "Blog" },
+  { href: "/contact", label: "Contact" },
   { href: "/start", label: "Start Your Order" },
 ];
 
@@ -218,7 +220,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             </p>
           </div>
           <div className="flex flex-col items-center gap-3 sm:flex-row">
-            <Link href="/start" className="text-sm font-semibold text-kelly hover:text-white">
+            <Link href="/contact" className="text-sm font-semibold text-kelly hover:text-white">
               Start a conversation →
             </Link>
             <a href="mailto:hello@alongway.co" className="text-sm font-semibold text-white/80 hover:text-white">
