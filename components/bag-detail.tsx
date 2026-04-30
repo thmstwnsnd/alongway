@@ -187,6 +187,11 @@ export function BagDetail({ bag }: { bag: Bag }) {
             Browse all bags
           </Link>
         </div>
+
+        {/* Disclaimer */}
+        <p className="text-xs leading-5 text-charcoal/40 max-w-2xl pt-2">
+          Colors, sizing, placements, and product images are for reference only and may vary slightly from the final product. Variations can occur due to lighting, display settings, and production processes.
+        </p>
       </div>
     </div>
   );
