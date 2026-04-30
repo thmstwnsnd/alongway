@@ -46,12 +46,6 @@ export function BagDetail({ bag }: { bag: Bag }) {
               <p className="mt-1 text-sm font-medium text-charcoal">~30 days</p>
             </div>
           </div>
-          {/* Features */}
-          <div className="flex flex-wrap gap-2">
-            {bag.features.map((f) => (
-              <span key={f} className="rounded-full border border-charcoal/10 bg-white px-3 py-1.5 text-xs font-medium text-charcoal/75">{f}</span>
-            ))}
-          </div>
         </div>
 
         {/* Right: name + compact configurator */}
@@ -73,6 +67,23 @@ export function BagDetail({ bag }: { bag: Bag }) {
           <div>
             <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">{bag.name}</h1>
             <p className="mt-2 text-base leading-7 text-charcoal/70">{bag.tagline}</p>
+          </div>
+
+          {/* Feature tags */}
+          <div className="flex flex-wrap gap-2">
+            {bag.features.map((f, i) => {
+              const colors = [
+                "bg-blue/10 text-blue border-blue/20",
+                "bg-kelly/10 text-kelly border-kelly/20",
+                "bg-blue/15 text-blue border-blue/25",
+                "bg-kelly/15 text-kelly border-kelly/25",
+              ];
+              return (
+                <span key={f} className={`rounded-full border px-3 py-1.5 text-xs font-semibold ${colors[i % colors.length]}`}>
+                  {f}
+                </span>
+              );
+            })}
           </div>
 
           {/* Compact configurator — top right, above the fold */}
