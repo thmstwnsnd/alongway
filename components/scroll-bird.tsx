@@ -45,10 +45,7 @@ export function ScrollBird() {
   // Bird position: -8% → 108% (off left → off right)
   const birdX = -8 + displayProgress * 116;
 
-  // Text reveal: starts revealing when bird is ~15% across, fully revealed at ~85%
-  const revealStart = 0.15;
-  const revealEnd = 0.85;
-  const revealPct = Math.max(0, Math.min(1, (displayProgress - revealStart) / (revealEnd - revealStart)));
+  // Text reveal tied directly to bird X position — nothing shows until bird passes over it
 
   return (
     <div
@@ -57,21 +54,14 @@ export function ScrollBird() {
       style={{ height: "140px" }}
       aria-hidden="true"
     >
-      {/* MADE TO CARRY — revealed as bird passes */}
+      {/* MADE TO CARRY — only revealed where the bird has passed */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        {/* Ghost text (dimmed, always visible) */}
         <span
-          className="select-none text-4xl font-extrabold tracking-[0.18em] uppercase"
-          style={{ color: "rgba(54,79,160,0.12)", letterSpacing: "0.22em" }}
-        >
-          MADE TO CARRY.
-        </span>
-        {/* Revealed text (clipped left→right as bird passes) */}
-        <span
-          className="absolute select-none text-4xl font-extrabold tracking-[0.18em] uppercase text-blue"
+          className="select-none text-4xl font-extrabold uppercase text-blue"
           style={{
             letterSpacing: "0.22em",
-            clipPath: `inset(0 ${Math.round((1 - revealPct) * 100)}% 0 0)`,
+            // Clip from the right — only show text to the left of where the bird is
+            clipPath: `inset(0 ${Math.max(0, Math.round(100 - birdX))}% 0 0)`,
           }}
         >
           MADE TO CARRY.
