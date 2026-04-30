@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { BagCard } from "@/components/bag-card";
 import { SectionHeading } from "@/components/section-heading";
+import { ScrollBird } from "@/components/scroll-bird";
 import { bags, getLifestyleImageUrl } from "@/data/bags";
 
 const featuredBags = bags.slice(0, 3);
@@ -71,6 +72,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <ScrollBird />
 
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
         <SectionHeading
