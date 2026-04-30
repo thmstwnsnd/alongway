@@ -8,6 +8,7 @@ import type { Bag } from "@/data/bags";
 import { addOns } from "@/data/addons";
 import { fabricTierMeta, fabrics, type FabricTier } from "@/data/fabrics";
 import { formatCurrency, getUnitPrice } from "@/lib/order-flow";
+import { lookupPantone } from "@/data/pantone";
 
 const defaultFabricSlug = "cotton-canvas-12oz";
 const quantityOptions = [100, 250, 500, 1000, 2000];
@@ -43,6 +44,19 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
   const [decorationType, setDecorationType] = useState<DecorationType>("Screen Print");
   const [frontColors, setFrontColors] = useState(1);
   const [backColors, setBackColors] = useState(0);
+  // Color slots: array of {hex, pantoneInput} for each ink color
+  const totalColorSlots = decorationType === "Screen Print" ? frontColors + backColors : 0;
+  const [colorSlots, setColorSlots] = useState<Array<{ hex: string; pantone: string }>>(
+    Array.from({ length: 4 }, () => ({ hex: "#000000", pantone: "" }))
+  );
+  function updateSlot(i: number, patch: Partial<{ hex: string; pantone: string }>) {
+    setColorSlots((prev) => prev.map((s, idx) => idx === i ? { ...s, ...patch } : s));
+  }
+  function handlePantoneInput(i: number, val: string) {
+    updateSlot(i, { pantone: val });
+    const hex = lookupPantone(val);
+    if (hex) updateSlot(i, { hex, pantone: val });
+  }
   const [embroideryPlacements, setEmbroideryPlacements] = useState(1);
   const qtyPopoverRef = useRef<HTMLDivElement>(null);
 
@@ -409,6 +423,52 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                     );
                   })}
                 </div>
+              </div>
+            )}
+
+            {/* ── Color slots ── */}
+            {totalColorSlots > 0 && (
+              <div className="mt-5 space-y-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Ink colors</p>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {Array.from({ length: totalColorSlots }).map((_, i) => (
+                    <div key={i} className="flex items-center gap-3 rounded-[1.25rem] border border-charcoal/10 bg-white px-4 py-3">
+                      {/* Color preview + native picker */}
+                      <div className="relative flex-shrink-0">
+                        <div
+                          className="h-8 w-8 rounded-full border-2 border-charcoal/15 cursor-pointer"
+                          style={{ backgroundColor: colorSlots[i]?.hex ?? "#000000" }}
+                        />
+                        <input
+                          type="color"
+                          value={colorSlots[i]?.hex ?? "#000000"}
+                          onChange={(e) => updateSlot(i, { hex: e.target.value, pantone: "" })}
+                          className="absolute inset-0 h-8 w-8 cursor-pointer opacity-0"
+                          title="Pick a color"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <input
+                          type="text"
+                          value={colorSlots[i]?.pantone ?? ""}
+                          onChange={(e) => handlePantoneInput(i, e.target.value)}
+                          placeholder="Pantone e.g. 286 C"
+                          className="w-full bg-transparent text-sm font-medium text-charcoal placeholder:text-charcoal/35 focus:outline-none"
+                        />
+                        {!colorSlots[i]?.pantone && (
+                          <p className="text-xs text-charcoal/40">or click circle to pick hex</p>
+                        )}
+                        {colorSlots[i]?.pantone && lookupPantone(colorSlots[i].pantone) && (
+                          <p className="text-xs text-kelly font-medium">{colorSlots[i].hex.toUpperCase()} ✔</p>
+                        )}
+                      </div>
+                      <span className="text-xs text-charcoal/40 flex-shrink-0">
+                        {i < frontColors ? `F${i + 1}` : `B${i - frontColors + 1}`}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-xs text-charcoal/45">Type a Pantone code for an exact match, or click the circle to use a hex color picker.</p>
               </div>
             )}
 
