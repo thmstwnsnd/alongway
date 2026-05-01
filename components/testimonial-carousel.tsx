@@ -6,15 +6,18 @@ import { useState } from "react";
 const testimonials = [
   {
     lines: ["THE FINEST", "BAGS IN ALL", "THE LAND"],
-    author: "A Real Customer",
+    name: "First L.",
+    company: "Company Name",
   },
   {
     lines: ["EVERY RUN", "IS PERFECT."],
-    author: "A Real Brand",
+    name: "First L.",
+    company: "Company Name",
   },
   {
     lines: ["FINALLY A BAG", "COMPANY THAT", "GETS IT DONE."],
-    author: "A Real Person",
+    name: "First L.",
+    company: "Company Name",
   },
 ];
 
@@ -24,7 +27,7 @@ export function TestimonialCarousel() {
   const prev = () => setIndex((i) => (i - 1 + testimonials.length) % testimonials.length);
   const next = () => setIndex((i) => (i + 1) % testimonials.length);
 
-  const { lines, author } = testimonials[index];
+  const { lines, name, company } = testimonials[index];
 
   return (
     <section className="bg-bone py-20 px-6">
@@ -64,7 +67,7 @@ export function TestimonialCarousel() {
             {/* Closing quote mark */}
             <span className="font-serif text-7xl leading-none text-blue/20 select-none" aria-hidden="true">”</span>
             <cite className="mt-4 block font-display text-xs font-extrabold uppercase tracking-[0.2em] text-blue/50 not-italic">
-              — {author}
+              — {name}, {company}
             </cite>
           </blockquote>
 
