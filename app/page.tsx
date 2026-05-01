@@ -119,15 +119,15 @@ export default function HomePage() {
       </div>
 
       <section className="relative mx-auto max-w-7xl overflow-visible px-6 py-28 lg:px-10">
-        {/* Cloud — just above/left of heading */}
+        {/* Cloud — just above heading text */}
         <Image src="/svg/clouds/Alongway_Website_Graphic_Cloud_1_Blue.svg" alt="" width={64} height={40}
-          className="pointer-events-none absolute top-6 left-2 h-auto w-20 select-none opacity-60 animate-float-1" aria-hidden="true" />
-        {/* Cloud — right of text, vertically centered */}
+          className="pointer-events-none absolute top-10 left-16 h-auto w-20 select-none opacity-60 animate-float-1" aria-hidden="true" />
+        {/* Cloud — right of heading, same vertical level */}
         <Image src="/svg/clouds/Alongway_Website_Graphic_Cloud_3_Blue.svg" alt="" width={64} height={40}
-          className="pointer-events-none absolute right-2 top-1/3 h-auto w-24 select-none opacity-50 animate-float-2" aria-hidden="true" />
-        {/* Cloud — below text, right side */}
+          className="pointer-events-none absolute right-10 top-1/4 h-auto w-24 select-none opacity-50 animate-float-2" aria-hidden="true" />
+        {/* Cloud — near bottom of body text */}
         <Image src="/svg/clouds/Alongway_Website_Graphic_Cloud_2_Blue.svg" alt="" width={64} height={40}
-          className="pointer-events-none absolute bottom-6 right-8 h-auto w-20 select-none opacity-60 animate-float-3" aria-hidden="true" />
+          className="pointer-events-none absolute bottom-10 right-24 h-auto w-20 select-none opacity-60 animate-float-3" aria-hidden="true" />
         <SectionHeading
           eyebrow="What is Alongway?"
           title="A tighter line of bags, built for brands that want it handled."
