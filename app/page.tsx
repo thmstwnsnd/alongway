@@ -4,6 +4,7 @@ import Image from "next/image";
 import { BagCard } from "@/components/bag-card";
 import { SectionHeading } from "@/components/section-heading";
 import { ScrollBird } from "@/components/scroll-bird";
+import { TestimonialCarousel } from "@/components/testimonial-carousel";
 import { bags, getLifestyleImageUrl } from "@/data/bags";
 
 const featuredBags = bags.slice(0, 3);
@@ -263,6 +264,8 @@ export default function HomePage() {
         </div>
         <p className="font-accent mt-6 text-center text-sm text-charcoal/40">The finest bags in all the land.</p>
       </section>
+
+      <TestimonialCarousel />
     </div>
   );
 }
