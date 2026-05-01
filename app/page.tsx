@@ -70,22 +70,7 @@ export default function HomePage() {
             <span className="h-3 w-0.5 rounded-full bg-light-blue/70" />
             For now, for later.
           </p>
-          <Image
-            src="/svg/typography/Alongway_Website_Graphic_MadeToCarryV1_Blue.svg"
-            alt="Made to carry"
-            width={240}
-            height={92}
-            className="pointer-events-none inline-block h-auto w-40 select-none"
-            priority
-          />
-          <Image
-            src="/svg/illustrations/Alongway_Website_Graphic_World_Blue.svg"
-            alt=""
-            width={892}
-            height={722}
-            className="pointer-events-none mx-auto my-6 h-auto w-48 select-none md:w-64"
-            aria-hidden="true"
-          />
+
           <p className="mt-5 max-w-xl text-lg leading-8 text-white/80">
             Custom bags, made simple. From $12/unit – 100 minimum, air shipping included.
           </p>
