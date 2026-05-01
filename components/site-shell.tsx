@@ -140,12 +140,12 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen font-sans">
-      <header className="sticky top-0 z-50 border-b border-charcoal/10 bg-white/90 backdrop-blur">
+      <header className="sticky top-0 z-50 border-b-4 border-blue bg-blue text-bone">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-10">
           <Link href="/" className="flex items-center">
             <Image src="/logo-blue.svg" alt="Alongway" width={200} height={48} className="h-9 w-auto object-contain" priority />
           </Link>
-          <nav className="hidden items-center gap-7 text-sm font-display font-bold md:flex">
+          <nav className="hidden items-center gap-7 text-sm font-display font-bold text-bone md:flex">
             <div
               ref={collectionMenuRef}
               className="relative"
@@ -155,7 +155,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <button
                 type="button"
                 onClick={() => setIsCollectionMenuOpen((current) => !current)}
-                className="inline-flex items-center gap-2 hover:text-blue"
+                className="inline-flex items-center gap-2 text-bone hover:text-bone/70"
               >
                 <span>Collection</span>
                 <span
@@ -227,7 +227,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <button
                 type="button"
                 onClick={() => setIsHowItWorksMenuOpen((current) => !current)}
-                className="inline-flex items-center gap-2 hover:text-blue"
+                className="inline-flex items-center gap-2 text-bone hover:text-bone/70"
               >
                 <span>How It Works</span>
                 <span
@@ -268,7 +268,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <button
                 type="button"
                 onClick={() => setIsCompanyMenuOpen((current) => !current)}
-                className="inline-flex items-center gap-2 hover:text-blue"
+                className="inline-flex items-center gap-2 text-bone hover:text-bone/70"
               >
                 <span>Company</span>
                 <span
@@ -300,19 +300,19 @@ export function SiteShell({ children }: { children: ReactNode }) {
               </div>
             </div>
             {navLinks.filter((link) => link.href !== "/how-it-works").map((link) => (
-              <Link key={link.href} href={link.href} className="hover:text-blue">
+              <Link key={link.href} href={link.href} className="text-bone hover:text-bone/70">
                 {link.label}
               </Link>
             ))}
           </nav>
           <div className="flex items-center gap-4">
-            <Link href="/store" className="flex items-center gap-1 text-charcoal/70 hover:text-blue">
+            <Link href="/store" className="flex items-center gap-1 text-bone/80 hover:text-bone">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
                 <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
               </svg>
             </Link>
-            <Link href="/portal" className="hidden text-sm font-medium text-charcoal/70 hover:text-blue sm:inline-flex">
+            <Link href="/portal" className="hidden text-sm font-medium text-bone/70 hover:text-bone sm:inline-flex">
               Sign in
             </Link>
             <Link href="/swatches" className="hidden text-sm font-semibold text-charcoal/70 hover:text-light-blue md:inline-flex">
