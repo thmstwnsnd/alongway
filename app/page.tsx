@@ -118,22 +118,13 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div className="mx-auto flex max-w-sm items-center justify-center gap-8 px-6 py-8">
-        {[
-          "/svg/clouds/Alongway_Website_Graphic_Cloud_1_Blue.svg",
-          "/svg/clouds/Alongway_Website_Graphic_Cloud_2_Blue.svg",
-          "/svg/clouds/Alongway_Website_Graphic_Cloud_3_Blue.svg",
-        ].map((src) => (
-          <Image
-            key={src}
-            src={src}
-            alt=""
-            width={64}
-            height={40}
-            className="pointer-events-none h-auto w-16 select-none opacity-60"
-            aria-hidden="true"
-          />
-        ))}
+      <div className="mx-auto flex max-w-3xl items-end justify-between gap-8 px-12 py-10">
+        <Image src="/svg/clouds/Alongway_Website_Graphic_Cloud_1_Blue.svg" alt="" width={64} height={40}
+          className="pointer-events-none h-auto w-20 select-none opacity-60 animate-float-1" aria-hidden="true" />
+        <Image src="/svg/clouds/Alongway_Website_Graphic_Cloud_3_Blue.svg" alt="" width={64} height={40}
+          className="pointer-events-none h-auto w-24 select-none opacity-50 animate-float-2" aria-hidden="true" />
+        <Image src="/svg/clouds/Alongway_Website_Graphic_Cloud_2_Blue.svg" alt="" width={64} height={40}
+          className="pointer-events-none h-auto w-20 select-none opacity-60 animate-float-3" aria-hidden="true" />
       </div>
 
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
