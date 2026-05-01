@@ -245,7 +245,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
                   {[
                     { href: "/how-it-works", label: "How It Works" },
                     { href: "/pricing", label: "Pricing" },
-                    { href: "/swatches", label: "Swatches" },
                   ].map((link) => (
                     <Link
                       key={link.href}
@@ -256,6 +255,12 @@ export function SiteShell({ children }: { children: ReactNode }) {
                       {link.label}
                     </Link>
                   ))}
+                  <div className="mt-1 border-t border-charcoal/10 pt-1">
+                    <Link href="/swatches" onClick={() => setIsHowItWorksMenuOpen(false)}
+                      className="block rounded-[0.75rem] bg-bone px-4 py-2.5 text-sm font-extrabold uppercase tracking-wide text-blue hover:bg-light-blue">
+                      Get Swatches
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -318,9 +323,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
               </svg>
             </Link>
-            <Link href="/swatches" className="hidden text-sm font-display font-extrabold uppercase text-bone hover:text-bone/70 md:inline-flex">
-              Get Swatches
-            </Link>
+
             <Link
               href="/start"
               className="rounded-full bg-bone px-5 py-3 text-sm font-semibold text-blue shadow-card hover:-translate-y-0.5 hover:bg-light-blue"
