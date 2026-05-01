@@ -57,15 +57,15 @@ export function TestimonialCarousel() {
 
           {/* Quote */}
           <blockquote className="flex-1">
-            {/* Opening quote mark */}
-            <span className="font-serif text-7xl leading-none text-blue/20 select-none" aria-hidden="true">“</span>
-            <div className="font-display text-4xl font-extrabold leading-tight text-blue md:text-5xl lg:text-6xl -mt-4">
+            <div className="font-display text-4xl font-extrabold leading-tight text-blue md:text-5xl lg:text-6xl">
               {lines.map((line, i) => (
-                <div key={i}>{line}</div>
+                <div key={i}>
+                  {i === 0 && <span className="font-serif font-normal not-italic text-blue/30" aria-hidden="true">“</span>}
+                  {line}
+                  {i === lines.length - 1 && <span className="font-serif font-normal not-italic text-blue/30" aria-hidden="true">”</span>}
+                </div>
               ))}
             </div>
-            {/* Closing quote mark */}
-            <span className="font-serif text-7xl leading-none text-blue/20 select-none" aria-hidden="true">”</span>
             <cite className="mt-4 block font-display text-xs font-extrabold uppercase tracking-[0.2em] text-blue/50 not-italic">
               — {name}, {company}
             </cite>
