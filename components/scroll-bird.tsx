@@ -56,14 +56,14 @@ export function ScrollBird() {
     >
       {/* MADE TO CARRY — only revealed where the bird has passed */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <img
-          src="/svg/typography/Alongway_Website_Graphic_MadeToCarryV1_Blue.svg"
-          alt="Made to carry"
-          className="select-none h-auto w-[480px] max-w-[80vw]"
+        <span
+          className="select-none font-display text-4xl font-extrabold tracking-[0.18em] text-blue lg:text-5xl"
           style={{
             clipPath: `inset(0 ${Math.max(0, Math.round(100 - birdX))}% 0 0)`,
           }}
-        />
+        >
+          MADE TO CARRY.
+        </span>
       </div>
 
       {/* Bird */}
