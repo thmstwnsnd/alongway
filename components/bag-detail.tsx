@@ -16,7 +16,7 @@ const channelToteSizes = [
 const isChannelTote = (slug: string) => slug.startsWith("channel-tote");
 
 export function BagDetail({ bag }: { bag: Bag }) {
-  const photos = getBagPhotoSet(bag.slug, "hero");
+  const photos = getBagPhotoSet(bag.slug);
   const [activeIdx, setActiveIdx] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
 

@@ -175,61 +175,44 @@ export function getBagBySlug(slug: string) {
   return bags.find((bag) => bag.slug === slug);
 }
 
-// Curated Unsplash photo IDs — real lifestyle/tote photography
-// Format: https://images.unsplash.com/photo-{id}?w=800&q=80&fit=crop
-// Multiple photos per bag: [hero/main, angle2, detail, lifestyle]
+// Local product & lifestyle photos — all optimized for web under /public/photos/
 const bagPhotoSets: Record<string, string[]> = {
-  "beach-tote":    ["1622560048-2f3e5abf3e28","1509316785289-025f5b846b35","1441986300917-64674bd600d8","1524758631624-e2822e304c36"],
-  "hauler-tote":   ["1553062407-98eeb64c6a62","1547949003-9792a18a2841","1556742049-0cfed4f6a45d","1441986300917-64674bd600d8"],
-  "everyday-tote": ["1544816565-9d2be1e2c44b","1558769132-cb1aea458c5e","1556742049-0cfed4f6a45d","1473093295043-cdd812d0e601"],
-  "shoulder-tote": ["1590874103328-eac38a683ce7","1547949003-9792a18a2841","1528360983277-13d401cdc186","1524758631624-e2822e304c36"],
-  "oversized-tote":["1547949003-9792a18a2841","1553062407-98eeb64c6a62","1556742049-0cfed4f6a45d","1509316785289-025f5b846b35"],
-  "basic-tote":    ["1558769132-cb1aea458c5e","1544816565-9d2be1e2c44b","1473093295043-cdd812d0e601","1441986300917-64674bd600d8"],
-  "mini-tote":     ["1548036161-2ddff1aafc29","1585386959595-9ff92f53e61c","1558769132-cb1aea458c5e","1473093295043-cdd812d0e601"],
-  "the-sunday":    ["1609709295948-17d77cb2a69a","1547949003-9792a18a2841","1556742049-0cfed4f6a45d","1528360983277-13d401cdc186"],
-  "channel-tote":  ["1548036161-2ddff1aafc29","1553062407-98eeb64c6a62","1590874103328-eac38a683ce7","1524758631624-e2822e304c36"],
-  "big-sur-tote":  ["1553062407-98eeb64c6a62","1622560048-2f3e5abf3e28","1528360983277-13d401cdc186","1509316785289-025f5b846b35"],
-  "otis-tote":     ["1548036161-2ddff1aafc29","1558769132-cb1aea458c5e","1590874103328-eac38a683ce7","1524758631624-e2822e304c36"],
-  "camper-pouch":  ["1585386959595-9ff92f53e61c","1548036161-2ddff1aafc29","1473093295043-cdd812d0e601","1441986300917-64674bd600d8"],
+  "beach-tote":    ["/photos/product-dscf-2980.jpg","/photos/product-dscf-2982.jpg","/photos/lifestyle-verve-cosmic-1.jpg","/photos/lifestyle-hsd-514.jpg"],
+  "hauler-tote":   ["/photos/product-dscf-2985.jpg","/photos/product-dscf-2993.jpg","/photos/lifestyle-hsd-2938.jpg","/photos/lifestyle-gymshark.jpg"],
+  "everyday-tote": ["/photos/product-dscf-2995.jpg","/photos/product-dscf-3039.jpg","/photos/lifestyle-hsd-93.jpg","/photos/lifestyle-hsd-94.jpg"],
+  "shoulder-tote": ["/photos/product-dscf-3021.jpg","/photos/product-dscf-3037.jpg","/photos/lifestyle-hsd-435.jpg","/photos/lifestyle-hsd-457.jpg"],
+  "oversized-tote":["/photos/product-dscf-3048.jpg","/photos/product-dscf-3085.jpg","/photos/lifestyle-hsd-2937.jpg","/photos/lifestyle-hsd-128.jpg"],
+  "basic-tote":    ["/photos/product-dscf-3146.jpg","/photos/product-dscf-3153.jpg","/photos/lifestyle-hsd-73.jpg","/photos/lifestyle-hsd-75.jpg"],
+  "mini-tote":     ["/photos/product-dscf-3148.jpg","/photos/product-dscf-3234.jpg","/photos/lifestyle-verve-tokyo.jpg","/photos/lifestyle-verve-large-tote.jpg"],
+  "the-sunday":    ["/photos/product-dscf-3239.jpg","/photos/carousel-2.jpg","/photos/lifestyle-boatsetter-2.jpg","/photos/lifestyle-merch-drop.jpg"],
+  "channel-tote":  ["/photos/product-dscf-3153.jpg","/photos/product-dscf-2982.jpg","/photos/lifestyle-hsd-76.jpg","/photos/lifestyle-hsd-102.jpg"],
+  "big-sur-tote":  ["/photos/product-dscf-2993.jpg","/photos/product-dscf-3037.jpg","/photos/lifestyle-hsd-103.jpg","/photos/lifestyle-hsd-104.jpg"],
+  "otis-tote":     ["/photos/product-dscf-3039.jpg","/photos/product-dscf-3085.jpg","/photos/lifestyle-hsd-114.jpg","/photos/lifestyle-hsd-131.jpg"],
+  "camper-pouch":  ["/photos/product-dscf-3146.jpg","/photos/product-dscf-3234.jpg","/photos/lifestyle-kis-tote.jpg","/photos/lifestyle-verve-cosmic-2.jpg"],
 };
-// Legacy single-photo lookup (used by bag cards)
+
 const bagPhotos: Record<string, string> = Object.fromEntries(
   Object.entries(bagPhotoSets).map(([k, v]) => [k, v[0]])
 );
 
-export function getBagPhotoSet(slug: string, size: "card" | "hero" = "hero"): string[] {
-  const ids = bagPhotoSets[slug] ?? [bagPhotos[slug] ?? ""];
-  const w = size === "hero" ? 1200 : 800;
-  const h = size === "hero" ? 900 : 800;
-  return ids.filter(Boolean).map(
-    (id) => `https://images.unsplash.com/photo-${id}?w=${w}&h=${h}&q=80&fit=crop&auto=format`
-  );
+export function getBagPhotoSet(slug: string): string[] {
+  return bagPhotoSets[slug] ?? [bagPhotos[slug] ?? ""];
 }
 
-// Lifestyle hero images for home/collection sections
+// Lifestyle photos for home/collection sections
 export const lifestylePhotos = [
-  "1556742049-0cfed4f6a45d", // person at farmers market with tote
-  "1473093295043-cdd812d0e601", // coffee shop morning lifestyle
-  "1509316785289-025f5b846b35", // beach lifestyle warm tones
-  "1441986300917-64674bd600d8", // shopping lifestyle
-  "1528360983277-13d401cdc186", // outdoor lifestyle warm
-  "1524758631624-e2822e304c36", // california beach lifestyle
+  "/photos/lifestyle-verve-cosmic-1.jpg",
+  "/photos/lifestyle-hsd-514.jpg",
+  "/photos/lifestyle-hsd-2938.jpg",
+  "/photos/carousel-3.jpg",
+  "/photos/lifestyle-boatsetter-2.jpg",
+  "/photos/lifestyle-gymshark.jpg",
 ];
 
-export function getBagImageUrl(slug: string, size: "card" | "hero" = "card") {
-  const photoId = bagPhotos[slug];
-  const w = size === "hero" ? 1200 : 800;
-  const h = size === "hero" ? 900 : 800;
-  if (photoId) {
-    return `https://images.unsplash.com/photo-${photoId}?w=${w}&h=${h}&q=80&fit=crop&auto=format`;
-  }
-  // fallback
-  return `https://placehold.co/${w}x${h}/EEE6D2/262626?text=${slug}`;
+export function getBagImageUrl(slug: string) {
+  return bagPhotos[slug] ?? "/photos/product-dscf-2980.jpg";
 }
 
-export function getLifestyleImageUrl(index: number, size: "wide" | "square" = "wide") {
-  const photoId = lifestylePhotos[index % lifestylePhotos.length];
-  const w = size === "wide" ? 1600 : 800;
-  const h = size === "wide" ? 900 : 800;
-  return `https://images.unsplash.com/photo-${photoId}?w=${w}&h=${h}&q=80&fit=crop&auto=format`;
+export function getLifestyleImageUrl(index: number) {
+  return lifestylePhotos[index % lifestylePhotos.length];
 }

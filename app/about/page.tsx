@@ -31,19 +31,19 @@ export default function AboutPage() {
         <h2 className="font-display text-2xl font-bold tracking-tight">The team</h2>
         <div className="grid gap-5 lg:grid-cols-3">
           <TeamMember
-            image={getLifestyleImageUrl(1, "square")}
+            image={getLifestyleImageUrl(1)}
             name="Easton Jones"
             role="Co-founder"
             bio="Easton has spent years in the custom goods and design world, working with brands from scrappy startups to household names. He built Alongway because sourcing bags shouldn't require a procurement team."
           />
           <TeamMember
-            image={getLifestyleImageUrl(2, "square")}
+            image={getLifestyleImageUrl(2)}
             name="Hana Jones"
             role="Co-founder"
             bio="Hana brings a sharp engineering and systems mind to Alongway — building the infrastructure that makes the whole operation run cleanly. LA-based, detail-obsessed."
           />
           <TeamMember
-            image={getLifestyleImageUrl(3, "square")}
+            image={getLifestyleImageUrl(3)}
             name="Josh Geduld"
             role="Designer"
             bio="Josh shapes the Alongway visual identity — from the brand system to the look and feel of every touchpoint. He makes sure the brand is as considered as the product."

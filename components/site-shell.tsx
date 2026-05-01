@@ -195,7 +195,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
                       {hoveredBagSlug ? (
                         <img
                           key={hoveredBagSlug}
-                          src={getBagImageUrl(hoveredBagSlug, "card")}
+                          src={getBagImageUrl(hoveredBagSlug)}
                           alt={bags.find(b => b.slug === hoveredBagSlug)?.name ?? ""}
                           className="h-full w-full object-cover"
                         />
