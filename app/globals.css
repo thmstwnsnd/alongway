@@ -51,6 +51,20 @@
   letter-spacing: 0.04em;
 }
 
+/* Brand card style — consistent across the site */
+.card-brand {
+  border: 5px solid #364FA0;
+  border-radius: 1.75rem;
+  box-shadow: 10px 10px 0px 0px #364FA0;
+}
+
+.card-brand-light {
+  border: 5px solid #364FA0;
+  border-radius: 1.75rem;
+  box-shadow: 10px 10px 0px 0px #364FA0;
+  background-color: rgba(148, 166, 210, 0.25);
+}
+
 :root {
   --bone: #eee6d2;
   --light-bone: #f2ece2;

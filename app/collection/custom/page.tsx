@@ -73,7 +73,7 @@ export default function CustomTotePage() {
               "/svg/icons/Alongway_Website_Graphic_Banner_Blue.svg",
             ];
             return (
-              <div key={step.title} className="relative flex flex-col rounded-[1.75rem] bg-blue p-6 pt-10 text-bone shadow-card">
+              <div key={step.title} className="relative flex flex-col card-brand bg-blue p-6 pt-10 text-bone">
                 {/* Floating icon */}
                 <div className="absolute -top-6 left-6">
                   <Image

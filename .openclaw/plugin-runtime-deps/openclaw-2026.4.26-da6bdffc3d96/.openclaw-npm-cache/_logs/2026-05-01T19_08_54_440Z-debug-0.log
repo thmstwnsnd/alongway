@@ -1,0 +1,55 @@
+0 verbose cli /opt/homebrew/Cellar/node@22/22.22.2_1/bin/node /opt/homebrew/Cellar/node@22/22.22.2_1/lib/node_modules/npm/bin/npm-cli.js
+1 info using npm@10.9.7
+2 info using node@v22.22.2
+3 silly config load:file:/opt/homebrew/Cellar/node@22/22.22.2_1/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/elle/Projects/alongway/.openclaw/plugin-runtime-deps/openclaw-2026.4.26-da6bdffc3d96/.npmrc
+5 silly config load:file:/Users/elle/Projects/alongway/.npmrc
+6 silly config load:file:/opt/homebrew/etc/npmrc
+7 verbose title npm install acpx@0.6.1 tslog@^4.10.2
+8 verbose argv "install" "--ignore-scripts" "acpx@0.6.1" "tslog@^4.10.2"
+9 verbose logfile logs-max:10 dir:/Users/elle/Projects/alongway/.openclaw/plugin-runtime-deps/openclaw-2026.4.26-da6bdffc3d96/.openclaw-npm-cache/_logs/2026-05-01T19_08_54_440Z-
+10 verbose logfile /Users/elle/Projects/alongway/.openclaw/plugin-runtime-deps/openclaw-2026.4.26-da6bdffc3d96/.openclaw-npm-cache/_logs/2026-05-01T19_08_54_440Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+13 http fetch GET https://registry.npmjs.org/npm attempt 1 failed with ENOTFOUND
+14 silly idealTree buildDeps
+15 silly fetch manifest acpx@0.6.1
+16 silly packumentCache full:https://registry.npmjs.org/acpx cache-miss
+17 http fetch GET https://registry.npmjs.org/acpx attempt 1 failed with ENOTFOUND
+18 http fetch GET https://registry.npmjs.org/npm attempt 2 failed with ENOTFOUND
+19 http fetch GET https://registry.npmjs.org/acpx attempt 2 failed with ENOTFOUND
+20 http fetch GET https://registry.npmjs.org/npm attempt 3 failed with ENOTFOUND
+21 http fetch GET https://registry.npmjs.org/acpx attempt 3 failed with ENOTFOUND
+22 silly fetch manifest tslog@^4.10.2
+23 silly packumentCache full:https://registry.npmjs.org/tslog cache-miss
+24 http fetch GET https://registry.npmjs.org/tslog attempt 1 failed with ENOTFOUND
+25 http fetch GET https://registry.npmjs.org/tslog attempt 2 failed with ENOTFOUND
+26 http fetch GET https://registry.npmjs.org/tslog attempt 3 failed with ENOTFOUND
+27 silly placeDep ROOT acpx@ OK for:  want: 0.6.1
+28 silly placeDep ROOT tslog@ OK for:  want: ^4.10.2
+29 verbose type system
+30 verbose stack FetchError: request to https://registry.npmjs.org/acpx failed, reason: getaddrinfo ENOTFOUND registry.npmjs.org
+30 verbose stack     at ClientRequest.<anonymous> (/opt/homebrew/Cellar/node@22/22.22.2_1/lib/node_modules/npm/node_modules/minipass-fetch/lib/index.js:130:14)
+30 verbose stack     at ClientRequest.emit (node:events:519:28)
+30 verbose stack     at emitErrorEvent (node:_http_client:108:11)
+30 verbose stack     at _destroy (node:_http_client:963:9)
+30 verbose stack     at onSocketNT (node:_http_client:983:5)
+30 verbose stack     at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+31 error code ENOTFOUND
+32 error syscall getaddrinfo
+33 error errno ENOTFOUND
+34 error network request to https://registry.npmjs.org/acpx failed, reason: getaddrinfo ENOTFOUND registry.npmjs.org
+35 error network This is a problem related to network connectivity.
+35 error network In most cases you are behind a proxy or have bad network settings.
+35 error network
+35 error network If you are behind a proxy, please make sure that the
+35 error network 'proxy' config is set properly.  See: 'npm help config'
+36 silly unfinished npm timer reify 1777662534546
+37 silly unfinished npm timer reify:loadTrees 1777662534547
+38 verbose cwd /Users/elle/Projects/alongway/.openclaw/plugin-runtime-deps/openclaw-2026.4.26-da6bdffc3d96
+39 verbose os Darwin 25.4.0
+40 verbose node v22.22.2
+41 verbose npm  v10.9.7
+42 verbose exit 1
+43 verbose code 1
+44 error A complete log of this run can be found in: /Users/elle/Projects/alongway/.openclaw/plugin-runtime-deps/openclaw-2026.4.26-da6bdffc3d96/.openclaw-npm-cache/_logs/2026-05-01T19_08_54_440Z-debug-0.log

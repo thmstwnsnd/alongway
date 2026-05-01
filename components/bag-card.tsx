@@ -5,7 +5,7 @@ import { type Bag, getBagImageUrl } from "@/data/bags";
 
 export function BagCard({ bag }: { bag: Bag }) {
   return (
-<article className="group overflow-hidden rounded-[1.75rem] border-2 border-blue/40 bg-white shadow-card hover:border-blue transition-colors">
+<article className="group overflow-hidden card-brand bg-white transition-colors">
       <img
         src={getBagImageUrl(bag.slug)}
         alt={bag.name}

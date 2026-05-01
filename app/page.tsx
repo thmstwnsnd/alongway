@@ -218,7 +218,7 @@ export default function HomePage() {
                 "/svg/icons/Alongway_Website_Graphic_SunIcon_Blue.svg",
               ];
               return (
-                <div key={step.title} className="relative rounded-[1.75rem] border-[3px] border-blue bg-light-blue/30 p-6 pt-10 shadow-[8px_8px_0px_0px_#364FA0]">
+                <div key={step.title} className="relative card-brand-light p-6 pt-10">
                   {/* Floating icon */}
                   <div className="absolute -top-6 left-5">
                     <Image
