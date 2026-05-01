@@ -7,8 +7,8 @@ export default function PortalOrdersPage() {
   return (
     <div className="space-y-8">
       <section className="space-y-3">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Orders</p>
-        <h1 className="text-4xl font-extrabold tracking-tight text-charcoal sm:text-5xl">Past and active orders.</h1>
+        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Orders</p>
+        <h1 className="font-display text-4xl font-extrabold tracking-tight text-charcoal sm:text-5xl">Past and active orders.</h1>
         <p className="max-w-3xl text-base leading-7 text-charcoal/66">
           Review production status, delivery history, and reorder details for every Alongway program.
         </p>
@@ -30,23 +30,23 @@ export default function PortalOrdersPage() {
               className="grid gap-4 rounded-[1.5rem] border border-charcoal/10 bg-white px-5 py-5 lg:grid-cols-[1.15fr_1.1fr_0.8fr_0.9fr_0.95fr_0.8fr] lg:items-center"
             >
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/45 lg:hidden">Order</p>
+                <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/45 lg:hidden">Order</p>
                 <p className="text-base font-bold tracking-tight text-charcoal">{order.orderNumber}</p>
               </div>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/45 lg:hidden">Bag</p>
+                <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/45 lg:hidden">Bag</p>
                 <p className="text-sm font-medium text-charcoal">{order.bagName}</p>
               </div>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/45 lg:hidden">Quantity</p>
+                <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/45 lg:hidden">Quantity</p>
                 <p className="text-sm text-charcoal/70">{order.quantity}</p>
               </div>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/45 lg:hidden">Date</p>
+                <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/45 lg:hidden">Date</p>
                 <p className="text-sm text-charcoal/70">{order.placedDate}</p>
               </div>
               <div className="space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/45 lg:hidden">Status</p>
+                <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/45 lg:hidden">Status</p>
                 <StatusBadge status={order.status} />
                 <p className="text-sm text-charcoal/62">
                   {order.status === "Delivered" ? `Delivered: ${order.deliveredDate}` : `Est. ship: ${order.estimatedShipDate}`}

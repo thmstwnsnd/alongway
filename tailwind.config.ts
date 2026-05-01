@@ -13,7 +13,11 @@ const config: Config = {
         charcoal: "#262626",
       },
       fontFamily: {
-        sans: ["var(--font-figtree)"],
+        sans: ["'Noir Pro'", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
+        display: ["Termina", "'Noir Pro'", "Helvetica Neue", "sans-serif"],
+        accent: ["'Jukebox Johnny'", "Georgia", "serif"],
+        noir: ["'Noir Pro'", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
+        jukebox: ["'Jukebox Johnny'", "Georgia", "serif"],
       },
       boxShadow: {
         card: "0 18px 50px rgba(38, 38, 38, 0.08)",

@@ -9,8 +9,8 @@ export default function PortalDashboardPage() {
   return (
     <div className="space-y-8">
       <section className="space-y-3">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Customer Portal</p>
-        <h1 className="text-4xl font-extrabold tracking-tight text-charcoal sm:text-5xl">Good to see you, Alex.</h1>
+        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Customer Portal</p>
+        <h1 className="font-display text-4xl font-extrabold tracking-tight text-charcoal sm:text-5xl">Good to see you, Alex.</h1>
         <p className="max-w-3xl text-base leading-7 text-charcoal/66">
           Here&apos;s the current snapshot of your Alongway account, recent orders, and the next steps your team can take.
         </p>

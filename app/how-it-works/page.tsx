@@ -173,7 +173,7 @@ export default function HowItWorksPage() {
               </span>
               <span className="text-2xl">{step.emoji}</span>
             </div>
-            <h3 className="text-lg font-bold tracking-tight">{step.title}</h3>
+            <h3 className="font-display text-lg font-bold tracking-tight">{step.title}</h3>
             <p className="mt-2 text-sm leading-6 text-charcoal/70">{step.body}</p>
           </div>
         ))}
@@ -181,8 +181,8 @@ export default function HowItWorksPage() {
 
       {/* CTA */}
       <div className="mt-10 rounded-[2rem] bg-bone px-8 py-10 text-center">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Ready?</p>
-        <h2 className="mt-2 text-3xl font-extrabold tracking-tight">Start your order in minutes.</h2>
+        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Ready?</p>
+        <h2 className="font-display mt-2 text-3xl font-extrabold tracking-tight">Start your order in minutes.</h2>
         <p className="mt-3 text-base text-charcoal/70">Pick your bag, choose your quantity, upload your artwork. We take it from there.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-4">
           <Link href="/shop" className="rounded-full bg-blue px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-charcoal">
@@ -201,7 +201,7 @@ export default function HowItWorksPage() {
         <div className="mt-10 space-y-12">
           {faqs.map((section) => (
             <div key={section.category}>
-              <h3 className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-kelly">
+              <h3 className="font-display mb-5 text-xs font-bold uppercase tracking-[0.22em] text-kelly">
                 {section.category}
               </h3>
               <div className="space-y-4">

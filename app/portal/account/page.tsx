@@ -2,8 +2,8 @@ export default function PortalAccountPage() {
   return (
     <div className="space-y-8">
       <section className="space-y-3">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Account</p>
-        <h1 className="text-4xl font-extrabold tracking-tight text-charcoal sm:text-5xl">Account settings.</h1>
+        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Account</p>
+        <h1 className="font-display text-4xl font-extrabold tracking-tight text-charcoal sm:text-5xl">Account settings.</h1>
         <p className="max-w-3xl text-base leading-7 text-charcoal/66">
           This is a UI-only placeholder for profile, shipping, and password controls until the real account system is wired in.
         </p>
@@ -11,7 +11,7 @@ export default function PortalAccountPage() {
 
       <div className="grid gap-8">
         <section className="rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card sm:p-8">
-          <h2 className="text-2xl font-bold tracking-tight text-charcoal">Profile</h2>
+          <h2 className="font-display text-2xl font-bold tracking-tight text-charcoal">Profile</h2>
           <div className="mt-6 grid gap-5 md:grid-cols-2">
             <AccountField label="Name" defaultValue="Alex Carter" />
             <AccountField label="Email" defaultValue="alex@brand.com" type="email" />
@@ -27,7 +27,7 @@ export default function PortalAccountPage() {
         </section>
 
         <section className="rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card sm:p-8">
-          <h2 className="text-2xl font-bold tracking-tight text-charcoal">Shipping address</h2>
+          <h2 className="font-display text-2xl font-bold tracking-tight text-charcoal">Shipping address</h2>
           <div className="mt-6 grid gap-5 md:grid-cols-2">
             <AccountField label="Address line 1" defaultValue="470 Valencia Street" />
             <AccountField label="Address line 2" defaultValue="Suite 204" />
@@ -39,7 +39,7 @@ export default function PortalAccountPage() {
         </section>
 
         <section className="rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card sm:p-8">
-          <h2 className="text-2xl font-bold tracking-tight text-charcoal">Password change</h2>
+          <h2 className="font-display text-2xl font-bold tracking-tight text-charcoal">Password change</h2>
           <div className="mt-6 grid gap-5 md:grid-cols-3">
             <AccountField label="Current password" defaultValue="" type="password" />
             <AccountField label="New password" defaultValue="" type="password" />

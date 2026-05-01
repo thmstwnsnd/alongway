@@ -20,7 +20,7 @@ export default function AboutPage() {
       />
 
       <section className="mt-14 mb-14 space-y-5">
-        <h2 className="text-2xl font-bold tracking-tight">The team</h2>
+        <h2 className="font-display text-2xl font-bold tracking-tight">The team</h2>
         <div className="grid gap-5 lg:grid-cols-3">
           <TeamMember
             image={getLifestyleImageUrl(1, "square")}
@@ -45,7 +45,7 @@ export default function AboutPage() {
 
       <section className="mt-14 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
         <article className="rounded-[2rem] border border-charcoal/10 bg-white p-8 shadow-card">
-          <h2 className="text-3xl font-bold tracking-tight">What sets us apart</h2>
+          <h2 className="font-display text-3xl font-bold tracking-tight">What sets us apart</h2>
           <div className="mt-6 grid gap-3">
             {values.map((value) => (
               <div
@@ -59,13 +59,13 @@ export default function AboutPage() {
         </article>
 
         <article className="rounded-[2rem] border border-charcoal/10 bg-bone p-8">
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-kelly">Contact</p>
+          <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-kelly">Contact</p>
           <p className="mt-5 text-3xl font-extrabold tracking-tight">hello@alongway.co</p>
           <p className="mt-4 text-base leading-7 text-charcoal/72">
             Reach out when you&apos;re ready to launch a new bag, restock a proven style, or get a fast read on fit and pricing.
           </p>
           <div className="mt-8 border-t border-charcoal/10 pt-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/40">A brand by</p>
+            <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/40">A brand by</p>
             <a
               href="https://orangegoods.co"
               target="_blank"
@@ -87,8 +87,8 @@ function TeamMember({ image, name, role, bio }: { image: string; name: string; r
     <div className="rounded-[2rem] border border-charcoal/10 bg-white p-7 shadow-card space-y-4">
       <img src={image} alt={name} className="h-20 w-20 rounded-full object-cover shadow-card ring-4 ring-bone" />
       <div>
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-kelly">{role}</p>
-        <h3 className="mt-1 text-xl font-bold tracking-tight">{name}</h3>
+        <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-kelly">{role}</p>
+        <h3 className="font-display mt-1 text-xl font-bold tracking-tight">{name}</h3>
       </div>
       <p className="text-sm leading-7 text-charcoal/70">{bio}</p>
     </div>

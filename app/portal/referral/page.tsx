@@ -22,8 +22,8 @@ export default function PortalReferralPage() {
   return (
     <div className="space-y-8">
       <section className="space-y-3">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Referrals</p>
-        <h1 className="text-4xl font-extrabold tracking-tight text-charcoal sm:text-5xl">Refer a Friend, Get $50</h1>
+        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Referrals</p>
+        <h1 className="font-display text-4xl font-extrabold tracking-tight text-charcoal sm:text-5xl">Refer a Friend, Get $50</h1>
         <p className="max-w-3xl text-base leading-7 text-charcoal/66">
           Send the link. Look generous. Pocket the credit when their first order ships.
         </p>
@@ -31,7 +31,7 @@ export default function PortalReferralPage() {
 
       <section className="grid gap-8 xl:grid-cols-[minmax(0,1.1fr)_minmax(22rem,0.9fr)]">
         <div className="rounded-[2rem] border border-charcoal/10 bg-white p-8 shadow-card">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">How it works</p>
+          <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">How it works</p>
           <div className="mt-6 space-y-4">
             {referralSteps.map((step, index) => (
               <div key={step} className="flex gap-4 rounded-[1.5rem] bg-light-bone p-5">
@@ -45,7 +45,7 @@ export default function PortalReferralPage() {
         </div>
 
         <div className="rounded-[2rem] border border-charcoal/10 bg-white p-8 shadow-card">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">Your referral link</p>
+          <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">Your referral link</p>
           <div className="mt-5 rounded-[1.5rem] border border-charcoal/10 bg-light-bone p-4">
             <p className="break-all text-sm font-medium text-charcoal">{referralLink}</p>
           </div>

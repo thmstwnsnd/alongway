@@ -49,11 +49,11 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-charcoal/40" />
         {/* Content */}
         <div className="relative flex h-full flex-col items-start justify-end px-8 pb-16 lg:px-16 lg:pb-20">
-          <p className="mb-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.26em] text-bone/80">
+          <p className="font-accent mb-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.26em] text-bone/80">
             <span className="h-3 w-0.5 rounded-full bg-kelly/70" />
             For now, for later.
           </p>
-          <h1 className="max-w-3xl text-5xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h1 className="font-display max-w-3xl text-5xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl">
             Made to carry.
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-8 text-white/80">
@@ -88,7 +88,7 @@ export default function HomePage() {
 
       <section className="border-y border-charcoal/10 bg-white">
         <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-6 py-10 text-center lg:px-10">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">
+          <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">
             Trusted by brands that care about quality
           </p>
           <div className="flex flex-wrap justify-center gap-3">
@@ -132,10 +132,10 @@ export default function HomePage() {
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {steps.map((step, index) => (
               <div key={step.title} className="rounded-[1.75rem] border border-charcoal/10 bg-light-bone p-6">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue">
+                <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-blue">
                   Step {index + 1}
                 </p>
-                <h3 className="mt-4 text-2xl font-bold tracking-tight">{step.title}</h3>
+                <h3 className="font-display mt-4 text-2xl font-bold tracking-tight">{step.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-charcoal/68">{step.body}</p>
               </div>
             ))}
@@ -145,10 +145,10 @@ export default function HomePage() {
 
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
         <div className="rounded-[2.5rem] bg-charcoal px-8 py-12 text-bone sm:px-12">
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-kelly">Ready to start?</p>
+          <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-kelly">Ready to start?</p>
           <div className="mt-4 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="space-y-2">
-              <h2 className="text-4xl font-extrabold tracking-tight">Bring your bag program together.</h2>
+              <h2 className="font-display text-4xl font-extrabold tracking-tight">Bring your bag program together.</h2>
               <p className="max-w-2xl text-base leading-7 text-bone/78">
                 Tell us the bag, the artwork, and when you need it. We&apos;ll follow up with a timeline and a quote. No sales team. No runaround.
               </p>
@@ -161,7 +161,7 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-        <p className="mt-6 text-center text-sm text-charcoal/40">The finest bags in all the land.</p>
+        <p className="font-accent mt-6 text-center text-sm text-charcoal/40">The finest bags in all the land.</p>
       </section>
     </div>
   );

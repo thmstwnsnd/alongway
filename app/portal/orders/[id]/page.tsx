@@ -28,8 +28,8 @@ export default async function PortalOrderDetailPage({
         </Link>
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div className="space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Order detail</p>
-            <h1 className="text-4xl font-extrabold tracking-tight text-charcoal sm:text-5xl">
+            <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Order detail</p>
+            <h1 className="font-display text-4xl font-extrabold tracking-tight text-charcoal sm:text-5xl">
               {order.orderNumber} | {order.bagName}
             </h1>
             <div className="flex flex-wrap items-center gap-3">
