@@ -61,6 +61,14 @@ export default function HomePage() {
             className="pointer-events-none absolute right-6 top-6 h-auto w-16 select-none opacity-20"
             aria-hidden="true"
           />
+          <Image
+            src="/svg/illustrations/Alongway_Website_Graphic_World_Cream.svg"
+            alt=""
+            width={892}
+            height={722}
+            className="pointer-events-none mb-6 h-auto w-40 select-none opacity-90 lg:w-48"
+            aria-hidden="true"
+          />
           <p className="font-accent mb-4 text-xs font-semibold uppercase tracking-[0.26em] text-bone/70">
             For now, for later.
           </p>
