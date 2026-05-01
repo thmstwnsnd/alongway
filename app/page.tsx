@@ -46,38 +46,33 @@ export default function HomePage() {
           <img
             src="/hero.jpg"
             alt="Alongway custom bags"
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover object-center"
           />
         </div>
 
-        {/* Blue CTA panel — right 1/3 */}
-        <div className="relative flex w-full flex-col items-start justify-center bg-blue px-8 py-16 lg:w-1/2 lg:px-12">
-          {/* Decorative cloud */}
+        {/* Blue CTA panel — right 50% */}
+        <div className="relative flex w-full flex-col items-start justify-center overflow-hidden bg-blue px-8 py-16 lg:w-1/2 lg:px-14">
+          {/* For Now For Later badge — eyebrow */}
           <Image
-            src="/svg/clouds/Alongway_Website_Graphic_Cloud_1_Blue.svg"
-            alt=""
-            width={192}
-            height={73}
-            className="pointer-events-none absolute right-6 top-6 h-auto w-16 select-none opacity-20"
-            aria-hidden="true"
+            src="/svg/icons/Alongway_Website_Graphic_ForNowForLater_BadgeIcon_Blue.svg"
+            alt="For now, for later"
+            width={368}
+            height={368}
+            className="pointer-events-none mb-6 h-auto w-16 select-none opacity-90"
           />
-          <Image
-            src="/svg/illustrations/Alongway_Website_Graphic_World_Cream.svg"
-            alt=""
-            width={892}
-            height={722}
-            className="pointer-events-none mb-6 h-auto w-80 select-none opacity-90 lg:w-96"
-            aria-hidden="true"
-          />
-          <p className="font-accent mb-4 text-xs font-semibold uppercase tracking-[0.26em] text-bone/70">
-            For now, for later.
-          </p>
-          <h1 className="font-display text-4xl font-extrabold leading-tight text-bone lg:text-5xl">
+          {/* Headline */}
+          <h1 className="font-display text-5xl font-extrabold leading-[1.05] text-bone lg:text-6xl">
             Custom Bags<br />Made Simple
           </h1>
+          {/* Subtext */}
           <p className="mt-5 text-base leading-7 text-bone/75">
             From $12/unit. 100 minimum. Air shipping included.
           </p>
+          {/* Trust line */}
+          <p className="font-accent mt-3 text-xs uppercase tracking-widest text-bone/50">
+            100+ brands trust Alongway
+          </p>
+          {/* CTAs */}
           <div className="mt-8 flex flex-col gap-3">
             <Link
               href="/collection"
@@ -87,11 +82,20 @@ export default function HomePage() {
             </Link>
             <Link
               href="/start"
-              className="inline-flex rounded-full border-2 border-bone/50 px-7 py-3.5 text-sm font-semibold text-bone hover:-translate-y-0.5 hover:border-bone"
+              className="font-sans text-sm font-semibold text-bone/70 underline underline-offset-4 hover:text-bone"
             >
-              Start Your Order
+              Start Your Order →
             </Link>
           </div>
+          {/* Mascot anchored to bottom-right, overflows */}
+          <Image
+            src="/svg/illustrations/Alongway_Website_Graphic_World_Cream.svg"
+            alt=""
+            width={892}
+            height={722}
+            className="pointer-events-none absolute -bottom-10 -right-10 h-auto w-72 select-none opacity-80 lg:w-80"
+            aria-hidden="true"
+          />
         </div>
       </section>
 
