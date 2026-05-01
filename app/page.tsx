@@ -39,51 +39,47 @@ const trustedBrands = [
 export default function HomePage() {
   return (
     <div>
-      {/* Full-bleed hero banner */}
-      <section className="relative h-[90vh] min-h-[560px] w-full overflow-hidden">
-        <img
-          src={getLifestyleImageUrl(0, "wide")}
-          alt="Alongway custom bags"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-charcoal/40" />
-        <Image
-          src="/svg/clouds/Alongway_Website_Graphic_Cloud_1_Blue.svg"
-          alt=""
-          width={192}
-          height={73}
-          className="pointer-events-none absolute left-6 top-4 h-auto w-16 select-none opacity-30"
-          aria-hidden="true"
-        />
-        <Image
-          src="/svg/clouds/Alongway_Website_Graphic_Cloud_2_Blue.svg"
-          alt=""
-          width={149}
-          height={54}
-          className="pointer-events-none absolute right-8 top-12 h-auto w-12 select-none opacity-25"
-          aria-hidden="true"
-        />
-        {/* Content */}
-        <div className="relative flex h-full flex-col items-start justify-end px-8 pb-16 lg:px-16 lg:pb-20">
-          <p className="font-accent mb-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.26em] text-bone/80">
-            <span className="h-3 w-0.5 rounded-full bg-light-blue/70" />
+      {/* Hero — 2/3 photo + 1/3 blue CTA panel */}
+      <section className="flex h-[90vh] min-h-[560px] w-full overflow-hidden">
+        {/* Photo — left 2/3 */}
+        <div className="relative w-full lg:w-2/3">
+          <img
+            src={getLifestyleImageUrl(0, "wide")}
+            alt="Alongway custom bags"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        </div>
+
+        {/* Blue CTA panel — right 1/3 */}
+        <div className="relative flex w-full flex-col items-start justify-center bg-blue px-8 py-16 lg:w-1/3 lg:px-12">
+          {/* Decorative cloud */}
+          <Image
+            src="/svg/clouds/Alongway_Website_Graphic_Cloud_1_Blue.svg"
+            alt=""
+            width={192}
+            height={73}
+            className="pointer-events-none absolute right-6 top-6 h-auto w-16 select-none opacity-20"
+            aria-hidden="true"
+          />
+          <p className="font-accent mb-4 text-xs font-semibold uppercase tracking-[0.26em] text-bone/70">
             For now, for later.
           </p>
-
-          <p className="mt-5 max-w-xl text-lg leading-8 text-white/80">
-            Custom bags, made simple. From $12/unit – 100 minimum, air shipping included.
+          <h1 className="font-display text-4xl font-extrabold leading-tight text-bone lg:text-5xl">
+            Custom Bags, Made Simple.
+          </h1>
+          <p className="mt-5 text-base leading-7 text-bone/75">
+            From $12/unit. 100 minimum. Air shipping included.
           </p>
-          <div className="mt-8 flex flex-wrap gap-4">
+          <div className="mt-8 flex flex-col gap-3">
             <Link
               href="/collection"
-              className="inline-flex rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-charcoal hover:-translate-y-0.5 hover:bg-bone"
+              className="inline-flex rounded-full bg-bone px-7 py-3.5 text-sm font-semibold text-blue hover:-translate-y-0.5 hover:bg-white"
             >
               See the Collection
             </Link>
             <Link
               href="/start"
-              className="inline-flex rounded-full border border-white/50 px-7 py-3.5 text-sm font-semibold text-white hover:-translate-y-0.5 hover:border-white"
+              className="inline-flex rounded-full border-2 border-bone/50 px-7 py-3.5 text-sm font-semibold text-bone hover:-translate-y-0.5 hover:border-bone"
             >
               Start Your Order
             </Link>
