@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { blogPosts } from "@/data/blog-posts";
@@ -36,7 +37,7 @@ export default function BlogPage() {
                 <p className="text-sm leading-6 text-charcoal/72">{post.excerpt}</p>
               </div>
               <Link href={`/blog/${post.slug}`} className="inline-flex text-sm font-semibold text-light-blue hover:text-charcoal">
-                Read more →
+                Read more <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Blue.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-1" aria-hidden="true" />
               </Link>
             </div>
           </article>

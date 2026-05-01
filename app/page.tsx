@@ -84,7 +84,7 @@ export default function HomePage() {
               href="/start"
               className="font-sans text-sm font-semibold text-bone/70 underline underline-offset-4 hover:text-bone"
             >
-              Start Your Order →
+              Start Your Order <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Blue.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-1" aria-hidden="true" />
             </Link>
           </div>
           {/* Mascot anchored to bottom-right, overflows */}
@@ -187,7 +187,7 @@ export default function HomePage() {
             href="/collection"
             className="inline-flex rounded-full border border-charcoal/20 bg-white px-8 py-3 text-sm font-semibold text-charcoal hover:-translate-y-0.5 hover:border-charcoal hover:shadow-card"
           >
-            View the full bag lineup →
+            View the full bag lineup <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Blue.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-1" aria-hidden="true" />
           </Link>
         </div>
       </section>

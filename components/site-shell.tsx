@@ -212,7 +212,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
                       onClick={() => setIsCollectionMenuOpen(false)}
                       className="text-sm font-semibold text-light-blue hover:text-charcoal"
                     >
-                      View All →
+                      View All <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Blue.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-1" aria-hidden="true" />
                     </Link>
                   </div>
                 </div>
@@ -361,7 +361,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
           </div>
           <div className="flex flex-col items-center gap-3 sm:flex-row">
             <Link href="/contact" className="text-sm font-semibold text-light-blue hover:text-white">
-              Start a conversation →
+              Start a conversation <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Blue.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-1 opacity-80" aria-hidden="true" />
             </Link>
             <a href="mailto:hello@alongway.co" className="text-sm font-semibold text-white/80 hover:text-white">
               hello@alongway.co

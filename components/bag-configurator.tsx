@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { ReactNode } from "react";
@@ -265,7 +266,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
           <div className="rounded-[2rem] border border-charcoal/10 bg-light-bone p-5 min-w-0 overflow-hidden">
             <div className="flex items-center justify-between gap-4 mb-4">
               <h3 className="font-display text-base font-bold tracking-tight">Fabric</h3>
-              <Link href="/swatches" className="text-xs font-semibold text-blue hover:text-charcoal">Browse swatches →</Link>
+              <Link href="/swatches" className="text-xs font-semibold text-blue hover:text-charcoal">Browse swatches <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Blue.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-1" aria-hidden="true" /></Link>
             </div>
 
             {/* Tier tabs */}

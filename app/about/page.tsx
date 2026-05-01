@@ -80,7 +80,7 @@ export default function AboutPage() {
               rel="noopener noreferrer"
               className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-charcoal hover:text-light-blue"
             >
-              Orange Goods →
+              Orange Goods <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Blue.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-1" aria-hidden="true" />
             </a>
             <p className="mt-1 text-xs text-charcoal/50">Custom branded goods &amp; design studio, Los Angeles.</p>
           </div>

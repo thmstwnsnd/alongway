@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -51,7 +52,7 @@ export default async function FabricDetailPage({
   return (
     <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
       <Link href="/swatches" className="text-sm font-semibold text-blue hover:text-charcoal">
-        ← Back to swatches
+        <Image src="/svg/icons/Alongway_Website_Graphic_ArrowLeft_Blue.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto mr-1" aria-hidden="true" /> Back to swatches
       </Link>
 
       <section className="mt-6 grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">

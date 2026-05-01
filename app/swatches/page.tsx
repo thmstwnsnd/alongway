@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { fabricTierMeta, fabrics } from "@/data/fabrics";
@@ -102,7 +103,7 @@ function FabricCard({ slug }: { slug: string }) {
           {fabric.upcharge > 0 ? `+${formatCurrency(fabric.upcharge)} / unit` : "Included"}
         </p>
         <Link href={`/swatches/${fabric.slug}`} className="text-sm font-semibold text-light-blue hover:text-charcoal">
-          View swatches →
+          View swatches <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Blue.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-1" aria-hidden="true" />
         </Link>
       </div>
     </article>
