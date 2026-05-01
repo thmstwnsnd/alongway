@@ -320,13 +320,13 @@ export function SiteShell({ children }: { children: ReactNode }) {
             </Link>
             <Link
               href="/start"
-              className="rounded-full bg-blue px-5 py-3 text-sm font-semibold text-white shadow-card hover:-translate-y-0.5 hover:bg-charcoal"
+              className="rounded-full bg-bone px-5 py-3 text-sm font-semibold text-blue shadow-card hover:-translate-y-0.5 hover:bg-light-blue"
             >
               Start Your Order
             </Link>
           </div>
         </div>
-        <nav className="flex gap-5 overflow-x-auto border-t border-charcoal/10 px-6 py-3 text-sm font-display font-bold md:hidden">
+        <nav className="flex gap-5 overflow-x-auto border-t border-charcoal/10 px-6 py-3 text-sm font-display font-extrabold md:hidden">
           {mobileNavLinks.map((link) => (
             <Link key={link.href} href={link.href} className="whitespace-nowrap hover:text-blue">
               {link.label}
