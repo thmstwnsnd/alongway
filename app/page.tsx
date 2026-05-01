@@ -170,9 +170,7 @@ export default function HomePage() {
             eyebrow="Featured bags"
             title="A focused assortment of premium silhouettes."
           />
-          <Link href="/collection" className="hidden text-sm font-semibold text-light-blue hover:text-charcoal sm:block">
-            Browse all bags
-          </Link>
+
         </div>
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {featuredBags.map((bag) => (
