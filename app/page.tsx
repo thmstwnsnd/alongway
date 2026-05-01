@@ -106,21 +106,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="overflow-hidden border-y border-blue/20 bg-bone py-2">
-        <div className="flex justify-center gap-8">
-          {Array.from({ length: 5 }).flatMap((_, index) =>
+      {/* Auto-scrolling icon marquee */}
+      <div className="overflow-hidden bg-light-blue" style={{ height: "40px" }}>
+        <div className="animate-marquee flex h-full w-max items-center gap-8 px-8">
+          {Array.from({ length: 12 }).flatMap((_, i) =>
             [
-              "/svg/icons/Alongway_Website_Graphic_SunIcon_Blue.svg",
-              "/svg/icons/Alongway_Website_Graphic_SmileyFaace_Blue.svg",
-              "/svg/icons/Alongway_Website_Graphic_PeaceHand_Blue.svg",
-            ].map((src) => (
+              { src: "/svg/icons/Alongway_Website_Graphic_SunIcon_Blue.svg", w: 345, h: 345 },
+              { src: "/svg/icons/Alongway_Website_Graphic_SmileyFaace_Blue.svg", w: 188, h: 186 },
+              { src: "/svg/icons/Alongway_Website_Graphic_PeaceHand_Blue.svg", w: 269, h: 449 },
+            ].map((icon) => (
               <Image
-                key={`${src}-${index}`}
-                src={src}
+                key={`${icon.src}-${i}`}
+                src={icon.src}
                 alt=""
-                width={32}
-                height={32}
-                className="pointer-events-none h-auto w-6 flex-none select-none opacity-50"
+                width={icon.w}
+                height={icon.h}
+                className="pointer-events-none h-5 w-auto flex-none select-none"
                 aria-hidden="true"
               />
             )),

@@ -51,6 +51,15 @@
   letter-spacing: 0.04em;
 }
 
+/* Marquee animation */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 18s linear infinite;
+}
+
 /* Brand card style — consistent across the site */
 .card-brand {
   border: 4px solid #364FA0;
