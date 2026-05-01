@@ -155,7 +155,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <button
                 type="button"
                 onClick={() => setIsCollectionMenuOpen((current) => !current)}
-                className="inline-flex items-center gap-2 text-bone hover:text-bone/70"
+                className="inline-flex items-center gap-2 uppercase text-bone hover:text-bone/70"
               >
                 <span>Collection</span>
                 <span
@@ -227,7 +227,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <button
                 type="button"
                 onClick={() => setIsHowItWorksMenuOpen((current) => !current)}
-                className="inline-flex items-center gap-2 text-bone hover:text-bone/70"
+                className="inline-flex items-center gap-2 uppercase text-bone hover:text-bone/70"
               >
                 <span>How It Works</span>
                 <span
@@ -268,7 +268,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <button
                 type="button"
                 onClick={() => setIsCompanyMenuOpen((current) => !current)}
-                className="inline-flex items-center gap-2 text-bone hover:text-bone/70"
+                className="inline-flex items-center gap-2 uppercase text-bone hover:text-bone/70"
               >
                 <span>Company</span>
                 <span
