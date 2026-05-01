@@ -154,11 +154,11 @@ export default function HomePage() {
         <div
           aria-hidden="true"
           style={{
-            height: '32px',
+            height: '64px',
             backgroundColor: '#94A6D2',
             backgroundImage: 'url(/svg/patterns/Alongway_Website_Graphic_CheckeredPattern_2.svg)',
             backgroundRepeat: 'repeat-x',
-            backgroundSize: 'auto 32px',
+            backgroundSize: 'auto 64px',
             borderTop: '4px solid #94A6D2',
             borderBottom: '4px solid #94A6D2',
           }}
