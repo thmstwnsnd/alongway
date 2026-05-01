@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import { BagCard } from "@/components/bag-card";
 import { SectionHeading } from "@/components/section-heading";
@@ -53,9 +54,14 @@ export default function HomePage() {
             <span className="h-3 w-0.5 rounded-full bg-kelly/70" />
             For now, for later.
           </p>
-          <h1 className="font-display max-w-3xl text-5xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl">
-            Made to carry.
-          </h1>
+          <Image
+            src="/svg/typography/Alongway_Website_Graphic_MadeToCarryV1_Blue.svg"
+            alt="Made to carry"
+            width={240}
+            height={92}
+            className="pointer-events-none h-auto w-48 select-none sm:w-56"
+            priority
+          />
           <p className="mt-5 max-w-xl text-lg leading-8 text-white/80">
             Custom bags, made simple. From $12/unit – 100 minimum, air shipping included.
           </p>
@@ -77,6 +83,24 @@ export default function HomePage() {
       </section>
 
       <ScrollBird />
+
+      <div className="mx-auto flex max-w-sm items-center justify-center gap-8 px-6 py-8">
+        {[
+          "/svg/clouds/Alongway_Website_Graphic_Cloud_1_Blue.svg",
+          "/svg/clouds/Alongway_Website_Graphic_Cloud_2_Blue.svg",
+          "/svg/clouds/Alongway_Website_Graphic_Cloud_3_Blue.svg",
+        ].map((src) => (
+          <Image
+            key={src}
+            src={src}
+            alt=""
+            width={64}
+            height={40}
+            className="pointer-events-none h-auto w-16 select-none opacity-60"
+            aria-hidden="true"
+          />
+        ))}
+      </div>
 
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
         <SectionHeading
@@ -128,7 +152,17 @@ export default function HomePage() {
 
       <section className="border-y border-charcoal/10 bg-white">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <SectionHeading eyebrow="How it works" title="Straightforward from first idea to final delivery." />
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+            <SectionHeading eyebrow="How it works" title="Straightforward from first idea to final delivery." />
+            <Image
+              src="/svg/illustrations/Alongway_Website_Graphic_SmileyFaceBadge_Blue.svg"
+              alt=""
+              width={96}
+              height={96}
+              className="pointer-events-none h-auto w-20 select-none self-start opacity-85"
+              aria-hidden="true"
+            />
+          </div>
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {steps.map((step, index) => (
               <div key={step.title} className="rounded-[1.75rem] border border-charcoal/10 bg-light-bone p-6">

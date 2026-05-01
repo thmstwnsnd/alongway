@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import { type Bag, getBagImageUrl } from "@/data/bags";
 
@@ -16,9 +17,19 @@ export function BagCard({ bag }: { bag: Bag }) {
         <div className="space-y-2">
           <div className="flex items-center justify-between gap-4">
             <h3 className="font-display text-2xl font-bold tracking-tight">{bag.name}</h3>
-            <span className="font-accent rounded-full bg-light-bone px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-charcoal/70">
-              {bag.size}
-            </span>
+            <div className="flex shrink-0 items-center gap-2">
+              <Image
+                src="/svg/pills/Alongway_Website_Graphic_Pill_Alongway.svg"
+                alt=""
+                width={80}
+                height={28}
+                className="pointer-events-none hidden h-auto w-20 select-none sm:block"
+                aria-hidden="true"
+              />
+              <span className="font-accent rounded-full bg-light-bone px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-charcoal/70">
+                {bag.size}
+              </span>
+            </div>
           </div>
           <p className="font-accent text-sm leading-6 text-charcoal/70">{bag.tagline}</p>
         </div>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 485.49 84.49">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f4efe8;
+      }
+
+      .cls-1, .cls-2 {
+        font-family: Termina-Black, Termina;
+        font-size: 56.31px;
+        font-weight: 800;
+      }
+
+      .cls-3 {
+        fill: #3750a0;
+      }
+
+      .cls-4 {
+        letter-spacing: -.07em;
+      }
+
+      .cls-5 {
+        letter-spacing: -.12em;
+      }
+
+      .cls-6 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-7 {
+        letter-spacing: -.04em;
+      }
+
+      .cls-8 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-2 {
+        fill: #ebe4d0;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <text class="cls-1" transform="translate(27.84 47.86)"><tspan x="0" y="0">A</tspan><tspan class="cls-6" x="54.62" y="0">L</tspan><tspan x="97.86" y="0">ON</tspan><tspan class="cls-7" x="211.38" y="0">G</tspan><tspan class="cls-4" x="263.36" y="0">W</tspan><tspan class="cls-5" x="332.5" y="0">A</tspan><tspan class="cls-8" x="380.37" y="0">Y</tspan></text>
+      <rect class="cls-3" width="485.49" height="75.85" rx="18" ry="18"/>
+      <text class="cls-2" transform="translate(27.84 56.5)"><tspan x="0" y="0">A</tspan><tspan class="cls-6" x="54.62" y="0">L</tspan><tspan x="97.86" y="0">ON</tspan><tspan class="cls-7" x="211.38" y="0">G</tspan><tspan class="cls-4" x="263.36" y="0">W</tspan><tspan class="cls-5" x="332.5" y="0">A</tspan><tspan class="cls-8" x="380.37" y="0">Y</tspan></text>
+    </g>
+  </g>
+</svg>

@@ -45,6 +45,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Termina: always uppercase */
+.font-display, [class*="font-display"] {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
 :root {
   --bone: #eee6d2;
   --light-bone: #f2ece2;

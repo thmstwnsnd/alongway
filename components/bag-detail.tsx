@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
 import type { Bag } from "@/data/bags";
 import { getBagPhotoSet } from "@/data/bags";
@@ -112,6 +113,17 @@ export function BagDetail({ bag }: { bag: Bag }) {
 
         {/* Right: name + compact configurator */}
         <div className="space-y-5 lg:sticky lg:top-6">
+          <div className="flex justify-end">
+            <Image
+              src="/svg/illustrations/Alongway_Website_Graphic_BirdTote_Blue.svg"
+              alt=""
+              width={120}
+              height={120}
+              className="pointer-events-none h-auto w-24 select-none opacity-80"
+              aria-hidden="true"
+            />
+          </div>
+
           {/* Channel Tote size switcher */}
           {isChannelTote(bag.slug) && (
             <div className="flex gap-2">

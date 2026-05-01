@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 562.21 80.27">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #3750a0;
+      }
+
+      .cls-2 {
+        fill: #f4efe7;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        font-family: TAYJukeboxJohnnyRegular, 'TAY Jukebox Johnny';
+        font-size: 32.48px;
+      }
+
+      .cls-3 {
+        fill: #3b7e45;
+      }
+
+      .cls-5 {
+        letter-spacing: -.12em;
+      }
+
+      .cls-6 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-7 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-8 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-9 {
+        fill: #94a6d1;
+      }
+
+      .cls-4 {
+        fill: #38519f;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <text class="cls-2" transform="translate(27.77 44.36)"><tspan class="cls-6" x="0" y="0">F</tspan><tspan x="28" y="0">OR N</tspan><tspan class="cls-8" x="142.14" y="0">O</tspan><tspan x="176.73" y="0">W </tspan><tspan class="cls-7" x="231.04" y="0">F</tspan><tspan x="259.04" y="0">OR L</tspan><tspan class="cls-5" x="371.2" y="0">A</tspan><tspan x="400.56" y="0">TER</tspan></text>
+      <path class="cls-1" d="M46.94,80.27c-18.37,0-33.32-14.95-33.32-33.32v-6.89h.72c3.18-15.08,16.59-26.43,32.61-26.43h481.95c18.37,0,33.32,14.95,33.32,33.32s-14.95,33.32-33.32,33.32H46.94Z"/>
+      <path class="cls-1" d="M30.65,0h488.22c16.91,0,30.65,13.73,30.65,30.65v6.28c0,16.91-13.73,30.65-30.65,30.65H30.65C13.73,67.57,0,53.84,0,36.92v-6.28C0,13.73,13.73,0,30.65,0Z"/>
+      <path class="cls-9" d="M5.73,33.79c0,15.5,12.56,28.06,28.06,28.06h481.95c15.5,0,28.06-12.56,28.06-28.06s-12.56-28.06-28.06-28.06H33.78c-15.5,0-28.06,12.56-28.06,28.06,0,0,0-15.5,0,0Z"/>
+      <text class="cls-3" transform="translate(27.77 44.36)"><tspan class="cls-6" x="0" y="0">F</tspan><tspan x="28" y="0">OR N</tspan><tspan class="cls-8" x="142.14" y="0">O</tspan><tspan x="176.73" y="0">W </tspan><tspan class="cls-7" x="231.04" y="0">F</tspan><tspan x="259.04" y="0">OR L</tspan><tspan class="cls-5" x="371.2" y="0">A</tspan><tspan x="400.56" y="0">TER</tspan></text>
+      <text class="cls-4" transform="translate(27.77 44.36)"><tspan class="cls-6" x="0" y="0">F</tspan><tspan x="28" y="0">OR N</tspan><tspan class="cls-8" x="142.14" y="0">O</tspan><tspan x="176.73" y="0">W </tspan><tspan class="cls-7" x="231.04" y="0">F</tspan><tspan x="259.04" y="0">OR L</tspan><tspan class="cls-5" x="371.2" y="0">A</tspan><tspan x="400.56" y="0">TER</tspan></text>
+    </g>
+  </g>
+</svg>

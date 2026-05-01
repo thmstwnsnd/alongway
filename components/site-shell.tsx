@@ -235,7 +235,13 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <Link href="/" className="flex items-center">
               <Image src="/logo-tan.svg" alt="Alongway" width={180} height={44} className="h-8 w-auto object-contain" />
             </Link>
-            <p className="font-accent max-w-md text-sm text-bone/80">Made to carry.</p>
+            <Image
+              src="/svg/typography/Alongway_Website_Graphic_MadeToCarryV1_Cream.svg"
+              alt="Made to carry"
+              width={180}
+              height={68}
+              className="pointer-events-none h-auto w-36 select-none opacity-90"
+            />
             <a
               href="https://instagram.com/alongwayco"
               target="_blank"
