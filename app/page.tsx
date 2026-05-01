@@ -181,7 +181,7 @@ export default function HomePage() {
         <div className="mt-10 flex justify-center">
           <Link
             href="/collection"
-            className="inline-flex items-center rounded-full bg-light-blue px-8 py-3 text-sm font-semibold text-bone hover:-translate-y-0.5 hover:bg-blue"
+            className="inline-flex items-center rounded-full bg-blue px-8 py-3 text-sm font-semibold text-bone hover:-translate-y-0.5 hover:bg-charcoal"
           >
             View the full bag lineup <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Cream.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-1" aria-hidden="true" />
           </Link>
