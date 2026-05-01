@@ -209,16 +209,35 @@ export default function HomePage() {
               aria-hidden="true"
             />
           </div>
-          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {steps.map((step, index) => (
-              <div key={step.title} className="rounded-[1.75rem] border border-charcoal/10 bg-light-bone p-6">
-                <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-blue">
-                  Step {index + 1}
-                </p>
-                <h3 className="font-display mt-4 text-2xl font-bold tracking-tight">{step.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-charcoal/68">{step.body}</p>
-              </div>
-            ))}
+          <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {steps.map((step, index) => {
+              const icons = [
+                "/svg/icons/Alongway_Website_Graphic_BirdRight_Blue.svg",
+                "/svg/icons/Alongway_Website_Graphic_PeaceHand_Blue.svg",
+                "/svg/icons/Alongway_Website_Graphic_SmileyFaace_Blue.svg",
+                "/svg/icons/Alongway_Website_Graphic_SunIcon_Blue.svg",
+              ];
+              return (
+                <div key={step.title} className="relative rounded-[1.75rem] border-2 border-blue bg-light-blue/30 p-6 pt-10 shadow-[4px_4px_0px_0px_#364FA0]">
+                  {/* Floating icon */}
+                  <div className="absolute -top-6 left-5">
+                    <Image
+                      src={icons[index]}
+                      alt=""
+                      width={48}
+                      height={48}
+                      className="pointer-events-none h-12 w-12 select-none"
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-blue/60">
+                    Step {index + 1}
+                  </p>
+                  <h3 className="font-display mt-3 text-lg font-bold tracking-tight text-blue">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-charcoal/70">{step.body}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
