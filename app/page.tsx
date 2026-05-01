@@ -118,16 +118,16 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div className="mx-auto flex max-w-3xl items-end justify-between gap-8 px-12 py-10">
+      <section className="relative mx-auto max-w-7xl overflow-visible px-6 py-20 lg:px-10">
+        {/* Cloud — top left, above heading */}
         <Image src="/svg/clouds/Alongway_Website_Graphic_Cloud_1_Blue.svg" alt="" width={64} height={40}
-          className="pointer-events-none h-auto w-20 select-none opacity-60 animate-float-1" aria-hidden="true" />
+          className="pointer-events-none absolute -top-4 left-8 h-auto w-20 select-none opacity-60 animate-float-1" aria-hidden="true" />
+        {/* Cloud — right side, mid-height */}
         <Image src="/svg/clouds/Alongway_Website_Graphic_Cloud_3_Blue.svg" alt="" width={64} height={40}
-          className="pointer-events-none h-auto w-24 select-none opacity-50 animate-float-2" aria-hidden="true" />
+          className="pointer-events-none absolute right-6 top-10 h-auto w-24 select-none opacity-50 animate-float-2" aria-hidden="true" />
+        {/* Cloud — bottom right */}
         <Image src="/svg/clouds/Alongway_Website_Graphic_Cloud_2_Blue.svg" alt="" width={64} height={40}
-          className="pointer-events-none h-auto w-20 select-none opacity-60 animate-float-3" aria-hidden="true" />
-      </div>
-
-      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+          className="pointer-events-none absolute bottom-4 right-20 h-auto w-20 select-none opacity-60 animate-float-3" aria-hidden="true" />
         <SectionHeading
           eyebrow="What is Alongway?"
           title="A tighter line of bags, built for brands that want it handled."
