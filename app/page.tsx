@@ -53,13 +53,6 @@ export default function HomePage() {
         {/* Blue CTA panel — right 50% */}
         <div className="relative flex w-full flex-col items-start justify-center overflow-hidden bg-bone px-8 py-16 lg:w-1/2 lg:px-14">
           {/* For Now For Later badge — eyebrow */}
-          <Image
-            src="/svg/icons/Alongway_Website_Graphic_ForNowForLater_BadgeIcon_Blue.svg"
-            alt="For now, for later"
-            width={368}
-            height={368}
-            className="pointer-events-none mb-6 h-auto w-16 select-none opacity-90"
-          />
           {/* Headline */}
           <h1 className="font-display text-5xl font-extrabold leading-[1.05] text-blue lg:text-6xl">
             Custom Bags<br />Made Simple

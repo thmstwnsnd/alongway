@@ -315,7 +315,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <Link href="/portal" className="hidden text-sm font-medium text-bone/70 hover:text-bone sm:inline-flex">
               Sign in
             </Link>
-            <Link href="/swatches" className="hidden text-sm font-semibold text-charcoal/70 hover:text-light-blue md:inline-flex">
+            <Link href="/swatches" className="hidden text-sm font-display font-extrabold uppercase text-bone hover:text-bone/70 md:inline-flex">
               Get Swatches
             </Link>
             <Link
