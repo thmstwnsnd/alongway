@@ -114,8 +114,8 @@ export default function HomePage() {
             [
               { src: "/svg/icons/Alongway_Website_Graphic_Flower_Blue.svg", w: 200, h: 200 },
               { src: "/svg/icons/Alongway_Website_Graphic_SmileyFaace_Blue.svg", w: 188, h: 186 },
-              { src: "/svg/icons/Alongway_Website_Graphic_PeaceHand_Blue.svg", w: 269, h: 449 },
               { src: "/svg/icons/Alongway_Website_Graphic_BirdRight_Blue.svg", w: 200, h: 200 },
+              { src: "/svg/icons/Alongway_Website_Graphic_PeaceHand_Blue.svg", w: 269, h: 449 },
             ].map((icon) => (
               <Image
                 key={`${icon.src}-${i}`}
