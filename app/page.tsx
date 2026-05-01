@@ -187,14 +187,24 @@ export default function HomePage() {
               body="We got tired of watching brands settle for promo bags that go straight to the donation pile. So we built the thing we wished existed: a tight lineup of real bags, real materials, all-in pricing, and a team that actually gets it done."
             />
           </div>
-          <Image
-            src="/svg/illustrations/Alongway_Website_Graphic_WormHole_Blue.svg"
-            alt=""
-            width={560}
-            height={560}
-            className="pointer-events-none h-auto w-64 shrink-0 select-none lg:w-80"
-            aria-hidden="true"
-          />
+          {/* Lifestyle photo + WormHole stacked */}
+          <div className="relative shrink-0 self-start">
+            <div className="overflow-hidden rounded-2xl" style={{ width: "320px", height: "420px" }}>
+              <img
+                src="/photos/lifestyle-verve-cosmic-1.jpg"
+                alt="Custom branded bags in use"
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <Image
+              src="/svg/illustrations/Alongway_Website_Graphic_WormHole_Blue.svg"
+              alt=""
+              width={160}
+              height={160}
+              className="pointer-events-none absolute -bottom-8 -right-8 h-auto w-24 select-none opacity-90 lg:w-28"
+              aria-hidden="true"
+            />
+          </div>
         </div>
       </section>
 
@@ -260,6 +270,21 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
+
+      {/* ── 6b. PHOTO STRIP ── */}
+      <div className="mx-auto max-w-7xl px-6 pb-8 lg:px-10">
+        <div className="grid grid-cols-3 gap-3 overflow-hidden rounded-2xl">
+          {[
+            { src: "/photos/lifestyle-hsd-514.jpg",    alt: "High Street Deli lifestyle" },
+            { src: "/photos/lifestyle-gymshark.jpg",    alt: "Gymshark event totes" },
+            { src: "/photos/lifestyle-boatsetter-2.jpg",alt: "Boatsetter tote lifestyle" },
+          ].map((photo) => (
+            <div key={photo.src} className="relative overflow-hidden rounded-xl" style={{ height: "280px" }}>
+              <img src={photo.src} alt={photo.alt} className="h-full w-full object-cover" />
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* ── 7. WHY ALONGWAY — perks grid ── */}
       <section className="bg-bone">
