@@ -312,8 +312,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
               </svg>
             </Link>
-            <Link href="/portal" className="hidden text-sm font-medium text-bone/70 hover:text-bone sm:inline-flex">
-              Sign in
+            <Link href="/portal" className="hidden items-center justify-center sm:flex" aria-label="Account">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-bone/80 hover:text-bone">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+              </svg>
             </Link>
             <Link href="/swatches" className="hidden text-sm font-display font-extrabold uppercase text-bone hover:text-bone/70 md:inline-flex">
               Get Swatches
