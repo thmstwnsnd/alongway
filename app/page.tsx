@@ -150,7 +150,7 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-        {/* Checkered pattern — repeating, natural size */}
+        {/* Checkered pattern — repeating, natural size, light blue strokes */}
         <div
           aria-hidden="true"
           style={{
@@ -158,6 +158,8 @@ export default function HomePage() {
             backgroundImage: 'url(/svg/patterns/Alongway_Website_Graphic_CheckeredPattern_2.svg)',
             backgroundRepeat: 'repeat-x',
             backgroundSize: 'auto 32px',
+            borderTop: '3px solid #94A6D2',
+            borderBottom: '3px solid #94A6D2',
           }}
         />
       </section>
