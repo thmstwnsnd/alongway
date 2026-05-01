@@ -118,7 +118,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      <section className="relative mx-auto max-w-7xl overflow-visible px-6 py-20 lg:px-10">
+      <section className="relative mx-auto max-w-7xl overflow-visible px-6 py-28 lg:px-10">
         {/* Cloud — just above/left of heading */}
         <Image src="/svg/clouds/Alongway_Website_Graphic_Cloud_1_Blue.svg" alt="" width={64} height={40}
           className="pointer-events-none absolute top-6 left-2 h-auto w-20 select-none opacity-60 animate-float-1" aria-hidden="true" />
