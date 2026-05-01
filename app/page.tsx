@@ -6,9 +6,11 @@ import { SectionHeading } from "@/components/section-heading";
 import { ScrollBird } from "@/components/scroll-bird";
 import { ScrollRotateBadge } from "@/components/scroll-rotate-badge";
 import { TestimonialCarousel } from "@/components/testimonial-carousel";
-import { bags, getLifestyleImageUrl } from "@/data/bags";
+import { PhotoCarousel } from "@/components/photo-carousel";
+import { bags } from "@/data/bags";
 
 const featuredBags = bags.slice(0, 3);
+
 const steps = [
   {
     title: "Pick your bag",
@@ -27,6 +29,7 @@ const steps = [
     body: "30 days production + air freight to one US address. Included in your price.",
   },
 ];
+
 const trustedBrands = [
   "Stanford",
   "Stanford Medicine",
@@ -38,12 +41,45 @@ const trustedBrands = [
   "Verve Coffee",
 ];
 
+const perks = [
+  {
+    icon: "/svg/icons/Alongway_Website_Graphic_BirdRight_Blue.svg",
+    label: "Free air shipping",
+    body: "Every order ships air freight to one US address. No surprise freight bills.",
+  },
+  {
+    icon: "/svg/icons/Alongway_Website_Graphic_SunIcon_Blue.svg",
+    label: "Transparent pricing",
+    body: "Per-unit costs upfront. No hidden setup fees. No runaround.",
+  },
+  {
+    icon: "/svg/icons/Alongway_Website_Graphic_SmileyFaace_Blue.svg",
+    label: "Low MOQ",
+    body: "Start from 100 units. Scale when you're ready.",
+  },
+  {
+    icon: "/svg/icons/Alongway_Website_Graphic_Flower_Blue.svg",
+    label: "30-day production",
+    body: "Factory-to-door in 30 days. Rush available on select styles.",
+  },
+  {
+    icon: "/svg/icons/Alongway_Website_Graphic_PeaceHand_Blue.svg",
+    label: "Real support",
+    body: "A real person responds within one business day. No ticket queues.",
+  },
+  {
+    icon: "/svg/icons/Alongway_Website_Graphic_SurfSunIcon_Blue.svg",
+    label: "Retail-quality build",
+    body: "Same materials and finishing used by premium retail brands.",
+  },
+];
+
 export default function HomePage() {
   return (
     <div>
-      {/* Hero — 2/3 photo + 1/3 blue CTA panel */}
+      {/* ── 1. HERO ── */}
       <section className="flex h-[calc(90vh-100px)] min-h-[460px] w-full overflow-hidden">
-        {/* Photo — left 2/3 */}
+        {/* Photo — left half */}
         <div className="relative w-full lg:w-1/2">
           <img
             src="/hero.jpg"
@@ -52,22 +88,17 @@ export default function HomePage() {
           />
         </div>
 
-        {/* Blue CTA panel — right 50% */}
+        {/* CTA panel — right half */}
         <div className="relative flex w-full flex-col items-start justify-center overflow-hidden bg-bone px-8 py-16 lg:w-1/2 lg:px-14">
-          {/* For Now For Later badge — eyebrow */}
-          {/* Headline */}
           <h1 className="font-display text-5xl font-extrabold leading-[1.05] text-blue lg:text-6xl">
             Custom Bags<br />Made Simple
           </h1>
-          {/* Subtext */}
           <p className="mt-5 text-base leading-7 text-blue/75">
             From $12/unit. 100 minimum. Air shipping included.
           </p>
-          {/* Trust line */}
           <p className="font-accent mt-3 text-xs uppercase tracking-widest text-blue/60">
             100+ brands trust Alongway
           </p>
-          {/* CTAs */}
           <div className="mt-8 flex flex-col gap-3">
             <Link
               href="/collection"
@@ -79,24 +110,30 @@ export default function HomePage() {
               href="/start"
               className="font-sans text-sm font-semibold text-blue/70 underline underline-offset-4 hover:text-blue"
             >
-              Start Your Order <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Blue.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-1" aria-hidden="true" />
+              Start Your Order{" "}
+              <Image
+                src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Blue.svg"
+                alt=""
+                width={115}
+                height={79}
+                className="inline-block h-4 w-auto ml-1"
+                aria-hidden="true"
+              />
             </Link>
           </div>
-          {/* Mascot anchored to bottom-right, overflows */}
           <Image
             src="/svg/illustrations/Alongway_Website_Graphic_World_Blue.svg"
             alt=""
             width={892}
             height={722}
-            className="pointer-events-none absolute -bottom-16 h-auto w-[576px] select-none opacity-80 lg:w-[640px]" style={{ right: '-16px', transform: 'translateX(-40px)' }}
+            className="pointer-events-none absolute -bottom-16 h-auto w-[576px] select-none opacity-80 lg:w-[640px]"
+            style={{ right: "-16px", transform: "translateX(-40px)" }}
             aria-hidden="true"
           />
         </div>
       </section>
 
-
-      {/* Auto-scrolling icon marquee */}
-      {/* Auto-scrolling icon marquee */}
+      {/* ── 2. MARQUEE ── */}
       <div className="overflow-hidden border-y-4 border-blue bg-light-blue" style={{ height: "80px" }}>
         <div className="animate-marquee flex h-full w-max items-center gap-20 px-20">
           {Array.from({ length: 20 }).flatMap((_, i) =>
@@ -120,25 +157,51 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* ── 3. WHAT IS ALONGWAY? + Wormhole illustration ── */}
       <section className="relative mx-auto max-w-7xl overflow-visible px-6 py-28 lg:px-10">
-        {/* Cloud — just above heading text */}
-        <Image src="/svg/clouds/Alongway_Website_Graphic_Cloud_1_Blue.svg" alt="" width={64} height={40}
-          className="pointer-events-none absolute top-10 left-16 h-auto w-20 select-none opacity-60 animate-float-1" aria-hidden="true" />
-        {/* Cloud — right of heading, same vertical level */}
-        <Image src="/svg/clouds/Alongway_Website_Graphic_Cloud_3_Blue.svg" alt="" width={64} height={40}
-          className="pointer-events-none absolute right-10 top-1/4 h-auto w-24 select-none opacity-50 animate-float-2" aria-hidden="true" />
-        {/* Cloud — near bottom of body text */}
-        <Image src="/svg/clouds/Alongway_Website_Graphic_Cloud_2_Blue.svg" alt="" width={64} height={40}
-          className="pointer-events-none absolute bottom-10 right-24 h-auto w-20 select-none opacity-60 animate-float-3" aria-hidden="true" />
-        <SectionHeading
-          eyebrow="What is Alongway?"
-          title="A tighter line of bags, built for brands that want it handled."
-          body="We got tired of watching brands settle for promo bags that go straight to the donation pile. So we built the thing we wished existed: a tight lineup of real bags, real materials, all-in pricing, and a team that actually gets it done."
+        {/* Floating clouds */}
+        <Image
+          src="/svg/clouds/Alongway_Website_Graphic_Cloud_1_Blue.svg"
+          alt="" width={64} height={40}
+          className="pointer-events-none absolute top-10 left-16 h-auto w-20 select-none opacity-60 animate-float-1"
+          aria-hidden="true"
         />
+        <Image
+          src="/svg/clouds/Alongway_Website_Graphic_Cloud_3_Blue.svg"
+          alt="" width={64} height={40}
+          className="pointer-events-none absolute right-10 top-1/4 h-auto w-24 select-none opacity-50 animate-float-2"
+          aria-hidden="true"
+        />
+        <Image
+          src="/svg/clouds/Alongway_Website_Graphic_Cloud_2_Blue.svg"
+          alt="" width={64} height={40}
+          className="pointer-events-none absolute bottom-10 right-24 h-auto w-20 select-none opacity-60 animate-float-3"
+          aria-hidden="true"
+        />
+
+        <div className="flex flex-col gap-12 sm:flex-row sm:items-center">
+          <div className="flex-1">
+            <SectionHeading
+              eyebrow="What is Alongway?"
+              title="A tighter line of bags, built for brands that want it handled."
+              body="We got tired of watching brands settle for promo bags that go straight to the donation pile. So we built the thing we wished existed: a tight lineup of real bags, real materials, all-in pricing, and a team that actually gets it done."
+            />
+          </div>
+          <Image
+            src="/svg/illustrations/Alongway_Website_Graphic_WormHole_Blue.svg"
+            alt=""
+            width={560}
+            height={560}
+            className="pointer-events-none h-auto w-64 shrink-0 select-none lg:w-80"
+            aria-hidden="true"
+          />
+        </div>
       </section>
 
+      {/* ── 4. SCROLL BIRD ── */}
       <ScrollBird />
 
+      {/* ── 5. TRUSTED BRANDS ── */}
       <section className="bg-light-blue">
         <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-6 py-20 text-center lg:px-10">
           <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">
@@ -152,29 +215,28 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-        {/* Checkered pattern — repeating, natural size, light blue strokes */}
         <div
           aria-hidden="true"
           style={{
-            height: '48px',
-            backgroundColor: '#94A6D2',
-            backgroundImage: 'url(/svg/patterns/Alongway_Website_Graphic_CheckeredPattern_2.svg)',
-            backgroundRepeat: 'repeat-x',
-            backgroundSize: 'auto 100%',
-            backgroundPosition: 'left center',
-            borderTop: '4px solid #94A6D2',
-            borderBottom: '4px solid #94A6D2',
+            height: "48px",
+            backgroundColor: "#94A6D2",
+            backgroundImage: "url(/svg/patterns/Alongway_Website_Graphic_CheckeredPattern_2.svg)",
+            backgroundRepeat: "repeat-x",
+            backgroundSize: "auto 100%",
+            backgroundPosition: "left center",
+            borderTop: "4px solid #94A6D2",
+            borderBottom: "4px solid #94A6D2",
           }}
         />
       </section>
 
+      {/* ── 6. FEATURED BAGS ── */}
       <section className="mx-auto max-w-7xl px-6 pb-20 pt-[100px] lg:px-10">
         <div className="mb-10 flex items-end justify-between gap-6">
           <SectionHeading
             eyebrow="Featured bags"
             title="A focused assortment of premium silhouettes."
           />
-
         </div>
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {featuredBags.map((bag) => (
@@ -186,11 +248,46 @@ export default function HomePage() {
             href="/collection"
             className="inline-flex items-center rounded-full bg-blue px-8 py-3 text-sm font-semibold text-bone hover:-translate-y-0.5 hover:bg-light-blue hover:text-blue"
           >
-            View the full bag lineup <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Cream.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-1" aria-hidden="true" />
+            View the full bag lineup{" "}
+            <Image
+              src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Cream.svg"
+              alt=""
+              width={115}
+              height={79}
+              className="inline-block h-4 w-auto ml-1"
+              aria-hidden="true"
+            />
           </Link>
         </div>
       </section>
 
+      {/* ── 7. WHY ALONGWAY — perks grid ── */}
+      <section className="bg-bone">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+          <SectionHeading
+            eyebrow="Why Alongway"
+            title="Everything included. No surprises."
+          />
+          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {perks.map((perk) => (
+              <div key={perk.label} className="flex flex-col gap-3">
+                <Image
+                  src={perk.icon}
+                  alt=""
+                  width={48}
+                  height={48}
+                  className="pointer-events-none h-10 w-auto select-none"
+                  aria-hidden="true"
+                />
+                <h3 className="font-display text-base font-bold text-charcoal">{perk.label}</h3>
+                <p className="text-sm leading-6 text-charcoal/70">{perk.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 8. HOW IT WORKS ── */}
       <section className="border-y border-charcoal/10 bg-white">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
@@ -207,7 +304,6 @@ export default function HomePage() {
               ];
               return (
                 <div key={step.title} className="relative card-brand-light p-6 pt-10">
-                  {/* Floating icon */}
                   <div className="absolute -top-6 left-5">
                     <Image
                       src={icons[index]}
@@ -230,6 +326,18 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── 9. PHOTO CAROUSEL ── */}
+      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+        <SectionHeading eyebrow="The collection" title="Bags worth showing off." />
+        <div className="mt-10">
+          <PhotoCarousel />
+        </div>
+      </section>
+
+      {/* ── 10. TESTIMONIALS ── */}
+      <TestimonialCarousel />
+
+      {/* ── 11. READY TO START — final CTA ── */}
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
         <p className="font-accent mb-6 text-center text-sm text-charcoal/40">The finest bags in all the land.</p>
         <div className="relative rounded-[2.5rem] bg-charcoal px-8 py-12 text-bone sm:px-12">
@@ -237,7 +345,7 @@ export default function HomePage() {
           <div className="mt-4 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="space-y-2">
               <h2 className="font-display text-4xl font-extrabold tracking-tight">Bring your bag program together.</h2>
-              <p className="max-w-2xl text-base leading-7 text-bone/78">
+              <p className="max-w-2xl text-base leading-7 text-bone/80">
                 Tell us the bag, the artwork, and when you need it. We&apos;ll follow up with a timeline and a quote. No sales team. No runaround.
               </p>
             </div>
@@ -246,40 +354,14 @@ export default function HomePage() {
               className="inline-flex items-center rounded-full bg-blue px-6 py-3 font-display text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-white hover:text-charcoal"
             >
               Start Your Order
-              <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Cream.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-2" aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
-
-      </section>
-
-      <TestimonialCarousel />
-
-      {/* Wormhole section */}
-      <section className="mx-auto max-w-7xl px-6 py-32 lg:px-10">
-        <div className="flex flex-col items-center gap-14 sm:flex-row sm:items-center">
-          <Image
-            src="/svg/illustrations/Alongway_Website_Graphic_WormHole_Blue.svg"
-            alt=""
-            width={560}
-            height={560}
-            className="pointer-events-none h-auto w-80 shrink-0 select-none lg:w-[358px]"
-            aria-hidden="true"
-          />
-          <div className="space-y-4">
-            <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-blue/60">Built different</p>
-            <h2 className="font-display text-3xl font-extrabold tracking-tight text-charcoal lg:text-4xl">
-              Custom bags without the back-and-forth.
-            </h2>
-            <p className="max-w-xl text-base leading-7 text-charcoal/70">
-              Most custom bag programs take months of samples, surprise minimums, and a supplier who ghosts you. Alongway keeps it simple — one clear process, honest timelines, and bags you&apos;re actually proud to hand out.
-            </p>
-            <Link
-              href="/start"
-              className="inline-flex items-center rounded-full bg-blue px-6 py-3 font-display text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-charcoal"
-            >
-              Get started
-              <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Cream.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-2" aria-hidden="true" />
+              <Image
+                src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Cream.svg"
+                alt=""
+                width={115}
+                height={79}
+                className="inline-block h-4 w-auto ml-2"
+                aria-hidden="true"
+              />
             </Link>
           </div>
         </div>
