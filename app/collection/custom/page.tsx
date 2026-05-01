@@ -61,7 +61,7 @@ export default function CustomTotePage() {
       <div className="mt-16">
         <SectionHeading
           eyebrow="How custom works"
-          title="Tell us what you want. We handle everything else."
+          title="Straightforward from first idea to final delivery."
         />
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {steps.map((step, i) => {
