@@ -44,7 +44,7 @@ export default function HomePage() {
         {/* Photo — left 2/3 */}
         <div className="relative w-full lg:w-1/2">
           <img
-            src={getLifestyleImageUrl(0, "wide")}
+            src="/hero.jpg"
             alt="Alongway custom bags"
             className="absolute inset-0 h-full w-full object-cover"
           />
