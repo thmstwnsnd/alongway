@@ -19,7 +19,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang="en">
       <head>
-        <link rel="stylesheet" href="https://use.typekit.net/XXXXXXX.css" />
+        <link rel="stylesheet" href="https://use.typekit.net/uwz0pum.css" />
       </head>
       <body className="antialiased">
         <SiteShell>{children}</SiteShell>
