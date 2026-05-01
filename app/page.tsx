@@ -66,7 +66,7 @@ export default function HomePage() {
             alt=""
             width={892}
             height={722}
-            className="pointer-events-none mb-6 h-auto w-40 select-none opacity-90 lg:w-48"
+            className="pointer-events-none mb-6 h-auto w-80 select-none opacity-90 lg:w-96"
             aria-hidden="true"
           />
           <p className="font-accent mb-4 text-xs font-semibold uppercase tracking-[0.26em] text-bone/70">
