@@ -30,24 +30,35 @@ export function TestimonialCarousel() {
   const { lines, name, company } = testimonials[index];
 
   return (
-    <section className="bg-bone py-20 px-6">
+    <section className="bg-blue py-20 px-6">
       <div className="mx-auto max-w-4xl text-center">
+        {/* Double smiley above eyebrow */}
+        <div className="mb-4 flex justify-center">
+          <Image
+            src="/svg/icons/Alongway_Website_Graphic_DoubleSmileyFace_White.svg"
+            alt=""
+            width={200}
+            height={100}
+            className="pointer-events-none h-auto w-16 select-none opacity-70"
+            aria-hidden="true"
+          />
+        </div>
         {/* Eyebrow */}
-        <p className="font-display text-xs font-extrabold uppercase tracking-[0.25em] text-blue/60 mb-8">
+        <p className="font-display text-xs font-extrabold uppercase tracking-[0.25em] text-white/60 mb-8">
           Real Bags, Real People
         </p>
 
         {/* Quote row with arrows */}
-        <div className="relative flex items-center justify-center gap-6">
+        <div className="relative flex items-center justify-center gap-6 w-full">
           {/* Left arrow */}
           <button
             type="button"
             onClick={prev}
             aria-label="Previous testimonial"
-            className="flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity"
+            className="flex-shrink-0 opacity-90 hover:opacity-100 hover:scale-105 transition-all"
           >
             <Image
-              src="/svg/icons/Alongway_Website_Graphic_ArrowLeft_Blue.svg"
+              src="/svg/icons/Alongway_Website_Graphic_ArrowLeft_White.svg"
               alt="Previous"
               width={115}
               height={79}
@@ -56,17 +67,17 @@ export function TestimonialCarousel() {
           </button>
 
           {/* Quote */}
-          <blockquote className="flex-1">
-            <div className="font-display text-4xl font-extrabold leading-tight text-blue md:text-5xl lg:text-6xl min-h-[200px] md:min-h-[240px] flex flex-col items-center justify-center text-center">
+          <blockquote className="flex-1 text-center mx-auto">
+            <div className="font-display text-4xl font-extrabold leading-tight text-white md:text-5xl lg:text-6xl min-h-[200px] md:min-h-[240px] flex flex-col items-center justify-center text-center">
               {lines.map((line, i) => (
                 <div key={i}>
-                  {i === 0 && <span className="font-serif font-normal not-italic text-blue/30" aria-hidden="true">“</span>}
+                  {i === 0 && <span className="font-serif font-normal not-italic text-white/30" aria-hidden="true">“</span>}
                   {line}
-                  {i === lines.length - 1 && <span className="font-serif font-normal not-italic text-blue/30" aria-hidden="true">”</span>}
+                  {i === lines.length - 1 && <span className="font-serif font-normal not-italic text-white/30" aria-hidden="true">”</span>}
                 </div>
               ))}
             </div>
-            <cite className="mt-4 block font-display text-xs font-extrabold uppercase tracking-[0.2em] text-blue/50 not-italic">
+            <cite className="mt-4 block font-display text-xs font-extrabold uppercase tracking-[0.2em] text-white/50 not-italic">
               — {name}, {company}
             </cite>
           </blockquote>
@@ -76,10 +87,10 @@ export function TestimonialCarousel() {
             type="button"
             onClick={next}
             aria-label="Next testimonial"
-            className="flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity"
+            className="flex-shrink-0 opacity-90 hover:opacity-100 hover:scale-105 transition-all"
           >
             <Image
-              src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Blue.svg"
+              src="/svg/icons/Alongway_Website_Graphic_ArrowRight_White.svg"
               alt="Next"
               width={115}
               height={79}
@@ -88,17 +99,7 @@ export function TestimonialCarousel() {
           </button>
         </div>
 
-        {/* Double smiley at bottom center */}
-        <div className="mt-10 flex justify-center">
-          <Image
-            src="/svg/icons/Alongway_Website_Graphic_DoubleSmileyFace_Blue.svg"
-            alt=""
-            width={200}
-            height={100}
-            className="pointer-events-none h-auto w-16 select-none opacity-70"
-            aria-hidden="true"
-          />
-        </div>
+
       </div>
     </section>
   );

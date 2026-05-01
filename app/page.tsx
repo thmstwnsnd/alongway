@@ -7,6 +7,10 @@ import { ScrollBird } from "@/components/scroll-bird";
 import { ScrollRotateBadge } from "@/components/scroll-rotate-badge";
 import { TestimonialCarousel } from "@/components/testimonial-carousel";
 import { PhotoCarousel } from "@/components/photo-carousel";
+import { ScrollReveal } from "@/components/scroll-reveal";
+import { IconReveal } from "@/components/icon-reveal";
+import { PerksAccordion } from "@/components/perks-accordion";
+import { HeroSlideshow } from "@/components/hero-slideshow";
 import { bags } from "@/data/bags";
 
 const featuredBags = bags.slice(0, 3);
@@ -67,11 +71,6 @@ const perks = [
     label: "Real support",
     body: "A real person responds within one business day. No ticket queues.",
   },
-  {
-    icon: "/svg/icons/Alongway_Website_Graphic_SurfSunIcon_Blue.svg",
-    label: "Retail-quality build",
-    body: "Same materials and finishing used by premium retail brands.",
-  },
 ];
 
 export default function HomePage() {
@@ -79,46 +78,34 @@ export default function HomePage() {
     <div>
       {/* ── 1. HERO ── */}
       <section className="flex h-[calc(90vh-100px)] min-h-[460px] w-full overflow-hidden">
-        {/* Photo — left half */}
+        {/* Photo — left half, slideshow */}
         <div className="relative w-full lg:w-1/2">
-          <img
-            src="/hero.jpg"
-            alt="Alongway custom bags"
-            className="absolute inset-0 h-full w-full object-cover object-center"
-          />
+          <HeroSlideshow />
         </div>
 
         {/* CTA panel — right half */}
-        <div className="relative flex w-full flex-col items-start justify-center overflow-hidden bg-bone px-8 py-16 lg:w-1/2 lg:px-14">
+        <div className="relative flex w-full flex-col items-start justify-center overflow-hidden bg-bone py-16 pl-[62px] pr-8 lg:w-1/2 lg:pl-[86px] lg:pr-14">
           <h1 className="font-display text-5xl font-extrabold leading-[1.05] text-blue lg:text-6xl">
             Custom Bags<br />Made Simple
           </h1>
-          <p className="mt-5 text-base leading-7 text-blue/75">
-            From $12/unit. 100 minimum. Air shipping included.
+          <p className="mt-5 text-lg font-medium leading-7 text-blue/80">
+            All-in pricing. Free air freight. Nothing hidden. Ready in 5 weeks.
           </p>
-          <p className="font-accent mt-3 text-xs uppercase tracking-widest text-blue/60">
-            100+ brands trust Alongway
+          <p className="font-accent mt-3 text-sm uppercase tracking-widest text-blue/60">
+            For brands that care what they hand out.
           </p>
-          <div className="mt-8 flex flex-col gap-3">
+          <div className="mt-8 flex flex-row flex-wrap gap-3">
             <Link
               href="/collection"
-              className="inline-flex rounded-full bg-blue px-7 py-3.5 text-sm font-semibold text-bone hover:-translate-y-0.5 hover:bg-charcoal"
+              className="inline-flex items-center rounded-full bg-blue px-7 py-3.5 text-sm font-semibold text-bone hover:-translate-y-0.5 hover:bg-charcoal"
             >
               See the Collection
             </Link>
             <Link
               href="/start"
-              className="font-sans text-sm font-semibold text-blue/70 underline underline-offset-4 hover:text-blue"
+              className="inline-flex items-center rounded-full border-2 border-blue px-7 py-3.5 text-sm font-semibold text-blue hover:-translate-y-0.5 hover:bg-blue hover:text-bone"
             >
-              Start Your Order{" "}
-              <Image
-                src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Blue.svg"
-                alt=""
-                width={115}
-                height={79}
-                className="inline-block h-4 w-auto ml-1"
-                aria-hidden="true"
-              />
+              Start Your Order
             </Link>
           </div>
           <Image
@@ -248,7 +235,7 @@ export default function HomePage() {
             title="A focused assortment of premium silhouettes."
           />
         </div>
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
           {featuredBags.map((bag) => (
             <BagCard key={bag.slug} bag={bag} />
           ))}
@@ -271,21 +258,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── 6b. PHOTO STRIP ── */}
-      <div className="mx-auto max-w-7xl px-6 pb-8 lg:px-10">
-        <div className="grid grid-cols-3 gap-3 overflow-hidden rounded-2xl">
-          {[
-            { src: "/photos/lifestyle-hsd-514.jpg",    alt: "High Street Deli lifestyle" },
-            { src: "/photos/lifestyle-gymshark.jpg",    alt: "Gymshark event totes" },
-            { src: "/photos/lifestyle-boatsetter-2.jpg",alt: "Boatsetter tote lifestyle" },
-          ].map((photo) => (
-            <div key={photo.src} className="relative overflow-hidden rounded-xl" style={{ height: "280px" }}>
-              <img src={photo.src} alt={photo.alt} className="h-full w-full object-cover" />
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* ── 7. WHY ALONGWAY — perks grid ── */}
       <section className="bg-bone">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
@@ -293,22 +265,7 @@ export default function HomePage() {
             eyebrow="Why Alongway"
             title="Everything included. No surprises."
           />
-          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {perks.map((perk) => (
-              <div key={perk.label} className="flex flex-col gap-3">
-                <Image
-                  src={perk.icon}
-                  alt=""
-                  width={48}
-                  height={48}
-                  className="pointer-events-none h-10 w-auto select-none"
-                  aria-hidden="true"
-                />
-                <h3 className="font-display text-base font-bold text-charcoal">{perk.label}</h3>
-                <p className="text-sm leading-6 text-charcoal/70">{perk.body}</p>
-              </div>
-            ))}
-          </div>
+          <PerksAccordion />
         </div>
       </section>
 
@@ -319,34 +276,51 @@ export default function HomePage() {
             <SectionHeading eyebrow="How it works" title="Straightforward from first idea to final delivery." />
             <ScrollRotateBadge />
           </div>
-          <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4 items-stretch">
             {steps.map((step, index) => {
               const icons = [
-                "/svg/icons/Alongway_Website_Graphic_BirdRight_Blue.svg",
-                "/svg/icons/Alongway_Website_Graphic_PeaceHand_Blue.svg",
-                "/svg/icons/Alongway_Website_Graphic_SmileyFaace_Blue.svg",
-                "/svg/icons/Alongway_Website_Graphic_SunIcon_Blue.svg",
+                "/svg/icons/Alongway_Website_Graphic_BirdRight_BlueCream.svg",
+                "/svg/icons/Alongway_Website_Graphic_PeaceHand_BlueCream.svg",
+                "/svg/icons/Alongway_Website_Graphic_SmileyFaace_BlueCream.svg",
+                "/svg/icons/Alongway_Website_Graphic_SunIcon_BlueCream.svg",
               ];
               return (
-                <div key={step.title} className="relative card-brand-light p-6 pt-10">
-                  <div className="absolute -top-6 left-5">
-                    <Image
-                      src={icons[index]}
-                      alt=""
-                      width={48}
-                      height={48}
-                      className="pointer-events-none h-12 w-12 select-none"
-                      aria-hidden="true"
-                    />
+                <ScrollReveal key={step.title} delay={index * 130} rotate={[-1, 1.5, -1, 1][index]}>
+                <div className="relative pt-6 h-full">
+                  {/* Icon — behind card for peace sign (index 1), in front for all others */}
+                  <div className={`absolute ${index === 0 ? "left-[30px]" : "left-1/2 -translate-x-1/2"} ${index === 1 ? "z-0 -top-6" : "z-20 top-0"}`}>
+                    <IconReveal delay={index * 130 + 320}>
+                      <Image
+                        src={icons[index]}
+                        alt=""
+                        width={58}
+                        height={58}
+                        className="pointer-events-none h-14 w-14 select-none"
+                        aria-hidden="true"
+                      />
+                    </IconReveal>
                   </div>
-                  <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-blue/60">
-                    Step {index + 1}
-                  </p>
-                  <h3 className="font-display mt-3 text-lg font-bold tracking-tight text-blue">{step.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-charcoal/70">{step.body}</p>
+                  {/* Card on top */}
+                  <div className="relative z-10 card-brand-light p-6 pt-10 h-full">
+                    <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-blue/60">
+                      Step {index + 1}
+                    </p>
+                    <h3 className="font-display mt-3 text-lg font-bold tracking-tight text-blue">{step.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-charcoal/70">{step.body}</p>
+                  </div>
                 </div>
+                </ScrollReveal>
               );
             })}
+          </div>
+          <div className="mt-10 flex justify-center">
+            <Link
+              href="/start"
+              className="inline-flex items-center rounded-full bg-blue px-8 py-3.5 font-display text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-charcoal"
+            >
+              Get Started
+              <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Cream.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-2" aria-hidden="true" />
+            </Link>
           </div>
         </div>
       </section>
