@@ -180,9 +180,9 @@ export default function HomePage() {
         <div className="mt-10 flex justify-center">
           <Link
             href="/collection"
-            className="inline-flex rounded-full border border-charcoal/20 bg-white px-8 py-3 text-sm font-semibold text-charcoal hover:-translate-y-0.5 hover:border-charcoal hover:shadow-card"
+            className="inline-flex items-center rounded-full bg-light-blue px-8 py-3 text-sm font-semibold text-bone hover:-translate-y-0.5 hover:bg-blue"
           >
-            View the full bag lineup <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Blue.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-1" aria-hidden="true" />
+            View the full bag lineup <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Cream.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-1" aria-hidden="true" />
           </Link>
         </div>
       </section>
