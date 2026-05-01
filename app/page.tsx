@@ -107,7 +107,7 @@ export default function HomePage() {
       </section>
 
       {/* Auto-scrolling icon marquee */}
-      <div className="overflow-hidden bg-light-blue" style={{ height: "40px" }}>
+      <div className="overflow-hidden border-y-4 border-blue bg-light-blue" style={{ height: "40px" }}>
         <div className="animate-marquee flex h-full w-max items-center gap-8 px-8">
           {Array.from({ length: 12 }).flatMap((_, i) =>
             [
