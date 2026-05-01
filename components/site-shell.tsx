@@ -389,13 +389,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <Link href="/" className="flex items-center">
               <Image src="/logo-tan.svg" alt="Alongway" width={180} height={44} className="h-8 w-auto object-contain" />
             </Link>
-            <Image
-              src="/svg/typography/Alongway_Website_Graphic_MadeToCarryV1_Cream.svg"
-              alt="Made to carry"
-              width={180}
-              height={68}
-              className="pointer-events-none h-auto w-32 select-none opacity-90"
-            />
+
             <div className="flex items-center gap-3">
               <Image
                 src="/svg/icons/Alongway_Website_Graphic_SmileyFaace_Blue.svg"
