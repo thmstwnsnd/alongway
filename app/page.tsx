@@ -137,10 +137,6 @@ export default function HomePage() {
 
       <ScrollBird />
 
-      {/* Checkered pattern divider */}
-      <Image src="/svg/patterns/Alongway_Website_Graphic_CheckeredPattern_2.svg" alt="" width={1440} height={32}
-        className="pointer-events-none w-full select-none" style={{ height: '32px', objectFit: 'cover' }} aria-hidden="true" />
-
       <section className="bg-white">
         <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-6 py-20 text-center lg:px-10">
           <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">
@@ -154,6 +150,16 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+        {/* Checkered pattern — repeating, natural size */}
+        <div
+          aria-hidden="true"
+          style={{
+            height: '32px',
+            backgroundImage: 'url(/svg/patterns/Alongway_Website_Graphic_CheckeredPattern_2.svg)',
+            backgroundRepeat: 'repeat-x',
+            backgroundSize: 'auto 32px',
+          }}
+        />
       </section>
 
       <section className="mx-auto max-w-7xl px-6 pb-20 pt-[100px] lg:px-10">
