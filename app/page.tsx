@@ -51,7 +51,7 @@ export default function HomePage() {
         </div>
 
         {/* Blue CTA panel — right 50% */}
-        <div className="relative flex w-full flex-col items-start justify-center overflow-hidden bg-light-blue px-8 py-16 lg:w-1/2 lg:px-14">
+        <div className="relative flex w-full flex-col items-start justify-center overflow-hidden bg-bone px-8 py-16 lg:w-1/2 lg:px-14">
           {/* For Now For Later badge — eyebrow */}
           <Image
             src="/svg/icons/Alongway_Website_Graphic_ForNowForLater_BadgeIcon_Blue.svg"
