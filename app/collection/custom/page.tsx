@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { SectionHeading } from "@/components/section-heading";
 
@@ -62,18 +63,35 @@ export default function CustomTotePage() {
           eyebrow="How custom works"
           title="Tell us what you want. We handle everything else."
         />
-        <div className="mt-8 space-y-4">
-          {steps.map((step, i) => (
-            <div key={step.title} className="flex gap-6 rounded-[1.75rem] border border-charcoal/10 bg-white p-6 shadow-card">
-              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-blue text-sm font-bold text-white">
-                {i + 1}
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {steps.map((step, i) => {
+            const icons = [
+              "/svg/icons/Alongway_Website_Graphic_BirdRight_Blue.svg",
+              "/svg/icons/Alongway_Website_Graphic_PeaceHand_Blue.svg",
+              "/svg/icons/Alongway_Website_Graphic_SmileyFaace_Blue.svg",
+              "/svg/icons/Alongway_Website_Graphic_SunIcon_Blue.svg",
+              "/svg/icons/Alongway_Website_Graphic_Banner_Blue.svg",
+            ];
+            return (
+              <div key={step.title} className="relative flex flex-col rounded-[1.75rem] bg-blue p-6 pt-10 text-bone shadow-card">
+                {/* Floating icon */}
+                <div className="absolute -top-6 left-6">
+                  <Image
+                    src={icons[i]}
+                    alt=""
+                    width={48}
+                    height={48}
+                    className="pointer-events-none h-12 w-12 select-none"
+                    aria-hidden="true"
+                  />
+                </div>
+                {/* Step number */}
+                <span className="mb-2 font-display text-xs text-bone/40">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="font-display text-sm font-bold text-bone">{step.title}</h3>
+                <p className="mt-2 text-xs leading-5 text-bone/70">{step.body}</p>
               </div>
-              <div>
-                <h3 className="font-display font-bold">{step.emoji} {step.title}</h3>
-                <p className="mt-1 text-sm leading-6 text-charcoal/70">{step.body}</p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
