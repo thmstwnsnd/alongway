@@ -5,15 +5,15 @@ import { useState } from "react";
 
 const testimonials = [
   {
-    quote: "The finest bags in all the land.",
+    lines: ["THE FINEST", "BAGS IN ALL", "THE LAND"],
     author: "A Real Customer",
   },
   {
-    quote: "We've ordered three times and every run is perfect.",
+    lines: ["EVERY RUN", "IS PERFECT."],
     author: "A Real Brand",
   },
   {
-    quote: "Finally a bag company that actually gets it done.",
+    lines: ["FINALLY A BAG", "COMPANY THAT", "GETS IT DONE."],
     author: "A Real Person",
   },
 ];
@@ -24,7 +24,7 @@ export function TestimonialCarousel() {
   const prev = () => setIndex((i) => (i - 1 + testimonials.length) % testimonials.length);
   const next = () => setIndex((i) => (i + 1) % testimonials.length);
 
-  const { quote, author } = testimonials[index];
+  const { lines, author } = testimonials[index];
 
   return (
     <section className="bg-bone py-20 px-6">
@@ -54,10 +54,16 @@ export function TestimonialCarousel() {
 
           {/* Quote */}
           <blockquote className="flex-1">
-            <p className="font-display text-4xl font-extrabold leading-tight text-blue md:text-5xl lg:text-6xl">
-              {quote.toUpperCase()}
-            </p>
-            <cite className="mt-6 block font-display text-xs font-extrabold uppercase tracking-[0.2em] text-blue/50 not-italic">
+            {/* Opening quote mark */}
+            <span className="font-serif text-7xl leading-none text-blue/20 select-none" aria-hidden="true">“</span>
+            <div className="font-display text-4xl font-extrabold leading-tight text-blue md:text-5xl lg:text-6xl -mt-4">
+              {lines.map((line, i) => (
+                <div key={i}>{line}</div>
+              ))}
+            </div>
+            {/* Closing quote mark */}
+            <span className="font-serif text-7xl leading-none text-blue/20 select-none" aria-hidden="true">”</span>
+            <cite className="mt-4 block font-display text-xs font-extrabold uppercase tracking-[0.2em] text-blue/50 not-italic">
               — {author}
             </cite>
           </blockquote>
