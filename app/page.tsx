@@ -93,7 +93,30 @@ export default function HomePage() {
       </section>
 
 
-      <ScrollBird />
+      {/* Auto-scrolling icon marquee */}
+      {/* Auto-scrolling icon marquee */}
+      <div className="overflow-hidden border-y-4 border-blue bg-light-blue" style={{ height: "80px" }}>
+        <div className="animate-marquee flex h-full w-max items-center gap-20 px-20">
+          {Array.from({ length: 20 }).flatMap((_, i) =>
+            [
+              { src: "/svg/icons/Alongway_Website_Graphic_Flower_Blue.svg", w: 200, h: 200 },
+              { src: "/svg/icons/Alongway_Website_Graphic_SmileyFaace_Blue.svg", w: 188, h: 186 },
+              { src: "/svg/icons/Alongway_Website_Graphic_BirdRight_Blue.svg", w: 200, h: 200 },
+              { src: "/svg/icons/Alongway_Website_Graphic_PeaceHand_Blue.svg", w: 269, h: 449 },
+            ].map((icon) => (
+              <Image
+                key={`${icon.src}-${i}`}
+                src={icon.src}
+                alt=""
+                width={icon.w}
+                height={icon.h}
+                className="pointer-events-none h-10 w-auto flex-none select-none"
+                aria-hidden="true"
+              />
+            )),
+          )}
+        </div>
+      </div>
 
       <div className="mx-auto flex max-w-sm items-center justify-center gap-8 px-6 py-8">
         {[
@@ -121,30 +144,7 @@ export default function HomePage() {
         />
       </section>
 
-      {/* Auto-scrolling icon marquee */}
-      {/* Auto-scrolling icon marquee */}
-      <div className="overflow-hidden border-y-4 border-blue bg-light-blue" style={{ height: "80px" }}>
-        <div className="animate-marquee flex h-full w-max items-center gap-20 px-20">
-          {Array.from({ length: 20 }).flatMap((_, i) =>
-            [
-              { src: "/svg/icons/Alongway_Website_Graphic_Flower_Blue.svg", w: 200, h: 200 },
-              { src: "/svg/icons/Alongway_Website_Graphic_SmileyFaace_Blue.svg", w: 188, h: 186 },
-              { src: "/svg/icons/Alongway_Website_Graphic_BirdRight_Blue.svg", w: 200, h: 200 },
-              { src: "/svg/icons/Alongway_Website_Graphic_PeaceHand_Blue.svg", w: 269, h: 449 },
-            ].map((icon) => (
-              <Image
-                key={`${icon.src}-${i}`}
-                src={icon.src}
-                alt=""
-                width={icon.w}
-                height={icon.h}
-                className="pointer-events-none h-10 w-auto flex-none select-none"
-                aria-hidden="true"
-              />
-            )),
-          )}
-        </div>
-      </div>
+      <ScrollBird />
 
       <section className="border-y border-charcoal/10 bg-white">
         <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-6 py-10 text-center lg:px-10">
