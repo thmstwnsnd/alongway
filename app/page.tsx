@@ -42,7 +42,7 @@ export default function HomePage() {
       {/* Hero — 2/3 photo + 1/3 blue CTA panel */}
       <section className="flex h-[90vh] min-h-[560px] w-full overflow-hidden">
         {/* Photo — left 2/3 */}
-        <div className="relative w-full lg:w-2/3">
+        <div className="relative w-full lg:w-1/2">
           <img
             src={getLifestyleImageUrl(0, "wide")}
             alt="Alongway custom bags"
@@ -51,7 +51,7 @@ export default function HomePage() {
         </div>
 
         {/* Blue CTA panel — right 1/3 */}
-        <div className="relative flex w-full flex-col items-start justify-center bg-blue px-8 py-16 lg:w-1/3 lg:px-12">
+        <div className="relative flex w-full flex-col items-start justify-center bg-blue px-8 py-16 lg:w-1/2 lg:px-12">
           {/* Decorative cloud */}
           <Image
             src="/svg/clouds/Alongway_Website_Graphic_Cloud_1_Blue.svg"
