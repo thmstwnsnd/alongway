@@ -197,8 +197,8 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
     <section className={compact ? "space-y-0" : "rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card sm:p-8"}>
       {!compact && (
         <div className="space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-kelly">Configure your order</p>
-          <h2 className="text-3xl font-bold tracking-tight">Dial in the material, add-ons, and quantity.</h2>
+          <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-kelly">Configure your order</p>
+          <h2 className="font-display text-3xl font-bold tracking-tight">Dial in the material, add-ons, and quantity.</h2>
           <p className="max-w-3xl text-base leading-7 text-charcoal/72">
             Start with the standard bag price, then see how upgraded fabrics and extra details change the estimate in real time.
           </p>
@@ -209,7 +209,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
       {compact ? (
         /* Compact inline quantity row for right-column layout */
         <div className="mt-6 flex items-center gap-3 rounded-[1.25rem] border border-charcoal/10 bg-light-bone px-4 py-3">
-          <span className="text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/50 flex-shrink-0">Qty</span>
+          <span className="font-accent text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/50 flex-shrink-0">Qty</span>
           <input
             type="range"
             min={100}
@@ -234,7 +234,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
         /* Full-width slider for standalone layout */
         <div className="mt-8 rounded-[2rem] border border-charcoal/10 bg-light-bone p-5">
           <div className="flex items-center justify-between gap-4 mb-4">
-            <h3 className="text-base font-bold tracking-tight">Quantity</h3>
+            <h3 className="font-display text-base font-bold tracking-tight">Quantity</h3>
             <input
               type="number"
               min={100}
@@ -264,7 +264,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
           {/* ── Fabric selector ── */}
           <div className="rounded-[2rem] border border-charcoal/10 bg-light-bone p-5 min-w-0 overflow-hidden">
             <div className="flex items-center justify-between gap-4 mb-4">
-              <h3 className="text-base font-bold tracking-tight">Fabric</h3>
+              <h3 className="font-display text-base font-bold tracking-tight">Fabric</h3>
               <Link href="/swatches" className="text-xs font-semibold text-blue hover:text-charcoal">Browse swatches →</Link>
             </div>
 
@@ -340,7 +340,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
           </div>
 
           <div className="rounded-[2rem] border border-charcoal/10 bg-light-bone p-5">
-            <h3 className="mb-4 text-base font-bold tracking-tight">Decoration</h3>
+            <h3 className="font-display mb-4 text-base font-bold tracking-tight">Decoration</h3>
             <div className="flex flex-wrap gap-2">
               {decorationTypes.map((option) => {
                 const isSelected = decorationType === option;
@@ -362,7 +362,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
             {decorationType === "Screen Print" && (
               <div className="mt-5 grid gap-5 lg:grid-cols-2">
                 <div className="space-y-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Front placement</p>
+                  <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Front placement</p>
                   <div className="flex flex-wrap gap-2">
                     {frontColorOptions.map((option) => {
                       const isSelected = frontColors === option.value;
@@ -382,7 +382,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                   </div>
                 </div>
                 <div className="space-y-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Back placement</p>
+                  <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Back placement</p>
                   <div className="flex flex-wrap gap-2">
                     {backColorOptions.map((option) => {
                       const isSelected = backColors === option.value;
@@ -406,7 +406,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
 
             {decorationType === "Embroidery" && (
               <div className="mt-5 space-y-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Placement</p>
+                <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Placement</p>
                 <div className="flex flex-wrap gap-2">
                   {embroideryPlacementOptions.map((option) => {
                     const isSelected = embroideryPlacements === option.value;
@@ -430,7 +430,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
             {/* ── Color slots ── */}
             {totalColorSlots > 0 && (
               <div className="mt-5 space-y-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Ink colors</p>
+                <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Ink colors</p>
                 <div className="grid gap-3 sm:grid-cols-2">
                   {Array.from({ length: totalColorSlots }).map((_, i) => (
                     <div key={i} className="flex items-center gap-3 rounded-[1.25rem] border border-charcoal/10 bg-white px-4 py-3">
@@ -484,7 +484,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
 
           {/* ── Add-ons ── */}
           <div className="rounded-[2rem] border border-charcoal/10 bg-light-bone p-5">
-            <h3 className="text-base font-bold tracking-tight mb-4">Add-ons</h3>
+            <h3 className="font-display text-base font-bold tracking-tight mb-4">Add-ons</h3>
             <div className="flex flex-wrap gap-2">
               {addOns.map((addOn) => {
                 const isSelected = selectedAddOnIds.includes(addOn.id);
@@ -528,11 +528,11 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
         </div>
 
         <aside className="h-fit rounded-[2rem] border border-charcoal/10 bg-light-bone p-6 xl:sticky xl:top-28">
-          <h3 className="text-xl font-bold tracking-tight">Live price calculator</h3>
+          <h3 className="font-display text-xl font-bold tracking-tight">Live price calculator</h3>
 
           <div className="mt-5 space-y-3">
             <div className="flex items-center justify-between gap-3">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">Quantity</p>
+              <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">Quantity</p>
               <input
                 type="number"
                 min={100}

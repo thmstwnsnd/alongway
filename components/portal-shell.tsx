@@ -24,7 +24,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
               <Link href="/portal/dashboard" className="flex items-center">
                 <Image src="/logo-blue.svg" alt="Alongway" width={180} height={44} className="h-8 w-auto object-contain" priority />
               </Link>
-              <span className="hidden rounded-full border border-charcoal/10 bg-light-bone px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/60 sm:inline-flex">
+              <span className="font-accent hidden rounded-full border border-charcoal/10 bg-light-bone px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/60 sm:inline-flex">
                 Customer Portal
               </span>
             </div>

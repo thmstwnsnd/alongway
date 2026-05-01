@@ -47,8 +47,8 @@ export function OrderConfirmationPage() {
           <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-blue/12 text-5xl text-kelly">
             ✓
           </div>
-          <p className="mt-8 text-sm font-semibold uppercase tracking-[0.24em] text-kelly">Order confirmed</p>
-          <h1 className="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">Order confirmed.</h1>
+          <p className="font-accent mt-8 text-sm font-semibold uppercase tracking-[0.24em] text-kelly">Order confirmed</p>
+          <h1 className="font-display mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">Order confirmed.</h1>
           <p className="mt-4 text-lg leading-8 text-charcoal/72">
             You&apos;re not just done — you&apos;re just getting started.
           </p>
@@ -66,7 +66,7 @@ export function OrderConfirmationPage() {
                 ) : null}
               </div>
               <div className="pb-8">
-                <h2 className="text-xl font-bold tracking-tight">{step.title}</h2>
+                <h2 className="font-display text-xl font-bold tracking-tight">{step.title}</h2>
                 <p className="mt-2 text-base leading-7 text-charcoal/72">{step.description}</p>
               </div>
             </div>

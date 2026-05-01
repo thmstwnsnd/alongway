@@ -92,11 +92,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
   };
 
   if (isPortalRoute) {
-    return <div className="min-h-screen">{children}</div>;
+    return <div className="min-h-screen font-sans">{children}</div>;
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen font-sans">
       <header className="sticky top-0 z-50 border-b border-charcoal/10 bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-10">
           <Link href="/" className="flex items-center">
@@ -214,7 +214,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <section className="bg-charcoal px-6 py-12 text-white lg:px-10">
         <div className="mx-auto flex max-w-7xl flex-col items-center gap-5 text-center">
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tight">Need a hand?</h2>
+            <h2 className="font-display text-3xl font-bold tracking-tight">Need a hand?</h2>
             <p className="max-w-2xl text-sm leading-7 text-white/75 sm:text-base">
               Not sure which bag is right? Want to talk through your project?
             </p>
@@ -235,7 +235,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <Link href="/" className="flex items-center">
               <Image src="/logo-tan.svg" alt="Alongway" width={180} height={44} className="h-8 w-auto object-contain" />
             </Link>
-            <p className="max-w-md text-sm text-bone/80">Made to carry.</p>
+            <p className="font-accent max-w-md text-sm text-bone/80">Made to carry.</p>
             <a
               href="https://instagram.com/alongwayco"
               target="_blank"
@@ -291,7 +291,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
               Start Your Order
             </Link>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-bone/40">Questions? Text us.</p>
+              <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-bone/40">Questions? Text us.</p>
               <a
                 href="sms:+10000000000"
                 className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-bone hover:text-kelly"

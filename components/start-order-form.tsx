@@ -18,8 +18,8 @@ export function StartOrderForm() {
   if (submitted) {
     return (
       <div className="rounded-[2rem] border border-charcoal/10 bg-white p-8 shadow-card sm:p-10">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Request received</p>
-        <h2 className="mt-3 text-3xl font-extrabold tracking-tight">Thank you for reaching out.</h2>
+        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Request received</p>
+        <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight">Thank you for reaching out.</h2>
         <p className="mt-4 max-w-2xl text-base leading-7 text-charcoal/75">
           We&apos;ll review your bag style, artwork status, and timeline, then follow up with next steps.
         </p>

@@ -43,7 +43,7 @@ export function PortalSectionCard({
   return (
     <section className="rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card sm:p-8">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <h2 className="text-2xl font-bold tracking-tight text-charcoal">{title}</h2>
+        <h2 className="font-display text-2xl font-bold tracking-tight text-charcoal">{title}</h2>
         {action}
       </div>
       <div className="mt-6">{children}</div>
@@ -65,7 +65,7 @@ export function PortalOrderCard({ order }: { order: PortalOrder }) {
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div className="space-y-2">
           <div className="flex flex-wrap items-center gap-3">
-            <h3 className="text-lg font-bold tracking-tight text-charcoal">{order.orderNumber}</h3>
+            <h3 className="font-display text-lg font-bold tracking-tight text-charcoal">{order.orderNumber}</h3>
             <StatusBadge status={order.status} />
           </div>
           <p className="text-base font-medium text-charcoal">{order.bagName} × {order.quantity}</p>

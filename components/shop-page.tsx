@@ -91,7 +91,7 @@ export function ShopPage() {
                     <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-blue text-xs font-bold text-white">✓</span>
                     <p className="text-base font-bold tracking-tight">{selectedBag.name}</p>
                   </div>
-                  <p className="mt-0.5 text-sm text-charcoal/60">{selectedBag.tagline}</p>
+                  <p className="font-accent mt-0.5 text-sm text-charcoal/60">{selectedBag.tagline}</p>
                 </div>
                 <button
                   type="button"
@@ -128,8 +128,8 @@ export function ShopPage() {
                       <div className="space-y-2 p-4">
                         <div className="flex items-start justify-between gap-3">
                           <div>
-                            <h3 className="text-lg font-bold tracking-tight">{bag.name}</h3>
-                            <p className="mt-1 text-sm leading-6 text-charcoal/65">{bag.tagline}</p>
+                            <h3 className="font-display text-lg font-bold tracking-tight">{bag.name}</h3>
+                            <p className="font-accent mt-1 text-sm leading-6 text-charcoal/65">{bag.tagline}</p>
                           </div>
                           <span
                             className={`inline-flex h-7 w-7 items-center justify-center rounded-full border text-sm font-bold ${
@@ -141,7 +141,7 @@ export function ShopPage() {
                             ✓
                           </span>
                         </div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">
+                        <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">
                           Starting at ${bag.startingPrice.toFixed(2)}
                         </p>
                       </div>
@@ -195,7 +195,7 @@ export function ShopPage() {
                 <div className="mt-6 rounded-[1.5rem] border border-charcoal/10 bg-light-bone p-5">
                   <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                     <div>
-                      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">Configured build</p>
+                      <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">Configured build</p>
                       <p className="mt-2 text-base font-bold tracking-tight text-charcoal">{fabric.name}</p>
                       <p className="mt-1 text-sm leading-6 text-charcoal/68">
                         {fabric.upcharge > 0 ? `Fabric upcharge: +${formatCurrency(fabric.upcharge)} per unit.` : "Starter fabric included."}
@@ -363,8 +363,8 @@ function StepHeading({
 }) {
   return (
     <div>
-      <p className="text-sm font-semibold uppercase tracking-[0.22em] text-kelly">{number}</p>
-      <h2 className="mt-3 text-3xl font-bold tracking-tight">{title}</h2>
+      <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-kelly">{number}</p>
+      <h2 className="font-display mt-3 text-3xl font-bold tracking-tight">{title}</h2>
       <p className="mt-2 max-w-2xl text-base leading-7 text-charcoal/72">{body}</p>
     </div>
   );

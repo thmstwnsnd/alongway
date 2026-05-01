@@ -58,8 +58,8 @@ export function EmailCaptureModal() {
       <div className="w-full max-w-xl rounded-3xl bg-bone p-8 text-charcoal shadow-card sm:p-10">
         {isSubmitted ? (
           <div className="space-y-4 text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-kelly">You&apos;re in</p>
-            <h2 className="text-3xl font-extrabold tracking-tight">Nice. We&apos;ll be in touch when you&apos;re ready to order. 🍊</h2>
+            <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-kelly">You&apos;re in</p>
+            <h2 className="font-display text-3xl font-extrabold tracking-tight">Nice. We&apos;ll be in touch when you&apos;re ready to order. 🍊</h2>
             <button
               type="button"
               onClick={() => setIsOpen(false)}
@@ -71,8 +71,8 @@ export function EmailCaptureModal() {
         ) : (
           <div className="space-y-6">
             <div className="space-y-3 text-center">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-kelly">First order perk</p>
-              <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Get 10 free totes with your first order.</h2>
+              <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-kelly">First order perk</p>
+              <h2 className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">Get 10 free totes with your first order.</h2>
               <p className="text-base leading-7 text-charcoal/72">
                 A $150 value added to your first custom run. Enter your email and we&apos;ll reach out.
               </p>

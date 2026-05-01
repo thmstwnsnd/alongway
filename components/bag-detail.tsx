@@ -92,19 +92,19 @@ export function BagDetail({ bag }: { bag: Bag }) {
           {/* Mini specs strip */}
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-[1.25rem] border border-charcoal/10 bg-white px-4 py-3 shadow-card">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/45">Dimensions</p>
+              <p className="font-accent text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/45">Dimensions</p>
               <p className="mt-1 text-sm font-medium text-charcoal">{bag.dimensions}</p>
             </div>
             <div className="rounded-[1.25rem] border border-charcoal/10 bg-white px-4 py-3 shadow-card">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/45">Material</p>
+              <p className="font-accent text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/45">Material</p>
               <p className="mt-1 text-sm font-medium text-charcoal">{bag.material}</p>
             </div>
             <div className="rounded-[1.25rem] border border-charcoal/10 bg-light-bone px-4 py-3">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/45">MOQ</p>
+              <p className="font-accent text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/45">MOQ</p>
               <p className="mt-1 text-sm font-medium text-charcoal">100 units</p>
             </div>
             <div className="rounded-[1.25rem] border border-charcoal/10 bg-light-bone px-4 py-3">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/45">Production</p>
+              <p className="font-accent text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/45">Production</p>
               <p className="mt-1 text-sm font-medium text-charcoal">~30 days</p>
             </div>
           </div>
@@ -127,8 +127,8 @@ export function BagDetail({ bag }: { bag: Bag }) {
           )}
 
           <div>
-            <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">{bag.name}</h1>
-            <p className="mt-2 text-base leading-7 text-charcoal/70">{bag.tagline}</p>
+            <h1 className="font-display text-4xl font-extrabold tracking-tight lg:text-5xl">{bag.name}</h1>
+            <p className="font-accent mt-2 text-base leading-7 text-charcoal/70">{bag.tagline}</p>
           </div>
 
           {/* Feature tags */}
@@ -155,7 +155,7 @@ export function BagDetail({ bag }: { bag: Bag }) {
 
       {/* ── Below-fold: accordions, pricing, templates ── */}
       <div className="mt-14 space-y-4 max-w-3xl">
-        <h2 className="text-2xl font-bold tracking-tight">Details</h2>
+        <h2 className="font-display text-2xl font-bold tracking-tight">Details</h2>
 
         <details className="group rounded-[1.5rem] border border-charcoal/10 bg-white px-6 py-5 shadow-card open:bg-light-bone">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
@@ -208,7 +208,7 @@ export function BagDetail({ bag }: { bag: Bag }) {
         {/* Pricing tiers */}
         <div className="overflow-hidden rounded-[2rem] border border-charcoal/10 bg-white shadow-card">
           <div className="border-b border-charcoal/10 px-6 py-4">
-            <h2 className="text-xl font-bold tracking-tight">Pricing tiers</h2>
+            <h2 className="font-display text-xl font-bold tracking-tight">Pricing tiers</h2>
           </div>
           <div className="overflow-x-auto">
             <table className="min-w-full text-left text-sm">
@@ -262,7 +262,7 @@ export function BagDetail({ bag }: { bag: Bag }) {
 function Spec({ label, value }: { label: string; value: string }) {
   return (
     <div className="space-y-2">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">{label}</p>
+      <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">{label}</p>
       <p className="text-sm leading-6 text-charcoal">{value}</p>
     </div>
   );

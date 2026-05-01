@@ -35,7 +35,7 @@ export function OrderSummaryCard({
 
   return (
     <aside className="rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card sm:p-8">
-      <h2 className="text-2xl font-bold tracking-tight">Your order</h2>
+      <h2 className="font-display text-2xl font-bold tracking-tight">Your order</h2>
 
       <div className="mt-6 space-y-4 rounded-[1.5rem] bg-light-bone p-5">
         <SummaryRow
@@ -72,7 +72,7 @@ export function OrderSummaryCard({
       </div>
 
       <div className="mt-8">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">What&apos;s included</p>
+        <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">What&apos;s included</p>
         <ul className="mt-4 space-y-3 text-sm text-charcoal/80">
           {includedOrderItems.map((item) => (
             <li key={item} className="flex items-center gap-3">

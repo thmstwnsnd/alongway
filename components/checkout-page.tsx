@@ -162,7 +162,7 @@ export function CheckoutPage() {
                         <div className="flex flex-wrap items-center gap-2">
                           <p className="text-base font-semibold text-charcoal">{option.label}</p>
                           {option.id === "standard" ? (
-                            <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-charcoal/65">
+                            <span className="font-accent rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-charcoal/65">
                               Default
                             </span>
                           ) : null}
@@ -316,7 +316,7 @@ function CheckoutSection({
 }) {
   return (
     <section className="rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card sm:p-8">
-      <h2 className="text-2xl font-bold tracking-tight">{title}</h2>
+      <h2 className="font-display text-2xl font-bold tracking-tight">{title}</h2>
       <div className="mt-6">{children}</div>
     </section>
   );

@@ -150,8 +150,8 @@ export function CollectionGrid() {
           <div className="space-y-4 p-6">
             <div className="space-y-2">
               <div className="flex items-center justify-between gap-4">
-                <h3 className="text-2xl font-bold tracking-tight text-bone">Fully Custom</h3>
-                <span className="rounded-full bg-blue px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-white">
+                <h3 className="font-display text-2xl font-bold tracking-tight text-bone">Fully Custom</h3>
+                <span className="font-accent rounded-full bg-blue px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-white">
                   bespoke
                 </span>
               </div>

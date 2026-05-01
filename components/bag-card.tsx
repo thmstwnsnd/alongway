@@ -15,12 +15,12 @@ export function BagCard({ bag }: { bag: Bag }) {
         <div className="h-0.5 w-8 rounded-full bg-kelly/50" />
         <div className="space-y-2">
           <div className="flex items-center justify-between gap-4">
-            <h3 className="text-2xl font-bold tracking-tight">{bag.name}</h3>
-            <span className="rounded-full bg-light-bone px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-charcoal/70">
+            <h3 className="font-display text-2xl font-bold tracking-tight">{bag.name}</h3>
+            <span className="font-accent rounded-full bg-light-bone px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-charcoal/70">
               {bag.size}
             </span>
           </div>
-          <p className="text-sm leading-6 text-charcoal/70">{bag.tagline}</p>
+          <p className="font-accent text-sm leading-6 text-charcoal/70">{bag.tagline}</p>
         </div>
         <div className="flex items-center justify-between gap-4">
           <div>
