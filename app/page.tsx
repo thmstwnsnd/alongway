@@ -86,7 +86,7 @@ export default function HomePage() {
             alt=""
             width={892}
             height={722}
-            className="pointer-events-none absolute -bottom-16 -right-16 h-auto w-[576px] select-none opacity-80 lg:w-[640px]"
+            className="pointer-events-none absolute -bottom-16 h-auto w-[576px] select-none opacity-80 lg:w-[640px]" style={{ right: '-16px', transform: 'translateX(-40px)' }}
             aria-hidden="true"
           />
         </div>
