@@ -138,7 +138,7 @@ export default function HomePage() {
       <ScrollBird />
 
       <section className="border-y border-charcoal/10 bg-white">
-        <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-6 py-10 text-center lg:px-10">
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-6 py-20 text-center lg:px-10">
           <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">
             Trusted by brands that care about quality
           </p>
