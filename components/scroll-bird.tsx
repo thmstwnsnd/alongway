@@ -59,7 +59,7 @@ export function ScrollBird() {
         <span
           className="select-none font-display text-4xl font-extrabold tracking-[0.18em] text-blue lg:text-5xl"
           style={{
-            clipPath: `inset(0 ${Math.max(0, Math.round(100 - birdX))}% 0 0)`,
+            clipPath: `inset(0 ${Math.max(0, Math.round(100 - birdX - 20))}% 0 0)`,
           }}
         >
           MADE TO CARRY.
