@@ -107,9 +107,10 @@ export default function HomePage() {
       </section>
 
       {/* Auto-scrolling icon marquee */}
-      <div className="overflow-hidden border-y-4 border-blue bg-light-blue" style={{ height: "40px" }}>
-        <div className="animate-marquee flex h-full w-max items-center gap-8 px-8">
-          {Array.from({ length: 12 }).flatMap((_, i) =>
+      {/* Auto-scrolling icon marquee */}
+      <div className="overflow-hidden border-y-4 border-blue bg-light-blue" style={{ height: "80px" }}>
+        <div className="animate-marquee flex h-full w-max items-center gap-10 px-10">
+          {Array.from({ length: 20 }).flatMap((_, i) =>
             [
               { src: "/svg/icons/Alongway_Website_Graphic_SunIcon_Blue.svg", w: 345, h: 345 },
               { src: "/svg/icons/Alongway_Website_Graphic_SmileyFaace_Blue.svg", w: 188, h: 186 },
@@ -121,7 +122,7 @@ export default function HomePage() {
                 alt=""
                 width={icon.w}
                 height={icon.h}
-                className="pointer-events-none h-5 w-auto flex-none select-none"
+                className="pointer-events-none h-10 w-auto flex-none select-none"
                 aria-hidden="true"
               />
             )),
