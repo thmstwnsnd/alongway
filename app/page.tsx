@@ -40,7 +40,7 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero — 2/3 photo + 1/3 blue CTA panel */}
-      <section className="flex h-[90vh] min-h-[560px] w-full overflow-hidden">
+      <section className="flex h-[calc(90vh-100px)] min-h-[460px] w-full overflow-hidden">
         {/* Photo — left 2/3 */}
         <div className="relative w-full lg:w-1/2">
           <img
