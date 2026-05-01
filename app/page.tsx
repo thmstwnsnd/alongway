@@ -109,7 +109,7 @@ export default function HomePage() {
       {/* Auto-scrolling icon marquee */}
       {/* Auto-scrolling icon marquee */}
       <div className="overflow-hidden border-y-4 border-blue bg-light-blue" style={{ height: "80px" }}>
-        <div className="animate-marquee flex h-full w-max items-center gap-10 px-10">
+        <div className="animate-marquee flex h-full w-max items-center gap-20 px-20">
           {Array.from({ length: 20 }).flatMap((_, i) =>
             [
               { src: "/svg/icons/Alongway_Website_Graphic_SunIcon_Blue.svg", w: 345, h: 345 },
