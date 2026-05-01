@@ -140,7 +140,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen font-sans">
-      <header className="sticky top-0 z-50 border-b-4 border-blue bg-blue text-bone">
+      <header className="sticky top-0 z-50 border-b-[6px] border-light-blue bg-blue text-bone">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-10">
           <Link href="/" className="flex items-center">
             <Image src="/logo-blue.svg" alt="Alongway" width={200} height={48} className="h-9 w-auto object-contain" priority />
