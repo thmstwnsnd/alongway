@@ -152,7 +152,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-20 lg:px-10">
+      <section className="mx-auto max-w-7xl px-6 pb-20 pt-[100px] lg:px-10">
         <div className="mb-10 flex items-end justify-between gap-6">
           <SectionHeading
             eyebrow="Featured bags"
