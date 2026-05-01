@@ -4,6 +4,7 @@ import Image from "next/image";
 import { BagCard } from "@/components/bag-card";
 import { SectionHeading } from "@/components/section-heading";
 import { ScrollBird } from "@/components/scroll-bird";
+import { ScrollRotateBadge } from "@/components/scroll-rotate-badge";
 import { TestimonialCarousel } from "@/components/testimonial-carousel";
 import { bags, getLifestyleImageUrl } from "@/data/bags";
 
@@ -194,14 +195,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
             <SectionHeading eyebrow="How it works" title="Straightforward from first idea to final delivery." />
-            <Image
-              src="/svg/illustrations/Alongway_Website_Graphic_SmileyFaceBadge_Blue.svg"
-              alt=""
-              width={96}
-              height={96}
-              className="pointer-events-none h-auto w-20 select-none self-start opacity-85"
-              aria-hidden="true"
-            />
+            <ScrollRotateBadge />
           </div>
           <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {steps.map((step, index) => {
@@ -237,15 +231,8 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+        <p className="font-accent mb-6 text-center text-sm text-charcoal/40">The finest bags in all the land.</p>
         <div className="relative rounded-[2.5rem] bg-charcoal px-8 py-12 text-bone sm:px-12">
-          <Image
-            src="/svg/icons/Alongway_Website_Graphic_ForNowForLater_BadgeIcon_Blue.svg"
-            alt=""
-            width={368}
-            height={368}
-            className="pointer-events-none absolute -right-4 -top-6 h-auto w-20 rotate-12 select-none opacity-80"
-            aria-hidden="true"
-          />
           <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-light-blue">Ready to start?</p>
           <div className="mt-4 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="space-y-2">
@@ -256,16 +243,47 @@ export default function HomePage() {
             </div>
             <Link
               href="/start"
-              className="inline-flex rounded-full bg-blue px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-white hover:text-charcoal"
+              className="inline-flex items-center rounded-full bg-blue px-6 py-3 font-display text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-white hover:text-charcoal"
             >
               Start Your Order
+              <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Cream.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-2" aria-hidden="true" />
             </Link>
           </div>
         </div>
-        <p className="font-accent mt-6 text-center text-sm text-charcoal/40">The finest bags in all the land.</p>
+
       </section>
 
       <TestimonialCarousel />
+
+      {/* Wormhole section */}
+      <section className="mx-auto max-w-7xl px-6 py-32 lg:px-10">
+        <div className="flex flex-col items-center gap-14 sm:flex-row sm:items-center">
+          <Image
+            src="/svg/illustrations/Alongway_Website_Graphic_WormHole_Blue.svg"
+            alt=""
+            width={560}
+            height={560}
+            className="pointer-events-none h-auto w-80 shrink-0 select-none lg:w-[358px]"
+            aria-hidden="true"
+          />
+          <div className="space-y-4">
+            <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-blue/60">Built different</p>
+            <h2 className="font-display text-3xl font-extrabold tracking-tight text-charcoal lg:text-4xl">
+              Custom bags without the back-and-forth.
+            </h2>
+            <p className="max-w-xl text-base leading-7 text-charcoal/70">
+              Most custom bag programs take months of samples, surprise minimums, and a supplier who ghosts you. Alongway keeps it simple — one clear process, honest timelines, and bags you&apos;re actually proud to hand out.
+            </p>
+            <Link
+              href="/start"
+              className="inline-flex items-center rounded-full bg-blue px-6 py-3 font-display text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-charcoal"
+            >
+              Get started
+              <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Cream.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-2" aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
