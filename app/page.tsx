@@ -137,7 +137,7 @@ export default function HomePage() {
 
       <ScrollBird />
 
-      <section className="bg-white">
+      <section className="bg-light-blue">
         <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-6 py-20 text-center lg:px-10">
           <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">
             Trusted by brands that care about quality
@@ -182,7 +182,7 @@ export default function HomePage() {
         <div className="mt-10 flex justify-center">
           <Link
             href="/collection"
-            className="inline-flex items-center rounded-full bg-blue px-8 py-3 text-sm font-semibold text-bone hover:-translate-y-0.5 hover:bg-charcoal"
+            className="inline-flex items-center rounded-full bg-blue px-8 py-3 text-sm font-semibold text-bone hover:-translate-y-0.5 hover:bg-light-blue hover:text-blue"
           >
             View the full bag lineup <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Cream.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-1" aria-hidden="true" />
           </Link>
