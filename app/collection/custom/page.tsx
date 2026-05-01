@@ -14,7 +14,7 @@ export default function CustomTotePage() {
     <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
       {/* Hero */}
       <div className="rounded-[2.5rem] bg-charcoal px-8 py-16 text-bone sm:px-12 lg:px-16">
-        <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-kelly">Fully custom</p>
+        <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-light-blue">Fully custom</p>
         <h1 className="font-display mt-4 max-w-3xl text-5xl font-extrabold tracking-tight sm:text-6xl">
           Build your tote from scratch.
         </h1>
@@ -79,7 +79,7 @@ export default function CustomTotePage() {
 
       {/* CTA */}
       <div className="mt-14 rounded-[2rem] bg-bone px-8 py-10 text-center">
-        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Ready to build?</p>
+        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-light-blue">Ready to build?</p>
         <h2 className="font-display mt-2 text-3xl font-extrabold tracking-tight">Tell us about your idea.</h2>
         <p className="mt-3 max-w-xl mx-auto text-base text-charcoal/70">
           Fill out our custom inquiry form. No commitment — just tell us what you're thinking and we'll come back with a quote and a direction.

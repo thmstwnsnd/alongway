@@ -59,7 +59,7 @@ export default function AboutPage() {
         </article>
 
         <article className="rounded-[2rem] border border-charcoal/10 bg-bone p-8">
-          <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-kelly">Contact</p>
+          <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-light-blue">Contact</p>
           <p className="mt-5 text-3xl font-extrabold tracking-tight">hello@alongway.co</p>
           <p className="mt-4 text-base leading-7 text-charcoal/72">
             Reach out when you&apos;re ready to launch a new bag, restock a proven style, or get a fast read on fit and pricing.
@@ -70,7 +70,7 @@ export default function AboutPage() {
               href="https://orangegoods.co"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-charcoal hover:text-kelly"
+              className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-charcoal hover:text-light-blue"
             >
               Orange Goods →
             </a>
@@ -87,7 +87,7 @@ function TeamMember({ image, name, role, bio }: { image: string; name: string; r
     <div className="rounded-[2rem] border border-charcoal/10 bg-white p-7 shadow-card space-y-4">
       <img src={image} alt={name} className="h-20 w-20 rounded-full object-cover shadow-card ring-4 ring-bone" />
       <div>
-        <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-kelly">{role}</p>
+        <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-light-blue">{role}</p>
         <h3 className="font-display mt-1 text-xl font-bold tracking-tight">{name}</h3>
       </div>
       <p className="text-sm leading-7 text-charcoal/70">{bio}</p>

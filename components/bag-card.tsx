@@ -13,7 +13,7 @@ export function BagCard({ bag }: { bag: Bag }) {
       />
       <div className="space-y-4 p-6">
         {/* Kelly green accent bar */}
-        <div className="h-0.5 w-8 rounded-full bg-kelly/50" />
+        <div className="h-0.5 w-8 rounded-full bg-light-blue/50" />
         <div className="space-y-2">
           <div className="flex items-center justify-between gap-4">
             <h3 className="font-display text-2xl font-bold tracking-tight">{bag.name}</h3>
@@ -42,7 +42,7 @@ export function BagCard({ bag }: { bag: Bag }) {
           </div>
           <Link
             href={`/collection/${bag.slug}`}
-            className="text-sm font-semibold text-kelly hover:text-charcoal"
+            className="text-sm font-semibold text-light-blue hover:text-charcoal"
           >
             View bag
           </Link>

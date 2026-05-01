@@ -51,7 +51,7 @@ export default function HomePage() {
         {/* Content */}
         <div className="relative flex h-full flex-col items-start justify-end px-8 pb-16 lg:px-16 lg:pb-20">
           <p className="font-accent mb-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.26em] text-bone/80">
-            <span className="h-3 w-0.5 rounded-full bg-kelly/70" />
+            <span className="h-3 w-0.5 rounded-full bg-light-blue/70" />
             For now, for later.
           </p>
           <Image
@@ -131,7 +131,7 @@ export default function HomePage() {
             eyebrow="Featured bags"
             title="A focused assortment of premium silhouettes."
           />
-          <Link href="/collection" className="hidden text-sm font-semibold text-kelly hover:text-charcoal sm:block">
+          <Link href="/collection" className="hidden text-sm font-semibold text-light-blue hover:text-charcoal sm:block">
             Browse all bags
           </Link>
         </div>
@@ -179,7 +179,7 @@ export default function HomePage() {
 
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
         <div className="rounded-[2.5rem] bg-charcoal px-8 py-12 text-bone sm:px-12">
-          <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-kelly">Ready to start?</p>
+          <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-light-blue">Ready to start?</p>
           <div className="mt-4 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="space-y-2">
               <h2 className="font-display text-4xl font-extrabold tracking-tight">Bring your bag program together.</h2>

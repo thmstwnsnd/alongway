@@ -76,7 +76,7 @@ export function OrderSummaryCard({
         <ul className="mt-4 space-y-3 text-sm text-charcoal/80">
           {includedOrderItems.map((item) => (
             <li key={item} className="flex items-center gap-3">
-              <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-blue/10 text-sm font-bold text-kelly">
+              <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-blue/10 text-sm font-bold text-light-blue">
                 ✓
               </span>
               <span>{item}</span>

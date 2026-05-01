@@ -8,7 +8,7 @@ export default function StorePage() {
   return (
     <div className="mx-auto max-w-6xl px-6 py-16 lg:px-10 lg:py-20">
       <section className="rounded-[2.5rem] border border-charcoal/10 bg-bone px-8 py-12 shadow-card sm:px-12">
-        <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-kelly">Alongway Store</p>
+        <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-light-blue">Alongway Store</p>
         <h1 className="font-display mt-4 text-5xl font-extrabold tracking-tight sm:text-6xl">Fabric Swatch Kit</h1>
         <p className="mt-5 max-w-3xl text-lg leading-8 text-charcoal/72">
           More products coming soon — including Alongway branded totes.

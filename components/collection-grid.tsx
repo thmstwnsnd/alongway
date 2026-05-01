@@ -161,9 +161,9 @@ export function CollectionGrid() {
             </div>
             <div className="flex items-center justify-between gap-4">
               <p className="text-sm font-semibold text-bone/60">
-                Starting at <span className="text-kelly">$18.00</span> / unit
+                Starting at <span className="text-light-blue">$18.00</span> / unit
               </p>
-              <Link href="/collection/custom" className="text-sm font-semibold text-kelly hover:text-white">
+              <Link href="/collection/custom" className="text-sm font-semibold text-light-blue hover:text-white">
                 Learn more
               </Link>
             </div>
@@ -177,7 +177,7 @@ export function CollectionGrid() {
           <button
             type="button"
             onClick={() => { setSizeFilter("all"); setMaterialFilter("all"); setSort("popular"); }}
-            className="mt-4 text-sm font-semibold text-kelly hover:text-charcoal"
+            className="mt-4 text-sm font-semibold text-light-blue hover:text-charcoal"
           >
             Clear all filters
           </button>

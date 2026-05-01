@@ -197,7 +197,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
     <section className={compact ? "space-y-0" : "rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card sm:p-8"}>
       {!compact && (
         <div className="space-y-3">
-          <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-kelly">Configure your order</p>
+          <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-light-blue">Configure your order</p>
           <h2 className="font-display text-3xl font-bold tracking-tight">Dial in the material, add-ons, and quantity.</h2>
           <p className="max-w-3xl text-base leading-7 text-charcoal/72">
             Start with the standard bag price, then see how upgraded fabrics and extra details change the estimate in real time.
@@ -460,7 +460,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                           <p className="text-xs text-charcoal/40">or click circle to pick hex</p>
                         )}
                         {colorSlots[i]?.pantone && lookupPantone(colorSlots[i].pantone) && (
-                          <p className="text-xs text-kelly font-medium">{colorSlots[i].hex.toUpperCase()} ✔</p>
+                          <p className="text-xs text-light-blue font-medium">{colorSlots[i].hex.toUpperCase()} ✔</p>
                         )}
                       </div>
                       <span className="text-xs text-charcoal/40 flex-shrink-0">

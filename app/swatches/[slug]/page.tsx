@@ -57,7 +57,7 @@ export default async function FabricDetailPage({
       <section className="mt-6 grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
         <div className="space-y-6">
           <div className="space-y-4">
-            <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-kelly">{fabric.category}</p>
+            <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-light-blue">{fabric.category}</p>
             <h1 className="font-display text-5xl font-extrabold tracking-tight">{fabric.name}</h1>
             <p className="text-lg leading-8 text-charcoal/72">{fabric.description}</p>
           </div>

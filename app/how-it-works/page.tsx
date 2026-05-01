@@ -181,7 +181,7 @@ export default function HowItWorksPage() {
 
       {/* CTA */}
       <div className="mt-10 rounded-[2rem] bg-bone px-8 py-10 text-center">
-        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Ready?</p>
+        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-light-blue">Ready?</p>
         <h2 className="font-display mt-2 text-3xl font-extrabold tracking-tight">Start your order in minutes.</h2>
         <p className="mt-3 text-base text-charcoal/70">Pick your bag, choose your quantity, upload your artwork. We take it from there.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-4">
@@ -201,7 +201,7 @@ export default function HowItWorksPage() {
         <div className="mt-10 space-y-12">
           {faqs.map((section) => (
             <div key={section.category}>
-              <h3 className="font-display mb-5 text-xs font-bold uppercase tracking-[0.22em] text-kelly">
+              <h3 className="font-display mb-5 text-xs font-bold uppercase tracking-[0.22em] text-light-blue">
                 {section.category}
               </h3>
               <div className="space-y-4">

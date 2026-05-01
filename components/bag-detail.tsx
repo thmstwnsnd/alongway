@@ -148,9 +148,9 @@ export function BagDetail({ bag }: { bag: Bag }) {
             {bag.features.map((f, i) => {
               const colors = [
                 "bg-blue/10 text-blue border-blue/20",
-                "bg-kelly/10 text-kelly border-kelly/20",
+                "bg-light-blue/10 text-light-blue border-light-blue/20",
                 "bg-blue/15 text-blue border-blue/25",
-                "bg-kelly/15 text-kelly border-kelly/25",
+                "bg-light-blue/15 text-light-blue border-light-blue/25",
               ];
               return (
                 <span key={f} className={`rounded-full border px-3 py-1.5 text-xs font-semibold ${colors[i % colors.length]}`}>
@@ -251,8 +251,8 @@ export function BagDetail({ bag }: { bag: Bag }) {
           <p className="text-base font-bold tracking-tight text-charcoal">Artwork templates</p>
           <p className="mt-1 text-sm text-charcoal/65">Sized to exact print dimensions. Use for press-ready artwork.</p>
           <div className="mt-4 flex gap-3">
-            <Link href={`/templates/${bag.slug}.pdf`} className="inline-flex rounded-full border border-charcoal/15 bg-white px-5 py-2.5 text-sm font-semibold text-charcoal hover:border-blue hover:text-kelly">↓ PDF</Link>
-            <Link href={`/templates/${bag.slug}.ai`} className="inline-flex rounded-full border border-charcoal/15 bg-white px-5 py-2.5 text-sm font-semibold text-charcoal hover:border-blue hover:text-kelly">↓ Illustrator</Link>
+            <Link href={`/templates/${bag.slug}.pdf`} className="inline-flex rounded-full border border-charcoal/15 bg-white px-5 py-2.5 text-sm font-semibold text-charcoal hover:border-blue hover:text-light-blue">↓ PDF</Link>
+            <Link href={`/templates/${bag.slug}.ai`} className="inline-flex rounded-full border border-charcoal/15 bg-white px-5 py-2.5 text-sm font-semibold text-charcoal hover:border-blue hover:text-light-blue">↓ Illustrator</Link>
           </div>
         </div>
 

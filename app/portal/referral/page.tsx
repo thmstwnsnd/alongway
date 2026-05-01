@@ -22,7 +22,7 @@ export default function PortalReferralPage() {
   return (
     <div className="space-y-8">
       <section className="space-y-3">
-        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Referrals</p>
+        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-light-blue">Referrals</p>
         <h1 className="font-display text-4xl font-extrabold tracking-tight text-charcoal sm:text-5xl">Refer a Friend, Get $50</h1>
         <p className="max-w-3xl text-base leading-7 text-charcoal/66">
           Send the link. Look generous. Pocket the credit when their first order ships.

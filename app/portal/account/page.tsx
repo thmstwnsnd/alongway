@@ -2,7 +2,7 @@ export default function PortalAccountPage() {
   return (
     <div className="space-y-8">
       <section className="space-y-3">
-        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-kelly">Account</p>
+        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-light-blue">Account</p>
         <h1 className="font-display text-4xl font-extrabold tracking-tight text-charcoal sm:text-5xl">Account settings.</h1>
         <p className="max-w-3xl text-base leading-7 text-charcoal/66">
           This is a UI-only placeholder for profile, shipping, and password controls until the real account system is wired in.
@@ -48,7 +48,7 @@ export default function PortalAccountPage() {
         </section>
       </div>
 
-      <a href="#" className="inline-flex text-sm text-charcoal/45 hover:text-kelly">
+      <a href="#" className="inline-flex text-sm text-charcoal/45 hover:text-light-blue">
         Delete account
       </a>
     </div>

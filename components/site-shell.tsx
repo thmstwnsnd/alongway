@@ -167,7 +167,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
                     <Link
                       href="/collection"
                       onClick={() => setIsCollectionMenuOpen(false)}
-                      className="text-sm font-semibold text-kelly hover:text-charcoal"
+                      className="text-sm font-semibold text-light-blue hover:text-charcoal"
                     >
                       View All →
                     </Link>
@@ -185,7 +185,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <Link href="/portal" className="hidden text-sm font-medium text-charcoal/70 hover:text-blue sm:inline-flex">
               Sign in
             </Link>
-            <Link href="/swatches" className="hidden text-sm font-semibold text-charcoal/70 hover:text-kelly md:inline-flex">
+            <Link href="/swatches" className="hidden text-sm font-semibold text-charcoal/70 hover:text-light-blue md:inline-flex">
               Get Swatches
             </Link>
             <Link
@@ -220,7 +220,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             </p>
           </div>
           <div className="flex flex-col items-center gap-3 sm:flex-row">
-            <Link href="/contact" className="text-sm font-semibold text-kelly hover:text-white">
+            <Link href="/contact" className="text-sm font-semibold text-light-blue hover:text-white">
               Start a conversation →
             </Link>
             <a href="mailto:hello@alongway.co" className="text-sm font-semibold text-white/80 hover:text-white">
@@ -300,7 +300,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-bone/40">Questions? Text us.</p>
               <a
                 href="sms:+10000000000"
-                className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-bone hover:text-kelly"
+                className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-bone hover:text-light-blue"
               >
                 +1 (000) 000-0000
               </a>

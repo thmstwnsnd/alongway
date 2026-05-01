@@ -41,7 +41,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <article className="mx-auto max-w-4xl px-6 py-20 lg:px-10">
       <div className="rounded-[2.5rem] border border-charcoal/10 bg-white p-8 shadow-card sm:p-12">
-        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-kelly">{post.category}</p>
+        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-light-blue">{post.category}</p>
         <h1 className="font-display mt-4 text-4xl font-extrabold tracking-tight text-charcoal sm:text-5xl">{post.title}</h1>
         <p className="mt-4 text-sm text-charcoal/55">{post.date}</p>
 
@@ -75,7 +75,7 @@ function renderParagraph(paragraph: string) {
     return (
       <>
         {before}
-        <Link href="/start" className="font-semibold text-kelly hover:text-charcoal">
+        <Link href="/start" className="font-semibold text-light-blue hover:text-charcoal">
           Start your order
         </Link>
         {after}
@@ -89,7 +89,7 @@ function renderParagraph(paragraph: string) {
     return (
       <>
         {before}
-        <Link href="/collection/channel-tote-small" className="font-semibold text-kelly hover:text-charcoal">
+        <Link href="/collection/channel-tote-small" className="font-semibold text-light-blue hover:text-charcoal">
           See the collection
         </Link>
         {after}

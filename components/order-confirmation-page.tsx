@@ -44,10 +44,10 @@ export function OrderConfirmationPage() {
     <div className="mx-auto max-w-5xl px-6 py-16 lg:px-10 lg:py-20">
       <section className="rounded-[2.5rem] border border-charcoal/10 bg-white p-8 shadow-card sm:p-12">
         <div className="mx-auto max-w-3xl text-center">
-          <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-blue/12 text-5xl text-kelly">
+          <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-blue/12 text-5xl text-light-blue">
             ✓
           </div>
-          <p className="font-accent mt-8 text-sm font-semibold uppercase tracking-[0.24em] text-kelly">Order confirmed</p>
+          <p className="font-accent mt-8 text-sm font-semibold uppercase tracking-[0.24em] text-light-blue">Order confirmed</p>
           <h1 className="font-display mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">Order confirmed.</h1>
           <p className="mt-4 text-lg leading-8 text-charcoal/72">
             You&apos;re not just done — you&apos;re just getting started.

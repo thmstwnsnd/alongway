@@ -35,7 +35,7 @@ export default function ContactPage() {
         {/* Left — info */}
         <div className="space-y-10">
           <div className="space-y-4">
-            <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-kelly">Get in touch</p>
+            <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-light-blue">Get in touch</p>
             <h1 className="font-display text-5xl font-extrabold tracking-tight text-charcoal lg:text-6xl">
               Let's talk bags.
             </h1>
@@ -82,8 +82,8 @@ export default function ContactPage() {
         <div className="rounded-[2.5rem] border border-charcoal/10 bg-white p-8 shadow-card lg:p-10">
           {submitted ? (
             <div className="flex flex-col items-center justify-center py-12 text-center space-y-4">
-              <div className="h-14 w-14 rounded-full bg-kelly/10 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3A7D44" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <div className="h-14 w-14 rounded-full bg-light-blue/10 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#94A6D2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
               </div>
               <h2 className="font-display text-2xl font-bold tracking-tight text-charcoal">Got it.</h2>
               <p className="max-w-sm text-sm leading-7 text-charcoal/65">
@@ -93,7 +93,7 @@ export default function ContactPage() {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-kelly mb-4">Send us a message</p>
+                <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-light-blue mb-4">Send us a message</p>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">

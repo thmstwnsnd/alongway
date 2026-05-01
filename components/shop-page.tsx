@@ -363,7 +363,7 @@ function StepHeading({
 }) {
   return (
     <div>
-      <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-kelly">{number}</p>
+      <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-light-blue">{number}</p>
       <h2 className="font-display mt-3 text-3xl font-bold tracking-tight">{title}</h2>
       <p className="mt-2 max-w-2xl text-base leading-7 text-charcoal/72">{body}</p>
     </div>
