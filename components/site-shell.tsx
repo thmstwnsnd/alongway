@@ -185,7 +185,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
                               hoveredBagSlug === bag.slug ? "bg-light-bone" : "hover:bg-light-bone"
                             }`}
                           >
-                            <p className="text-sm font-semibold text-charcoal leading-snug">{bag.name}</p>
+                            <p className="text-sm font-semibold text-blue leading-snug">{bag.name}</p>
                           </Link>
                         ))}
                       </div>
@@ -250,7 +250,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
                       key={link.href}
                       href={link.href}
                       onClick={() => setIsHowItWorksMenuOpen(false)}
-                      className="block rounded-[0.75rem] px-4 py-2.5 text-sm hover:bg-light-bone"
+                      className="block rounded-[0.75rem] px-4 py-2.5 text-sm text-blue hover:bg-light-bone"
                     >
                       {link.label}
                     </Link>
@@ -296,7 +296,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
                       key={link.href}
                       href={link.href}
                       onClick={() => setIsCompanyMenuOpen(false)}
-                      className="block rounded-[0.75rem] px-4 py-2.5 text-sm hover:bg-light-bone"
+                      className="block rounded-[0.75rem] px-4 py-2.5 text-sm text-blue hover:bg-light-bone"
                     >
                       {link.label}
                     </Link>
