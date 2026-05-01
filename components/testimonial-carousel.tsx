@@ -57,7 +57,7 @@ export function TestimonialCarousel() {
 
           {/* Quote */}
           <blockquote className="flex-1">
-            <div className="font-display text-4xl font-extrabold leading-tight text-blue md:text-5xl lg:text-6xl min-h-[200px] md:min-h-[240px]">
+            <div className="font-display text-4xl font-extrabold leading-tight text-blue md:text-5xl lg:text-6xl min-h-[200px] md:min-h-[240px] flex flex-col items-center justify-center text-center">
               {lines.map((line, i) => (
                 <div key={i}>
                   {i === 0 && <span className="font-serif font-normal not-italic text-blue/30" aria-hidden="true">“</span>}
