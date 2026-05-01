@@ -214,7 +214,17 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <section className="bg-charcoal px-6 py-12 text-white lg:px-10">
         <div className="mx-auto flex max-w-7xl flex-col items-center gap-5 text-center">
           <div className="space-y-2">
-            <h2 className="font-display text-3xl font-bold tracking-tight">Need a hand?</h2>
+            <h2 className="font-display inline-flex items-center justify-center gap-3 text-3xl font-bold tracking-tight">
+              <span>Need a hand?</span>
+              <Image
+                src="/svg/icons/Alongway_Website_Graphic_DoubleSmileyFace_Blue.svg"
+                alt=""
+                width={348}
+                height={191}
+                className="pointer-events-none inline h-auto w-8 select-none opacity-60"
+                aria-hidden="true"
+              />
+            </h2>
             <p className="max-w-2xl text-sm leading-7 text-white/75 sm:text-base">
               Not sure which bag is right? Want to talk through your project?
             </p>
@@ -230,6 +240,14 @@ export function SiteShell({ children }: { children: ReactNode }) {
         </div>
       </section>
       <footer className="bg-blue text-bone">
+        <Image
+          src="/svg/patterns/Alongway_Website_Graphic_CheckeredPattern_1.svg"
+          alt=""
+          width={4026}
+          height={403}
+          className="pointer-events-none h-4 w-full select-none object-cover"
+          aria-hidden="true"
+        />
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 lg:grid-cols-[1.2fr_1fr] lg:px-10">
           <div className="space-y-3">
             <Link href="/" className="flex items-center">
@@ -240,8 +258,34 @@ export function SiteShell({ children }: { children: ReactNode }) {
               alt="Made to carry"
               width={180}
               height={68}
-              className="pointer-events-none h-auto w-36 select-none opacity-90"
+              className="pointer-events-none h-auto w-32 select-none opacity-90"
             />
+            <div className="flex items-center gap-3">
+              <Image
+                src="/svg/icons/Alongway_Website_Graphic_SmileyFaace_Blue.svg"
+                alt=""
+                width={188}
+                height={186}
+                className="pointer-events-none h-auto w-5 select-none opacity-70"
+                aria-hidden="true"
+              />
+              <Image
+                src="/svg/icons/Alongway_Website_Graphic_PeaceHand_Cream.svg"
+                alt=""
+                width={269}
+                height={449}
+                className="pointer-events-none h-auto w-5 select-none opacity-70"
+                aria-hidden="true"
+              />
+              <Image
+                src="/svg/icons/Alongway_Website_Graphic_SunIcon_Cream.svg"
+                alt=""
+                width={345}
+                height={345}
+                className="pointer-events-none h-auto w-5 select-none opacity-70"
+                aria-hidden="true"
+              />
+            </div>
             <a
               href="https://instagram.com/alongwayco"
               target="_blank"

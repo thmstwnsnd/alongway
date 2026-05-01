@@ -48,6 +48,22 @@ export default function HomePage() {
         />
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-charcoal/40" />
+        <Image
+          src="/svg/clouds/Alongway_Website_Graphic_Cloud_1_Blue.svg"
+          alt=""
+          width={192}
+          height={73}
+          className="pointer-events-none absolute left-6 top-4 h-auto w-16 select-none opacity-30"
+          aria-hidden="true"
+        />
+        <Image
+          src="/svg/clouds/Alongway_Website_Graphic_Cloud_2_Blue.svg"
+          alt=""
+          width={149}
+          height={54}
+          className="pointer-events-none absolute right-8 top-12 h-auto w-12 select-none opacity-25"
+          aria-hidden="true"
+        />
         {/* Content */}
         <div className="relative flex h-full flex-col items-start justify-end px-8 pb-16 lg:px-16 lg:pb-20">
           <p className="font-accent mb-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.26em] text-bone/80">
@@ -59,8 +75,16 @@ export default function HomePage() {
             alt="Made to carry"
             width={240}
             height={92}
-            className="pointer-events-none h-auto w-48 select-none sm:w-56"
+            className="pointer-events-none inline-block h-auto w-40 select-none"
             priority
+          />
+          <Image
+            src="/svg/illustrations/Alongway_Website_Graphic_World_Blue.svg"
+            alt=""
+            width={892}
+            height={722}
+            className="pointer-events-none mx-auto my-6 h-auto w-48 select-none md:w-64"
+            aria-hidden="true"
           />
           <p className="mt-5 max-w-xl text-lg leading-8 text-white/80">
             Custom bags, made simple. From $12/unit – 100 minimum, air shipping included.
@@ -81,6 +105,28 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <div className="overflow-hidden border-y border-blue/20 bg-bone py-2">
+        <div className="flex justify-center gap-8">
+          {Array.from({ length: 5 }).flatMap((_, index) =>
+            [
+              "/svg/icons/Alongway_Website_Graphic_SunIcon_Blue.svg",
+              "/svg/icons/Alongway_Website_Graphic_SmileyFaace_Blue.svg",
+              "/svg/icons/Alongway_Website_Graphic_PeaceHand_Blue.svg",
+            ].map((src) => (
+              <Image
+                key={`${src}-${index}`}
+                src={src}
+                alt=""
+                width={32}
+                height={32}
+                className="pointer-events-none h-auto w-6 flex-none select-none opacity-50"
+                aria-hidden="true"
+              />
+            )),
+          )}
+        </div>
+      </div>
 
       <ScrollBird />
 
@@ -178,7 +224,15 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-        <div className="rounded-[2.5rem] bg-charcoal px-8 py-12 text-bone sm:px-12">
+        <div className="relative rounded-[2.5rem] bg-charcoal px-8 py-12 text-bone sm:px-12">
+          <Image
+            src="/svg/icons/Alongway_Website_Graphic_ForNowForLater_BadgeIcon_Blue.svg"
+            alt=""
+            width={368}
+            height={368}
+            className="pointer-events-none absolute -right-4 -top-6 h-auto w-20 rotate-12 select-none opacity-80"
+            aria-hidden="true"
+          />
           <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-light-blue">Ready to start?</p>
           <div className="mt-4 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="space-y-2">

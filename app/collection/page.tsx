@@ -17,7 +17,7 @@ export default function CollectionPage() {
           alt=""
           width={120}
           height={120}
-          className="pointer-events-none h-auto w-24 select-none opacity-80"
+          className="pointer-events-none h-auto w-16 select-none opacity-70"
           aria-hidden="true"
         />
       </div>

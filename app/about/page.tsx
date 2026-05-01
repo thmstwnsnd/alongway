@@ -18,6 +18,14 @@ export default function AboutPage() {
         title="We built Alongway because good bags should not require a sourcing director."
         body="Alongway is for brands that want custom bags to feel premium, clear, and manageable. The line stays intentionally tight so every silhouette can do more work, hold better shape, and support repeat orders without friction."
       />
+      <Image
+        src="/svg/illustrations/Alongway_Website_Graphic_WorldCropped_Blue.svg"
+        alt=""
+        width={1134}
+        height={809}
+        className="pointer-events-none mx-auto mt-8 h-auto w-32 select-none opacity-60"
+        aria-hidden="true"
+      />
 
       <section className="mt-14 mb-14 space-y-5">
         <h2 className="font-display text-2xl font-bold tracking-tight">The team</h2>
