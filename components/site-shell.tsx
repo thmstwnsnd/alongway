@@ -145,7 +145,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <Link href="/" className="flex items-center">
             <Image src="/logo-blue.svg" alt="Alongway" width={200} height={48} className="h-9 w-auto object-contain" priority />
           </Link>
-          <nav className="hidden items-center gap-7 text-sm font-display md:flex">
+          <nav className="hidden items-center gap-7 text-sm font-display font-bold md:flex">
             <div
               ref={collectionMenuRef}
               className="relative"
@@ -326,7 +326,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             </Link>
           </div>
         </div>
-        <nav className="flex gap-5 overflow-x-auto border-t border-charcoal/10 px-6 py-3 text-sm font-display md:hidden">
+        <nav className="flex gap-5 overflow-x-auto border-t border-charcoal/10 px-6 py-3 text-sm font-display font-bold md:hidden">
           {mobileNavLinks.map((link) => (
             <Link key={link.href} href={link.href} className="whitespace-nowrap hover:text-blue">
               {link.label}

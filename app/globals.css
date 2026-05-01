@@ -57,7 +57,7 @@
   to   { transform: translateX(0); }
 }
 .animate-marquee {
-  animation: marquee 41s linear infinite;
+  animation: marquee 49s linear infinite;
 }
 
 /* Brand card style — consistent across the site */
