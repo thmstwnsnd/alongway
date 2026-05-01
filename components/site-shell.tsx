@@ -145,7 +145,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <Link href="/" className="flex items-center">
             <Image src="/logo-tan.svg" alt="Alongway" width={200} height={48} className="h-9 w-auto object-contain" priority />
           </Link>
-          <nav className="hidden items-center gap-7 text-sm font-display font-bold text-bone md:flex">
+          <nav className="hidden items-center gap-7 text-sm font-display font-extrabold uppercase tracking-wide text-bone md:flex">
             <div
               ref={collectionMenuRef}
               className="relative"
