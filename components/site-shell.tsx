@@ -143,7 +143,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-50 border-b-[6px] border-light-blue bg-blue text-bone">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-10">
           <Link href="/" className="flex items-center">
-            <Image src="/logo-blue.svg" alt="Alongway" width={200} height={48} className="h-9 w-auto object-contain" priority />
+            <Image src="/logo-tan.svg" alt="Alongway" width={200} height={48} className="h-9 w-auto object-contain" priority />
           </Link>
           <nav className="hidden items-center gap-7 text-sm font-display font-bold text-bone md:flex">
             <div

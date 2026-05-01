@@ -51,7 +51,7 @@ export default function HomePage() {
         </div>
 
         {/* Blue CTA panel — right 50% */}
-        <div className="relative flex w-full flex-col items-start justify-center overflow-hidden bg-blue px-8 py-16 lg:w-1/2 lg:px-14">
+        <div className="relative flex w-full flex-col items-start justify-center overflow-hidden bg-light-blue px-8 py-16 lg:w-1/2 lg:px-14">
           {/* For Now For Later badge — eyebrow */}
           <Image
             src="/svg/icons/Alongway_Website_Graphic_ForNowForLater_BadgeIcon_Blue.svg"
@@ -61,35 +61,35 @@ export default function HomePage() {
             className="pointer-events-none mb-6 h-auto w-16 select-none opacity-90"
           />
           {/* Headline */}
-          <h1 className="font-display text-5xl font-extrabold leading-[1.05] text-bone lg:text-6xl">
+          <h1 className="font-display text-5xl font-extrabold leading-[1.05] text-blue lg:text-6xl">
             Custom Bags<br />Made Simple
           </h1>
           {/* Subtext */}
-          <p className="mt-5 text-base leading-7 text-bone/75">
+          <p className="mt-5 text-base leading-7 text-blue/75">
             From $12/unit. 100 minimum. Air shipping included.
           </p>
           {/* Trust line */}
-          <p className="font-accent mt-3 text-xs uppercase tracking-widest text-bone/50">
+          <p className="font-accent mt-3 text-xs uppercase tracking-widest text-blue/60">
             100+ brands trust Alongway
           </p>
           {/* CTAs */}
           <div className="mt-8 flex flex-col gap-3">
             <Link
               href="/collection"
-              className="inline-flex rounded-full bg-bone px-7 py-3.5 text-sm font-semibold text-blue hover:-translate-y-0.5 hover:bg-white"
+              className="inline-flex rounded-full bg-blue px-7 py-3.5 text-sm font-semibold text-bone hover:-translate-y-0.5 hover:bg-charcoal"
             >
               See the Collection
             </Link>
             <Link
               href="/start"
-              className="font-sans text-sm font-semibold text-bone/70 underline underline-offset-4 hover:text-bone"
+              className="font-sans text-sm font-semibold text-blue/70 underline underline-offset-4 hover:text-blue"
             >
               Start Your Order <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Blue.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-1" aria-hidden="true" />
             </Link>
           </div>
           {/* Mascot anchored to bottom-right, overflows */}
           <Image
-            src="/svg/illustrations/Alongway_Website_Graphic_World_Cream.svg"
+            src="/svg/illustrations/Alongway_Website_Graphic_World_Blue.svg"
             alt=""
             width={892}
             height={722}
