@@ -73,7 +73,7 @@ export default function HomePage() {
             For now, for later.
           </p>
           <h1 className="font-display text-4xl font-extrabold leading-tight text-bone lg:text-5xl">
-            Custom Bags, Made Simple.
+            Custom Bags<br />Made Simple
           </h1>
           <p className="mt-5 text-base leading-7 text-bone/75">
             From $12/unit. 100 minimum. Air shipping included.
