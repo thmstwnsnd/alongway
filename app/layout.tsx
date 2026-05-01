@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Premium custom totes and bags with curated silhouettes, all-in pricing, and factory-direct quality.",
   icons: {
-    icon: "/logo-icon.png",
+    icon: "/favicon.ico",
   },
 };
 
