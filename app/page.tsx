@@ -112,8 +112,10 @@ export default function HomePage() {
         <div className="animate-marquee flex h-full w-max items-center gap-20 px-20">
           {Array.from({ length: 20 }).flatMap((_, i) =>
             [
+              { src: "/svg/icons/Alongway_Website_Graphic_Flower_Blue.svg", w: 200, h: 200 },
               { src: "/svg/icons/Alongway_Website_Graphic_SmileyFaace_Blue.svg", w: 188, h: 186 },
               { src: "/svg/icons/Alongway_Website_Graphic_PeaceHand_Blue.svg", w: 269, h: 449 },
+              { src: "/svg/icons/Alongway_Website_Graphic_BirdRight_Blue.svg", w: 200, h: 200 },
             ].map((icon) => (
               <Image
                 key={`${icon.src}-${i}`}
