@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 587.41 84.49">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f4efe8;
+      }
+
+      .cls-1, .cls-2 {
+        font-family: Termina-Black, Termina;
+        font-size: 56.31px;
+        font-weight: 800;
+      }
+
+      .cls-3 {
+        fill: #3750a0;
+      }
+
+      .cls-4 {
+        letter-spacing: -.04em;
+      }
+
+      .cls-5 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-2 {
+        fill: #ebe4d0;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <text class="cls-1" transform="translate(27 47.86)"><tspan x="0" y="0">100% Q</tspan><tspan class="cls-4" x="262.85" y="0">U</tspan><tspan x="314.37" y="0">ALIT</tspan><tspan class="cls-5" x="483.13" y="0">Y</tspan></text>
+      <rect class="cls-3" width="587.41" height="75.85" rx="18" ry="18"/>
+      <text class="cls-2" transform="translate(27 56.5)"><tspan x="0" y="0">100% Q</tspan><tspan class="cls-4" x="262.85" y="0">U</tspan><tspan x="314.37" y="0">ALIT</tspan><tspan class="cls-5" x="483.13" y="0">Y</tspan></text>
+    </g>
+  </g>
+</svg>

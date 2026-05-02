@@ -1,0 +1,78 @@
+Build a complete Next.js marketing website for "Alongway" — a premium custom tote & bag brand.
+
+## Brand
+- Name: Alongway (one word)
+- Tagline: "Made to carry."
+- Confidence line: "The finest bags in all the land."
+- Emotional hook: "For now, for later."
+- Colors: Bone #EEE6D2, Light Bone #F2ECE2, Blue #364FA0, Orange #EB4628, Charcoal #262626
+- Font: Use Google Font "Figtree" as primary font
+- Design reference: Clean, bold, product-forward like graza.co. Lots of white space. Warm and premium but approachable.
+
+## Pages to Build
+
+### 1. Home (/)
+- Hero: Full-width, large headline "Made to carry." with subline "The finest bags in all the land." CTA button: "See the Collection" (links to /collection). Use a placeholder gradient or solid color section (Bone bg, Charcoal text) — no real images needed yet.
+- Brief "What is Alongway?" blurb: 2-3 sentences about curated bag silhouettes, all-in pricing, factory-direct quality.
+- Featured bags: 3 placeholder bag cards (names: The Market, The Daily, The Weekender) with placeholder colored boxes instead of images.
+- "How It Works" section: 4 steps — Pick your bag, Share your artwork, We handle production, Delivered to your door
+- CTA strip: "Ready to start?" with button linking to /start
+
+### 2. Collection (/collection)
+- Grid of 10 bag silhouettes with placeholder colored boxes
+- Bag names: The Market, The Daily, The Weekender, The Pocket, The Zip Tote, The Canvas Shopper, The Mini, The Drawstring, The Crossbody, The Boat Bag
+- Each card: bag name, one-liner description, "Starting at $X" (use $8.50 for small bags, $12.50 for medium, $16.50 for large), link to /collection/[slug]
+
+### 3. Individual Bag Page (/collection/[slug])
+- Dynamic route for each bag
+- Placeholder image box
+- Name, description, materials (placeholder: "Premium canvas, reinforced stitching")
+- Dimensions (placeholder)
+- MOQ: 50 units
+- Pricing tier table: 50 / 100 / 250 / 500 units with placeholder per-unit prices
+- CTA: "Start Your Order" linking to /start
+
+### 4. Pricing (/pricing)
+- Intro: "No quotes. No surprises. Just clear pricing."
+- Pricing table for all 10 bags across 4 quantity tiers (50/100/250/500)
+- Use placeholder numbers, clearly marked "Starting from"
+- Note: "Prices include production, standard customization, and shipping to one US address. Setup fee: $50 one-time."
+
+### 5. How It Works (/how-it-works)
+- Expanded 4-step process with emoji icons and longer descriptions
+- FAQ section: 5-6 common questions (MOQ, turnaround, artwork formats, customization, reorders)
+
+### 6. Start Your Order (/start)
+- Clean form: Bag style dropdown (all 10 bags), Quantity, Timeline, Artwork ready yes/no, Name, Email, Company, Notes
+- On submit: show a thank-you message (static, no backend needed yet)
+
+### 7. About (/about)
+- Brand story: "We built Alongway because good bags should not require a sourcing director."
+- What sets us apart: curated silhouettes, all-in pricing, factory-direct quality, built to be kept, brand feel
+- Contact: hello@alongway.co
+
+## Nav
+- Logo: "Alongway" wordmark in Figtree bold
+- Links: Collection, Pricing, How It Works, About
+- CTA button: "Start Your Order" with Orange #EB4628 background and white text
+
+## Footer
+- Logo + tagline
+- Links: Collection, Pricing, How It Works, About, Start Your Order
+- "2026 Alongway. All rights reserved."
+
+## Tech Requirements
+- Next.js 14+ with App Router
+- Tailwind CSS
+- Use exact brand hex values throughout
+- Mobile responsive
+- Remove the existing index.html file
+
+## Branch and PR
+- Work on branch: feature/initial-site
+- Commit all work
+- Open a PR to main
+- Do NOT merge the PR. Open it and stop.
+
+When completely finished, run this exact command to notify:
+openclaw system event --text "Done: Alongway Next.js site built, PR open for review" --mode now
