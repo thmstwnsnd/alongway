@@ -46,7 +46,7 @@ export function Section({
       </button>
       <div className={`grid transition-[grid-template-rows] duration-300 ease-out ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
         <div className="min-h-0 overflow-hidden">
-          <div className="pb-6 pl-11">
+          <div className="px-1 pb-6 pl-11 pt-2">
             {children}
             {!isLast ? (
               <button
@@ -177,7 +177,7 @@ export function Swatch({ hex, name, selected, onClick }: { hex: string; name: st
       aria-label={name}
       aria-pressed={selected}
       onClick={onClick}
-      className={`h-9 w-9 rounded-lg transition-transform ${selected ? "scale-110 ring-2 ring-charcoal ring-offset-2 ring-offset-white" : "ring-1 ring-black/10 hover:scale-105"}`}
+      className={`h-9 w-9 rounded-lg transition ${selected ? "ring-2 ring-charcoal ring-offset-2 ring-offset-white" : "ring-1 ring-black/10 hover:ring-black/30"}`}
       style={{ backgroundColor: hex }}
     />
   );
