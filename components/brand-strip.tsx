@@ -2,21 +2,26 @@ import Image from "next/image";
 
 import { brands } from "@/data/brands";
 
-/** Logo row. A brand with a logo file shows it inside a white tile; otherwise its name in its brand colors. */
+/**
+ * Clean logo row on white. Logos render in one dark tint so mixed files read
+ * as a set; brands without a file show their name as a plain wordmark.
+ */
 export function BrandStrip() {
   return (
-    <div className="flex flex-wrap items-center justify-center gap-3">
+    <div className="flex flex-wrap items-center justify-center gap-x-14 gap-y-8 lg:gap-x-20">
       {brands.map((brand) =>
         brand.logo ? (
-          <span key={brand.name} className="inline-flex h-14 items-center rounded-full bg-white px-6" style={{ backgroundColor: brand.bg ?? "#FFFFFF" }}>
-            <Image src={brand.logo} alt={brand.name} width={160} height={brand.height ?? 28} className="w-auto" style={{ height: brand.height ?? 28 }} />
-          </span>
-        ) : (
-          <span
+          <Image
             key={brand.name}
-            className="rounded-full bg-light-bone px-5 py-2.5 text-sm font-semibold text-charcoal"
-            style={brand.bg ? { backgroundColor: brand.bg, color: brand.fg ?? "#FFFFFF" } : undefined}
-          >
+            src={brand.logo}
+            alt={brand.name}
+            width={180}
+            height={brand.height ?? 28}
+            className="w-auto opacity-70 transition hover:opacity-100"
+            style={{ height: brand.height ?? 28, filter: "brightness(0) saturate(100%) invert(15%)" }}
+          />
+        ) : (
+          <span key={brand.name} className="font-display text-base font-bold uppercase tracking-[0.12em] text-charcoal/60">
             {brand.name}
           </span>
         ),

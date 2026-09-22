@@ -198,10 +198,10 @@ export default function HomePage() {
       <ScrollBird />
 
       {/* ── 5. TRUSTED BRANDS ── */}
-      <section className="bg-light-blue">
-        <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-6 py-20 text-center lg:px-10">
-          <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">
-            Trusted by brands that care about quality
+      <section className="bg-white">
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-10 px-6 py-20 text-center lg:px-10">
+          <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-charcoal/45">
+            Trusted by many
           </p>
           <BrandStrip />
         </div>
