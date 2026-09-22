@@ -29,7 +29,7 @@ export function BuildSpecCard({ build }: { build: BuildConfig }) {
           <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-light-blue">Your build</p>
           <h2 className="font-display mt-1 text-2xl font-bold tracking-tight">{r.style.name}</h2>
         </div>
-        <Link href={`/build`} className="text-sm font-semibold text-blue hover:text-charcoal">
+        <Link href="/build?resume=1" className="text-sm font-semibold text-blue hover:text-charcoal">
           Edit build
         </Link>
       </div>

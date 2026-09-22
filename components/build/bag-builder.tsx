@@ -45,11 +45,13 @@ export function BagBuilder() {
   const [hydrated, setHydrated] = useState(false);
 
   // Restore a saved build, or start from ?style=
+  // Always land on the silhouette grid. ?style= deep-links straight into a bag;
+  // ?resume=1 (used by checkout's Edit build) reopens the saved build.
   useEffect(() => {
     const requested = params.get("style");
     if (requested && getCatalogStyle(requested)) {
       setBuild(defaultBuild(requested));
-    } else {
+    } else if (params.get("resume")) {
       try {
         const saved = window.localStorage.getItem(BUILD_STORAGE_KEY);
         if (saved) setBuild({ ...defaultBuild(), ...JSON.parse(saved) });
@@ -65,7 +67,19 @@ export function BagBuilder() {
   }, [build, hydrated]);
 
   if (!hydrated) return <div className="min-h-[60vh]" />;
-  if (!build) return <StyleGrid onSelect={(slug) => setBuild(defaultBuild(slug))} />;
+  if (!build) {
+    return (
+      <StyleGrid
+        onSelect={(slug) => {
+          try {
+            const saved = JSON.parse(window.localStorage.getItem(BUILD_STORAGE_KEY) ?? "null");
+            if (saved?.styleSlug === slug) return setBuild({ ...defaultBuild(slug), ...saved });
+          } catch {}
+          setBuild(defaultBuild(slug));
+        }}
+      />
+    );
+  }
 
   return (
     <Configurator
