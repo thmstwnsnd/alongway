@@ -110,13 +110,13 @@ export default function HomePage() {
           </div>
 
           {/* Illustration: fills the remaining height, pinned bottom-right, capped so it stays clear of the copy. */}
-          <div className="pointer-events-none relative mt-6 min-h-[220px] flex-1 select-none">
+          <div className="pointer-events-none mt-6 flex min-h-[220px] flex-1 select-none items-end justify-end px-6 pb-4 lg:px-10">
             <Image
               src="/svg/illustrations/Alongway_Website_Graphic_World_Blue.svg"
               alt=""
               width={892}
               height={722}
-              className="absolute bottom-[-6%] right-[-4%] h-[112%] max-h-[440px] w-auto opacity-90"
+              className="h-full max-h-[420px] w-auto max-w-full object-contain object-right-bottom opacity-90"
               aria-hidden="true"
             />
           </div>
