@@ -241,6 +241,10 @@ function Configurator({
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-black/35">Bag {r.style.bagNumber}</p>
             <h1 className="mt-1 text-[28px] font-semibold tracking-[-0.02em] text-charcoal lg:text-[34px]">{r.style.name}</h1>
+            <p className="mt-1.5 text-[13px] text-black/45">
+              <span className="font-semibold text-charcoal/70">Size</span> · {dims} ·{" "}
+              {r.size.strap.isDrop ? `${r.size.strap.length}" handle drop` : `${r.size.strap.length}" strap`} · {r.size.strap.width}&quot; wide
+            </p>
           </div>
           <button type="button" onClick={onChangeStyle} className="rounded-full bg-white/70 px-4 py-2 text-[13px] font-semibold text-charcoal shadow-sm backdrop-blur hover:bg-white">
             Change bag
@@ -262,11 +266,6 @@ function Configurator({
             </div>
           )}
         </div>
-
-        <p className="px-6 pb-2 text-center text-[13px] text-black/45 lg:px-12">
-          <span className="font-semibold text-charcoal/70">Dimensions</span> · {dims} ·{" "}
-          {r.size.strap.isDrop ? `${r.size.strap.length}" handle drop` : `${r.size.strap.length}" strap`} · {r.size.strap.width}&quot; wide
-        </p>
 
         {/* Details strip: collapsed to a single Photos button while customizing */}
         <div className="flex items-center px-6 pb-3 lg:px-12">
