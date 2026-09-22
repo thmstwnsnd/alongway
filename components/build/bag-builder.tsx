@@ -275,7 +275,7 @@ function Configurator({
               Photos{gallery.length ? ` (${gallery.length + 1})` : ""}
             </button>
           ) : (
-            <div className="grid w-full gap-2" style={{ gridTemplateColumns: `repeat(${gallery.length + 1}, minmax(0, 1fr)) auto` }}>
+            <div className="grid w-full gap-2" style={{ gridTemplateColumns: `repeat(${gallery.length + 2}, minmax(0, 1fr))` }}>
               {gallery.map((src, i) => (
                 <button
                   key={src}
@@ -299,9 +299,9 @@ function Configurator({
               <button
                 type="button"
                 onClick={() => setView("build")}
-                className="flex items-center gap-2 self-center rounded-xl bg-charcoal px-5 py-3 text-[13px] font-semibold text-white transition hover:bg-blue"
+                className="flex aspect-[4/3] w-full flex-col items-center justify-center gap-1.5 rounded-xl bg-charcoal text-[13px] font-semibold text-white transition hover:bg-blue"
               >
-                <Image src="/svg/icons/Alongway_Website_Graphic_BirdRight_Cream.svg" alt="" width={20} height={20} className="h-4 w-auto" aria-hidden />
+                <Image src="/svg/icons/Alongway_Website_Graphic_BirdRight_Cream.svg" alt="" width={28} height={28} className="h-6 w-auto" aria-hidden />
                 Customize
               </button>
             </div>
