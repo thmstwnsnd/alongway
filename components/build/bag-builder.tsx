@@ -24,6 +24,7 @@ import {
   embroideryPlacementOptions,
   formatCurrency,
   frontColorOptions,
+  getDecorationSummary,
 } from "@/lib/order-flow";
 
 import { BagPreview } from "./bag-preview";
@@ -90,6 +91,191 @@ function Configurator({
   const set = <K extends keyof BuildConfig>(key: K, value: BuildConfig[K]) => onChange({ ...build, [key]: value });
   const swatches = getFabricSwatches(build.fabricSlug);
   const standardPockets = r.style.standardPockets ?? [];
+  const [openStep, setOpenStep] = useState<string | null>("size");
+  const names = (options: { id: string; label: string }[], ids: string[]) =>
+    options.filter((o) => ids.includes(o.id)).map((o) => o.label).join(", ");
+  const dims = `${r.dims.width}" × ${r.dims.height}" × ${r.dims.depth}"`;
+
+  const steps: { id: string; title: string; hint?: string; summary: string; content: ReactNode }[] = [
+    {
+      id: "size",
+      title: "Dimensions",
+      hint: "Factory-spec sizes. Custom dimensions are quoted per project.",
+      summary: r.isCustomSize ? `Custom · ${dims}` : `${r.size.label} · ${dims}`,
+      content: (
+        <>
+          <div className="flex flex-wrap gap-2">
+            {r.style.sizes.map((size) => (
+              <Chip key={size.id} selected={!r.isCustomSize && build.sizeId === size.id} onClick={() => onChange({ ...build, sizeId: size.id, customDims: null })}>
+                {size.label} · {size.dims.width}&quot; × {size.dims.height}&quot; × {size.dims.depth}&quot;
+              </Chip>
+            ))}
+            <Chip selected={r.isCustomSize} onClick={() => set("customDims", build.customDims ?? { ...r.size.dims })}>
+              Custom
+            </Chip>
+          </div>
+          {r.isCustomSize && build.customDims ? (
+            <div className="mt-4 grid grid-cols-3 gap-3">
+              {(["width", "height", "depth"] as const).map((key) => (
+                <label key={key} className="text-[11px] font-semibold uppercase tracking-wide text-black/40">
+                  {key}
+                  <input
+                    type="number"
+                    min={0}
+                    step={0.25}
+                    value={build.customDims![key]}
+                    onChange={(e) => set("customDims", { ...build.customDims!, [key]: Number(e.target.value) || 0 })}
+                    className={`${inputClass} mt-1`}
+                  />
+                </label>
+              ))}
+            </div>
+          ) : null}
+        </>
+      ),
+    },
+    {
+      id: "fabric",
+      title: "Canvas",
+      summary: `${r.fabric.name} · ${fabricTierMeta[r.fabric.tier].label}`,
+      content: (
+        <>
+          <div className="flex flex-wrap gap-2">
+            {r.style.fabricSlugs.map((slug) => {
+              const fabric = getFabricBySlug(slug);
+              if (!fabric) return null;
+              return (
+                <Chip key={slug} selected={build.fabricSlug === slug} onClick={() => onChange({ ...build, fabricSlug: slug, colorName: getFabricSwatches(slug)[0]?.name ?? "" })}>
+                  {fabric.name}
+                  {fabric.upcharge > 0 ? <span className="ml-1.5 font-medium opacity-60">+{formatCurrency(fabric.upcharge)}</span> : null}
+                </Chip>
+              );
+            })}
+          </div>
+          <p className="mt-2 text-[12px] text-black/35">{fabricTierMeta[r.fabric.tier].label} tier</p>
+        </>
+      ),
+    },
+    {
+      id: "color",
+      title: "Colorway",
+      summary: r.swatch?.name ?? build.colorName,
+      content: (
+        <>
+          <div className="flex flex-wrap gap-2.5">
+            {swatches.map((swatch) => (
+              <Swatch key={swatch.name} hex={swatch.hex} name={swatch.name} selected={build.colorName === swatch.name} onClick={() => set("colorName", swatch.name)} />
+            ))}
+          </div>
+          <p className="mt-3 text-[13px] text-black/45">{r.swatch?.name}</p>
+        </>
+      ),
+    },
+    {
+      id: "handles",
+      title: "Carry",
+      hint: "One strap construction, plus any add-ons.",
+      summary: [strapOptions.find((o) => o.id === build.strapId)?.label, names(handleAddOns, build.handleAddOnIds)].filter(Boolean).join(" · "),
+      content: (
+        <>
+          <OptionList options={strapOptions} value={build.strapId} onChange={(id) => set("strapId", id)} includedIds={[r.size.strap.type]} />
+          <div className="mt-3">
+            <OptionList options={handleAddOns} value={build.handleAddOnIds} onChange={(id) => set("handleAddOnIds", toggle(build.handleAddOnIds, id))} />
+          </div>
+          {build.handleAddOnIds.includes("pantone-straps") ? (
+            <label className="mt-4 flex items-center gap-3 text-[13px] text-black/55">
+              <input type="color" value={build.strapColor} onChange={(e) => set("strapColor", e.target.value)} className="h-9 w-12 cursor-pointer rounded-lg border-0 bg-transparent" />
+              Strap color
+            </label>
+          ) : null}
+        </>
+      ),
+    },
+    {
+      id: "stitch",
+      title: "Thread & finish",
+      summary: stitchOptions.find((o) => o.id === build.stitchId)?.label ?? "",
+      content: (
+        <>
+          <OptionList options={stitchOptions} value={build.stitchId} onChange={(id) => set("stitchId", id)} />
+          {build.stitchId !== "standard" ? (
+            <label className="mt-4 flex items-center gap-3 text-[13px] text-black/55">
+              <input type="color" value={build.stitchColor} onChange={(e) => set("stitchColor", e.target.value)} className="h-9 w-12 cursor-pointer rounded-lg border-0 bg-transparent" />
+              Thread / accent color
+            </label>
+          ) : null}
+        </>
+      ),
+    },
+    {
+      id: "pockets",
+      title: "Pockets & hardware",
+      hint: standardPockets.length ? "Pockets marked Included come standard on this style." : undefined,
+      summary: [names(pocketOptions, build.pocketIds) || "No pockets", closureOptions.find((o) => o.id === build.closureId)?.label].join(" · "),
+      content: (
+        <>
+          <OptionList options={pocketOptions} value={build.pocketIds} onChange={(id) => set("pocketIds", toggle(build.pocketIds, id))} includedIds={standardPockets} />
+          <div className="mt-3">
+            <OptionList options={closureOptions} value={build.closureId} onChange={(id) => set("closureId", id)} includedIds={r.style.standardClosure ? [r.style.standardClosure] : ["none"]} />
+          </div>
+        </>
+      ),
+    },
+    {
+      id: "decoration",
+      title: "Your artwork",
+      hint: "One-color print or embroidery is included.",
+      summary: getDecorationSummary(build),
+      content: (
+        <>
+          <Segmented options={decorationOptions.map((t) => ({ value: t, label: t }))} value={build.decorationType} onChange={(v) => set("decorationType", v)} />
+          {build.decorationType === "Screen Print" ? (
+            <div className="mt-4 grid gap-4">
+              <Field label="Front colors">
+                <Segmented options={frontColorOptions.map((o) => ({ value: o.value, label: priced(o) }))} value={build.frontColors} onChange={(v) => set("frontColors", v)} />
+              </Field>
+              <Field label="Back print">
+                <Segmented options={backColorOptions.map((o) => ({ value: o.value, label: priced(o) }))} value={build.backColors} onChange={(v) => set("backColors", v)} />
+              </Field>
+            </div>
+          ) : null}
+          {build.decorationType === "Embroidery" ? (
+            <div className="mt-4">
+              <Field label="Placements">
+                <Segmented options={embroideryPlacementOptions.map((o) => ({ value: o.value, label: priced(o) }))} value={build.embroideryPlacements} onChange={(v) => set("embroideryPlacements", v)} />
+              </Field>
+            </div>
+          ) : null}
+        </>
+      ),
+    },
+    {
+      id: "extras",
+      title: "Labels & finishing touches",
+      hint: "A side-seam woven label with your brand is always included.",
+      summary: names(extraOptions, build.extraIds) || "Side-seam label only",
+      content: <OptionList options={extraOptions} value={build.extraIds} onChange={(id) => set("extraIds", toggle(build.extraIds, id))} />,
+    },
+    {
+      id: "quantity",
+      title: "Run size",
+      hint: `Minimum ${MIN_QUANTITY}. ${customQuoteTier.toLocaleString()}+ is quoted per project.`,
+      summary: `${build.quantity.toLocaleString()} units`,
+      content: (
+        <div className="flex flex-wrap items-center gap-2">
+          <Segmented options={quantityTiers.map((q) => ({ value: q, label: q.toLocaleString() }))} value={build.quantity} onChange={(v) => set("quantity", v)} />
+          <input
+            type="number"
+            min={MIN_QUANTITY}
+            step={50}
+            value={build.quantity}
+            onChange={(e) => set("quantity", Math.max(MIN_QUANTITY, Number(e.target.value) || MIN_QUANTITY))}
+            className={`${inputClass} w-28`}
+          />
+        </div>
+      ),
+    },
+  ];
 
   const headerH = useHeaderHeight();
   const [view, setView] = useState<"photo" | "spec">(r.style.photo ? "photo" : "spec");
@@ -144,144 +330,24 @@ function Configurator({
       </div>
 
       {/* Options: the only thing that scrolls */}
-      <div className="h-full min-h-0 overflow-y-auto px-6 pb-36 pt-4 lg:px-10">
-        <Section step="01" title="Size" hint="Factory-spec dimensions. Custom sizes are quoted per project.">
-          <div className="flex flex-wrap gap-2">
-            {r.style.sizes.map((size) => (
-              <Chip
-                key={size.id}
-                selected={!r.isCustomSize && build.sizeId === size.id}
-                onClick={() => onChange({ ...build, sizeId: size.id, customDims: null })}
-              >
-                {size.label} · {size.dims.width}&quot; × {size.dims.height}&quot; × {size.dims.depth}&quot;
-              </Chip>
-            ))}
-            <Chip selected={r.isCustomSize} onClick={() => set("customDims", build.customDims ?? { ...r.size.dims })}>
-              Custom
-            </Chip>
-          </div>
-          {r.isCustomSize && build.customDims ? (
-            <div className="mt-4 grid grid-cols-3 gap-3">
-              {(["width", "height", "depth"] as const).map((key) => (
-                <label key={key} className="text-[11px] font-semibold uppercase tracking-wide text-black/40">
-                  {key}
-                  <input
-                    type="number"
-                    min={0}
-                    step={0.25}
-                    value={build.customDims![key]}
-                    onChange={(e) => set("customDims", { ...build.customDims!, [key]: Number(e.target.value) || 0 })}
-                    className={`${inputClass} mt-1`}
-                  />
-                </label>
-              ))}
-            </div>
-          ) : null}
-        </Section>
+      <div className="h-full min-h-0 overflow-y-auto px-6 pb-36 pt-2 lg:px-10">
+        {steps.map((step, i) => (
+          <Section
+            key={step.id}
+            step={String(i + 1).padStart(2, "0")}
+            title={step.title}
+            summary={step.summary}
+            hint={step.hint}
+            open={openStep === step.id}
+            onToggle={() => setOpenStep(openStep === step.id ? null : step.id)}
+            onNext={() => setOpenStep(steps[i + 1]?.id ?? null)}
+            isLast={i === steps.length - 1}
+          >
+            {step.content}
+          </Section>
+        ))}
 
-        <Section step="02" title="Fabric">
-          <div className="flex flex-wrap gap-2">
-            {r.style.fabricSlugs.map((slug) => {
-              const fabric = getFabricBySlug(slug);
-              if (!fabric) return null;
-              return (
-                <Chip
-                  key={slug}
-                  selected={build.fabricSlug === slug}
-                  onClick={() => onChange({ ...build, fabricSlug: slug, colorName: getFabricSwatches(slug)[0]?.name ?? "" })}
-                >
-                  {fabric.name}
-                  {fabric.upcharge > 0 ? <span className="ml-1.5 font-medium opacity-60">+{formatCurrency(fabric.upcharge)}</span> : null}
-                </Chip>
-              );
-            })}
-          </div>
-          <p className="mt-2 text-[12px] text-black/35">{fabricTierMeta[r.fabric.tier].label} tier</p>
-        </Section>
-
-        <Section step="03" title="Color" hint={r.swatch?.name}>
-          <div className="flex flex-wrap gap-2.5">
-            {swatches.map((swatch) => (
-              <Swatch key={swatch.name} hex={swatch.hex} name={swatch.name} selected={build.colorName === swatch.name} onClick={() => set("colorName", swatch.name)} />
-            ))}
-          </div>
-        </Section>
-
-        <Section step="04" title="Handles" hint="One strap construction, plus any add-ons.">
-          <OptionList options={strapOptions} value={build.strapId} onChange={(id) => set("strapId", id)} includedIds={[r.size.strap.type]} />
-          <div className="mt-3">
-            <OptionList options={handleAddOns} value={build.handleAddOnIds} onChange={(id) => set("handleAddOnIds", toggle(build.handleAddOnIds, id))} />
-          </div>
-          {build.handleAddOnIds.includes("pantone-straps") ? (
-            <label className="mt-4 flex items-center gap-3 text-[13px] text-black/55">
-              <input type="color" value={build.strapColor} onChange={(e) => set("strapColor", e.target.value)} className="h-9 w-12 cursor-pointer rounded-lg border-0 bg-transparent" />
-              Strap color
-            </label>
-          ) : null}
-        </Section>
-
-        <Section step="05" title="Stitching">
-          <OptionList options={stitchOptions} value={build.stitchId} onChange={(id) => set("stitchId", id)} />
-          {build.stitchId !== "standard" ? (
-            <label className="mt-4 flex items-center gap-3 text-[13px] text-black/55">
-              <input type="color" value={build.stitchColor} onChange={(e) => set("stitchColor", e.target.value)} className="h-9 w-12 cursor-pointer rounded-lg border-0 bg-transparent" />
-              Thread / accent color
-            </label>
-          ) : null}
-        </Section>
-
-        <Section step="06" title="Pockets & closure" hint={standardPockets.length ? "Pockets marked Included come standard on this style." : undefined}>
-          <OptionList options={pocketOptions} value={build.pocketIds} onChange={(id) => set("pocketIds", toggle(build.pocketIds, id))} includedIds={standardPockets} />
-          <div className="mt-3">
-            <OptionList
-              options={closureOptions}
-              value={build.closureId}
-              onChange={(id) => set("closureId", id)}
-              includedIds={r.style.standardClosure ? [r.style.standardClosure] : ["none"]}
-            />
-          </div>
-        </Section>
-
-        <Section step="07" title="Decoration" hint="One-color print or embroidery is included.">
-          <Segmented options={decorationOptions.map((t) => ({ value: t, label: t }))} value={build.decorationType} onChange={(v) => set("decorationType", v)} />
-          {build.decorationType === "Screen Print" ? (
-            <div className="mt-4 grid gap-4">
-              <Field label="Front colors">
-                <Segmented options={frontColorOptions.map((o) => ({ value: o.value, label: priced(o) }))} value={build.frontColors} onChange={(v) => set("frontColors", v)} />
-              </Field>
-              <Field label="Back print">
-                <Segmented options={backColorOptions.map((o) => ({ value: o.value, label: priced(o) }))} value={build.backColors} onChange={(v) => set("backColors", v)} />
-              </Field>
-            </div>
-          ) : null}
-          {build.decorationType === "Embroidery" ? (
-            <div className="mt-4">
-              <Field label="Placements">
-                <Segmented options={embroideryPlacementOptions.map((o) => ({ value: o.value, label: priced(o) }))} value={build.embroideryPlacements} onChange={(v) => set("embroideryPlacements", v)} />
-              </Field>
-            </div>
-          ) : null}
-        </Section>
-
-        <Section step="08" title="Labels & extras" hint="A side-seam woven label with your brand is always included.">
-          <OptionList options={extraOptions} value={build.extraIds} onChange={(id) => set("extraIds", toggle(build.extraIds, id))} />
-        </Section>
-
-        <Section step="09" title="Quantity" hint={`Minimum ${MIN_QUANTITY}. ${customQuoteTier.toLocaleString()}+ is quoted per project.`}>
-          <div className="flex flex-wrap items-center gap-2">
-            <Segmented options={quantityTiers.map((q) => ({ value: q, label: q.toLocaleString() }))} value={build.quantity} onChange={(v) => set("quantity", v)} />
-            <input
-              type="number"
-              min={MIN_QUANTITY}
-              step={50}
-              value={build.quantity}
-              onChange={(e) => set("quantity", Math.max(MIN_QUANTITY, Number(e.target.value) || MIN_QUANTITY))}
-              className={`${inputClass} w-28`}
-            />
-          </div>
-        </Section>
-
-        <div className="rounded-2xl bg-black/[0.04] p-5">
+        <div className="mt-6 rounded-2xl bg-black/[0.04] p-5">
           <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-black/35">Included on every bag</p>
           <ul className="mt-3 grid gap-1.5 text-[13px] text-black/60 sm:grid-cols-2">
             {includedOnEveryBag.map((item) => (

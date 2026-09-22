@@ -5,13 +5,62 @@ import { formatCurrency } from "@/lib/order-flow";
 
 /* Clean, flat controls: hairline dividers, soft gray fills, one accent. */
 
-export function Section({ step, title, hint, children }: { step: string; title: string; hint?: string; children: ReactNode }) {
+export function Section({
+  step,
+  title,
+  summary,
+  hint,
+  open,
+  onToggle,
+  onNext,
+  isLast = false,
+  children,
+}: {
+  step: string;
+  title: string;
+  /** What is currently chosen; shown in the header when collapsed. */
+  summary: string;
+  hint?: string;
+  open: boolean;
+  onToggle: () => void;
+  onNext: () => void;
+  isLast?: boolean;
+  children: ReactNode;
+}) {
   return (
-    <section className="border-b border-black/[0.06] py-8 first:pt-2 last:border-b-0">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-black/35">Step {step}</p>
-      <h3 className="mt-1 text-[22px] font-semibold tracking-[-0.01em] text-charcoal">{title}</h3>
-      {hint ? <p className="mt-1 text-[13px] leading-5 text-black/45">{hint}</p> : null}
-      <div className="mt-5">{children}</div>
+    <section className="border-b border-black/[0.06]">
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={open}
+        className="flex w-full items-center gap-4 py-5 text-left"
+      >
+        <span className={`w-7 text-[12px] font-semibold tabular-nums ${open ? "text-blue" : "text-black/30"}`}>{step}</span>
+        <span className="min-w-0 flex-1">
+          <span className={`block text-[17px] font-semibold tracking-[-0.01em] ${open ? "text-charcoal" : "text-charcoal/90"}`}>{title}</span>
+          {!open ? <span className="mt-0.5 block truncate text-[13px] text-black/45">{summary}</span> : hint ? <span className="mt-0.5 block text-[13px] text-black/45">{hint}</span> : null}
+        </span>
+        <svg viewBox="0 0 20 20" className={`h-4 w-4 flex-shrink-0 text-black/35 transition-transform ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M5 8l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+      <div className={`grid transition-[grid-template-rows] duration-300 ease-out ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+        <div className="min-h-0 overflow-hidden">
+          <div className="pb-6 pl-11">
+            {children}
+            {!isLast ? (
+              <button
+                type="button"
+                onClick={onNext}
+                className="mt-5 inline-flex items-center gap-2 rounded-full bg-charcoal px-5 py-2.5 text-[13px] font-semibold text-white transition hover:bg-blue"
+              >
+                Next
+                <span aria-hidden>→</span>
+              </button>
+            ) : null}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
