@@ -5,13 +5,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        bone: "#EEE6D2",
-        "light-bone": "#F2ECE2",
-        blue: "#C1272D",
-        "light-blue": "#94A6D2",
-        kelly: "#3A7D44",
-        charcoal: "#262626",
+        bone: "rgb(var(--c-bone) / <alpha-value>)",
+        "light-bone": "rgb(var(--c-light-bone) / <alpha-value>)",
+        blue: "rgb(var(--c-blue) / <alpha-value>)",
+        "light-blue": "rgb(var(--c-light-blue) / <alpha-value>)",
+        kelly: "rgb(var(--c-kelly) / <alpha-value>)",
+        charcoal: "rgb(var(--c-charcoal) / <alpha-value>)",
       },
+
       fontFamily: {
         sans: ["'Noir Pro'", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
         display: ["Termina", "'Noir Pro'", "Helvetica Neue", "sans-serif"],
