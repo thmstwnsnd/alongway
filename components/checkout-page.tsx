@@ -135,7 +135,7 @@ export function CheckoutPage() {
           <CheckoutSection title="Shipping / Delivery">
             <p className="text-sm leading-6 text-charcoal/62">
               We ship to one US address per order. Need multiple locations?{" "}
-              <Link href="/start" className="font-semibold text-blue hover:text-charcoal">
+              <Link href="/contact" className="font-semibold text-blue hover:text-charcoal">
                 Contact us.
               </Link>
             </p>

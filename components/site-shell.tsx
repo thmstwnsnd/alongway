@@ -331,10 +331,10 @@ export function SiteShell({ children }: { children: ReactNode }) {
             </Link>
 
             <Link
-              href="/start"
+              href="/build"
               className="rounded-full bg-bone px-5 py-3 text-sm font-semibold text-blue shadow-card hover:-translate-y-0.5 hover:bg-light-blue"
             >
-              Start Your Order
+              Build Your Bag
             </Link>
           </div>
         </div>
@@ -417,8 +417,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
           {/* CTA block — right */}
           <div className="flex flex-col items-start gap-3 lg:min-w-[200px]">
-            <Link href="/start" className="flex w-full items-center justify-center rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-charcoal hover:-translate-y-0.5 hover:bg-bone">
-              Start Your Order
+            <Link href="/build" className="flex w-full items-center justify-center rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-charcoal hover:-translate-y-0.5 hover:bg-bone">
+              Build Your Bag
             </Link>
             <Link href="/swatches" className="flex w-full items-center justify-center rounded-full border border-white/30 px-6 py-2.5 text-sm font-semibold text-bone hover:-translate-y-0.5 hover:border-white hover:text-white">
               Order Swatches

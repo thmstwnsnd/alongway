@@ -69,14 +69,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 }
 
 function renderParagraph(paragraph: string) {
-  if (paragraph.includes("[Start your order](/start)")) {
-    const [before, after] = paragraph.split("[Start your order](/start)");
+  if (paragraph.includes("[Build your bag](/build)")) {
+    const [before, after] = paragraph.split("[Build your bag](/build)");
 
     return (
       <>
         {before}
-        <Link href="/start" className="font-semibold text-light-blue hover:text-charcoal">
-          Start your order
+        <Link href="/build" className="font-semibold text-light-blue hover:text-charcoal">
+          Build your bag
         </Link>
         {after}
       </>

@@ -308,10 +308,10 @@ export default function HomePage() {
           </div>
           <div className="mt-10 flex justify-center">
             <Link
-              href="/start"
+              href="/build"
               className="inline-flex items-center rounded-full bg-blue px-8 py-3.5 font-display text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-charcoal"
             >
-              Get Started
+              Build Your Bag
               <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Cream.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-2" aria-hidden="true" />
             </Link>
           </div>
@@ -338,14 +338,14 @@ export default function HomePage() {
             <div className="space-y-2">
               <h2 className="font-display text-4xl font-extrabold tracking-tight">Bring your bag program together.</h2>
               <p className="max-w-2xl text-base leading-7 text-bone/80">
-                Tell us the bag, the artwork, and when you need it. We&apos;ll follow up with a timeline and a quote. No sales team. No runaround.
+                Pick a silhouette, choose fabric, color and details, and see your price as you go. Send it through and we follow up with a tech pack. No sales team. No runaround.
               </p>
             </div>
             <Link
-              href="/start"
+              href="/build"
               className="inline-flex items-center rounded-full bg-blue px-6 py-3 font-display text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-white hover:text-charcoal"
             >
-              Start Your Order
+              Build Your Bag
               <Image
                 src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Cream.svg"
                 alt=""

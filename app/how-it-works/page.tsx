@@ -191,11 +191,11 @@ export default function HowItWorksPage() {
       {/* CTA */}
       <div className="mt-10 rounded-[2rem] bg-bone px-8 py-10 text-center">
         <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-light-blue">Ready?</p>
-        <h2 className="font-display mt-2 text-3xl font-extrabold tracking-tight">Start your order in minutes.</h2>
-        <p className="mt-3 text-base text-charcoal/70">Pick your bag, choose your quantity, upload your artwork. We take it from there.</p>
+        <h2 className="font-display mt-2 text-3xl font-extrabold tracking-tight">Build your bag in minutes.</h2>
+        <p className="mt-3 text-base text-charcoal/70">Pick a silhouette, choose every detail, see your price live. We take it from there.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-4">
-          <Link href="/shop" className="rounded-full bg-blue px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-charcoal">
-            Start Your Order
+          <Link href="/build" className="rounded-full bg-blue px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-charcoal">
+            Build Your Bag
           </Link>
           <Link href="/pricing" className="rounded-full border border-charcoal/20 bg-white px-6 py-3 text-sm font-semibold text-charcoal hover:-translate-y-0.5 hover:border-charcoal">
             See Pricing
