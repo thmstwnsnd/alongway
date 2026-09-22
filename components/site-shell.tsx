@@ -46,6 +46,7 @@ const footerLinks = [
 export function SiteShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const isPortalRoute = pathname.startsWith("/portal");
+  const isBuildRoute = pathname.startsWith("/build");
   const [footerEmail, setFooterEmail] = useState("");
   const [isFooterSubmitted, setIsFooterSubmitted] = useState(false);
   const [showFooterCapture, setShowFooterCapture] = useState(false);
@@ -353,6 +354,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
       </header>
       <main>{children}</main>
 
+      {isBuildRoute ? null : (
+      <>
       <section className="bg-charcoal px-6 py-5 text-white lg:px-10">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-8">
           <p className="font-display text-sm font-bold text-white">
@@ -438,6 +441,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
         </div>
       </footer>
       <ChatWidget />
+      </>
+      )}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 
 import { customQuoteTier, quantityTiers } from "@/data/bags";
 import {
@@ -89,10 +89,15 @@ function Configurator({
   const swatches = getFabricSwatches(build.fabricSlug);
   const standardPockets = r.style.standardPockets ?? [];
 
+  const headerH = useHeaderHeight();
+
   return (
-    <div className="lg:grid lg:min-h-[calc(100vh-5rem)] lg:grid-cols-[minmax(0,1.4fr)_minmax(24rem,1fr)]">
-      {/* Stage */}
-      <div className="sticky top-16 z-10 flex h-[46vh] flex-col bg-bone lg:top-0 lg:h-auto lg:min-h-[calc(100vh-5rem)]">
+    <div
+      className="relative grid grid-rows-[38dvh_1fr] overflow-hidden lg:grid-cols-[minmax(0,1.4fr)_minmax(24rem,1fr)] lg:grid-rows-none"
+      style={{ height: `calc(100dvh - ${headerH}px)` }}
+    >
+      {/* Stage: never scrolls */}
+      <div className="flex h-full min-h-0 flex-col bg-bone">
         <div className="flex items-center justify-between px-6 pt-5 lg:px-10">
           <div>
             <p className="font-accent text-xs font-semibold uppercase tracking-[0.2em] text-charcoal/45">Bag {r.style.bagNumber}</p>
@@ -103,18 +108,18 @@ function Configurator({
           </button>
         </div>
         <div className="flex min-h-0 flex-1 items-center justify-center px-6 py-3 lg:px-16">
-          <div className="aspect-square h-[30vh] max-w-full lg:h-[calc(100vh-17rem)]">
+          <div className="aspect-square h-full max-w-full">
             <BagPreview build={build} />
           </div>
         </div>
-        <div className="hidden px-10 pb-6 text-sm text-charcoal/60 lg:block">
+        <div className="hidden px-10 pb-5 text-sm text-charcoal/60 lg:block">
           {r.fabric.name} · {r.swatch?.name} · {r.dims.width}&quot; × {r.dims.height}&quot; × {r.dims.depth}&quot; ·{" "}
           {strapOptions.find((o) => o.id === build.strapId)?.label}
         </div>
       </div>
 
-      {/* Options */}
-      <div className="bg-white px-6 pb-32 pt-6 lg:overflow-y-auto lg:px-8">
+      {/* Options: the only thing that scrolls */}
+      <div className="h-full min-h-0 overflow-y-auto bg-white px-6 pb-32 pt-6 lg:px-8">
         <Section step="01" title="Size" hint="Dimensions are the factory spec. Custom sizes are quoted per project.">
           <div className="flex flex-wrap gap-2">
             {r.style.sizes.map((size) => (
@@ -279,7 +284,7 @@ function Configurator({
       </div>
 
       {/* Price bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-charcoal/10 bg-white/95 backdrop-blur">
+      <div className="absolute bottom-0 left-0 right-0 z-40 border-t border-charcoal/10 bg-white/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center gap-4 px-6 py-3 lg:px-10">
           <div className="min-w-0 flex-1">
             <p className="truncate text-sm font-semibold">{r.style.name} · {build.quantity.toLocaleString()} units</p>
@@ -309,6 +314,21 @@ function Configurator({
       </div>
     </div>
   );
+}
+
+/** Height of the site header, so the builder can fill exactly the rest of the viewport. */
+function useHeaderHeight() {
+  const [h, setH] = useState(112);
+  useLayoutEffect(() => {
+    const header = document.querySelector("header");
+    if (!header) return;
+    const update = () => setH(header.getBoundingClientRect().height);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(header);
+    return () => ro.disconnect();
+  }, []);
+  return h;
 }
 
 function ChipGroup({
