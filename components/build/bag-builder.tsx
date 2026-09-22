@@ -92,13 +92,28 @@ function Configurator({
   const set = <K extends keyof BuildConfig>(key: K, value: BuildConfig[K]) => onChange({ ...build, [key]: value });
   const swatches = getFabricSwatches(build.fabricSlug);
   const standardPockets = r.style.standardPockets ?? [];
-  const [openStep, setOpenStep] = useState<string | null>("fabric");
+  const [openStep, setOpenStep] = useState<string | null>("color");
   // quantity lives in the price bar, not in the steps
   const names = (options: { id: string; label: string }[], ids: string[]) =>
     options.filter((o) => ids.includes(o.id)).map((o) => o.label).join(", ");
   const dims = `${r.dims.width}" × ${r.dims.height}" × ${r.dims.depth}"`;
 
   const steps: { id: string; title: string; hint?: string; summary: string; content: ReactNode }[] = [
+    {
+      id: "color",
+      title: "Color",
+      summary: r.swatch?.name ?? build.colorName,
+      content: (
+        <>
+          <div className="flex flex-wrap gap-2.5">
+            {swatches.map((swatch) => (
+              <Swatch key={swatch.name} hex={swatch.hex} name={swatch.name} selected={build.colorName === swatch.name} onClick={() => set("colorName", swatch.name)} />
+            ))}
+          </div>
+          <p className="mt-3 text-[13px] text-black/45">{r.swatch?.name}</p>
+        </>
+      ),
+    },
     {
       id: "fabric",
       title: "Canvas",
@@ -118,21 +133,6 @@ function Configurator({
             })}
           </div>
           <p className="mt-2 text-[12px] text-black/35">{fabricTierMeta[r.fabric.tier].label} tier</p>
-        </>
-      ),
-    },
-    {
-      id: "color",
-      title: "Color",
-      summary: r.swatch?.name ?? build.colorName,
-      content: (
-        <>
-          <div className="flex flex-wrap gap-2.5">
-            {swatches.map((swatch) => (
-              <Swatch key={swatch.name} hex={swatch.hex} name={swatch.name} selected={build.colorName === swatch.name} onClick={() => set("colorName", swatch.name)} />
-            ))}
-          </div>
-          <p className="mt-3 text-[13px] text-black/45">{r.swatch?.name}</p>
         </>
       ),
     },
