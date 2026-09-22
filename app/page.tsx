@@ -30,15 +30,15 @@ const steps = [
     body: "Choose a silhouette from the collection. Every one is a factory-spec pattern with real dimensions.",
   },
   {
-    title: "Build it",
+    title: "Customize it",
     body: "Color, canvas, carry, threads, pockets, artwork, labels. Watch the bag update as you go, with your price live the whole time.",
   },
   {
-    title: "Approve your tech pack",
-    body: "We turn your build into a detailed tech pack within 2 business days. Nothing goes to production until you sign off.",
+    title: "Order it",
+    body: "Review your build and check out. That's it. No quotes, no back and forth.",
   },
   {
-    title: "Delivered to your door",
+    title: "Wait for delivery",
     body: "30 days production + air freight to one US address. Included in your price.",
   },
 ];
