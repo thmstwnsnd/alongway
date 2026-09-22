@@ -262,37 +262,49 @@ function Configurator({
           )}
         </div>
 
-        {/* Details strip: photos, then Build (live) and Size (schematic) */}
+        {/* Details strip: collapsed to a single Photos button while customizing */}
         <div className="flex items-center gap-2 overflow-x-auto px-6 pb-3 lg:px-12">
-          {gallery.map((src, i) => (
+          {view === "build" ? (
             <button
-              key={src}
               type="button"
-              onClick={() => setView(i)}
-              aria-pressed={view === i}
-              className={`relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl transition ${view === i ? "ring-2 ring-charcoal ring-offset-2" : "opacity-80 hover:opacity-100"}`}
+              onClick={() => setView(gallery.length ? 0 : "size")}
+              className="flex h-11 flex-shrink-0 items-center gap-2 rounded-xl bg-black/[0.05] px-4 text-[13px] font-semibold text-charcoal transition hover:bg-black/[0.08]"
             >
-              <Image src={src} alt="" fill sizes="56px" className="object-cover" />
+              <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="3" y="4" width="14" height="12" rx="2" /><path d="M3 13l4-4 3 3 2-2 5 5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              Photos{gallery.length ? ` (${gallery.length + 1})` : ""}
             </button>
-          ))}
-          <button
-            type="button"
-            onClick={() => setView("size")}
-            aria-pressed={view === "size"}
-            title="Dimensions"
-            className={`relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl bg-white p-1 transition ${view === "size" ? "ring-2 ring-charcoal ring-offset-2" : "opacity-80 ring-1 ring-black/10 hover:opacity-100"}`}
-          >
-            <BagPreview build={build} />
-          </button>
-          <button
-            type="button"
-            onClick={() => setView("build")}
-            aria-pressed={view === "build"}
-            className={`flex h-14 flex-shrink-0 items-center gap-2 rounded-xl px-4 text-[13px] font-semibold transition ${view === "build" ? "bg-charcoal text-white" : "bg-black/[0.05] text-charcoal hover:bg-black/[0.08]"}`}
-          >
-            <span className="inline-block h-3 w-3 rounded-full" style={{ backgroundColor: r.bodyHex }} />
-            Customize
-          </button>
+          ) : (
+            <>
+              {gallery.map((src, i) => (
+                <button
+                  key={src}
+                  type="button"
+                  onClick={() => setView(i)}
+                  aria-pressed={view === i}
+                  className={`relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl transition ${view === i ? "ring-2 ring-charcoal ring-offset-2" : "opacity-80 hover:opacity-100"}`}
+                >
+                  <Image src={src} alt="" fill sizes="56px" className="object-cover" />
+                </button>
+              ))}
+              <button
+                type="button"
+                onClick={() => setView("size")}
+                aria-pressed={view === "size"}
+                title="Dimensions"
+                className={`relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl bg-white p-1 transition ${view === "size" ? "ring-2 ring-charcoal ring-offset-2" : "opacity-80 ring-1 ring-black/10 hover:opacity-100"}`}
+              >
+                <BagPreview build={build} />
+              </button>
+              <button
+                type="button"
+                onClick={() => setView("build")}
+                className="ml-2 flex h-14 flex-shrink-0 items-center gap-2 rounded-xl bg-charcoal px-4 text-[13px] font-semibold text-white transition hover:bg-blue"
+              >
+                <span className="inline-block h-3 w-3 rounded-full" style={{ backgroundColor: r.bodyHex }} />
+                Customize
+              </button>
+            </>
+          )}
         </div>
 
         {/* Quantity + price, under the bag */}
