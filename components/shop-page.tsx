@@ -9,13 +9,14 @@ import { bags, customQuoteTier, getBagImageUrl, quantityTiers } from "@/data/bag
 import { OrderSummaryCard } from "@/components/order-summary-card";
 import {
   ORDER_DRAFT_STORAGE_KEY,
+  applyOrderParams,
   decorationOptions,
   emptyOrderDraft,
   formatCurrency,
+  getDecorationSummary,
   getOrderAmounts,
   type OrderDraft,
 } from "@/lib/order-flow";
-import { getFabricBySlug } from "@/data/fabrics";
 import { addOns } from "@/data/addons";
 
 export function ShopPage() {
@@ -25,37 +26,9 @@ export function ShopPage() {
   const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
-    const savedOrder = window.localStorage.getItem(ORDER_DRAFT_STORAGE_KEY);
-    const nextOrder = savedOrder ? { ...emptyOrderDraft, ...JSON.parse(savedOrder) } : emptyOrderDraft;
-    const requestedBag = searchParams.get("bag");
-    const requestedQuantity = searchParams.get("quantity");
-    const requestedFabric = searchParams.get("fabric");
-    const requestedAddOns = searchParams.get("addons");
-
-    if (requestedBag && bags.some((bag) => bag.slug === requestedBag)) {
-      nextOrder.bagSlug = requestedBag;
-    }
-
-    if (requestedQuantity) {
-      const parsedQuantity = Number.parseInt(requestedQuantity, 10);
-      if (Number.isFinite(parsedQuantity)) {
-        nextOrder.quantity = parsedQuantity;
-      }
-    }
-
-    if (requestedFabric && getFabricBySlug(requestedFabric)) {
-      nextOrder.fabricSlug = requestedFabric;
-    }
-
-    if (requestedAddOns) {
-      const validAddOnIds = requestedAddOns
-        .split(",")
-        .map((item) => item.trim())
-        .filter((item) => addOns.some((addOn) => addOn.id === item));
-      nextOrder.addOnIds = validAddOnIds;
-    }
-
-    setOrder(nextOrder);
+    const saved = window.localStorage.getItem(ORDER_DRAFT_STORAGE_KEY);
+    const base: OrderDraft = saved ? { ...emptyOrderDraft, ...JSON.parse(saved) } : emptyOrderDraft;
+    setOrder(applyOrderParams(base, searchParams));
     setIsHydrated(true);
   }, [searchParams]);
 
@@ -71,7 +44,7 @@ export function ShopPage() {
     () => bags.find((bag) => bag.slug === order.bagSlug),
     [order.bagSlug],
   );
-  const { unitPrice, total, fabric, selectedAddOns, baseUnitPrice, addOnUnitTotal } = getOrderAmounts(order);
+  const { unitPrice, total, fabric, selectedAddOns, baseUnitPrice, addOnUnitTotal, decorationUpcharge } = getOrderAmounts(order);
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
@@ -200,6 +173,7 @@ export function ShopPage() {
                       <p className="mt-1 text-sm leading-6 text-charcoal/68">
                         {fabric.upcharge > 0 ? `Fabric upcharge: +${formatCurrency(fabric.upcharge)} per unit.` : "Starter fabric included."}
                       </p>
+                      <p className="mt-1 text-sm leading-6 text-charcoal/68">{getDecorationSummary(order) || "Decoration not chosen yet."}</p>
                       <p className="mt-3 text-sm leading-6 text-charcoal/68">
                         {selectedAddOns.length
                           ? `Add-ons: ${selectedAddOns.map((addOn) => addOn.name).join(", ")}.`
@@ -208,6 +182,8 @@ export function ShopPage() {
                     </div>
                     <div className="rounded-[1.25rem] bg-white px-4 py-3 text-sm text-charcoal/72">
                       <p>Base: {baseUnitPrice ? formatCurrency(baseUnitPrice) : "TBD"}</p>
+                      <p>Fabric: {formatCurrency(fabric.upcharge)}</p>
+                      <p>Decoration: {formatCurrency(decorationUpcharge)}</p>
                       <p>Add-ons: {formatCurrency(addOnUnitTotal)}</p>
                       <p className="font-semibold text-charcoal">Estimated unit total: {unitPrice ? formatCurrency(unitPrice) : "TBD"}</p>
                     </div>

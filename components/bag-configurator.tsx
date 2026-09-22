@@ -8,41 +8,33 @@ import type { ReactNode } from "react";
 import type { Bag } from "@/data/bags";
 import { addOns } from "@/data/addons";
 import { fabricTierMeta, fabrics, type FabricTier } from "@/data/fabrics";
-import { formatCurrency, getUnitPrice } from "@/lib/order-flow";
+import {
+  DEFAULT_FABRIC_SLUG,
+  backColorOptions,
+  buildOrderParams,
+  decorationOptions,
+  embroideryPlacementOptions,
+  formatCurrency,
+  frontColorOptions,
+  getDecorationSummary,
+  getDecorationUpcharge,
+  getUnitPrice,
+  type DecorationType,
+} from "@/lib/order-flow";
 import { lookupPantone } from "@/data/pantone";
 
-const defaultFabricSlug = "cotton-canvas-12oz";
 const quantityOptions = [100, 250, 500, 1000, 2000];
 const CUSTOM_QUOTE_KEY = "5000+";
 const tierOrder: FabricTier[] = ["starter", "upgrade1", "upgrade2", "upgrade3"];
-const decorationTypes = ["Screen Print", "Embroidery", "Patch", "Woven Label"] as const;
-const frontColorOptions = [
-  { label: "1 color", value: 1, upcharge: 0 },
-  { label: "2 colors", value: 2, upcharge: 0.35 },
-  { label: "3 colors", value: 3, upcharge: 0.7 },
-  { label: "4 colors", value: 4, upcharge: 1.05 },
-] as const;
-const backColorOptions = [
-  { label: "None", value: 0, upcharge: 0 },
-  { label: "1 color", value: 1, upcharge: 0.3 },
-  { label: "2 colors", value: 2, upcharge: 0.6 },
-  { label: "3 colors", value: 3, upcharge: 0.9 },
-] as const;
-const embroideryPlacementOptions = [
-  { label: "One placement", value: 1, upcharge: 0 },
-  { label: "Two placements", value: 2, upcharge: 1.25 },
-] as const;
-
-type DecorationType = (typeof decorationTypes)[number];
 
 export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: boolean }) {
-  const [selectedFabricSlug, setSelectedFabricSlug] = useState(defaultFabricSlug);
+  const [selectedFabricSlug, setSelectedFabricSlug] = useState(DEFAULT_FABRIC_SLUG);
   const [selectedAddOnIds, setSelectedAddOnIds] = useState<string[]>([]);
   const [quantity, setQuantity] = useState(100);
   const [isCustomQuote, setIsCustomQuote] = useState(false);
   const [qtyPopoverOpen, setQtyPopoverOpen] = useState(false);
   const [qtyInput, setQtyInput] = useState("100");
-  const [decorationType, setDecorationType] = useState<DecorationType>("Screen Print");
+  const [decorationType, setDecorationType] = useState<Exclude<DecorationType, "">>("Screen Print");
   const [frontColors, setFrontColors] = useState(1);
   const [backColors, setBackColors] = useState(0);
   // Color slots: array of {hex, pantoneInput} for each ink color
@@ -98,49 +90,26 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
   const basePrice = getUnitPrice(bag, quantity) ?? 0;
   const fabricUpcharge = selectedFabric.upcharge;
   const addOnTotal = selectedAddOns.reduce((sum, addOn) => sum + addOn.pricePerUnit, 0);
-  const screenPrintFrontCharge = frontColorOptions.find((option) => option.value === frontColors)?.upcharge ?? 0;
-  const screenPrintBackCharge = backColorOptions.find((option) => option.value === backColors)?.upcharge ?? 0;
-  const embroideryCharge = embroideryPlacementOptions.find((option) => option.value === embroideryPlacements)?.upcharge ?? 0;
-  const decorationUpcharge =
-    decorationType === "Screen Print"
-      ? screenPrintFrontCharge + screenPrintBackCharge
-      : decorationType === "Embroidery"
-        ? embroideryCharge
-        : 0;
+  const decoration = { decorationType, frontColors, backColors, embroideryPlacements };
+  const decorationUpcharge = getDecorationUpcharge(decoration);
+  const decorationSummary = getDecorationSummary(decoration);
   const totalPerUnit = basePrice + fabricUpcharge + decorationUpcharge + addOnTotal;
   const orderTotal = totalPerUnit * quantity;
-  const decorationSummary =
-    decorationType === "Screen Print"
-      ? `Screen Print · Front ${frontColors} color${frontColors > 1 ? "s" : ""} · Back ${
-          backColors === 0 ? "none" : `${backColors} color${backColors > 1 ? "s" : ""}`
-        }`
-      : decorationType === "Embroidery"
-        ? `Embroidery · ${embroideryPlacements === 1 ? "One placement" : "Two placements"}`
-        : decorationType;
 
-  const buildOrderHref = useMemo(() => {
-    const params = new URLSearchParams({
-      bag: bag.slug,
-      quantity: String(quantity),
-      fabric: selectedFabric.slug,
-      decoration: decorationType,
-    });
-
-    if (selectedAddOnIds.length) {
-      params.set("addons", selectedAddOnIds.join(","));
-    }
-
-    if (decorationType === "Screen Print") {
-      params.set("frontColors", String(frontColors));
-      params.set("backColors", String(backColors));
-    }
-
-    if (decorationType === "Embroidery") {
-      params.set("embroideryPlacements", String(embroideryPlacements));
-    }
-
-    return `/shop?${params.toString()}`;
-  }, [bag.slug, quantity, selectedFabric.slug, selectedAddOnIds, decorationType, frontColors, backColors, embroideryPlacements]);
+  const buildOrderHref = useMemo(
+    () =>
+      `/shop?${buildOrderParams({
+        bagSlug: bag.slug,
+        quantity,
+        fabricSlug: selectedFabric.slug,
+        addOnIds: selectedAddOnIds,
+        decorationType,
+        frontColors,
+        backColors,
+        embroideryPlacements,
+      })}`,
+    [bag.slug, quantity, selectedFabric.slug, selectedAddOnIds, decorationType, frontColors, backColors, embroideryPlacements],
+  );
 
   return (
     <>
@@ -343,7 +312,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
           <div className="rounded-[2rem] border border-charcoal/10 bg-light-bone p-5">
             <h3 className="font-display mb-4 text-base font-bold tracking-tight">Decoration</h3>
             <div className="flex flex-wrap gap-2">
-              {decorationTypes.map((option) => {
+              {decorationOptions.map((option) => {
                 const isSelected = decorationType === option;
                 return (
                   <button
