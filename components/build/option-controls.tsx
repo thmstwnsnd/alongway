@@ -11,6 +11,7 @@ export function Section({
   summary,
   hint,
   open,
+  done = false,
   onToggle,
   onNext,
   isLast = false,
@@ -22,6 +23,8 @@ export function Section({
   summary: string;
   hint?: string;
   open: boolean;
+  /** The person has confirmed this step. */
+  done?: boolean;
   onToggle: () => void;
   onNext: () => void;
   isLast?: boolean;
@@ -35,7 +38,9 @@ export function Section({
         aria-expanded={open}
         className="flex w-full items-center gap-4 py-5 text-left"
       >
-        <span className={`w-7 text-[12px] font-semibold tabular-nums ${open ? "text-blue" : "text-black/30"}`}>{step}</span>
+        <span className={`flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-semibold tabular-nums ${done ? "bg-kelly text-white" : open ? "bg-blue text-white" : "bg-black/[0.06] text-black/40"}`}>
+          {done ? "✓" : step}
+        </span>
         <span className="min-w-0 flex-1">
           <span className={`block text-[17px] font-semibold tracking-[-0.01em] ${open ? "text-charcoal" : "text-charcoal/90"}`}>{title}</span>
           {!open ? <span className="mt-0.5 block truncate text-[13px] text-black/45">{summary}</span> : hint ? <span className="mt-0.5 block text-[13px] text-black/45">{hint}</span> : null}
@@ -48,16 +53,14 @@ export function Section({
         <div className="min-h-0 overflow-hidden">
           <div className="px-1 pb-6 pl-11 pt-2">
             {children}
-            {!isLast ? (
-              <button
-                type="button"
-                onClick={onNext}
-                className="mt-5 inline-flex items-center gap-2 rounded-full bg-charcoal px-5 py-2.5 text-[13px] font-semibold text-white transition hover:bg-blue"
-              >
-                Next
-                <span aria-hidden>→</span>
-              </button>
-            ) : null}
+            <button
+              type="button"
+              onClick={onNext}
+              className="mt-5 inline-flex items-center gap-2 rounded-full bg-charcoal px-5 py-2.5 text-[13px] font-semibold text-white transition hover:bg-blue"
+            >
+              {isLast ? "Done" : "Confirm & next"}
+              <span aria-hidden>{isLast ? "✓" : "→"}</span>
+            </button>
           </div>
         </div>
       </div>

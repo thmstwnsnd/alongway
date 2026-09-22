@@ -106,6 +106,7 @@ function Configurator({
   const swatches = getFabricSwatches(build.fabricSlug);
   const standardPockets = r.style.standardPockets ?? [];
   const [openStep, setOpenStep] = useState<string | null>(null);
+  const [doneSteps, setDoneSteps] = useState<string[]>([]);
   // Land on the first marketing photo when the style has one; Customize switches to the live preview.
   const [view, setView] = useState<"build" | "size" | number>(r.style.gallery?.length ? 0 : "build");
   // quantity lives in the price bar, not in the steps
@@ -238,6 +239,7 @@ function Configurator({
     },
   ];
 
+  const allDone = steps.every((st) => doneSteps.includes(st.id));
   const headerH = useHeaderHeight();
   const gallery = (r.style.gallery ?? []).slice(0, 5);
   const galleryIndex = typeof view === "number" ? view : null;
@@ -380,9 +382,21 @@ function Configurator({
               </details>
             </div>
             <div className="flex items-center gap-3">
-              <button type="button" onClick={onContinue} className="rounded-full bg-blue px-6 py-3 text-[14px] font-semibold text-white transition hover:bg-charcoal">
-                {r.isCustomQuote ? "Request quote" : "Continue"}
-              </button>
+              <div className="flex flex-col items-end gap-1.5">
+                <button
+                  type="button"
+                  onClick={onContinue}
+                  disabled={!r.isCustomQuote && !allDone}
+                  className="rounded-full bg-blue px-6 py-3 text-[14px] font-semibold text-white transition hover:bg-charcoal disabled:cursor-not-allowed disabled:bg-black/[0.08] disabled:text-black/35"
+                >
+                  {r.isCustomQuote ? "Request quote" : "Continue"}
+                </button>
+                {!r.isCustomQuote ? (
+                  <p className="text-[11px] font-medium text-black/40">
+                    {allDone ? "All steps confirmed" : `${doneSteps.length} of ${steps.length} steps confirmed`}
+                  </p>
+                ) : null}
+              </div>
             </div>
           </div>
         </div>
@@ -398,12 +412,16 @@ function Configurator({
             summary={step.summary}
             hint={step.hint}
             open={openStep === step.id}
+            done={doneSteps.includes(step.id)}
             onToggle={() => {
               const next = openStep === step.id ? null : step.id;
               setOpenStep(next);
               if (next) setView("build");
             }}
-            onNext={() => setOpenStep(steps[i + 1]?.id ?? null)}
+            onNext={() => {
+              setDoneSteps((d) => (d.includes(step.id) ? d : [...d, step.id]));
+              setOpenStep(steps.slice(i + 1).find((st) => !doneSteps.includes(st.id))?.id ?? null);
+            }}
             isLast={i === steps.length - 1}
           >
             {step.content}

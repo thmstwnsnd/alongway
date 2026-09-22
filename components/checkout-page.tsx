@@ -7,6 +7,7 @@ import Link from "next/link";
 
 import { OrderSummaryCard } from "@/components/order-summary-card";
 import { getCheckoutAmounts } from "@/lib/build-flow";
+import { BuildSpecCard } from "@/components/build/build-spec-card";
 import { getBagBySlug } from "@/data/bags";
 import {
   LAST_ORDER_STORAGE_KEY,
@@ -110,6 +111,8 @@ export function CheckoutPage() {
             router.push("/order-confirmation");
           }}
         >
+          {order.build ? <BuildSpecCard build={order.build} /> : null}
+
           <CheckoutSection title="Contact">
             <div className="grid gap-5 md:grid-cols-2">
               <Field label="Email">
