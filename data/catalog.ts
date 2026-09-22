@@ -42,6 +42,8 @@ export type PhotoLayers = {
 export type CatalogStyle = {
   slug: string;
   photo?: PhotoLayers;
+  /** Up to five as-shot photos for the detail strip under the builder stage. */
+  gallery?: string[];
   bagNumber: string;
   name: string;
   tagline: string;
@@ -159,6 +161,13 @@ export const catalog: CatalogStyle[] = [
     tagline: "The regular. Heavyweight canvas, short handles, structured base.",
     defaultFabricSlug: "cotton-canvas-20oz",
     fabricSlugs: ["cotton-canvas-16oz", "cotton-canvas-20oz", "cotton-canvas-24oz"],
+    gallery: [
+      "/photos/product-dscf-3148.jpg",
+      "/photos/product-dscf-3146.jpg",
+      "/photos/product-dscf-3153.jpg",
+      "/photos/product-dscf-3234.jpg",
+      "/photos/lifestyle-boatsetter-2.jpg",
+    ],
     photo: {
       base: "/build/boat-tote/base.png",
       width: 547,

@@ -224,8 +224,10 @@ function Configurator({
   ];
 
   const headerH = useHeaderHeight();
-  const [view, setView] = useState<"photo" | "spec">(r.style.photo ? "photo" : "spec");
-  const showPhoto = view === "photo" && r.style.photo;
+  const [view, setView] = useState<"build" | "size" | number>("build");
+  const gallery = (r.style.gallery ?? []).slice(0, 5);
+  const galleryIndex = typeof view === "number" ? view : null;
+  const showPhoto = view === "build" && r.style.photo;
 
   return (
     <div
@@ -245,7 +247,11 @@ function Configurator({
         </div>
 
         <div className="flex min-h-0 flex-1 items-center justify-center px-6 py-4 lg:px-16">
-          {showPhoto ? (
+          {galleryIndex !== null ? (
+            <div className="relative h-full w-full overflow-hidden rounded-2xl">
+              <Image src={gallery[galleryIndex]} alt={`${r.style.name} photo ${galleryIndex + 1}`} fill sizes="(min-width: 1024px) 55vw, 100vw" className="object-cover" />
+            </div>
+          ) : showPhoto ? (
             <div className="h-full max-w-full" style={{ aspectRatio: `${r.style.photo!.width} / ${r.style.photo!.height}` }}>
               <PhotoPreview photo={r.style.photo!} bodyHex={r.bodyHex} trimHex={r.strapHex} alt={r.style.name} />
             </div>
@@ -254,6 +260,38 @@ function Configurator({
               <BagPreview build={build} />
             </div>
           )}
+        </div>
+
+        {/* Details strip: photos, then Build (live) and Size (schematic) */}
+        <div className="flex items-center gap-2 overflow-x-auto px-6 pb-3 lg:px-12">
+          {gallery.map((src, i) => (
+            <button
+              key={src}
+              type="button"
+              onClick={() => setView(i)}
+              aria-pressed={view === i}
+              className={`relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl transition ${view === i ? "ring-2 ring-charcoal ring-offset-2" : "opacity-80 hover:opacity-100"}`}
+            >
+              <Image src={src} alt="" fill sizes="56px" className="object-cover" />
+            </button>
+          ))}
+          <button
+            type="button"
+            onClick={() => setView("build")}
+            aria-pressed={view === "build"}
+            className={`flex h-14 flex-shrink-0 items-center gap-2 rounded-xl px-4 text-[13px] font-semibold transition ${view === "build" ? "bg-charcoal text-white" : "bg-black/[0.05] text-charcoal hover:bg-black/[0.08]"}`}
+          >
+            <span className="inline-block h-3 w-3 rounded-full" style={{ backgroundColor: r.bodyHex }} />
+            Build
+          </button>
+          <button
+            type="button"
+            onClick={() => setView("size")}
+            aria-pressed={view === "size"}
+            className={`h-14 flex-shrink-0 rounded-xl px-4 text-[13px] font-semibold transition ${view === "size" ? "bg-charcoal text-white" : "bg-black/[0.05] text-charcoal hover:bg-black/[0.08]"}`}
+          >
+            Size
+          </button>
         </div>
 
         {/* Quantity + price, under the bag */}
@@ -308,16 +346,6 @@ function Configurator({
               </details>
             </div>
             <div className="flex items-center gap-3">
-              {r.style.photo ? (
-                <Segmented
-                  options={[
-                    { value: "photo", label: "Photo" },
-                    { value: "spec", label: "Size" },
-                  ]}
-                  value={view}
-                  onChange={setView}
-                />
-              ) : null}
               <button type="button" onClick={onContinue} className="rounded-full bg-blue px-6 py-3 text-[14px] font-semibold text-white transition hover:bg-charcoal">
                 {r.isCustomQuote ? "Request quote" : "Continue"}
               </button>
