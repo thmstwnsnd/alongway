@@ -92,7 +92,9 @@ function Configurator({
   const set = <K extends keyof BuildConfig>(key: K, value: BuildConfig[K]) => onChange({ ...build, [key]: value });
   const swatches = getFabricSwatches(build.fabricSlug);
   const standardPockets = r.style.standardPockets ?? [];
-  const [openStep, setOpenStep] = useState<string | null>("color");
+  const [openStep, setOpenStep] = useState<string | null>(null);
+  // Land on the first marketing photo when the style has one; Customize switches to the live preview.
+  const [view, setView] = useState<"build" | "size" | number>(r.style.gallery?.length ? 0 : "build");
   // quantity lives in the price bar, not in the steps
   const names = (options: { id: string; label: string }[], ids: string[]) =>
     options.filter((o) => ids.includes(o.id)).map((o) => o.label).join(", ");
@@ -224,8 +226,6 @@ function Configurator({
   ];
 
   const headerH = useHeaderHeight();
-  // Land on the first marketing photo when the style has one; Customize switches to the live preview.
-  const [view, setView] = useState<"build" | "size" | number>(r.style.gallery?.length ? 0 : "build");
   const gallery = (r.style.gallery ?? []).slice(0, 5);
   const galleryIndex = typeof view === "number" ? view : null;
   const showPhoto = view === "build" && r.style.photo;
@@ -298,7 +298,10 @@ function Configurator({
               </button>
               <button
                 type="button"
-                onClick={() => setView("build")}
+                onClick={() => {
+                  setView("build");
+                  setOpenStep("color");
+                }}
                 className="flex aspect-[4/3] w-full flex-col items-center justify-center gap-1.5 rounded-xl bg-charcoal text-[13px] font-semibold text-white transition hover:bg-blue"
               >
                 <Image src="/svg/icons/Alongway_Website_Graphic_BirdRight_Cream.svg" alt="" width={28} height={28} className="h-6 w-auto" aria-hidden />
@@ -387,7 +390,11 @@ function Configurator({
             summary={step.summary}
             hint={step.hint}
             open={openStep === step.id}
-            onToggle={() => setOpenStep(openStep === step.id ? null : step.id)}
+            onToggle={() => {
+              const next = openStep === step.id ? null : step.id;
+              setOpenStep(next);
+              if (next) setView("build");
+            }}
             onNext={() => setOpenStep(steps[i + 1]?.id ?? null)}
             isLast={i === steps.length - 1}
           >
