@@ -264,14 +264,15 @@ const waxedPalette: FabricSwatch[] = [
   { name: "Black Wax", hex: "#20201F" },
 ];
 
+// Every canvas weight offers the full palette until the factory confirms per-weight availability.
 const paletteBySlug: Record<string, FabricSwatch[]> = {
-  "cotton-canvas-10oz": canvasPalette.slice(0, 20),
+  "cotton-canvas-10oz": canvasPalette,
   "cotton-canvas-12oz": canvasPalette,
-  "cotton-canvas-14oz": canvasPalette.slice(0, 30),
-  "cotton-canvas-16oz": canvasPalette.slice(10, 40),
-  "cotton-canvas-18oz": canvasPalette.slice(0, 20),
-  "cotton-canvas-20oz": canvasPalette.slice(5, 25),
-  "cotton-canvas-24oz": canvasPalette.slice(0, 15),
+  "cotton-canvas-14oz": canvasPalette,
+  "cotton-canvas-16oz": canvasPalette,
+  "cotton-canvas-18oz": canvasPalette,
+  "cotton-canvas-20oz": canvasPalette,
+  "cotton-canvas-24oz": canvasPalette,
   denim: denimPalette,
   "corduroy-thick": thickCordPalette,
   "corduroy-thin": thinCordPalette,
