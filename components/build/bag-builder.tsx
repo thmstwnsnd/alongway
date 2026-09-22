@@ -224,7 +224,8 @@ function Configurator({
   ];
 
   const headerH = useHeaderHeight();
-  const [view, setView] = useState<"build" | "size" | number>("build");
+  // Land on the first marketing photo when the style has one; Customize switches to the live preview.
+  const [view, setView] = useState<"build" | "size" | number>(r.style.gallery?.length ? 0 : "build");
   const gallery = (r.style.gallery ?? []).slice(0, 5);
   const galleryIndex = typeof view === "number" ? view : null;
   const showPhoto = view === "build" && r.style.photo;
