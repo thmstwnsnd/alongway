@@ -184,12 +184,8 @@ export default function HomePage() {
           </div>
           {/* Lifestyle photo + WormHole stacked */}
           <div className="relative shrink-0 self-start">
-            <div className="overflow-hidden rounded-2xl" style={{ width: "320px", height: "420px" }}>
-              <img
-                src="/photos/lifestyle-verve-cosmic-1.jpg"
-                alt="Custom branded bags in use"
-                className="h-full w-full object-cover"
-              />
+            <div className="relative h-[420px] w-[320px] overflow-hidden rounded-2xl">
+              <Image src="/photos/lifestyle-verve-cosmic-1.jpg" alt="Custom branded bags in use" fill sizes="320px" className="object-cover" />
             </div>
             <Image
               src="/svg/illustrations/Alongway_Website_Graphic_WormHole_Blue.svg"

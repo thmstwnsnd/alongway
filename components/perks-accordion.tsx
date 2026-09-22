@@ -69,11 +69,13 @@ export function PerksAccordion() {
       {/* Right: photo */}
       <div className="relative overflow-hidden rounded-2xl lg:w-1/2" style={{ minHeight: "420px" }}>
         {perks.map((perk, i) => (
-          <img
+          <Image
             key={perk.photo}
             src={perk.photo}
             alt={perk.label}
-            className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover transition-opacity duration-500"
             style={{ opacity: active === i ? 1 : 0 }}
           />
         ))}

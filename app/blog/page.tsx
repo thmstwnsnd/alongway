@@ -28,11 +28,9 @@ export default function BlogPage() {
             key={post.slug}
             className="overflow-hidden rounded-[1.75rem] border border-charcoal/10 bg-white shadow-card"
           >
-            <img
-              src="https://placehold.co/800x450/364FA0/EEE6D2?text=Blog+Post"
-              alt={post.title}
-              className="aspect-[16/9] w-full border-b border-charcoal/10 object-cover"
-            />
+            <div className="relative aspect-[16/9] w-full border-b border-charcoal/10">
+              <Image src="/photos/lifestyle-merch-drop.jpg" alt="" fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover" />
+            </div>
             <div className="space-y-4 p-6">
               <div className="flex items-center justify-between gap-4">
                 <span className="font-accent rounded-full bg-light-bone px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-blue">

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import Link from "next/link";
@@ -54,9 +55,11 @@ export function ShopPage() {
             <StepHeading number="01" title="Choose your bag" body="Select the silhouette that best fits your brand and use case." />
             {selectedBag ? (
               <div className="mt-6 flex items-center gap-4 rounded-[1.75rem] border border-blue bg-light-bone p-4 ring-2 ring-blue/20">
-                <img
+                <Image
                   src={getBagImageUrl(selectedBag.slug)}
                   alt={selectedBag.name}
+                  width={64}
+                  height={64}
                   className="h-16 w-16 flex-shrink-0 rounded-2xl object-cover"
                 />
                 <div className="min-w-0 flex-1">
@@ -93,11 +96,9 @@ export function ShopPage() {
                         isSelected ? "border-blue ring-2 ring-blue/20" : "border-charcoal/10 hover:border-blue/30"
                       }`}
                     >
-                      <img
-                        src={getBagImageUrl(bag.slug)}
-                        alt={bag.name}
-                        className="aspect-[6/5] w-full object-cover"
-                      />
+                      <div className="relative aspect-[6/5] w-full">
+                        <Image src={getBagImageUrl(bag.slug)} alt={bag.name} fill sizes="(min-width: 768px) 33vw, 50vw" className="object-cover" />
+                      </div>
                       <div className="space-y-2 p-4">
                         <div className="flex items-start justify-between gap-3">
                           <div>

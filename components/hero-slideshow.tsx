@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const photos = [
@@ -37,20 +38,25 @@ export function HeroSlideshow() {
   return (
     <div className="absolute inset-0">
       {/* Current photo — always visible */}
-      <img
+      <Image
         key={`current-${current}`}
         src={photos[current]}
         alt="Alongway custom bags"
-        className="absolute inset-0 h-full w-full object-cover object-center"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center"
       />
       {/* Next photo — fades in on top */}
       {next !== null && (
-        <img
+        <Image
           key={`next-${next}`}
           src={photos[next]}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover object-center animate-fade-in"
+          fill
+          sizes="100vw"
+          className="object-cover object-center animate-fade-in"
         />
       )}
     </div>

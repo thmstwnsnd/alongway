@@ -102,7 +102,7 @@ export default function AboutPage() {
 function TeamMember({ image, name, role, bio }: { image: string; name: string; role: string; bio: string }) {
   return (
     <div className="rounded-[2rem] border border-charcoal/10 bg-white p-7 shadow-card space-y-4">
-      <img src={image} alt={name} className="h-20 w-20 rounded-full object-cover shadow-card ring-4 ring-bone" />
+      <Image src={image} alt={name} width={80} height={80} className="h-20 w-20 rounded-full object-cover shadow-card ring-4 ring-bone" />
       <div>
         <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-light-blue">{role}</p>
         <h3 className="font-display mt-1 text-xl font-bold tracking-tight">{name}</h3>

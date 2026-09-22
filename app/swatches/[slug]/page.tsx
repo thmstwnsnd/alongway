@@ -86,12 +86,8 @@ export default async function FabricDetailPage({
 
           <div className="rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card">
             <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">How it feels</p>
-            <div className="mt-4 overflow-hidden rounded-[1.75rem]">
-              <img
-                src={getFabricTextureImageUrl(fabric.slug)}
-                alt={`${fabric.name} fabric texture`}
-                className="h-[340px] w-full object-cover"
-              />
+            <div className="relative mt-4 h-[340px] overflow-hidden rounded-[1.75rem]">
+              <Image src={getFabricTextureImageUrl(fabric.slug)} alt={`${fabric.name} fabric texture`} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
             </div>
           </div>
         </div>

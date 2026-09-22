@@ -191,12 +191,16 @@ export function SiteShell({ children }: { children: ReactNode }) {
                     {/* Preview image — right */}
                     <div className="w-48 flex-shrink-0 bg-light-bone">
                       {hoveredBagSlug ? (
-                        <img
-                          key={hoveredBagSlug}
-                          src={getBagImageUrl(hoveredBagSlug)}
-                          alt={bags.find(b => b.slug === hoveredBagSlug)?.name ?? ""}
-                          className="h-full w-full object-cover"
-                        />
+                        <div className="relative h-full w-full">
+                          <Image
+                            key={hoveredBagSlug}
+                            src={getBagImageUrl(hoveredBagSlug)}
+                            alt={bags.find((b) => b.slug === hoveredBagSlug)?.name ?? ""}
+                            fill
+                            sizes="192px"
+                            className="object-cover"
+                          />
+                        </div>
                       ) : (
                         <div className="flex h-full items-center justify-center p-6">
                           <p className="text-center text-xs font-medium text-charcoal/40">Hover a bag to preview</p>

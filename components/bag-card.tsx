@@ -6,11 +6,9 @@ import { type Bag, getBagImageUrl } from "@/data/bags";
 export function BagCard({ bag }: { bag: Bag }) {
   return (
 <article className="group overflow-hidden card-brand bg-white transition-colors">
-      <img
-        src={getBagImageUrl(bag.slug)}
-        alt={bag.name}
-        className="aspect-[6/5] w-full border-b border-charcoal/10 object-cover"
-      />
+      <div className="relative aspect-[6/5] w-full border-b border-charcoal/10">
+        <Image src={getBagImageUrl(bag.slug)} alt={bag.name} fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-cover" />
+      </div>
       <div className="space-y-4 p-6">
         {/* Kelly green accent bar */}
         <div className="h-0.5 w-8 rounded-full bg-light-blue/50" />

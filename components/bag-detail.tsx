@@ -52,10 +52,12 @@ export function BagDetail({ bag }: { bag: Bag }) {
               className="group relative w-full overflow-hidden rounded-[2rem] border border-charcoal/10 shadow-card aspect-square block"
               aria-label="Zoom in"
             >
-              <img
+              <Image
                 src={src}
                 alt={`${bag.name} photo ${i + 1}`}
-                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                fill
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
               />
               <div className="absolute bottom-3 right-3 flex items-center gap-1.5 rounded-full bg-black/40 px-3 py-1.5 text-xs font-semibold text-white opacity-0 group-hover:opacity-100 transition-opacity">
                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
@@ -72,10 +74,13 @@ export function BagDetail({ bag }: { bag: Bag }) {
             >
               <button type="button" onClick={closeLightbox} className="absolute top-4 right-4 text-white/70 hover:text-white text-3xl leading-none">&times;</button>
               <button type="button" onClick={(e) => { e.stopPropagation(); prevPhoto(); }} className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-4xl leading-none px-2">&#8249;</button>
-              <img
-                src={photos[activeIdx]?.replace("w=1200", "w=1800").replace("h=900", "h=1350")}
+              <Image
+                src={photos[activeIdx] ?? ""}
                 alt={bag.name}
-                className="max-h-[90vh] max-w-[90vw] rounded-[1.5rem] object-contain shadow-2xl"
+                width={1800}
+                height={1350}
+                sizes="90vw"
+                className="h-auto max-h-[90vh] w-auto max-w-[90vw] rounded-[1.5rem] object-contain shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
               />
               <button type="button" onClick={(e) => { e.stopPropagation(); nextPhoto(); }} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-4xl leading-none px-2">&#8250;</button>

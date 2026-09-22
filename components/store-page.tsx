@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 export function StorePage() {
@@ -17,11 +18,9 @@ export function StorePage() {
 
       <section className="mt-12 grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-start">
         <div className="overflow-hidden rounded-[2.5rem] border border-charcoal/10 bg-white shadow-card">
-          <img
-            src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=1400&h=1200&q=80&fit=crop&auto=format"
-            alt="Fabric swatch kit"
-            className="aspect-[5/4] w-full object-cover"
-          />
+          <div className="relative aspect-[5/4] w-full">
+            <Image src="/photos/product-dscf-3146.jpg" alt="Fabric swatch kit" fill sizes="(min-width: 1024px) 55vw, 100vw" className="object-cover" />
+          </div>
         </div>
 
         <div className="rounded-[2.5rem] border border-charcoal/10 bg-white p-8 shadow-card">
