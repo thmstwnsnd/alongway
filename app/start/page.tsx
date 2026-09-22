@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
+
 import { SectionHeading } from "@/components/section-heading";
 import { StartOrderForm } from "@/components/start-order-form";
 
@@ -18,7 +20,9 @@ export default function StartPage() {
         body="Share your bag style, quantity, artwork status, and timing. No backend yet, just a clean first step."
       />
       <div className="mt-12">
-        <StartOrderForm />
+        <Suspense>
+          <StartOrderForm />
+        </Suspense>
       </div>
     </div>
   );

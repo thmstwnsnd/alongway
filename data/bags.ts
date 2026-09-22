@@ -17,7 +17,7 @@ export type Bag = {
   pricingTiers: PricingTier[];
 };
 
-const basePricingBySize: Record<BagSize, Record<number, number>> = {
+export const basePricingBySize: Record<BagSize, Record<number, number>> = {
   small:  { 100: 7.5,  250: 6.5,  500: 5.75, 1000: 5.25, 2000: 4.75 },
   medium: { 100: 11.0, 250: 9.5,  500: 8.5,  1000: 7.75, 2000: 7.00 },
   large:  { 100: 14.5, 250: 12.5, 500: 11.0, 1000: 9.75, 2000: 8.75 },
@@ -25,6 +25,13 @@ const basePricingBySize: Record<BagSize, Record<number, number>> = {
 
 export const quantityTiers = [100, 250, 500, 1000, 2000];
 export const customQuoteTier = 5000;
+
+/** Base unit price for a size bracket at a quantity. Quantities between tiers use the tier below. */
+export function getBasePriceForSize(size: BagSize, quantity: number) {
+  const tiers = Object.keys(basePricingBySize[size]).map(Number).sort((a, b) => b - a);
+  const tier = tiers.find((t) => t <= quantity) ?? tiers[tiers.length - 1];
+  return basePricingBySize[size][tier];
+}
 
 function buildPricingTiers(size: BagSize): PricingTier[] {
   return Object.entries(basePricingBySize[size]).map(([quantity, price]) => ({

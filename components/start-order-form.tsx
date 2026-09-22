@@ -2,10 +2,14 @@
 
 import { useState, useMemo } from "react";
 import type { ReactNode } from "react";
+import { useSearchParams } from "next/navigation";
 
 import { bags } from "@/data/bags";
 
 export function StartOrderForm() {
+  const params = useSearchParams();
+  const buildSummary = params.get("build") ?? "";
+  const requestedQty = params.get("qty")?.replace(/\D/g, "") ?? "";
   const [submitted, setSubmitted] = useState(false);
   const [artworkReady, setArtworkReady] = useState("");
 
@@ -41,11 +45,12 @@ export function StartOrderForm() {
             name="bagStyle"
             required
             className="w-full rounded-2xl border border-charcoal/15 bg-light-bone px-4 py-3 text-sm outline-none focus:border-blue"
-            defaultValue=""
+            defaultValue={buildSummary ? "Custom build (see notes)" : ""}
           >
             <option value="" disabled>
               Select a bag
             </option>
+            {buildSummary ? <option value="Custom build (see notes)">Custom build (see notes)</option> : null}
             {bags.map((bag) => (
               <option key={bag.slug} value={bag.name}>
                 {bag.name}
@@ -59,6 +64,7 @@ export function StartOrderForm() {
             type="number"
             min="100"
             placeholder="Minimum order of 100"
+            defaultValue={requestedQty}
             required
             className="w-full rounded-2xl border border-charcoal/15 bg-light-bone px-4 py-3 text-sm outline-none focus:border-blue"
           />
@@ -129,7 +135,8 @@ export function StartOrderForm() {
         <Field label="Notes" className="md:col-span-2">
           <textarea
             name="notes"
-            rows={5}
+            rows={buildSummary ? 12 : 5}
+            defaultValue={buildSummary}
             className="w-full rounded-2xl border border-charcoal/15 bg-light-bone px-4 py-3 text-sm outline-none focus:border-blue"
             placeholder="Tell us about your artwork, use case, or shipping needs."
           />

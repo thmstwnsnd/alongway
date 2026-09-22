@@ -16,12 +16,14 @@ import {
 import { formatPhone, site } from "@/lib/site";
 
 const navLinks = [
+  { href: "/build", label: "Build a Bag" },
   { href: "/store", label: "Store" },
   { href: "/how-it-works", label: "How It Works" },
 ];
 
 const mobileNavLinks = [
   { href: "/collection", label: "Collection" },
+  { href: "/build", label: "Build a Bag" },
   { href: "/swatches", label: "Swatches" },
   { href: "/store", label: "Store" },
   { href: "/pricing", label: "Pricing" },
@@ -32,6 +34,7 @@ const mobileNavLinks = [
 
 const footerLinks = [
   { href: "/collection", label: "Collection" },
+  { href: "/build", label: "Build a Bag" },
   { href: "/about", label: "About" },
   { href: "/pricing", label: "Pricing" },
   { href: "/how-it-works", label: "How It Works" },
