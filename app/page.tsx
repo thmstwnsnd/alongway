@@ -27,15 +27,15 @@ const featuredBags = bags.slice(0, 3);
 const steps = [
   {
     title: "Pick your bag",
-    body: "Browse our silhouettes. Real materials, not catalog fillers. Not sure on feel? Order a swatch kit – $8.",
+    body: "Choose a silhouette from the collection. Every one is a factory-spec pattern with real dimensions.",
   },
   {
-    title: "Share your artwork",
-    body: ".ai, .eps, or .pdf. Clean vector files only. No artwork yet? We can help.",
+    title: "Build it",
+    body: "Color, canvas, carry, threads, pockets, artwork, labels. Watch the bag update as you go, with your price live the whole time.",
   },
   {
     title: "Approve your tech pack",
-    body: "We send a detailed tech pack within 2 business days of artwork approval. Nothing goes to production until you sign off.",
+    body: "We turn your build into a detailed tech pack within 2 business days. Nothing goes to production until you sign off.",
   },
   {
     title: "Delivered to your door",
