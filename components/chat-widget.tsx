@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import { site } from "@/lib/site";
 
 interface Message {
   from: "user" | "bot";
@@ -26,7 +27,7 @@ export function ChatWidget() {
     setMessages((m) => [
       ...m,
       { from: "user", text },
-      { from: "bot", text: "Thanks! We'll get back to you shortly — or email us at hello@alongway.co." },
+      { from: "bot", text: `Thanks! We'll get back to you shortly — or email us at ${site.email}.` },
     ]);
     setInput("");
   }

@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { site } from "@/lib/site";
 
-const referralLink = "https://alongway.co/ref/YOUR-CODE";
+const referralLink = `${site.url}/ref/YOUR-CODE`;
 
 const referralSteps = [
   "Share your unique referral link",

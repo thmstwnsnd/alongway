@@ -3,16 +3,16 @@ import type { ReactNode } from "react";
 
 import { EmailCaptureModal } from "@/components/email-capture-modal";
 import { SiteShell } from "@/components/site-shell";
+import { site } from "@/lib/site";
 
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Alongway | Made to carry.",
-  description:
-    "Premium custom totes and bags with curated silhouettes, all-in pricing, and factory-direct quality.",
-  icons: {
-    icon: "/favicon.ico",
-  },
+  metadataBase: new URL(site.url),
+  title: { default: `${site.name} | ${site.tagline}`, template: `%s | ${site.name}` },
+  description: site.description,
+  icons: { icon: "/favicon.ico" },
+  openGraph: { siteName: site.name, type: "website" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {

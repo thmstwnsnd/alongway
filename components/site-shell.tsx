@@ -13,6 +13,7 @@ import {
   storeCapturedEmail,
   shouldHideEmailCapture,
 } from "@/lib/email-capture";
+import { formatPhone, site } from "@/lib/site";
 
 const navLinks = [
   { href: "/store", label: "Store" },
@@ -126,7 +127,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
   const handleFooterSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     storeCapturedEmail(footerEmail);
-    console.log("Captured email", footerEmail);
     setFooterEmail("");
     setShowFooterCapture(false);
     setIsFooterSubmitted(true);
@@ -356,8 +356,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
               Let&apos;s Chat
             </Link>
             <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_White.svg" alt="" width={115} height={79} className="h-3.5 w-auto opacity-50" aria-hidden="true" />
-            <a href="mailto:hello@alongway.co" className="text-sm text-light-blue hover:text-white">
-              hello@alongway.co
+            <a href={`mailto:${site.email}`} className="text-sm text-light-blue hover:text-white">
+              {site.email}
             </a>
           </div>
         </div>
@@ -393,13 +393,15 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
           {/* Middle — Instagram + Text us */}
           <div className="flex flex-col items-center justify-center gap-6 text-center">
-            <div>
-              <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-bone/40">Questions? Text us.</p>
-              <a href="sms:+10000000000" className="mt-1 block text-sm font-semibold text-bone hover:text-light-blue">+1 (000) 000-0000</a>
-            </div>
-            <a href="https://instagram.com/alongwayco" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-bone/70 hover:text-white">
+            {site.phone ? (
+              <div>
+                <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-bone/40">Questions? Text us.</p>
+                <a href={`sms:${site.phone}`} className="mt-1 block text-sm font-semibold text-bone hover:text-light-blue">{formatPhone(site.phone)}</a>
+              </div>
+            ) : null}
+            <a href={site.instagram.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-bone/70 hover:text-white">
               <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.209-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-              @alongwayco
+              {site.instagram.handle}
             </a>
           </div>
 

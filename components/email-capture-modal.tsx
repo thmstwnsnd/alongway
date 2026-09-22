@@ -82,7 +82,6 @@ export function EmailCaptureModal() {
               onSubmit={(event) => {
                 event.preventDefault();
                 storeCapturedEmail(email);
-                console.log("Captured email", email);
                 setIsSubmitted(true);
                 setEmail("");
               }}

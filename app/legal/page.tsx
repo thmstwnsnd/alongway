@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Legal — Terms, Privacy & Cookie Notice | Alongway",
@@ -16,8 +17,8 @@ export default function LegalPage() {
       </h1>
       <p className="mt-4 text-base leading-7 text-charcoal/70">
         By accessing or using{" "}
-        <a href="https://alongway.co" className="text-blue hover:underline">
-          alongway.co
+        <a href={site.url} className="text-blue hover:underline">
+          {site.url.replace("https://", "")}
         </a>{" "}
         ("Website"), you agree to the following Terms and Policies. If you do not agree, please do not use this Website.
       </p>
@@ -174,7 +175,7 @@ export default function LegalPage() {
           <div>
             <h3 className="font-display font-bold text-charcoal">7. California Privacy Rights</h3>
             <p className="mt-2">California residents may request access, deletion, or correction of personal data by contacting{" "}
-              <a href="mailto:hello@alongway.co" className="text-blue hover:underline">hello@alongway.co</a>.
+              <a href={`mailto:${site.email}`} className="text-blue hover:underline">{site.email}</a>.
             </p>
           </div>
 

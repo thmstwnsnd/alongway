@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SectionHeading } from "@/components/section-heading";
+import { site } from "@/lib/site";
 
 const steps = [
   {
@@ -144,7 +145,7 @@ const faqs = [
       },
       {
         q: "How do I get a quote for 5,000+ units?",
-        a: "Orders of 5,000+ units are priced on a custom basis. Fill out our order form or email hello@alongway.co and we'll get back to you quickly.",
+        a: `Orders of 5,000+ units are priced on a custom basis. Fill out our order form or email ${site.email} and we'll get back to you quickly.`,
       },
       {
         q: "Do you offer payment plans?",
@@ -228,10 +229,10 @@ export default function HowItWorksPage() {
         <p className="text-lg font-bold">Still have questions?</p>
         <p className="mt-2 text-sm text-charcoal/70">We're easy to reach.</p>
         <a
-          href="mailto:hello@alongway.co"
+          href={`mailto:${site.email}`}
           className="mt-4 inline-flex rounded-full border border-charcoal/20 px-6 py-3 text-sm font-semibold hover:bg-charcoal hover:text-white"
         >
-          hello@alongway.co
+          {site.email}
         </a>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { SectionHeading } from "@/components/section-heading";
 import { getLifestyleImageUrl } from "@/data/bags";
+import { site } from "@/lib/site";
 
 const values = [
   "Curated silhouettes",
@@ -68,7 +69,7 @@ export default function AboutPage() {
 
         <article className="rounded-[2rem] border border-charcoal/10 bg-bone p-8">
           <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-light-blue">Contact</p>
-          <p className="mt-5 text-3xl font-extrabold tracking-tight">hello@alongway.co</p>
+          <p className="mt-5 text-3xl font-extrabold tracking-tight">{site.email}</p>
           <p className="mt-4 text-base leading-7 text-charcoal/72">
             Reach out when you&apos;re ready to launch a new bag, restock a proven style, or get a fast read on fit and pricing.
           </p>

@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { PortalOrderCard, PortalSectionCard, PortalSummaryCard } from "@/components/portal-ui";
 import { portalOrders } from "@/data/portal";
+import { site } from "@/lib/site";
 
 const recentOrders = portalOrders.slice(0, 3);
 
@@ -54,7 +55,7 @@ export default function PortalDashboardPage() {
               Request reorder
             </Link>
             <a
-              href="mailto:hello@alongway.co"
+              href={`mailto:${site.email}`}
               className="flex rounded-[1.5rem] border border-charcoal/10 bg-light-bone px-5 py-4 text-sm font-semibold text-charcoal hover:border-blue hover:text-blue"
             >
               Contact us

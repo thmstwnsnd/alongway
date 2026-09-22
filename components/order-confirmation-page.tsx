@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { site } from "@/lib/site";
 
 const nextSteps = [
   {
@@ -82,8 +83,8 @@ export function OrderConfirmationPage() {
           </p>
           <p>
             Or email{" "}
-            <a href="mailto:hello@alongway.co" className="font-semibold text-blue hover:text-charcoal">
-              hello@alongway.co
+            <a href={`mailto:${site.email}`} className="font-semibold text-blue hover:text-charcoal">
+              {site.email}
             </a>
           </p>
         </div>
