@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
@@ -352,11 +353,25 @@ function Configurator({
           </Section>
         ))}
 
-        <div className="mt-6 rounded-2xl bg-black/[0.04] p-5">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-black/35">Included on every bag</p>
-          <ul className="mt-3 grid gap-1.5 text-[13px] text-black/60 sm:grid-cols-2">
+        <div className="relative mt-8 overflow-hidden rounded-[1.75rem] bg-blue px-6 py-6 text-bone">
+          <Image
+            src="/svg/illustrations/Alongway_Website_Graphic_WormHole_Blue.svg"
+            alt=""
+            width={400}
+            height={400}
+            aria-hidden
+            className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 opacity-20 brightness-[3]"
+          />
+          <p className="font-accent text-[11px] font-semibold uppercase tracking-[0.22em] text-light-blue">Included on every bag</p>
+          <h4 className="font-display mt-1 text-[20px] font-extrabold uppercase tracking-tight">All-in. Nothing hidden.</h4>
+          <ul className="mt-5 grid gap-3 sm:grid-cols-2">
             {includedOnEveryBag.map((item) => (
-              <li key={item}>{item}</li>
+              <li key={item.label} className="flex items-center gap-3 text-[13px] font-medium leading-5 text-bone/90">
+                <span className="inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-white/10">
+                  <Image src={item.icon} alt="" width={18} height={18} className="h-4 w-4" aria-hidden />
+                </span>
+                {item.label}
+              </li>
             ))}
           </ul>
         </div>

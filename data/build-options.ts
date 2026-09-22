@@ -66,12 +66,12 @@ export const extraOptions: BuildOption[] = [
   { id: "key-chain", label: "Key chain", description: "Interior key clip on a webbing loop.", pricePerUnit: 0.75 },
 ];
 
-export const includedOnEveryBag = [
-  "Side-seam woven label (your brand)",
-  "Interior key loop",
-  "Alongway care label",
-  "1-color print or embroidery",
-  "Setup and shipping",
+export const includedOnEveryBag: { label: string; icon: string }[] = [
+  { label: "Side-seam woven label with your brand", icon: "/svg/icons/Alongway_Website_Graphic_Flower_Cream.svg" },
+  { label: "Interior key loop", icon: "/svg/icons/Alongway_Website_Graphic_PeaceHand_Cream.svg" },
+  { label: "Alongway care label", icon: "/svg/icons/Alongway_Website_Graphic_BirdRight_Cream.svg" },
+  { label: "1-color print or embroidery", icon: "/svg/icons/Alongway_Website_Graphic_DoubleSmileyFace_Cream.svg" },
+  { label: "Setup and shipping", icon: "/svg/icons/Alongway_Website_Graphic_SunIcon_Cream.svg" },
 ];
 
 export const buildOptionGroups = { strapOptions, handleAddOns, stitchOptions, pocketOptions, closureOptions, extraOptions };
