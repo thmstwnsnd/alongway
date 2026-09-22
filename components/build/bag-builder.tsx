@@ -228,7 +228,7 @@ function Configurator({
 
   return (
     <div
-      className="relative grid grid-rows-[40dvh_1fr] overflow-hidden bg-white lg:grid-cols-[minmax(0,1.45fr)_minmax(26rem,1fr)] lg:grid-rows-none"
+      className="relative grid grid-rows-[52dvh_1fr] overflow-hidden bg-white lg:grid-cols-[minmax(0,1.45fr)_minmax(26rem,1fr)] lg:grid-rows-none"
       style={{ height: `calc(100dvh - ${headerH}px)` }}
     >
       {/* Stage: never scrolls */}
@@ -255,27 +255,78 @@ function Configurator({
           )}
         </div>
 
-        <div className="flex items-center justify-between px-6 pb-5 lg:px-12">
-          <p className="hidden text-[13px] text-black/45 lg:block">
-            {r.fabric.name} · {r.swatch?.name} · {r.dims.width}&quot; × {r.dims.height}&quot; × {r.dims.depth}&quot;
-          </p>
-          {r.style.photo ? (
-            <Segmented
-              options={[
-                { value: "photo", label: "Photo" },
-                { value: "spec", label: "Spec" },
-              ]}
-              value={view}
-              onChange={setView}
-            />
-          ) : (
-            <p className="text-[12px] text-black/35">Schematic preview until this style is photographed</p>
-          )}
+        {/* Quantity + price, under the bag */}
+        <div className="border-t border-black/[0.06] bg-white/60 px-6 pb-5 pt-4 backdrop-blur lg:px-12">
+          <div className="flex items-baseline justify-between gap-4">
+            <label htmlFor="qty" className="text-[11px] font-semibold uppercase tracking-[0.14em] text-black/35">
+              Quantity
+            </label>
+            <span className="text-[14px] font-semibold tabular-nums text-charcoal">
+              {r.isCustomQuote ? `${customQuoteTier.toLocaleString()}+ · custom quote` : `${build.quantity.toLocaleString()} units`}
+            </span>
+          </div>
+          <input
+            id="qty"
+            type="range"
+            min={MIN_QUANTITY}
+            max={customQuoteTier}
+            step={50}
+            value={build.quantity}
+            onChange={(e) => set("quantity", Number(e.target.value))}
+            className="qty-slider mt-2 w-full"
+            aria-valuetext={`${build.quantity} units`}
+          />
+          <div className="mt-1 flex justify-between text-[10px] font-medium tabular-nums text-black/30">
+            {[...quantityTiers, customQuoteTier].map((q) => (
+              <button key={q} type="button" onClick={() => set("quantity", q)} className="hover:text-charcoal">
+                {q >= customQuoteTier ? `${q.toLocaleString()}+` : q.toLocaleString()}
+              </button>
+            ))}
+          </div>
+
+          <div className="mt-4 flex items-end justify-between gap-4">
+            <div>
+              {r.isCustomQuote ? (
+                <p className="text-[22px] font-semibold tracking-[-0.01em] text-charcoal">Custom quote</p>
+              ) : (
+                <>
+                  <p className="text-[26px] font-semibold leading-none tracking-[-0.02em] text-charcoal">
+                    {formatCurrency(r.unitPrice)}
+                    <span className="ml-1.5 text-[12px] font-medium text-black/40">/ unit</span>
+                  </p>
+                  <p className="mt-1 text-[13px] font-medium text-black/45">{formatCurrency(r.total)} total</p>
+                </>
+              )}
+              <details className="mt-1 text-[11px] text-black/40">
+                <summary className="cursor-pointer select-none">Breakdown</summary>
+                <div className="mt-1 grid grid-cols-2 gap-x-4 sm:grid-cols-3">
+                  {r.lines.filter((l) => l.amount > 0).map((l) => (
+                    <span key={l.label}>{l.label} {formatCurrency(l.amount)}</span>
+                  ))}
+                </div>
+              </details>
+            </div>
+            <div className="flex items-center gap-3">
+              {r.style.photo ? (
+                <Segmented
+                  options={[
+                    { value: "photo", label: "Photo" },
+                    { value: "spec", label: "Spec" },
+                  ]}
+                  value={view}
+                  onChange={setView}
+                />
+              ) : null}
+              <button type="button" onClick={onContinue} className="rounded-full bg-blue px-6 py-3 text-[14px] font-semibold text-white transition hover:bg-charcoal">
+                {r.isCustomQuote ? "Request quote" : "Continue"}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Options: the only thing that scrolls */}
-      <div className="h-full min-h-0 overflow-y-auto px-6 pb-36 pt-2 lg:px-10">
+      <div className="h-full min-h-0 overflow-y-auto px-6 pb-16 pt-2 lg:px-10">
         <div className="flex items-baseline gap-4 border-b border-black/[0.06] py-5">
           <span className="w-7 text-[12px] font-semibold text-black/30">—</span>
           <span className="min-w-0 flex-1">
@@ -311,63 +362,6 @@ function Configurator({
         </div>
       </div>
 
-      {/* Price bar */}
-      <div className="absolute bottom-0 left-0 right-0 z-40 border-t border-black/[0.06] bg-white/85 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center gap-6 px-6 py-3.5 lg:px-10">
-          <div className="min-w-0 flex-1">
-            <div className="flex items-baseline justify-between gap-4">
-              <label htmlFor="qty" className="text-[11px] font-semibold uppercase tracking-[0.14em] text-black/35">
-                Quantity
-              </label>
-              <span className="text-[14px] font-semibold tabular-nums text-charcoal">
-                {r.isCustomQuote ? `${customQuoteTier.toLocaleString()}+ · custom quote` : `${build.quantity.toLocaleString()} units`}
-              </span>
-            </div>
-            <input
-              id="qty"
-              type="range"
-              min={MIN_QUANTITY}
-              max={customQuoteTier}
-              step={50}
-              value={build.quantity}
-              onChange={(e) => set("quantity", Number(e.target.value))}
-              className="qty-slider mt-2 w-full"
-              aria-valuetext={`${build.quantity} units`}
-            />
-            <div className="mt-1 flex justify-between text-[10px] font-medium tabular-nums text-black/30">
-              {[...quantityTiers, customQuoteTier].map((q) => (
-                <button key={q} type="button" onClick={() => set("quantity", q)} className="hover:text-charcoal">
-                  {q >= customQuoteTier ? `${q.toLocaleString()}+` : q.toLocaleString()}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="text-right">
-            {r.isCustomQuote ? (
-              <p className="text-[20px] font-semibold tracking-[-0.01em]">Custom quote</p>
-            ) : (
-              <>
-                <p className="text-[22px] font-semibold tracking-[-0.02em] text-charcoal">
-                  {formatCurrency(r.unitPrice)}
-                  <span className="ml-1 text-[12px] font-medium text-black/40">/ unit</span>
-                </p>
-                <p className="text-[12px] font-medium text-black/45">{formatCurrency(r.total)} total</p>
-              </>
-            )}
-            <details className="mt-0.5 text-[11px] text-black/40">
-              <summary className="cursor-pointer select-none">Breakdown</summary>
-              <div className="mt-1 grid grid-cols-2 gap-x-4 text-left">
-                {r.lines.filter((l) => l.amount > 0).map((l) => (
-                  <span key={l.label}>{l.label} {formatCurrency(l.amount)}</span>
-                ))}
-              </div>
-            </details>
-          </div>
-          <button type="button" onClick={onContinue} className="rounded-full bg-blue px-6 py-3 text-[14px] font-semibold text-white transition hover:bg-charcoal">
-            {r.isCustomQuote ? "Request quote" : "Continue"}
-          </button>
-        </div>
-      </div>
     </div>
   );
 }
