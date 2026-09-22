@@ -277,20 +277,21 @@ function Configurator({
           ))}
           <button
             type="button"
+            onClick={() => setView("size")}
+            aria-pressed={view === "size"}
+            title="Dimensions"
+            className={`relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl bg-white p-1 transition ${view === "size" ? "ring-2 ring-charcoal ring-offset-2" : "opacity-80 ring-1 ring-black/10 hover:opacity-100"}`}
+          >
+            <BagPreview build={build} />
+          </button>
+          <button
+            type="button"
             onClick={() => setView("build")}
             aria-pressed={view === "build"}
             className={`flex h-14 flex-shrink-0 items-center gap-2 rounded-xl px-4 text-[13px] font-semibold transition ${view === "build" ? "bg-charcoal text-white" : "bg-black/[0.05] text-charcoal hover:bg-black/[0.08]"}`}
           >
             <span className="inline-block h-3 w-3 rounded-full" style={{ backgroundColor: r.bodyHex }} />
-            Build
-          </button>
-          <button
-            type="button"
-            onClick={() => setView("size")}
-            aria-pressed={view === "size"}
-            className={`h-14 flex-shrink-0 rounded-xl px-4 text-[13px] font-semibold transition ${view === "size" ? "bg-charcoal text-white" : "bg-black/[0.05] text-charcoal hover:bg-black/[0.08]"}`}
-          >
-            Size
+            Customize
           </button>
         </div>
 
