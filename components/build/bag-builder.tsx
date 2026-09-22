@@ -263,6 +263,11 @@ function Configurator({
           )}
         </div>
 
+        <p className="px-6 pb-2 text-center text-[13px] text-black/45 lg:px-12">
+          <span className="font-semibold text-charcoal/70">Dimensions</span> · {dims} ·{" "}
+          {r.size.strap.isDrop ? `${r.size.strap.length}" handle drop` : `${r.size.strap.length}" strap`} · {r.size.strap.width}&quot; wide
+        </p>
+
         {/* Details strip: collapsed to a single Photos button while customizing */}
         <div className="flex items-center px-6 pb-3 lg:px-12">
           {view === "build" ? (
@@ -373,15 +378,6 @@ function Configurator({
 
       {/* Options: the only thing that scrolls */}
       <div className="h-full min-h-0 overflow-y-auto px-6 pb-16 pt-2 lg:px-10">
-        <div className="flex items-baseline gap-4 border-b border-black/[0.06] py-5">
-          <span className="w-7 text-[12px] font-semibold text-black/30">—</span>
-          <span className="min-w-0 flex-1">
-            <span className="block text-[17px] font-semibold tracking-[-0.01em] text-charcoal">Dimensions</span>
-            <span className="mt-0.5 block text-[13px] text-black/45">
-              {dims} · {r.size.strap.isDrop ? `${r.size.strap.length}" handle drop` : `${r.size.strap.length}" strap`} · {r.size.strap.width}&quot; wide
-            </span>
-          </span>
-        </div>
         {steps.map((step, i) => (
           <Section
             key={step.id}
