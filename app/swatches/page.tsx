@@ -1,8 +1,16 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
 import { fabricTierMeta, fabrics } from "@/data/fabrics";
 import { formatCurrency } from "@/lib/order-flow";
+
+export const metadata: Metadata = {
+  title: "Fabric Swatches",
+  description:
+    "Browse every fabric we offer, from 10oz cotton canvas to waxed canvas, denim, corduroy and Tyvek, with full color palettes.",
+};
+
 
 const starterFabrics = fabrics.filter((fabric) => fabric.tier === "starter");
 const upgradeGroups = [

@@ -1,5 +1,13 @@
+import type { Metadata } from "next";
 import { SectionHeading } from "@/components/section-heading";
 import { StartOrderForm } from "@/components/start-order-form";
+
+export const metadata: Metadata = {
+  title: "Start Your Order",
+  description:
+    "Tell us your bag style, quantity, artwork status and timing. We reply within one business day.",
+};
+
 
 export default function StartPage() {
   return (

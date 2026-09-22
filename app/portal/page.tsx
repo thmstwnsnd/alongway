@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import { PortalLoginForm } from "@/components/portal-login-form";
+
+export const metadata: Metadata = {
+  title: "Customer Portal",
+  robots: { index: false },
+};
+
 
 export default function PortalLoginPage() {
   return (

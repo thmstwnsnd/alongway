@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import { PortalOrderCard, PortalSectionCard, PortalSummaryCard } from "@/components/portal-ui";
 import { portalOrders } from "@/data/portal";
 import { site } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+  robots: { index: false },
+};
+
 
 const recentOrders = portalOrders.slice(0, 3);
 

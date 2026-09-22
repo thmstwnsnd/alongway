@@ -1,7 +1,15 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { SectionHeading } from "@/components/section-heading";
 import { getLifestyleImageUrl } from "@/data/bags";
 import { site } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Alongway makes retail-quality custom totes and bags for brands that care what they hand out. Part of the Orange Goods family, based in Los Angeles.",
+};
+
 
 const values = [
   "Curated silhouettes",

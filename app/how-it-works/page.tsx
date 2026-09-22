@@ -1,6 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { SectionHeading } from "@/components/section-heading";
 import { site } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "How It Works",
+  description:
+    "Pick a bag, share your artwork, approve the tech pack, and we deliver. 30 days production plus shipping, all included in your price.",
+};
+
 
 const steps = [
   {

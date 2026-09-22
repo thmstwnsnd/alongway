@@ -1,7 +1,15 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
 import { blogPosts } from "@/data/blog-posts";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description:
+    "Custom bag inspiration, client stories, and what goes into a well-made tote.",
+};
+
 
 export default function BlogPage() {
   return (

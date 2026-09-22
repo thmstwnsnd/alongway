@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { PortalOrderTimeline, PortalSectionCard, StatusBadge } from "@/components/portal-ui";
 import { getPortalOrder, portalOrders } from "@/data/portal";
+
+export const metadata: Metadata = {
+  title: "Order",
+  robots: { index: false },
+};
+
 
 export function generateStaticParams() {
   return portalOrders.map((order) => ({ id: order.id }));

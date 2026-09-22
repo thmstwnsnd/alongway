@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import { StatusBadge } from "@/components/portal-ui";
 import { portalOrders } from "@/data/portal";
+
+export const metadata: Metadata = {
+  title: "Orders",
+  robots: { index: false },
+};
+
 
 export default function PortalOrdersPage() {
   return (

@@ -1,7 +1,15 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 
 import { SectionHeading } from "@/components/section-heading";
 import { CollectionGrid } from "@/components/collection-grid";
+
+export const metadata: Metadata = {
+  title: "The Collection",
+  description:
+    "Fourteen curated tote and bag silhouettes, each fully customizable with your fabric, color, print, and woven label.",
+};
+
 
 export default function CollectionPage() {
   return (

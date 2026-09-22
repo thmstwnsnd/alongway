@@ -1,5 +1,13 @@
+import type { Metadata } from "next";
 import { SectionHeading } from "@/components/section-heading";
 import { bags, quantityTiers } from "@/data/bags";
+
+export const metadata: Metadata = {
+  title: "Pricing",
+  description:
+    "Transparent, all-in custom tote pricing by style and quantity. Fabric, decoration, label, setup and shipping included. No hidden fees.",
+};
+
 
 export default function PricingPage() {
   return (

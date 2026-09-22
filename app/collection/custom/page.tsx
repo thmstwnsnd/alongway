@@ -1,6 +1,14 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SectionHeading } from "@/components/section-heading";
+
+export const metadata: Metadata = {
+  title: "Fully Custom Totes",
+  description:
+    "Design a bag from scratch: dimensions, fabric, hardware, decoration. We build the techpack, you approve every detail.",
+};
+
 
 const steps = [
   { emoji: "📐", title: "Dimensions & shape", body: "Tell us the size, gusset depth, handle length, and overall silhouette. Have a reference bag? Send a photo or a sketch." },

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -12,6 +13,13 @@ import { IconReveal } from "@/components/icon-reveal";
 import { PerksAccordion } from "@/components/perks-accordion";
 import { HeroSlideshow } from "@/components/hero-slideshow";
 import { bags } from "@/data/bags";
+
+export const metadata: Metadata = {
+  title: { absolute: "Custom Bags, Made Simple | Alongway" },
+  description:
+    "Pick your style, choose your fabric, and get fully custom totes delivered in about 6 weeks. All-in pricing, 100-unit minimums, no hidden fees.",
+};
+
 
 const featuredBags = bags.slice(0, 3);
 
