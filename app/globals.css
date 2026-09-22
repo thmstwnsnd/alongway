@@ -228,3 +228,19 @@ input[type="range"]::-moz-range-thumb {
   background-color: transparent;
   cursor: pointer;
 }
+
+/* "Made to carry" band: bird crosses once, text reveals behind it */
+@keyframes bird-fly {
+  from { left: -8%; }
+  to { left: 104%; }
+}
+@keyframes reveal-right {
+  from { clip-path: inset(0 100% 0 0); opacity: 1; }
+  to { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+.animate-bird-fly { animation: bird-fly 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+.animate-reveal-right { animation: reveal-right 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.25s both; }
+@media (prefers-reduced-motion: reduce) {
+  .animate-bird-fly { animation: none; left: 104%; }
+  .animate-reveal-right { animation: none; clip-path: none; opacity: 1; }
+}
