@@ -91,49 +91,12 @@ function Configurator({
   const set = <K extends keyof BuildConfig>(key: K, value: BuildConfig[K]) => onChange({ ...build, [key]: value });
   const swatches = getFabricSwatches(build.fabricSlug);
   const standardPockets = r.style.standardPockets ?? [];
-  const [openStep, setOpenStep] = useState<string | null>("size");
+  const [openStep, setOpenStep] = useState<string | null>("fabric");
   const names = (options: { id: string; label: string }[], ids: string[]) =>
     options.filter((o) => ids.includes(o.id)).map((o) => o.label).join(", ");
   const dims = `${r.dims.width}" × ${r.dims.height}" × ${r.dims.depth}"`;
 
   const steps: { id: string; title: string; hint?: string; summary: string; content: ReactNode }[] = [
-    {
-      id: "size",
-      title: "Dimensions",
-      hint: "Factory-spec sizes. Custom dimensions are quoted per project.",
-      summary: r.isCustomSize ? `Custom · ${dims}` : `${r.size.label} · ${dims}`,
-      content: (
-        <>
-          <div className="flex flex-wrap gap-2">
-            {r.style.sizes.map((size) => (
-              <Chip key={size.id} selected={!r.isCustomSize && build.sizeId === size.id} onClick={() => onChange({ ...build, sizeId: size.id, customDims: null })}>
-                {size.label} · {size.dims.width}&quot; × {size.dims.height}&quot; × {size.dims.depth}&quot;
-              </Chip>
-            ))}
-            <Chip selected={r.isCustomSize} onClick={() => set("customDims", build.customDims ?? { ...r.size.dims })}>
-              Custom
-            </Chip>
-          </div>
-          {r.isCustomSize && build.customDims ? (
-            <div className="mt-4 grid grid-cols-3 gap-3">
-              {(["width", "height", "depth"] as const).map((key) => (
-                <label key={key} className="text-[11px] font-semibold uppercase tracking-wide text-black/40">
-                  {key}
-                  <input
-                    type="number"
-                    min={0}
-                    step={0.25}
-                    value={build.customDims![key]}
-                    onChange={(e) => set("customDims", { ...build.customDims!, [key]: Number(e.target.value) || 0 })}
-                    className={`${inputClass} mt-1`}
-                  />
-                </label>
-              ))}
-            </div>
-          ) : null}
-        </>
-      ),
-    },
     {
       id: "fabric",
       title: "Canvas",
@@ -158,7 +121,7 @@ function Configurator({
     },
     {
       id: "color",
-      title: "Colorway",
+      title: "Color",
       summary: r.swatch?.name ?? build.colorName,
       content: (
         <>
@@ -193,7 +156,7 @@ function Configurator({
     },
     {
       id: "stitch",
-      title: "Thread & finish",
+      title: "Threads",
       summary: stitchOptions.find((o) => o.id === build.stitchId)?.label ?? "",
       content: (
         <>
@@ -209,7 +172,7 @@ function Configurator({
     },
     {
       id: "pockets",
-      title: "Pockets & hardware",
+      title: "Pockets",
       hint: standardPockets.length ? "Pockets marked Included come standard on this style." : undefined,
       summary: [names(pocketOptions, build.pocketIds) || "No pockets", closureOptions.find((o) => o.id === build.closureId)?.label].join(" · "),
       content: (
@@ -223,7 +186,7 @@ function Configurator({
     },
     {
       id: "decoration",
-      title: "Your artwork",
+      title: "Artwork",
       hint: "One-color print or embroidery is included.",
       summary: getDecorationSummary(build),
       content: (
@@ -251,7 +214,7 @@ function Configurator({
     },
     {
       id: "extras",
-      title: "Labels & finishing touches",
+      title: "Labels",
       hint: "A side-seam woven label with your brand is always included.",
       summary: names(extraOptions, build.extraIds) || "Side-seam label only",
       content: <OptionList options={extraOptions} value={build.extraIds} onChange={(id) => set("extraIds", toggle(build.extraIds, id))} />,
@@ -331,6 +294,15 @@ function Configurator({
 
       {/* Options: the only thing that scrolls */}
       <div className="h-full min-h-0 overflow-y-auto px-6 pb-36 pt-2 lg:px-10">
+        <div className="flex items-baseline gap-4 border-b border-black/[0.06] py-5">
+          <span className="w-7 text-[12px] font-semibold text-black/30">—</span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-[17px] font-semibold tracking-[-0.01em] text-charcoal">Dimensions</span>
+            <span className="mt-0.5 block text-[13px] text-black/45">
+              {dims} · {r.size.strap.isDrop ? `${r.size.strap.length}" handle drop` : `${r.size.strap.length}" strap`} · {r.size.strap.width}&quot; wide
+            </span>
+          </span>
+        </div>
         {steps.map((step, i) => (
           <Section
             key={step.id}
