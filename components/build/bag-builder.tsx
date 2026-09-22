@@ -102,8 +102,10 @@ function Configurator({
             ← Change bag
           </button>
         </div>
-        <div className="min-h-0 flex-1 px-6 py-4 lg:px-16">
-          <BagPreview build={build} />
+        <div className="flex min-h-0 flex-1 items-center justify-center px-6 py-3 lg:px-16">
+          <div className="aspect-square h-[30vh] max-w-full lg:h-[calc(100vh-17rem)]">
+            <BagPreview build={build} />
+          </div>
         </div>
         <div className="hidden px-10 pb-6 text-sm text-charcoal/60 lg:block">
           {r.fabric.name} · {r.swatch?.name} · {r.dims.width}&quot; × {r.dims.height}&quot; × {r.dims.depth}&quot; ·{" "}
