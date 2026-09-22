@@ -92,6 +92,7 @@ function Configurator({
   const swatches = getFabricSwatches(build.fabricSlug);
   const standardPockets = r.style.standardPockets ?? [];
   const [openStep, setOpenStep] = useState<string | null>("fabric");
+  // quantity lives in the price bar, not in the steps
   const names = (options: { id: string; label: string }[], ids: string[]) =>
     options.filter((o) => ids.includes(o.id)).map((o) => o.label).join(", ");
   const dims = `${r.dims.width}" × ${r.dims.height}" × ${r.dims.depth}"`;
@@ -219,25 +220,6 @@ function Configurator({
       summary: names(extraOptions, build.extraIds) || "Side-seam label only",
       content: <OptionList options={extraOptions} value={build.extraIds} onChange={(id) => set("extraIds", toggle(build.extraIds, id))} />,
     },
-    {
-      id: "quantity",
-      title: "Quantity",
-      hint: `Minimum ${MIN_QUANTITY}. ${customQuoteTier.toLocaleString()}+ is quoted per project.`,
-      summary: `${build.quantity.toLocaleString()} units`,
-      content: (
-        <div className="flex flex-wrap items-center gap-2">
-          <Segmented options={quantityTiers.map((q) => ({ value: q, label: q.toLocaleString() }))} value={build.quantity} onChange={(v) => set("quantity", v)} />
-          <input
-            type="number"
-            min={MIN_QUANTITY}
-            step={50}
-            value={build.quantity}
-            onChange={(e) => set("quantity", Math.max(MIN_QUANTITY, Number(e.target.value) || MIN_QUANTITY))}
-            className={`${inputClass} w-28`}
-          />
-        </div>
-      ),
-    },
   ];
 
   const headerH = useHeaderHeight();
@@ -331,17 +313,34 @@ function Configurator({
 
       {/* Price bar */}
       <div className="absolute bottom-0 left-0 right-0 z-40 border-t border-black/[0.06] bg-white/85 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center gap-5 px-6 py-3.5 lg:px-10">
+        <div className="mx-auto flex max-w-7xl items-center gap-6 px-6 py-3.5 lg:px-10">
           <div className="min-w-0 flex-1">
-            <p className="truncate text-[14px] font-semibold text-charcoal">{r.style.name} · {build.quantity.toLocaleString()} units</p>
-            <details className="text-[12px] text-black/45">
-              <summary className="cursor-pointer select-none">Price breakdown</summary>
-              <div className="mt-1 grid grid-cols-2 gap-x-6 sm:grid-cols-3">
-                {r.lines.filter((l) => l.amount > 0).map((l) => (
-                  <span key={l.label}>{l.label} {formatCurrency(l.amount)}</span>
-                ))}
-              </div>
-            </details>
+            <div className="flex items-baseline justify-between gap-4">
+              <label htmlFor="qty" className="text-[11px] font-semibold uppercase tracking-[0.14em] text-black/35">
+                Quantity
+              </label>
+              <span className="text-[14px] font-semibold tabular-nums text-charcoal">
+                {r.isCustomQuote ? `${customQuoteTier.toLocaleString()}+ · custom quote` : `${build.quantity.toLocaleString()} units`}
+              </span>
+            </div>
+            <input
+              id="qty"
+              type="range"
+              min={MIN_QUANTITY}
+              max={customQuoteTier}
+              step={50}
+              value={build.quantity}
+              onChange={(e) => set("quantity", Number(e.target.value))}
+              className="qty-slider mt-2 w-full"
+              aria-valuetext={`${build.quantity} units`}
+            />
+            <div className="mt-1 flex justify-between text-[10px] font-medium tabular-nums text-black/30">
+              {[...quantityTiers, customQuoteTier].map((q) => (
+                <button key={q} type="button" onClick={() => set("quantity", q)} className="hover:text-charcoal">
+                  {q >= customQuoteTier ? `${q.toLocaleString()}+` : q.toLocaleString()}
+                </button>
+              ))}
+            </div>
           </div>
           <div className="text-right">
             {r.isCustomQuote ? (
@@ -355,6 +354,14 @@ function Configurator({
                 <p className="text-[12px] font-medium text-black/45">{formatCurrency(r.total)} total</p>
               </>
             )}
+            <details className="mt-0.5 text-[11px] text-black/40">
+              <summary className="cursor-pointer select-none">Breakdown</summary>
+              <div className="mt-1 grid grid-cols-2 gap-x-4 text-left">
+                {r.lines.filter((l) => l.amount > 0).map((l) => (
+                  <span key={l.label}>{l.label} {formatCurrency(l.amount)}</span>
+                ))}
+              </div>
+            </details>
           </div>
           <button type="button" onClick={onContinue} className="rounded-full bg-blue px-6 py-3 text-[14px] font-semibold text-white transition hover:bg-charcoal">
             {r.isCustomQuote ? "Request quote" : "Continue"}
