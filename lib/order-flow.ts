@@ -1,6 +1,7 @@
 import { type Bag, getBagBySlug } from "@/data/bags";
 import { addOns } from "@/data/addons";
 import { getFabricBySlug } from "@/data/fabrics";
+import type { BuildConfig } from "@/lib/build-flow";
 
 export const ORDER_DRAFT_STORAGE_KEY = "alongway-order-draft";
 export const LAST_ORDER_STORAGE_KEY = "alongway-last-order";
@@ -50,6 +51,8 @@ export type ArtworkStatus = "yes" | "no" | "";
 export type ShippingMethod = "standard" | "economy";
 
 export type OrderDraft = {
+  /** Set when the order came from Build a Bag; pricing and naming then come from the build. */
+  build?: BuildConfig | null;
   bagSlug: string;
   quantity: number | null;
   fabricSlug: string;
@@ -66,6 +69,7 @@ export type OrderDraft = {
 };
 
 export const emptyOrderDraft: OrderDraft = {
+  build: null,
   bagSlug: "",
   quantity: null,
   fabricSlug: DEFAULT_FABRIC_SLUG,

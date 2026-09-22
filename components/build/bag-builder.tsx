@@ -17,9 +17,12 @@ import {
 } from "@/data/build-options";
 import { catalog, getCatalogStyle } from "@/data/catalog";
 import { fabricTierMeta, getFabricBySlug, getFabricSwatches } from "@/data/fabrics";
-import { BUILD_STORAGE_KEY, applyStyle, buildSummaryText, defaultBuild, resolveBuild, type BuildConfig } from "@/lib/build-flow";
+import { BUILD_STORAGE_KEY, applyStyle, buildSummaryText, buildToOrderDraft, defaultBuild, resolveBuild, type BuildConfig } from "@/lib/build-flow";
 import {
   MIN_QUANTITY,
+  ORDER_DRAFT_STORAGE_KEY,
+  emptyOrderDraft,
+  type OrderDraft,
   backColorOptions,
   decorationOptions,
   embroideryPlacementOptions,
@@ -70,8 +73,18 @@ export function BagBuilder() {
       onChange={setBuild}
       onChangeStyle={() => setBuild(null)}
       onContinue={() => {
-        const summary = buildSummaryText(build);
-        router.push(`/start?${new URLSearchParams({ build: summary, qty: String(build.quantity) })}`);
+        const r = resolveBuild(build);
+        if (r.isCustomQuote) {
+          router.push(`/start?${new URLSearchParams({ build: buildSummaryText(build), qty: String(build.quantity) })}`);
+          return;
+        }
+        let saved: Partial<OrderDraft> = {};
+        try {
+          saved = JSON.parse(window.localStorage.getItem(ORDER_DRAFT_STORAGE_KEY) ?? "{}");
+        } catch {}
+        const draft = buildToOrderDraft(build, { ...emptyOrderDraft, ...saved });
+        window.localStorage.setItem(ORDER_DRAFT_STORAGE_KEY, JSON.stringify(draft));
+        router.push("/checkout");
       }}
     />
   );

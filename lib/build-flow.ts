@@ -10,7 +10,15 @@ import {
 } from "@/data/build-options";
 import { catalog, getCatalogStyle, type Dimensions } from "@/data/catalog";
 import { getFabricBySlug, getFabricSwatches } from "@/data/fabrics";
-import { MIN_QUANTITY, formatCurrency, getDecorationUpcharge, type DecorationType } from "@/lib/order-flow";
+import {
+  MIN_QUANTITY,
+  formatCurrency,
+  getDecorationUpcharge,
+  getOrderAmounts,
+  shippingOptions,
+  type DecorationType,
+  type OrderDraft,
+} from "@/lib/order-flow";
 
 export const BUILD_STORAGE_KEY = "alongway-build";
 
@@ -160,4 +168,47 @@ export function buildSummaryText(build: BuildConfig) {
     `Quantity: ${build.quantity.toLocaleString()}`,
     r.isCustomQuote ? "Custom quote requested." : `Estimated: ${formatCurrency(r.unitPrice)}/unit, ${formatCurrency(r.total)} total`,
   ].join("\n");
+}
+
+/** Turn a build into an order draft for checkout. */
+export function buildToOrderDraft(build: BuildConfig, base: OrderDraft): OrderDraft {
+  const r = resolveBuild(build);
+  return {
+    ...base,
+    build,
+    bagSlug: r.style.slug,
+    quantity: build.quantity,
+    fabricSlug: build.fabricSlug,
+    addOnIds: [],
+    decorationType: build.decorationType,
+    frontColors: build.frontColors,
+    backColors: build.backColors,
+    embroideryPlacements: build.embroideryPlacements,
+    primaryColor: r.swatch?.name ?? build.colorName,
+    notes: buildSummaryText(build),
+  };
+}
+
+/** Amounts for checkout: build-priced when the draft came from the builder, otherwise the classic flow. */
+export function getCheckoutAmounts(order: OrderDraft) {
+  if (!order.build) return getOrderAmounts(order);
+  const r = resolveBuild({ ...order.build, quantity: order.quantity ?? order.build.quantity });
+  const shippingOption = shippingOptions[order.shippingMethod];
+  const unitPrice = r.unitPrice + shippingOption.perUnitAdjustment;
+  const quantity = order.quantity ?? order.build.quantity;
+  const total = quantity ? unitPrice * quantity : null;
+  const shippingSavings = order.shippingMethod === "economy" && quantity ? Math.abs(shippingOption.perUnitAdjustment) * quantity : 0;
+  return {
+    bag: { name: r.style.name, slug: r.style.slug },
+    fabric: r.fabric,
+    selectedAddOns: [],
+    baseUnitPrice: r.lines[0]?.amount ?? null,
+    fabricUpcharge: r.fabric.upcharge,
+    decorationUpcharge: getDecorationUpcharge(order.build),
+    addOnUnitTotal: 0,
+    shippingOption,
+    shippingSavings,
+    unitPrice,
+    total,
+  };
 }

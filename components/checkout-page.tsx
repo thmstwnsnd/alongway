@@ -6,13 +6,13 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 import { OrderSummaryCard } from "@/components/order-summary-card";
+import { getCheckoutAmounts } from "@/lib/build-flow";
 import { getBagBySlug } from "@/data/bags";
 import {
   LAST_ORDER_STORAGE_KEY,
   ORDER_DRAFT_STORAGE_KEY,
   emptyOrderDraft,
   formatCurrency,
-  getOrderAmounts,
   shippingOptions,
   type OrderDraft,
 } from "@/lib/order-flow";
@@ -62,7 +62,7 @@ export function CheckoutPage() {
     const requestedBag = searchParams.get("bag");
     const requestedQuantity = searchParams.get("quantity");
 
-    if (requestedBag && getBagBySlug(requestedBag)) {
+    if (!nextOrder.build && requestedBag && getBagBySlug(requestedBag)) {
       nextOrder.bagSlug = requestedBag;
     }
 
@@ -85,7 +85,7 @@ export function CheckoutPage() {
     window.localStorage.setItem(ORDER_DRAFT_STORAGE_KEY, JSON.stringify(order));
   }, [isHydrated, order]);
 
-  const { bag, shippingOption, shippingSavings, unitPrice, total } = useMemo(() => getOrderAmounts(order), [order]);
+  const { bag, shippingOption, shippingSavings, unitPrice, total } = useMemo(() => getCheckoutAmounts(order), [order]);
   const isOrderReady = Boolean(bag && order.quantity && total);
 
   return (

@@ -62,8 +62,8 @@ export function StartOrderForm() {
           <input
             name="quantity"
             type="number"
-            min="100"
-            placeholder="Minimum order of 100"
+            min="5000"
+            placeholder="Custom orders start at 5,000"
             defaultValue={requestedQty}
             required
             className="w-full rounded-2xl border border-charcoal/15 bg-light-bone px-4 py-3 text-sm outline-none focus:border-blue"
