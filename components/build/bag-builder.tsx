@@ -312,7 +312,7 @@ function Configurator({
                 <Segmented
                   options={[
                     { value: "photo", label: "Photo" },
-                    { value: "spec", label: "Spec" },
+                    { value: "spec", label: "Size" },
                   ]}
                   value={view}
                   onChange={setView}
