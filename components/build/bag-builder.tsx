@@ -105,7 +105,7 @@ function Configurator({
       summary: r.swatch?.name ?? build.colorName,
       content: (
         <>
-          <div className="flex flex-wrap gap-2.5">
+          <div className="grid grid-cols-6 gap-2.5 sm:grid-cols-12">
             {swatches.map((swatch) => (
               <Swatch key={swatch.name} hex={swatch.hex} name={swatch.name} selected={build.colorName === swatch.name} onClick={() => set("colorName", swatch.name)} />
             ))}
