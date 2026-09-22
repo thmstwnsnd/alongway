@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
+import type { ReactNode } from "react";
 
 import { customQuoteTier, quantityTiers } from "@/data/bags";
 import {
@@ -26,7 +27,8 @@ import {
 } from "@/lib/order-flow";
 
 import { BagPreview } from "./bag-preview";
-import { Chip, OptionList, Section, inputClass } from "./option-controls";
+import { Chip, OptionList, Section, Segmented, Swatch, inputClass } from "./option-controls";
+import { PhotoPreview } from "./photo-preview";
 import { StyleGrid } from "./style-grid";
 
 const toggle = (ids: string[], id: string) => (ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id]);
@@ -90,37 +92,60 @@ function Configurator({
   const standardPockets = r.style.standardPockets ?? [];
 
   const headerH = useHeaderHeight();
+  const [view, setView] = useState<"photo" | "spec">(r.style.photo ? "photo" : "spec");
+  const showPhoto = view === "photo" && r.style.photo;
 
   return (
     <div
-      className="relative grid grid-rows-[38dvh_1fr] overflow-hidden lg:grid-cols-[minmax(0,1.4fr)_minmax(24rem,1fr)] lg:grid-rows-none"
+      className="relative grid grid-rows-[40dvh_1fr] overflow-hidden bg-white lg:grid-cols-[minmax(0,1.45fr)_minmax(26rem,1fr)] lg:grid-rows-none"
       style={{ height: `calc(100dvh - ${headerH}px)` }}
     >
       {/* Stage: never scrolls */}
-      <div className="flex h-full min-h-0 flex-col bg-bone">
-        <div className="flex items-center justify-between px-6 pt-5 lg:px-10">
+      <div className="relative flex h-full min-h-0 flex-col bg-[radial-gradient(120%_90%_at_50%_0%,#ffffff_0%,#f3f1ec_70%,#ebe8e1_100%)]">
+        <div className="flex items-start justify-between px-6 pt-6 lg:px-12">
           <div>
-            <p className="font-accent text-xs font-semibold uppercase tracking-[0.2em] text-charcoal/45">Bag {r.style.bagNumber}</p>
-            <h1 className="font-display text-2xl font-extrabold tracking-tight sm:text-3xl">{r.style.name}</h1>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-black/35">Bag {r.style.bagNumber}</p>
+            <h1 className="mt-1 text-[28px] font-semibold tracking-[-0.02em] text-charcoal lg:text-[34px]">{r.style.name}</h1>
           </div>
-          <button type="button" onClick={onChangeStyle} className="text-sm font-semibold text-blue hover:text-charcoal">
-            ← Change bag
+          <button type="button" onClick={onChangeStyle} className="rounded-full bg-white/70 px-4 py-2 text-[13px] font-semibold text-charcoal shadow-sm backdrop-blur hover:bg-white">
+            Change bag
           </button>
         </div>
-        <div className="flex min-h-0 flex-1 items-center justify-center px-6 py-3 lg:px-16">
-          <div className="aspect-square h-full max-w-full">
-            <BagPreview build={build} />
-          </div>
+
+        <div className="flex min-h-0 flex-1 items-center justify-center px-6 py-4 lg:px-16">
+          {showPhoto ? (
+            <div className="h-full max-w-full" style={{ aspectRatio: `${r.style.photo!.width} / ${r.style.photo!.height}` }}>
+              <PhotoPreview photo={r.style.photo!} bodyHex={r.bodyHex} trimHex={r.strapHex} alt={r.style.name} />
+            </div>
+          ) : (
+            <div className="aspect-square h-full max-w-full">
+              <BagPreview build={build} />
+            </div>
+          )}
         </div>
-        <div className="hidden px-10 pb-5 text-sm text-charcoal/60 lg:block">
-          {r.fabric.name} · {r.swatch?.name} · {r.dims.width}&quot; × {r.dims.height}&quot; × {r.dims.depth}&quot; ·{" "}
-          {strapOptions.find((o) => o.id === build.strapId)?.label}
+
+        <div className="flex items-center justify-between px-6 pb-5 lg:px-12">
+          <p className="hidden text-[13px] text-black/45 lg:block">
+            {r.fabric.name} · {r.swatch?.name} · {r.dims.width}&quot; × {r.dims.height}&quot; × {r.dims.depth}&quot;
+          </p>
+          {r.style.photo ? (
+            <Segmented
+              options={[
+                { value: "photo", label: "Photo" },
+                { value: "spec", label: "Spec" },
+              ]}
+              value={view}
+              onChange={setView}
+            />
+          ) : (
+            <p className="text-[12px] text-black/35">Schematic preview until this style is photographed</p>
+          )}
         </div>
       </div>
 
       {/* Options: the only thing that scrolls */}
-      <div className="h-full min-h-0 overflow-y-auto bg-white px-6 pb-32 pt-6 lg:px-8">
-        <Section step="01" title="Size" hint="Dimensions are the factory spec. Custom sizes are quoted per project.">
+      <div className="h-full min-h-0 overflow-y-auto px-6 pb-36 pt-4 lg:px-10">
+        <Section step="01" title="Size" hint="Factory-spec dimensions. Custom sizes are quoted per project.">
           <div className="flex flex-wrap gap-2">
             {r.style.sizes.map((size) => (
               <Chip
@@ -138,7 +163,7 @@ function Configurator({
           {r.isCustomSize && build.customDims ? (
             <div className="mt-4 grid grid-cols-3 gap-3">
               {(["width", "height", "depth"] as const).map((key) => (
-                <label key={key} className="text-xs font-semibold uppercase tracking-wide text-charcoal/55">
+                <label key={key} className="text-[11px] font-semibold uppercase tracking-wide text-black/40">
                   {key}
                   <input
                     type="number"
@@ -154,7 +179,7 @@ function Configurator({
           ) : null}
         </Section>
 
-        <Section step="02" title="Fabric & color">
+        <Section step="02" title="Fabric">
           <div className="flex flex-wrap gap-2">
             {r.style.fabricSlugs.map((slug) => {
               const fabric = getFabricBySlug(slug);
@@ -166,61 +191,48 @@ function Configurator({
                   onClick={() => onChange({ ...build, fabricSlug: slug, colorName: getFabricSwatches(slug)[0]?.name ?? "" })}
                 >
                   {fabric.name}
-                  {fabric.upcharge > 0 ? <span className="ml-1 opacity-70">+{formatCurrency(fabric.upcharge)}</span> : null}
+                  {fabric.upcharge > 0 ? <span className="ml-1.5 font-medium opacity-60">+{formatCurrency(fabric.upcharge)}</span> : null}
                 </Chip>
               );
             })}
           </div>
-          <p className="mt-2 text-xs text-charcoal/50">{fabricTierMeta[r.fabric.tier].label} tier</p>
-          <div className="mt-4 flex flex-wrap gap-2">
+          <p className="mt-2 text-[12px] text-black/35">{fabricTierMeta[r.fabric.tier].label} tier</p>
+        </Section>
+
+        <Section step="03" title="Color" hint={r.swatch?.name}>
+          <div className="flex flex-wrap gap-2.5">
             {swatches.map((swatch) => (
-              <button
-                key={swatch.name}
-                type="button"
-                title={swatch.name}
-                aria-label={swatch.name}
-                aria-pressed={build.colorName === swatch.name}
-                onClick={() => set("colorName", swatch.name)}
-                className={`h-9 w-9 rounded-full border-2 transition ${
-                  build.colorName === swatch.name ? "border-blue ring-2 ring-blue/30" : "border-white ring-1 ring-charcoal/15"
-                }`}
-                style={{ backgroundColor: swatch.hex }}
-              />
+              <Swatch key={swatch.name} hex={swatch.hex} name={swatch.name} selected={build.colorName === swatch.name} onClick={() => set("colorName", swatch.name)} />
             ))}
           </div>
-          <p className="mt-2 text-sm text-charcoal/60">{r.swatch?.name}</p>
         </Section>
 
-        <Section step="03" title="Handles" hint="One strap construction, plus any add-ons.">
-          <OptionList
-            options={strapOptions}
-            value={build.strapId}
-            onChange={(id) => set("strapId", id)}
-            includedIds={[r.size.strap.type]}
-          />
-          <div className="mt-4">
+        <Section step="04" title="Handles" hint="One strap construction, plus any add-ons.">
+          <OptionList options={strapOptions} value={build.strapId} onChange={(id) => set("strapId", id)} includedIds={[r.size.strap.type]} />
+          <div className="mt-3">
             <OptionList options={handleAddOns} value={build.handleAddOnIds} onChange={(id) => set("handleAddOnIds", toggle(build.handleAddOnIds, id))} />
           </div>
+          {build.handleAddOnIds.includes("pantone-straps") ? (
+            <label className="mt-4 flex items-center gap-3 text-[13px] text-black/55">
+              <input type="color" value={build.strapColor} onChange={(e) => set("strapColor", e.target.value)} className="h-9 w-12 cursor-pointer rounded-lg border-0 bg-transparent" />
+              Strap color
+            </label>
+          ) : null}
         </Section>
 
-        <Section step="04" title="Stitching">
+        <Section step="05" title="Stitching">
           <OptionList options={stitchOptions} value={build.stitchId} onChange={(id) => set("stitchId", id)} />
           {build.stitchId !== "standard" ? (
-            <label className="mt-4 flex items-center gap-3 text-sm text-charcoal/70">
-              <input type="color" value={build.stitchColor} onChange={(e) => set("stitchColor", e.target.value)} className="h-9 w-12 cursor-pointer rounded-lg border border-charcoal/15 bg-white" />
+            <label className="mt-4 flex items-center gap-3 text-[13px] text-black/55">
+              <input type="color" value={build.stitchColor} onChange={(e) => set("stitchColor", e.target.value)} className="h-9 w-12 cursor-pointer rounded-lg border-0 bg-transparent" />
               Thread / accent color
             </label>
           ) : null}
         </Section>
 
-        <Section step="05" title="Pockets & closure" hint={standardPockets.length ? "Pockets marked Included come standard on this style." : undefined}>
-          <OptionList
-            options={pocketOptions}
-            value={build.pocketIds}
-            onChange={(id) => set("pocketIds", toggle(build.pocketIds, id))}
-            includedIds={standardPockets}
-          />
-          <div className="mt-4">
+        <Section step="06" title="Pockets & closure" hint={standardPockets.length ? "Pockets marked Included come standard on this style." : undefined}>
+          <OptionList options={pocketOptions} value={build.pocketIds} onChange={(id) => set("pocketIds", toggle(build.pocketIds, id))} includedIds={standardPockets} />
+          <div className="mt-3">
             <OptionList
               options={closureOptions}
               value={build.closureId}
@@ -230,88 +242,98 @@ function Configurator({
           </div>
         </Section>
 
-        <Section step="06" title="Decoration" hint="One-color print or embroidery is included.">
-          <div className="flex flex-wrap gap-2">
-            {decorationOptions.map((type) => (
-              <Chip key={type} selected={build.decorationType === type} onClick={() => set("decorationType", type)}>
-                {type}
-              </Chip>
-            ))}
-          </div>
+        <Section step="07" title="Decoration" hint="One-color print or embroidery is included.">
+          <Segmented options={decorationOptions.map((t) => ({ value: t, label: t }))} value={build.decorationType} onChange={(v) => set("decorationType", v)} />
           {build.decorationType === "Screen Print" ? (
-            <div className="mt-4 grid gap-4 sm:grid-cols-2">
-              <ChipGroup label="Front colors" options={frontColorOptions} value={build.frontColors} onChange={(v) => set("frontColors", v)} />
-              <ChipGroup label="Back print" options={backColorOptions} value={build.backColors} onChange={(v) => set("backColors", v)} />
+            <div className="mt-4 grid gap-4">
+              <Field label="Front colors">
+                <Segmented options={frontColorOptions.map((o) => ({ value: o.value, label: priced(o) }))} value={build.frontColors} onChange={(v) => set("frontColors", v)} />
+              </Field>
+              <Field label="Back print">
+                <Segmented options={backColorOptions.map((o) => ({ value: o.value, label: priced(o) }))} value={build.backColors} onChange={(v) => set("backColors", v)} />
+              </Field>
             </div>
           ) : null}
           {build.decorationType === "Embroidery" ? (
             <div className="mt-4">
-              <ChipGroup label="Placements" options={embroideryPlacementOptions} value={build.embroideryPlacements} onChange={(v) => set("embroideryPlacements", v)} />
+              <Field label="Placements">
+                <Segmented options={embroideryPlacementOptions.map((o) => ({ value: o.value, label: priced(o) }))} value={build.embroideryPlacements} onChange={(v) => set("embroideryPlacements", v)} />
+              </Field>
             </div>
           ) : null}
         </Section>
 
-        <Section step="07" title="Labels & extras" hint="A side-seam woven label with your brand is always included.">
+        <Section step="08" title="Labels & extras" hint="A side-seam woven label with your brand is always included.">
           <OptionList options={extraOptions} value={build.extraIds} onChange={(id) => set("extraIds", toggle(build.extraIds, id))} />
         </Section>
 
-        <Section step="08" title="Quantity" hint={`Minimum ${MIN_QUANTITY}. ${customQuoteTier.toLocaleString()}+ is quoted per project.`}>
+        <Section step="09" title="Quantity" hint={`Minimum ${MIN_QUANTITY}. ${customQuoteTier.toLocaleString()}+ is quoted per project.`}>
           <div className="flex flex-wrap items-center gap-2">
-            {quantityTiers.map((q) => (
-              <Chip key={q} selected={build.quantity === q} onClick={() => set("quantity", q)}>
-                {q.toLocaleString()}
-              </Chip>
-            ))}
+            <Segmented options={quantityTiers.map((q) => ({ value: q, label: q.toLocaleString() }))} value={build.quantity} onChange={(v) => set("quantity", v)} />
             <input
               type="number"
               min={MIN_QUANTITY}
               step={50}
               value={build.quantity}
               onChange={(e) => set("quantity", Math.max(MIN_QUANTITY, Number(e.target.value) || MIN_QUANTITY))}
-              className={`${inputClass} w-32`}
+              className={`${inputClass} w-28`}
             />
           </div>
         </Section>
 
-        <div className="rounded-[1.5rem] bg-light-bone p-5">
-          <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/55">Included on every bag</p>
-          <ul className="mt-3 grid gap-1.5 text-sm text-charcoal/75 sm:grid-cols-2">
+        <div className="rounded-2xl bg-black/[0.04] p-5">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-black/35">Included on every bag</p>
+          <ul className="mt-3 grid gap-1.5 text-[13px] text-black/60 sm:grid-cols-2">
             {includedOnEveryBag.map((item) => (
-              <li key={item}>✓ {item}</li>
+              <li key={item}>{item}</li>
             ))}
           </ul>
         </div>
       </div>
 
       {/* Price bar */}
-      <div className="absolute bottom-0 left-0 right-0 z-40 border-t border-charcoal/10 bg-white/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center gap-4 px-6 py-3 lg:px-10">
+      <div className="absolute bottom-0 left-0 right-0 z-40 border-t border-black/[0.06] bg-white/85 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl items-center gap-5 px-6 py-3.5 lg:px-10">
           <div className="min-w-0 flex-1">
-            <p className="truncate text-sm font-semibold">{r.style.name} · {build.quantity.toLocaleString()} units</p>
-            <details className="text-xs text-charcoal/55">
+            <p className="truncate text-[14px] font-semibold text-charcoal">{r.style.name} · {build.quantity.toLocaleString()} units</p>
+            <details className="text-[12px] text-black/45">
               <summary className="cursor-pointer select-none">Price breakdown</summary>
               <div className="mt-1 grid grid-cols-2 gap-x-6 sm:grid-cols-3">
                 {r.lines.filter((l) => l.amount > 0).map((l) => (
-                  <span key={l.label}>{l.label}: {formatCurrency(l.amount)}</span>
+                  <span key={l.label}>{l.label} {formatCurrency(l.amount)}</span>
                 ))}
               </div>
             </details>
           </div>
           <div className="text-right">
             {r.isCustomQuote ? (
-              <p className="text-lg font-extrabold">Custom quote</p>
+              <p className="text-[20px] font-semibold tracking-[-0.01em]">Custom quote</p>
             ) : (
               <>
-                <p className="text-lg font-extrabold">{formatCurrency(r.unitPrice)}<span className="text-xs font-semibold text-charcoal/50"> / unit</span></p>
-                <p className="text-xs font-semibold text-blue">{formatCurrency(r.total)} total</p>
+                <p className="text-[22px] font-semibold tracking-[-0.02em] text-charcoal">
+                  {formatCurrency(r.unitPrice)}
+                  <span className="ml-1 text-[12px] font-medium text-black/40">/ unit</span>
+                </p>
+                <p className="text-[12px] font-medium text-black/45">{formatCurrency(r.total)} total</p>
               </>
             )}
           </div>
-          <button type="button" onClick={onContinue} className="rounded-full bg-blue px-6 py-3 text-sm font-semibold text-white hover:bg-charcoal">
+          <button type="button" onClick={onContinue} className="rounded-full bg-blue px-6 py-3 text-[14px] font-semibold text-white transition hover:bg-charcoal">
             {r.isCustomQuote ? "Request quote" : "Continue"}
           </button>
         </div>
       </div>
+    </div>
+  );
+}
+
+const priced = (o: { label: string; upcharge: number }) => (o.upcharge > 0 ? `${o.label} · +${formatCurrency(o.upcharge)}` : o.label);
+
+function Field({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div>
+      <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-black/40">{label}</p>
+      {children}
     </div>
   );
 }
@@ -331,29 +353,4 @@ function useHeaderHeight() {
   return h;
 }
 
-function ChipGroup({
-  label,
-  options,
-  value,
-  onChange,
-}: {
-  label: string;
-  options: readonly { label: string; value: number; upcharge: number }[];
-  value: number;
-  onChange: (v: number) => void;
-}) {
-  return (
-    <div>
-      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-charcoal/55">{label}</p>
-      <div className="flex flex-wrap gap-2">
-        {options.map((o) => (
-          <Chip key={o.value} selected={value === o.value} onClick={() => onChange(o.value)}>
-            {o.label}
-            {o.upcharge > 0 ? <span className="ml-1 opacity-70">+{formatCurrency(o.upcharge)}</span> : null}
-          </Chip>
-        ))}
-      </div>
-    </div>
-  );
-}
 

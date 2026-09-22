@@ -9,14 +9,10 @@ import { resolveBuild } from "@/lib/build-flow";
 export function BagPreview({ build }: { build: BuildConfig }) {
   const r = resolveBuild(build);
   const { width: w, height: h, depth: d } = r.dims;
-  const fill = r.swatch?.hex ?? "#E8DFC9";
+  const fill = r.bodyHex;
   const ink = darken(fill, 0.35);
   const stitch = build.stitchId === "standard" ? darken(fill, 0.18) : build.stitchColor;
-  const strapColor = build.handleAddOnIds.includes("pantone-straps")
-    ? "#7B5EA7" // Pantone 7455 C-ish
-    : build.strapId === "nylon" || build.strapId === "cotton-webbing"
-      ? darken(fill, 0.25)
-      : fill;
+  const strapColor = r.strapHex;
 
   // Canvas is 400x400; longest real bag dimension maps to ~240px.
   const scale = 240 / Math.max(w + d * 0.5, h + 12, 20);

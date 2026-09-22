@@ -27,8 +27,21 @@ export type SizeVariant = {
   priceSize: "small" | "medium" | "large";
 };
 
+/**
+ * Photo-recolor layers. `base` is the bag photo with the recolorable regions
+ * neutralized to luminance; each mask is an alpha PNG. The browser multiplies
+ * the chosen colors through the masks, keeping real shading and texture.
+ */
+export type PhotoLayers = {
+  base: string;
+  width: number;
+  height: number;
+  masks: { body: string; trim?: string };
+};
+
 export type CatalogStyle = {
   slug: string;
+  photo?: PhotoLayers;
   bagNumber: string;
   name: string;
   tagline: string;
@@ -131,6 +144,12 @@ export const catalog: CatalogStyle[] = [
   {
     slug: "boat-tote",
     bagNumber: "07-08",
+    photo: {
+      base: "/build/boat-tote/base.png",
+      width: 547,
+      height: 885,
+      masks: { body: "/build/boat-tote/body.png", trim: "/build/boat-tote/trim.png" },
+    },
     name: "Boat Tote",
     tagline: "Heavyweight canvas, short handles, structured base.",
     defaultFabricSlug: "cotton-canvas-20oz",

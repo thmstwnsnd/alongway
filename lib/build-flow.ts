@@ -21,6 +21,8 @@ export type BuildConfig = {
   fabricSlug: string;
   colorName: string;
   strapId: string;
+  /** Hex for Pantone-matched straps; ignored otherwise. */
+  strapColor: string;
   handleAddOnIds: string[];
   stitchId: string;
   stitchColor: string;
@@ -44,6 +46,7 @@ export function defaultBuild(styleSlug = catalog[0].slug): BuildConfig {
     fabricSlug: style.defaultFabricSlug,
     colorName: getFabricSwatches(style.defaultFabricSlug)[0]?.name ?? "Natural",
     strapId: size.strap.type,
+    strapColor: "#364FA0",
     handleAddOnIds: [],
     stitchId: "standard",
     stitchColor: "#364FA0",
@@ -69,6 +72,7 @@ export function applyStyle(build: BuildConfig, styleSlug: string): BuildConfig {
     colorName: keepFabric ? build.colorName : fresh.colorName,
     stitchId: build.stitchId,
     stitchColor: build.stitchColor,
+    strapColor: build.strapColor,
     handleAddOnIds: build.handleAddOnIds,
     extraIds: build.extraIds,
     decorationType: build.decorationType,
@@ -113,12 +117,23 @@ export function resolveBuild(build: BuildConfig) {
   ];
   const unitPrice = lines.reduce((t, l) => t + l.amount, 0);
 
+  const bodyHex = swatch?.hex ?? "#E8DFC9";
+  const strapHex = build.handleAddOnIds.includes("pantone-straps")
+    ? build.strapColor
+    : build.strapId === "cotton-webbing"
+      ? "#E8DFC9"
+      : build.strapId === "nylon"
+        ? "#262626"
+        : bodyHex;
+
   return {
     style,
     size,
     dims,
     fabric,
     swatch,
+    bodyHex,
+    strapHex,
     isCustomSize,
     isCustomQuote,
     lines,
