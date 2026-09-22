@@ -258,7 +258,7 @@ function Configurator({
     },
     {
       id: "quantity",
-      title: "Run size",
+      title: "Quantity",
       hint: `Minimum ${MIN_QUANTITY}. ${customQuoteTier.toLocaleString()}+ is quoted per project.`,
       summary: `${build.quantity.toLocaleString()} units`,
       content: (
