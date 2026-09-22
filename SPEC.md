@@ -1,6 +1,6 @@
 # Alongway Website Spec Sheet
 
-As of 2026-09-21. Living copy is the Claude doc "Alongway Website Spec Sheet"; this file is the repo copy for Cursor and other coding agents.
+As of 2026-09-21, updated after the first build session. Living copy is the Claude doc "Alongway Website Spec Sheet"; this file is the repo copy for Cursor and other coding agents. Repo: `github.com/thmstwnsnd/alongway`, branch `thomas/frontend`, checkpoint tag `spec-2026-09-21`.
 
 **Current phase: front end only, running locally. Do not add a backend, database, auth, or payment provider yet.**
 
@@ -37,7 +37,9 @@ Local run: `npm install && npm run dev`, then `localhost:3000`.
 
 ## Site map
 
-24 routes, all front end only; none talk to a server.
+25 routes, all front end only; none talk to a server.
+
+**New: `/build` (Build a Bag)**, linked from the main nav, mobile nav and footer. Car-configurator style ordering tool driven by the V8 factory spec sheet: grid of 19 styles, click one and it takes over the screen with a live SVG preview and an options panel (size, fabric and color, handles, stitching, pockets and closure, decoration, labels and extras, quantity), sticky price bar. Continue hands the spec to `/start` pre-filled.
 
 | Route | Purpose | Status |
 | --- | --- | --- |
@@ -81,6 +83,8 @@ Every feature must work end to end in the browser with local state, and each nam
 | Email capture | `components/email-capture-modal.tsx`, `lib/email-capture.ts` | Modal + footer signup; email stored in localStorage only | Email platform list |
 | Contact + custom inquiry forms | `app/contact`, `app/collection/custom/inquire` | UI only | Form endpoint |
 
+**Build a Bag.** `components/build/bag-builder.tsx` (state, layout), `bag-preview.tsx` (SVG scaled to real dimensions; reflects color, straps, grab handle, stitching, pockets, closure), `style-grid.tsx`, `option-controls.tsx`; logic in `lib/build-flow.ts`. Standard strap is included per style; grab handle, extra handles and Pantone-matched straps are add-ons. Stitching: matching, contrast (color picker), exposed topstitch, piping, binding.
+
 **Front-end rule for this phase:** put every submit behind one function per feature (for example `submitOrder(draft)`), returning a promise and currently resolving locally. Wiring the backend later then changes those functions, not the components.
 
 ## Data model
@@ -100,7 +104,9 @@ All content lives in six typed files under `data/`; `OrderDraft` in `lib/order-f
 
 Styles in code: Beach Tote, Hauler Tote, Everyday Tote, Shoulder Tote, Oversized Tote, Basic Tote, Mini Tote, The Sunday, Channel Tote (Small, Medium, Large), Big Sur Tote, Otis Tote, Camper Pouch.
 
-Known gap: the configurator tracks more than `OrderDraft` stores (ink color counts, Pantone values, embroidery placements). Those selections are priced on the style page but not carried into checkout totals.
+**Added:** `data/catalog.ts` (19 V8 spec-sheet styles with exact dimensions and straps), `data/build-options.ts` (straps, handle add-ons, stitching, pockets, closures, extras), `lib/site.ts` (email, domain, socials; nothing else hard-codes them). The older 14-style `data/bags.ts` still drives `/collection`; the two lineups are not reconciled yet.
+
+Fixed: decoration selections (ink colors, embroidery placements) now live in `OrderDraft`, so bag page, `/shop` and checkout agree on price.
 
 ## Product and pricing rules
 
@@ -130,6 +136,7 @@ Unit price = base tier price + fabric upcharge + add-ons + decoration upcharges 
 - **Embroidery:** one placement included; second placement +$1.25.
 - **Add-ons per unit:** Printed Straps $1.50, Exterior Pocket $1.25, Interior Organizer Pocket $1.00, Key Hook $0.75, Additional Label $0.50, Additional Decoration $2.00, Zipper Closure $1.75.
 - **Included:** main decoration, interior woven label, free setup, free shipping.
+- **Placeholder prices:** every handle, stitching, pocket, closure and extra price in `data/build-options.ts` is an estimate pending factory numbers.
 
 Inconsistency to fix: Channel Tote ships in 24oz canvas and Otis in waxed canvas by default, but base pricing assumes a starter fabric.
 
@@ -177,13 +184,17 @@ Out of scope until the front end works end to end locally. Vendors are suggestio
 
 - [ ] Runs clean with `npm run dev` and passes `npm run build` and `npm run lint`
 - [ ] One order path: decide the roles of `/shop`, `/start` and the style-page configurator; remove or redirect the rest
-- [ ] Carry ink colors, Pantone values and embroidery placements into `OrderDraft` so checkout totals match the style page
+- [x] Carry ink colors, Pantone values and embroidery placements into `OrderDraft` so checkout totals match the style page
 - [ ] Settle pricing rules (minimum, tiers, Channel and Otis defaults) and update `data/`
 - [ ] Every submit behind a single stub function per feature
-- [ ] Replace remaining Unsplash images, remove the 13 MB brand file, fix placeholder phone number and testimonial names
-- [ ] Per-page titles and meta descriptions, Open Graph image, sitemap, robots
+- [x] Replace remaining Unsplash images, remove the 13 MB brand file, hide placeholder phone number (testimonial names still placeholders)
+- [x] Per-page titles and meta descriptions, sitemap, robots (Open Graph image still to do)
 - [ ] Mobile pass on every route; keyboard and reduced-motion pass
 - [ ] Legal page content reviewed
+- [ ] Factory prices for handles, stitching, pockets, closures, extras; replace placeholders in `data/build-options.ts`
+- [ ] Decide whether the V8 catalog replaces `data/bags.ts` for `/collection`
+- [ ] Photos for the 19 catalog styles (builder draws a schematic until then)
+- [ ] Verify `/build` on mobile
 
 **Phase 2: backend** — forms to CRM, artwork upload, orders, payment, portal auth.
 
