@@ -263,7 +263,7 @@ function Configurator({
         </div>
 
         {/* Details strip: collapsed to a single Photos button while customizing */}
-        <div className="flex items-center gap-2 overflow-x-auto px-6 pb-3 lg:px-12">
+        <div className="flex items-center px-6 pb-3 lg:px-12">
           {view === "build" ? (
             <button
               type="button"
@@ -274,16 +274,16 @@ function Configurator({
               Photos{gallery.length ? ` (${gallery.length + 1})` : ""}
             </button>
           ) : (
-            <>
+            <div className="grid w-full gap-2" style={{ gridTemplateColumns: `repeat(${gallery.length + 1}, minmax(0, 1fr)) auto` }}>
               {gallery.map((src, i) => (
                 <button
                   key={src}
                   type="button"
                   onClick={() => setView(i)}
                   aria-pressed={view === i}
-                  className={`relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl transition ${view === i ? "ring-2 ring-charcoal ring-offset-2" : "opacity-80 hover:opacity-100"}`}
+                  className={`relative aspect-[4/3] w-full overflow-hidden rounded-xl transition ${view === i ? "ring-2 ring-charcoal ring-offset-2" : "opacity-85 hover:opacity-100"}`}
                 >
-                  <Image src={src} alt="" fill sizes="56px" className="object-cover" />
+                  <Image src={src} alt="" fill sizes="(min-width: 1024px) 9vw, 16vw" className="object-cover" />
                 </button>
               ))}
               <button
@@ -291,19 +291,19 @@ function Configurator({
                 onClick={() => setView("size")}
                 aria-pressed={view === "size"}
                 title="Dimensions"
-                className={`relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl bg-white p-1 transition ${view === "size" ? "ring-2 ring-charcoal ring-offset-2" : "opacity-80 ring-1 ring-black/10 hover:opacity-100"}`}
+                className={`relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-white p-1 transition ${view === "size" ? "ring-2 ring-charcoal ring-offset-2" : "opacity-85 ring-1 ring-black/10 hover:opacity-100"}`}
               >
                 <BagPreview build={build} />
               </button>
               <button
                 type="button"
                 onClick={() => setView("build")}
-                className="ml-2 flex h-14 flex-shrink-0 items-center gap-2 rounded-xl bg-charcoal px-4 text-[13px] font-semibold text-white transition hover:bg-blue"
+                className="flex items-center gap-2 self-center rounded-xl bg-charcoal px-5 py-3 text-[13px] font-semibold text-white transition hover:bg-blue"
               >
                 <span className="inline-block h-3 w-3 rounded-full" style={{ backgroundColor: r.bodyHex }} />
                 Customize
               </button>
-            </>
+            </div>
           )}
         </div>
 
