@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { BagCard } from "@/components/bag-card";
+import { BrandStrip } from "@/components/brand-strip";
 import { SectionHeading } from "@/components/section-heading";
 import { ScrollBird } from "@/components/scroll-bird";
 import { ScrollRotateBadge } from "@/components/scroll-rotate-badge";
@@ -40,17 +41,6 @@ const steps = [
     title: "Delivered to your door",
     body: "30 days production + air freight to one US address. Included in your price.",
   },
-];
-
-const trustedBrands = [
-  "Stanford",
-  "Stanford Medicine",
-  "Banner Coffee",
-  "Field Day Coffee",
-  "High St Deli",
-  "Gymshark",
-  "Synergy Kombucha",
-  "Verve Coffee",
 ];
 
 const perks = [
@@ -213,13 +203,7 @@ export default function HomePage() {
           <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">
             Trusted by brands that care about quality
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {trustedBrands.map((brand) => (
-              <span key={brand} className="rounded-full bg-light-bone px-4 py-2 text-sm font-semibold text-charcoal">
-                {brand}
-              </span>
-            ))}
-          </div>
+          <BrandStrip />
         </div>
         <div
           aria-hidden="true"
