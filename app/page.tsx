@@ -85,46 +85,51 @@ export default function HomePage() {
   return (
     <div>
       {/* ── 1. HERO ── */}
-      <section className="flex h-[calc(90vh-100px)] min-h-[460px] w-full overflow-hidden">
+      <section className="grid min-h-[520px] w-full overflow-hidden lg:h-[calc(90vh-100px)] lg:grid-cols-2">
         {/* Photo — left half, slideshow */}
-        <div className="relative w-full lg:w-1/2">
+        <div className="relative h-[52vw] min-h-[320px] lg:h-auto">
           <HeroSlideshow />
         </div>
 
-        {/* CTA panel — right half */}
-        <div className="relative flex w-full flex-col items-start justify-center overflow-hidden bg-bone py-16 pl-[62px] pr-8 lg:w-1/2 lg:pl-[86px] lg:pr-14">
-          <h1 className="font-display text-5xl font-extrabold leading-[1.05] text-blue lg:text-6xl">
-            Custom Bags<br />Made Simple
-          </h1>
-          <p className="mt-5 text-lg font-medium leading-7 text-blue/80">
-            All-in pricing. Free air freight. Nothing hidden. Ready in 5 weeks.
-          </p>
-          <p className="font-accent mt-3 text-sm uppercase tracking-widest text-blue/60">
-            For brands that care what they hand out.
-          </p>
-          <div className="mt-8 flex flex-row flex-wrap gap-3">
-            <Link
-              href="/collection"
-              className="inline-flex items-center rounded-full bg-blue px-7 py-3.5 text-sm font-semibold text-bone hover:-translate-y-0.5 hover:bg-charcoal"
-            >
-              See the Collection
-            </Link>
-            <Link
-              href="/start"
-              className="inline-flex items-center rounded-full border-2 border-blue px-7 py-3.5 text-sm font-semibold text-blue hover:-translate-y-0.5 hover:bg-blue hover:text-bone"
-            >
-              Start Your Order
-            </Link>
+        {/* Copy — right half. Text owns the top, illustration owns the bottom-right; they never overlap. */}
+        <div className="relative flex flex-col overflow-hidden bg-bone">
+          <div className="relative z-10 max-w-[34rem] px-8 pt-14 sm:px-12 lg:px-16 lg:pt-20">
+            <h1 className="font-display text-[2.75rem] font-extrabold leading-[1.02] text-blue sm:text-6xl lg:text-[4rem]">
+              Custom Bags<br />Made Simple
+            </h1>
+            <p className="mt-5 max-w-md text-lg font-medium leading-7 text-blue/80">
+              All-in pricing. Free air freight. Nothing hidden. Ready in 5 weeks.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/build"
+                className="inline-flex items-center rounded-full bg-blue px-7 py-3.5 text-sm font-semibold text-bone transition hover:-translate-y-0.5 hover:bg-charcoal"
+              >
+                Build a Bag
+              </Link>
+              <Link
+                href="/collection"
+                className="inline-flex items-center rounded-full border-2 border-blue px-7 py-3.5 text-sm font-semibold text-blue transition hover:-translate-y-0.5 hover:bg-blue hover:text-bone"
+              >
+                See the Collection
+              </Link>
+            </div>
+            <p className="font-accent mt-8 text-xs uppercase tracking-[0.22em] text-blue/55">
+              For brands that care what they hand out.
+            </p>
           </div>
-          <Image
-            src="/svg/illustrations/Alongway_Website_Graphic_World_Blue.svg"
-            alt=""
-            width={892}
-            height={722}
-            className="pointer-events-none absolute -bottom-16 h-auto w-[576px] select-none opacity-80 lg:w-[640px]"
-            style={{ right: "-16px", transform: "translateX(-40px)" }}
-            aria-hidden="true"
-          />
+
+          {/* Illustration: fills the remaining height, pinned bottom-right, capped so it stays clear of the copy. */}
+          <div className="pointer-events-none relative mt-6 min-h-[220px] flex-1 select-none">
+            <Image
+              src="/svg/illustrations/Alongway_Website_Graphic_World_Blue.svg"
+              alt=""
+              width={892}
+              height={722}
+              className="absolute bottom-[-6%] right-[-4%] h-[112%] max-h-[440px] w-auto opacity-90"
+              aria-hidden="true"
+            />
+          </div>
         </div>
       </section>
 
