@@ -87,7 +87,7 @@ export function OptionCard({
       onClick={onClick}
       aria-pressed={selected}
       className={`flex w-full items-start justify-between gap-4 rounded-xl px-4 py-3.5 text-left transition-[background-color,box-shadow] duration-150 ${
-        selected ? "bg-white shadow-[inset_0_0_0_2px_rgb(var(--c-blue))]" : "bg-black/[0.04] hover:bg-black/[0.06]"
+        selected ? "bg-white shadow-[inset_0_0_0_2px_#364FA0]" : "bg-black/[0.04] hover:bg-black/[0.06]"
       }`}
     >
       <span className="min-w-0">
@@ -187,4 +187,4 @@ export function Swatch({ hex, name, selected, onClick }: { hex: string; name: st
 }
 
 export const inputClass =
-  "w-full rounded-xl bg-black/[0.05] px-4 py-2.5 text-[14px] text-charcoal outline-none transition focus:bg-white focus:shadow-[inset_0_0_0_2px_rgb(var(--c-blue))]";
+  "w-full rounded-xl bg-black/[0.05] px-4 py-2.5 text-[14px] text-charcoal outline-none transition focus:bg-white focus:shadow-[inset_0_0_0_2px_#364FA0]";
