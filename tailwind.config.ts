@@ -7,7 +7,7 @@ const config: Config = {
       colors: {
         bone: "#EEE6D2",
         "light-bone": "#F2ECE2",
-        blue: "#C1272D",
+        blue: "#364FA0",
         "light-blue": "#94A6D2",
         kelly: "#3A7D44",
         charcoal: "#262626",
