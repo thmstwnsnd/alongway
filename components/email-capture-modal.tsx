@@ -110,7 +110,7 @@ export function EmailCaptureModal() {
                 }}
                 className="text-sm text-charcoal/60 underline-offset-4 hover:text-charcoal hover:underline"
               >
-                No thanks, I&apos;ll pass
+                Maybe next time
               </button>
             </div>
           </div>
