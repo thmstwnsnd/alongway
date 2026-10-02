@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
+import { auth } from "@/auth";
 import { PortalLoginForm } from "@/components/portal-login-form";
 
 export const metadata: Metadata = {
@@ -9,7 +11,10 @@ export const metadata: Metadata = {
 };
 
 
-export default function PortalLoginPage() {
+export default async function PortalLoginPage() {
+  const session = await auth();
+  if (session?.user) redirect("/portal/dashboard");
+
   return (
     <div className="flex min-h-[calc(100vh-9rem)] items-center justify-center py-8">
       <div className="grid w-full max-w-5xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">

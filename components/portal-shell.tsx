@@ -12,7 +12,7 @@ const portalLinks = [
   { href: "/portal/account", label: "Account" },
 ];
 
-export function PortalShell({ children }: { children: ReactNode }) {
+export function PortalShell({ children, signedIn }: { children: ReactNode; signedIn: boolean }) {
   const pathname = usePathname();
 
   return (
@@ -21,7 +21,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-4 lg:px-10">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <Link href="/portal/dashboard" className="flex items-center">
+              <Link href={signedIn ? "/portal/dashboard" : "/portal"} className="flex items-center">
                 <Image src="/logo-blue.svg" alt="Alongway" width={180} height={44} className="h-8 w-auto object-contain" priority />
               </Link>
               <span className="font-accent hidden rounded-full border border-charcoal/10 bg-light-bone px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/60 sm:inline-flex">
@@ -32,6 +32,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
               Back to site
             </Link>
           </div>
+          {signedIn ? (
           <nav className="flex flex-col gap-2 text-sm font-medium sm:flex-row sm:items-center sm:gap-3">
             {portalLinks.map((link) => {
               const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
@@ -49,6 +50,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
               );
             })}
           </nav>
+          ) : null}
         </div>
       </header>
       <main className="mx-auto max-w-7xl px-6 py-10 lg:px-10 lg:py-12">{children}</main>
