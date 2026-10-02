@@ -25,7 +25,7 @@ export default function PortalLoginPage() {
             <PortalLoginForm />
           </div>
           <div className="mt-5 flex flex-col gap-3 text-sm">
-            <Link href="#" className="font-medium text-blue hover:text-charcoal">
+            <Link href="/portal/forgot" className="font-medium text-blue hover:text-charcoal">
               Forgot your password?
             </Link>
             <p className="leading-6 text-charcoal/62">
