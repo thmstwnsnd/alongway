@@ -1,0 +1,346 @@
+// Alongway database schema (MVP).
+// Written for PostgreSQL. Local dev and production use the same schema;
+// only DATABASE_URL changes. Money is always integer cents.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  CUSTOMER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING       // created, not yet paid
+  PAID
+  IN_PRODUCTION
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+enum SubmissionType {
+  CONTACT
+  REFERRAL
+  QUOTE
+}
+
+enum SubmissionStatus {
+  NEW
+  REPLIED
+  CLOSED
+}
+
+// ---------------------------------------------------------------- Accounts
+
+model User {
+  id               String    @id @default(cuid())
+  email            String    @unique
+  emailVerified    DateTime?
+  name             String?
+  company          String?
+  passwordHash     String?   // null for Google-only accounts
+  role             Role      @default(CUSTOMER)
+  marketingOptIn   Boolean   @default(false)
+  referralCode     String?   @unique
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  accounts         Account[]
+  sessions         Session[]
+  addresses        Address[]
+  builds           Build[]
+  orders           Order[]
+  submissions      Submission[]
+  assets           Asset[]
+  passwordResets   PasswordResetToken[]
+  promoCaptures    PromoCapture[]
+  leads            Lead[]
+}
+
+// Auth.js adapter tables (Google sign-in and database sessions).
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// Single-use, expiring password reset links. Only a hash of the token is stored.
+model PasswordResetToken {
+  id        String    @id @default(cuid())
+  userId    String
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Address {
+  id        String   @id @default(cuid())
+  userId    String
+  label     String?
+  name      String
+  line1     String
+  line2     String?
+  city      String
+  state     String
+  zip       String
+  country   String   @default("US")
+  phone     String?
+  isDefault Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+// ------------------------------------------------------------ Builds & orders
+
+// A saved bag configuration. config holds the BuildConfig JSON from lib/build-flow.ts.
+model Build {
+  id             String   @id @default(cuid())
+  userId         String?  // null until a signed-out visitor signs in
+  styleSlug      String
+  config         Json
+  summary        String
+  quantity       Int
+  unitPriceCents Int
+  totalCents     Int
+  isCustomQuote  Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  user    User?        @relation(fields: [userId], references: [id], onDelete: SetNull)
+  orders  Order[]
+  assets  Asset[]
+  quotes  Submission[]
+
+  @@index([userId])
+}
+
+// The wording customers sign. Each change gets a new version row; old versions are never edited.
+model Agreement {
+  id        String   @id @default(cuid())
+  version   Int      @unique
+  body      String
+  createdAt DateTime @default(now())
+
+  signoffs Signoff[]
+}
+
+model Order {
+  id                    String      @id @default(cuid())
+  number                Int         @unique @default(autoincrement())
+  userId                String
+  buildId               String
+  status                OrderStatus @default(PENDING)
+
+  // Frozen at the moment of purchase so later price changes never alter an order.
+  buildSnapshot         Json
+  summary               String
+  quantity              Int
+  unitPriceCents        Int
+  discountCents         Int         @default(0)
+  subtotalCents         Int
+  taxCents              Int         @default(0)
+  shippingCents         Int         @default(0)
+  totalCents            Int
+
+  promoCaptureId        String?
+  shipToAddress         Json
+  contactEmail          String
+  contactPhone          String?
+
+  stripeSessionId       String?     @unique
+  stripePaymentIntentId String?     @unique
+  stripeInvoiceId       String?
+
+  carrier               String?
+  trackingNumber        String?
+
+  paidAt                DateTime?
+  shippedAt             DateTime?
+  deliveredAt           DateTime?
+  createdAt             DateTime    @default(now())
+  updatedAt             DateTime    @updatedAt
+
+  user         User          @relation(fields: [userId], references: [id])
+  build        Build         @relation(fields: [buildId], references: [id])
+  promoCapture PromoCapture? @relation(fields: [promoCaptureId], references: [id])
+  events       OrderEvent[]
+  signoff      Signoff?
+  assets       Asset[]
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model OrderEvent {
+  id          String       @id @default(cuid())
+  orderId     String
+  fromStatus  OrderStatus?
+  toStatus    OrderStatus
+  actorUserId String?      // null for system events such as the payment webhook
+  note        String?
+  createdAt   DateTime     @default(now())
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+}
+
+// Initial-and-sign record. Required before payment can start.
+model Signoff {
+  id           String   @id @default(cuid())
+  orderId      String   @unique
+  agreementId  String
+  initials     Json     // { "color": "TT", "artwork": "TT", ... } one entry per build-sheet area
+  signedName   String
+  signatureData String? // drawn signature image data, if drawn rather than typed
+  ipAddress    String?
+  userAgent    String?
+  signedAt     DateTime @default(now())
+
+  order     Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  agreement Agreement @relation(fields: [agreementId], references: [id])
+}
+
+// Uploaded artwork. The file lives in object storage; this row points to it.
+model Asset {
+  id        String   @id @default(cuid())
+  userId    String
+  buildId   String?
+  orderId   String?
+  url       String
+  filename  String
+  mimeType  String
+  bytes     Int
+  createdAt DateTime @default(now())
+
+  user  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  build Build? @relation(fields: [buildId], references: [id], onDelete: SetNull)
+  order Order? @relation(fields: [orderId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+}
+
+// ------------------------------------------------------- Forms and promotions
+
+model Submission {
+  id        String           @id @default(cuid())
+  type      SubmissionType
+  userId    String?
+  buildId   String?          // set for quotes (5,000+ units)
+  name      String
+  email     String
+  company   String?
+  quantity  Int?
+  message   String?
+  status    SubmissionStatus @default(NEW)
+  createdAt DateTime         @default(now())
+
+  user  User?  @relation(fields: [userId], references: [id], onDelete: SetNull)
+  build Build? @relation(fields: [buildId], references: [id], onDelete: SetNull)
+
+  @@index([type, status])
+}
+
+// A promo window. discountPercent is the whole-number percent off.
+model Promo {
+  id              String   @id @default(cuid())
+  name            String
+  code            String   @unique
+  discountPercent Int
+  startsAt        DateTime
+  endsAt          DateTime
+  validDays       Int      @default(180) // how long a captured price stays valid
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+
+  captures PromoCapture[]
+}
+
+// A customer capturing a promo price. Expires validDays after capture.
+model PromoCapture {
+  id         String   @id @default(cuid())
+  promoId    String
+  userId     String
+  capturedAt DateTime @default(now())
+  expiresAt  DateTime
+  remindedAt DateTime? // when the "about to expire" email was sent
+
+  promo  Promo   @relation(fields: [promoId], references: [id])
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orders Order[]
+
+  @@unique([promoId, userId])
+  @@index([expiresAt])
+}
+
+// Every email the site captures, labeled with where it came from.
+model Lead {
+  id           String   @id @default(cuid())
+  email        String
+  userId       String?
+  source       String   // sign_up_wall, account_sign_up, promo_capture, contact_form, quote_form, referral, newsletter_nudge
+  page         String?
+  cta          String?  // which button or call to action
+  promoCode    String?
+  referralCode String?
+  utmSource    String?
+  utmMedium    String?
+  utmCampaign  String?
+  isFirst      Boolean  @default(false) // first-touch record for this email
+  createdAt    DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([email])
+  @@index([source])
+  @@index([createdAt])
+}

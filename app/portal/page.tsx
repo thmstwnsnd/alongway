@@ -29,7 +29,7 @@ export default function PortalLoginPage() {
               Forgot your password?
             </Link>
             <p className="leading-6 text-charcoal/62">
-              New customer? Your account is created automatically when you place your first order.
+              New customer? Select Create an account to get started.
             </p>
           </div>
         </section>
