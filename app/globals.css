@@ -248,3 +248,38 @@ input[type="range"]::-moz-range-thumb {
 /* Build a Bag: quantity slider uses the site-wide bird thumb above; only the track is tuned here. */
 .qty-slider::-webkit-slider-runnable-track { height: 4px; border-radius: 999px; background: rgba(0,0,0,0.08); }
 .qty-slider::-moz-range-track { height: 4px; border-radius: 999px; background: rgba(0,0,0,0.08); }
+
+/* Accessibility: visible keyboard focus on any background (white inner ring + blue outer ring) */
+*:focus-visible {
+  outline: 2px solid #364FA0 !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Accessibility: skip link, visible only when focused */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0.75rem;
+  z-index: 200;
+  border-radius: 9999px;
+  background: #262626;
+  color: #ffffff;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.skip-link:focus {
+  left: 0.75rem;
+}
+
+/* Accessibility: respect "reduce motion" */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .icon-drop-ready, .card-pop-ready { opacity: 1 !important; }
+}

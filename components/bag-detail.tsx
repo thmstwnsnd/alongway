@@ -72,8 +72,8 @@ export function BagDetail({ bag }: { bag: Bag }) {
               className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4"
               onClick={closeLightbox}
             >
-              <button type="button" onClick={closeLightbox} className="absolute top-4 right-4 text-white/70 hover:text-white text-3xl leading-none">&times;</button>
-              <button type="button" onClick={(e) => { e.stopPropagation(); prevPhoto(); }} className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-4xl leading-none px-2">&#8249;</button>
+              <button type="button" onClick={closeLightbox} className="absolute top-4 right-4 text-white/75 hover:text-white text-3xl leading-none">&times;</button>
+              <button type="button" onClick={(e) => { e.stopPropagation(); prevPhoto(); }} className="absolute left-4 top-1/2 -translate-y-1/2 text-white/75 hover:text-white text-4xl leading-none px-2">&#8249;</button>
               <Image
                 src={photos[activeIdx] ?? ""}
                 alt={bag.name}
@@ -83,7 +83,7 @@ export function BagDetail({ bag }: { bag: Bag }) {
                 className="h-auto max-h-[90vh] w-auto max-w-[90vw] rounded-[1.5rem] object-contain shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
               />
-              <button type="button" onClick={(e) => { e.stopPropagation(); nextPhoto(); }} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-4xl leading-none px-2">&#8250;</button>
+              <button type="button" onClick={(e) => { e.stopPropagation(); nextPhoto(); }} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/75 hover:text-white text-4xl leading-none px-2">&#8250;</button>
               <div className="absolute bottom-4 flex gap-2">
                 {photos.map((_, i) => (
                   <button key={i} type="button" onClick={(e) => { e.stopPropagation(); setActiveIdx(i); }}
@@ -98,19 +98,19 @@ export function BagDetail({ bag }: { bag: Bag }) {
           {/* Mini specs strip */}
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-[1.25rem] border border-charcoal/10 bg-white px-4 py-3 shadow-card">
-              <p className="font-accent text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/45">Dimensions</p>
+              <p className="font-accent text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/70">Dimensions</p>
               <p className="mt-1 text-sm font-medium text-charcoal">{bag.dimensions}</p>
             </div>
             <div className="rounded-[1.25rem] border border-charcoal/10 bg-white px-4 py-3 shadow-card">
-              <p className="font-accent text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/45">Material</p>
+              <p className="font-accent text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/70">Material</p>
               <p className="mt-1 text-sm font-medium text-charcoal">{bag.material}</p>
             </div>
             <div className="rounded-[1.25rem] border border-charcoal/10 bg-light-bone px-4 py-3">
-              <p className="font-accent text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/45">MOQ</p>
+              <p className="font-accent text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/70">MOQ</p>
               <p className="mt-1 text-sm font-medium text-charcoal">100 units</p>
             </div>
             <div className="rounded-[1.25rem] border border-charcoal/10 bg-light-bone px-4 py-3">
-              <p className="font-accent text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/45">Production</p>
+              <p className="font-accent text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/70">Production</p>
               <p className="mt-1 text-sm font-medium text-charcoal">~30 days</p>
             </div>
           </div>
@@ -153,9 +153,9 @@ export function BagDetail({ bag }: { bag: Bag }) {
             {bag.features.map((f, i) => {
               const colors = [
                 "bg-blue/10 text-blue border-blue/20",
-                "bg-light-blue/10 text-light-blue border-light-blue/20",
+                "bg-light-blue/10 text-blue border-light-blue/20",
                 "bg-blue/15 text-blue border-blue/25",
-                "bg-light-blue/15 text-light-blue border-light-blue/25",
+                "bg-light-blue/15 text-blue border-light-blue/25",
               ];
               return (
                 <span key={f} className={`rounded-full border px-3 py-1.5 text-xs font-semibold ${colors[i % colors.length]}`}>
@@ -177,7 +177,7 @@ export function BagDetail({ bag }: { bag: Bag }) {
         <details className="group rounded-[1.5rem] border border-charcoal/10 bg-white px-6 py-5 shadow-card open:bg-light-bone">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
             Customization options
-            <span className="ml-auto flex-shrink-0 text-2xl leading-none text-charcoal/40 transition-transform group-open:rotate-45">+</span>
+            <span className="ml-auto flex-shrink-0 text-2xl leading-none text-charcoal/70 transition-transform group-open:rotate-45">+</span>
           </summary>
           <div className="mt-4 space-y-3 text-sm leading-7 text-charcoal/75">
             <p><strong>Screen Print</strong> – Bold, flat coverage. Best for clean logos and simple graphics.</p>
@@ -191,7 +191,7 @@ export function BagDetail({ bag }: { bag: Bag }) {
         <details className="group rounded-[1.5rem] border border-charcoal/10 bg-white px-6 py-5 shadow-card open:bg-light-bone">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
             Material possibilities
-            <span className="ml-auto flex-shrink-0 text-2xl leading-none text-charcoal/40 transition-transform group-open:rotate-45">+</span>
+            <span className="ml-auto flex-shrink-0 text-2xl leading-none text-charcoal/70 transition-transform group-open:rotate-45">+</span>
           </summary>
           <div className="mt-4 text-sm leading-7 text-charcoal/75">
             <p>Every bag starts with a fabric choice. Starter fabrics are included at no extra cost – canvas, denim, corduroy, nylon, and camo. Upgrade tiers unlock waxed canvas, heavier canvas weights, and specialty materials. Want to feel it first? Order a{" "}<Link href="/swatches" className="font-semibold text-blue hover:text-charcoal">swatch kit</Link>.</p>
@@ -201,7 +201,7 @@ export function BagDetail({ bag }: { bag: Bag }) {
         <details className="group rounded-[1.5rem] border border-charcoal/10 bg-white px-6 py-5 shadow-card open:bg-light-bone">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
             Style &amp; sizing
-            <span className="ml-auto flex-shrink-0 text-2xl leading-none text-charcoal/40 transition-transform group-open:rotate-45">+</span>
+            <span className="ml-auto flex-shrink-0 text-2xl leading-none text-charcoal/70 transition-transform group-open:rotate-45">+</span>
           </summary>
           <div className="mt-4 space-y-3 text-sm leading-7 text-charcoal/75">
             <p>{bag.dimensions}</p>
@@ -211,7 +211,7 @@ export function BagDetail({ bag }: { bag: Bag }) {
         <details className="group rounded-[1.5rem] border border-charcoal/10 bg-white px-6 py-5 shadow-card open:bg-light-bone">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
             Production details
-            <span className="ml-auto flex-shrink-0 text-2xl leading-none text-charcoal/40 transition-transform group-open:rotate-45">+</span>
+            <span className="ml-auto flex-shrink-0 text-2xl leading-none text-charcoal/70 transition-transform group-open:rotate-45">+</span>
           </summary>
           <ul className="mt-4 space-y-2 text-sm leading-7 text-charcoal/75">
             <li>Tech pack sent within 2 business days of artwork approval</li>
@@ -254,10 +254,10 @@ export function BagDetail({ bag }: { bag: Bag }) {
         {/* Template downloads */}
         <div className="rounded-[1.5rem] border border-charcoal/10 bg-light-bone px-6 py-5">
           <p className="text-base font-bold tracking-tight text-charcoal">Artwork templates</p>
-          <p className="mt-1 text-sm text-charcoal/65">Sized to exact print dimensions. Use for press-ready artwork.</p>
+          <p className="mt-1 text-sm text-charcoal/70">Sized to exact print dimensions. Use for press-ready artwork.</p>
           <div className="mt-4 flex gap-3">
-            <Link href={`/templates/${bag.slug}.pdf`} className="inline-flex rounded-full border border-charcoal/15 bg-white px-5 py-2.5 text-sm font-semibold text-charcoal hover:border-blue hover:text-light-blue">↓ PDF</Link>
-            <Link href={`/templates/${bag.slug}.ai`} className="inline-flex rounded-full border border-charcoal/15 bg-white px-5 py-2.5 text-sm font-semibold text-charcoal hover:border-blue hover:text-light-blue">↓ Illustrator</Link>
+            <Link href={`/templates/${bag.slug}.pdf`} className="inline-flex rounded-full border border-charcoal/15 bg-white px-5 py-2.5 text-sm font-semibold text-charcoal hover:border-blue hover:text-blue">↓ PDF</Link>
+            <Link href={`/templates/${bag.slug}.ai`} className="inline-flex rounded-full border border-charcoal/15 bg-white px-5 py-2.5 text-sm font-semibold text-charcoal hover:border-blue hover:text-blue">↓ Illustrator</Link>
           </div>
         </div>
 
@@ -268,7 +268,7 @@ export function BagDetail({ bag }: { bag: Bag }) {
         </div>
 
         {/* Disclaimer */}
-        <p className="text-xs leading-5 text-charcoal/40 max-w-2xl pt-2">
+        <p className="text-xs leading-5 text-charcoal/70 max-w-2xl pt-2">
           Colors, sizing, placements, and product images are for reference only and may vary slightly from the final product. Variations can occur due to lighting, display settings, and production processes.
         </p>
       </div>
@@ -279,7 +279,7 @@ export function BagDetail({ bag }: { bag: Bag }) {
 function Spec({ label, value }: { label: string; value: string }) {
   return (
     <div className="space-y-2">
-      <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">{label}</p>
+      <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/70">{label}</p>
       <p className="text-sm leading-6 text-charcoal">{value}</p>
     </div>
   );

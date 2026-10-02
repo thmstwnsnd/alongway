@@ -60,12 +60,12 @@ export function ChatWidget() {
               />
               <div>
                 <p className="font-display text-xs font-bold text-white">Alongway</p>
-                <p className="text-[10px] text-white/60">Usually replies in minutes</p>
+                <p className="text-[10px] text-white/75">Usually replies in minutes</p>
               </div>
             </div>
             <button
               onClick={() => setOpen(false)}
-              className="text-white/60 hover:text-white text-lg leading-none"
+              className="text-white/75 hover:text-white text-lg leading-none"
               aria-label="Close chat"
             >
               ✕

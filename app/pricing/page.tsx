@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function PricingPage() {
   return (
     <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-      <SectionHeading
+      <SectionHeading level={1}
         eyebrow="Pricing"
         title="No quotes. No surprises. Just clear pricing."
         body="All prices are starting-from per unit. Every order includes free setup, free shipping, and your choice of main decoration."
@@ -37,7 +37,7 @@ export default function PricingPage() {
                 <tr key={bag.slug} className="border-t border-charcoal/10 align-top">
                   <td className="px-6 py-5">
                     <div className="font-semibold">{bag.name}</div>
-                    <div className="mt-1 text-charcoal/60">Starting from</div>
+                    <div className="mt-1 text-charcoal/70">Starting from</div>
                   </td>
                   {bag.pricingTiers.map((tier) => (
                     <td key={tier.quantity} className="px-6 py-5 text-charcoal/80">
@@ -63,7 +63,7 @@ export default function PricingPage() {
         <p className="mt-4 text-sm leading-6 text-charcoal/75">
           Want to save on large orders? Economy sea freight shipping (-$2/unit) is available at checkout. Add 30-35 days to your delivery timeline.
         </p>
-        <p className="mt-4 text-xs text-charcoal/50">MOQ is 100 units. Orders of 5,000+ units receive a custom quote.</p>
+        <p className="mt-4 text-xs text-charcoal/70">MOQ is 100 units. Orders of 5,000+ units receive a custom quote.</p>
       </div>
     </div>
   );

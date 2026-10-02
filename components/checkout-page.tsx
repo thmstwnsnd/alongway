@@ -111,6 +111,7 @@ export function CheckoutPage() {
             router.push("/order-confirmation");
           }}
         >
+          <h1 className="font-display text-4xl font-extrabold tracking-tight text-charcoal">Checkout</h1>
           {order.build ? <BuildSpecCard build={order.build} /> : null}
 
           <CheckoutSection title="Contact">
@@ -136,7 +137,7 @@ export function CheckoutPage() {
           </CheckoutSection>
 
           <CheckoutSection title="Shipping / Delivery">
-            <p className="text-sm leading-6 text-charcoal/62">
+            <p className="text-sm leading-6 text-charcoal/70">
               We ship to one US address per order. Need multiple locations?{" "}
               <Link href="/contact" className="font-semibold text-blue hover:text-charcoal">
                 Contact us.
@@ -165,12 +166,12 @@ export function CheckoutPage() {
                         <div className="flex flex-wrap items-center gap-2">
                           <p className="text-base font-semibold text-charcoal">{option.label}</p>
                           {option.id === "standard" ? (
-                            <span className="font-accent rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-charcoal/65">
+                            <span className="font-accent rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-charcoal/70">
                               Default
                             </span>
                           ) : null}
                         </div>
-                        <p className="text-sm leading-6 text-charcoal/68">{option.description}</p>
+                        <p className="text-sm leading-6 text-charcoal/70">{option.description}</p>
                         {option.id === "economy" && order.quantity ? (
                           <p className="text-sm font-semibold text-charcoal">
                             At {order.quantity.toLocaleString()} units, that&apos;s {formatCurrency(shippingSavings)} savings with a longer wait.
@@ -282,14 +283,14 @@ export function CheckoutPage() {
                   className="w-full rounded-2xl border border-charcoal/15 bg-light-bone px-4 py-3 text-sm outline-none focus:border-blue"
                 />
               </Field>
-              <p className="text-sm text-charcoal/50">🔒 Secured by Stripe</p>
+              <p className="text-sm text-charcoal/70">🔒 Secured by Stripe</p>
             </div>
           </CheckoutSection>
 
           <button
             type="submit"
             disabled={!isOrderReady}
-            className="inline-flex w-full items-center justify-center rounded-full bg-blue px-6 py-4 text-sm font-semibold text-white shadow-card hover:-translate-y-0.5 hover:bg-charcoal disabled:cursor-not-allowed disabled:bg-charcoal/20 disabled:text-charcoal/45 disabled:hover:translate-y-0"
+            className="inline-flex w-full items-center justify-center rounded-full bg-blue px-6 py-4 text-sm font-semibold text-white shadow-card hover:-translate-y-0.5 hover:bg-charcoal disabled:cursor-not-allowed disabled:bg-charcoal/20 disabled:text-charcoal/70 disabled:hover:translate-y-0"
           >
             Place Order — {total ? formatCurrency(total) : "$0.00"}
           </button>

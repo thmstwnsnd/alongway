@@ -23,7 +23,7 @@ export default function SwatchesPage() {
   return (
     <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
       <section className="rounded-[2.5rem] border border-charcoal/10 bg-bone px-8 py-12 shadow-card sm:px-12">
-        <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-light-blue">Swatches</p>
+        <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-blue">Swatches</p>
         <h1 className="font-display mt-4 text-5xl font-extrabold tracking-tight text-charcoal sm:text-6xl">Find your fabric.</h1>
         <p className="mt-5 max-w-3xl text-lg leading-8 text-charcoal/72">
           Every Alongway bag starts with the right material. Browse our full fabric library, feel the weights, and find what fits your brand.
@@ -36,7 +36,7 @@ export default function SwatchesPage() {
             <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-green-700">Starter fabrics</p>
             <h2 className="font-display mt-3 text-3xl font-bold tracking-tight">Included at no extra cost</h2>
           </div>
-          <p className="max-w-xl text-sm leading-6 text-charcoal/65">
+          <p className="max-w-xl text-sm leading-6 text-charcoal/70">
             Everyday workhorses, textural staples, and brand-friendly fabrics that keep your unit cost clean.
           </p>
         </div>
@@ -53,7 +53,7 @@ export default function SwatchesPage() {
             <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-blue">Upgrade fabrics</p>
             <h2 className="font-display mt-3 text-3xl font-bold tracking-tight">More structure, more texture, more distinction</h2>
           </div>
-          <p className="max-w-xl text-sm leading-6 text-charcoal/65">
+          <p className="max-w-xl text-sm leading-6 text-charcoal/70">
             Grouped by tier so you can see the premium jumps clearly before you spec the final bag.
           </p>
         </div>
@@ -97,20 +97,20 @@ function FabricCard({ slug }: { slug: string }) {
     <article className="rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/45">{fabric.category}</p>
+          <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/70">{fabric.category}</p>
           <h3 className="font-display mt-2 text-2xl font-bold tracking-tight">{fabric.name}</h3>
         </div>
         <span className={`rounded-full border px-3 py-1 text-xs font-semibold ${tierMeta.badgeClassName}`}>
           {tierMeta.label}
         </span>
       </div>
-      <p className="mt-4 text-sm text-charcoal/60">{fabric.weightOrStyle ?? "Signature style"}</p>
+      <p className="mt-4 text-sm text-charcoal/70">{fabric.weightOrStyle ?? "Signature style"}</p>
       <p className="mt-4 text-base leading-7 text-charcoal/72">{fabric.description}</p>
       <div className="mt-6 flex items-center justify-between gap-4">
         <p className="text-sm font-semibold text-charcoal">
           {fabric.upcharge > 0 ? `+${formatCurrency(fabric.upcharge)} / unit` : "Included"}
         </p>
-        <Link href={`/swatches/${fabric.slug}`} className="text-sm font-semibold text-light-blue hover:text-charcoal">
+        <Link href={`/swatches/${fabric.slug}`} className="text-sm font-semibold text-blue hover:text-charcoal">
           View swatches <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Blue.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-1" aria-hidden="true" />
         </Link>
       </div>

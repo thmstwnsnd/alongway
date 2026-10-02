@@ -142,12 +142,13 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen font-sans">
+      <a href="#main" className="skip-link">Skip to main content</a>
       <header className="sticky top-0 z-50 border-b-[6px] border-light-blue bg-blue text-bone">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-10">
           <Link href="/" className="flex items-center">
             <Image src="/logo-tan.svg" alt="Alongway" width={200} height={48} className="h-9 w-auto object-contain" priority />
           </Link>
-          <nav className="hidden items-center gap-7 text-sm font-display font-extrabold uppercase tracking-wide text-bone md:flex">
+          <nav aria-label="Main" className="hidden items-center gap-7 text-sm font-display font-extrabold uppercase tracking-wide text-bone md:flex">
             <div
               ref={collectionMenuRef}
               className="relative"
@@ -157,11 +158,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <button
                 type="button"
                 onClick={() => setIsCollectionMenuOpen((current) => !current)}
-                className="inline-flex items-center gap-2 uppercase text-bone hover:text-bone/70"
+                className="inline-flex items-center gap-2 uppercase text-bone hover:text-bone/85"
               >
                 <span>Collection</span>
                 <span
-                  className={`text-[10px] text-charcoal/45 transition-transform ${isCollectionMenuOpen ? "rotate-180" : ""}`}
+                  className={`text-[10px] text-charcoal/70 transition-transform ${isCollectionMenuOpen ? "rotate-180" : ""}`}
                 >
                   ▼
                 </span>
@@ -207,7 +208,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
                         </div>
                       ) : (
                         <div className="flex h-full items-center justify-center p-6">
-                          <p className="text-center text-xs font-medium text-charcoal/40">Hover a bag to preview</p>
+                          <p className="text-center text-xs font-medium text-charcoal/70">Hover a bag to preview</p>
                         </div>
                       )}
                     </div>
@@ -216,7 +217,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
                     <Link
                       href="/collection"
                       onClick={() => setIsCollectionMenuOpen(false)}
-                      className="text-sm font-semibold text-light-blue hover:text-charcoal"
+                      className="text-sm font-semibold text-blue hover:text-charcoal"
                     >
                       View All <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Blue.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-1" aria-hidden="true" />
                     </Link>
@@ -233,11 +234,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <button
                 type="button"
                 onClick={() => setIsHowItWorksMenuOpen((current) => !current)}
-                className="inline-flex items-center gap-2 uppercase text-bone hover:text-bone/70"
+                className="inline-flex items-center gap-2 uppercase text-bone hover:text-bone/85"
               >
                 <span>How It Works</span>
                 <span
-                  className={`text-[10px] text-charcoal/45 transition-transform ${isHowItWorksMenuOpen ? "rotate-180" : ""}`}
+                  className={`text-[10px] text-charcoal/70 transition-transform ${isHowItWorksMenuOpen ? "rotate-180" : ""}`}
                 >
                   ▼
                 </span>
@@ -279,11 +280,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <button
                 type="button"
                 onClick={() => setIsCompanyMenuOpen((current) => !current)}
-                className="inline-flex items-center gap-2 uppercase text-bone hover:text-bone/70"
+                className="inline-flex items-center gap-2 uppercase text-bone hover:text-bone/85"
               >
                 <span>Company</span>
                 <span
-                  className={`text-[10px] text-charcoal/45 transition-transform ${isCompanyMenuOpen ? "rotate-180" : ""}`}
+                  className={`text-[10px] text-charcoal/70 transition-transform ${isCompanyMenuOpen ? "rotate-180" : ""}`}
                 >
                   ▼
                 </span>
@@ -311,20 +312,20 @@ export function SiteShell({ children }: { children: ReactNode }) {
               </div>
             </div>
             {navLinks.filter((link) => link.href !== "/how-it-works").map((link) => (
-              <Link key={link.href} href={link.href} className="text-bone hover:text-bone/70">
+              <Link key={link.href} href={link.href} className="text-bone hover:text-bone/85">
                 {link.label}
               </Link>
             ))}
           </nav>
           <div className="flex items-center gap-4">
-            <Link href="/store" className="flex items-center gap-1 text-bone/80 hover:text-bone">
+            <Link href="/store" aria-label="Store" className="flex items-center gap-1 text-bone/85 hover:text-bone">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
                 <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
               </svg>
             </Link>
             <Link href="/portal" className="hidden items-center justify-center sm:flex" aria-label="Account">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-bone/80 hover:text-bone">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-bone/85 hover:text-bone">
                 <circle cx="12" cy="8" r="4"/>
                 <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
               </svg>
@@ -338,7 +339,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             </Link>
           </div>
         </div>
-        <nav className="flex gap-5 overflow-x-auto border-t border-charcoal/10 px-6 py-3 text-sm font-display font-extrabold md:hidden">
+        <nav aria-label="Mobile" className="flex gap-5 overflow-x-auto border-t border-charcoal/10 px-6 py-3 text-sm font-display font-extrabold md:hidden">
           {mobileNavLinks.map((link) => (
             <Link key={link.href} href={link.href} className="whitespace-nowrap hover:text-blue">
               {link.label}
@@ -352,17 +353,17 @@ export function SiteShell({ children }: { children: ReactNode }) {
           </Link>
         </nav>
       </header>
-      <main>{children}</main>
+      <main id="main">{children}</main>
 
       {isBuildRoute ? null : (
       <>
-      <section className="bg-charcoal px-6 py-5 text-white lg:px-10">
+      <section aria-label="Help choosing a bag" className="bg-charcoal px-6 py-5 text-white lg:px-10">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-8">
           <p className="font-display text-sm font-bold text-white">
             Not sure which bag is right?
           </p>
           <div className="flex items-center gap-6">
-            <Link href="/contact" className="text-sm font-semibold text-white hover:text-white/70">
+            <Link href="/contact" className="text-sm font-semibold text-white hover:text-white/75">
               Let&apos;s Chat
             </Link>
             <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_White.svg" alt="" width={115} height={79} className="h-3.5 w-auto opacity-50" aria-hidden="true" />
@@ -396,7 +397,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <Link href="/" className="inline-flex">
               <Image src="/svg/logos/Alongway_Website_Graphic_Logo_Outlined_Cream.svg" alt="Alongway" width={180} height={44} className="h-14 w-auto object-contain" />
             </Link>
-            <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-bone/50">
+            <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-bone/85">
               Made for the long way.
             </p>
           </div>
@@ -405,11 +406,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <div className="flex flex-col items-center justify-center gap-6 text-center">
             {site.phone ? (
               <div>
-                <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-bone/40">Questions? Text us.</p>
+                <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-bone/85">Questions? Text us.</p>
                 <a href={`sms:${site.phone}`} className="mt-1 block text-sm font-semibold text-bone hover:text-light-blue">{formatPhone(site.phone)}</a>
               </div>
             ) : null}
-            <a href={site.instagram.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-bone/70 hover:text-white">
+            <a href={site.instagram.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-bone/85 hover:text-white">
               <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.209-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
               {site.instagram.handle}
             </a>
@@ -430,14 +431,14 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
         </div>
         <div className="border-t border-white/10 px-6 pt-6 pb-5 lg:px-10">
-          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 pb-5">
+          <nav aria-label="Footer" className="flex flex-wrap justify-center gap-x-6 gap-y-2 pb-5">
             {footerLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="text-xs text-bone/60 hover:text-white hover:underline underline-offset-4">
+              <Link key={link.href} href={link.href} className="text-xs text-bone/85 hover:text-white hover:underline underline-offset-4">
                 {link.label}
               </Link>
             ))}
           </nav>
-          <p className="text-center text-xs text-bone/40">2026 Alongway. All rights reserved.</p>
+          <p className="text-center text-xs text-bone/85">2026 Alongway. All rights reserved.</p>
         </div>
       </footer>
       <ChatWidget />

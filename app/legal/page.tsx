@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function LegalPage() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-20 lg:px-10">
-      <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/40">
+      <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/70">
         Last Updated: 02/12/2026
       </p>
       <h1 className="font-display mt-4 text-4xl font-extrabold tracking-tight text-charcoal">

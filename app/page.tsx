@@ -87,7 +87,7 @@ export default function HomePage() {
             <h1 className="font-display text-[2.75rem] font-extrabold leading-[1.02] text-blue sm:text-6xl lg:text-[4rem]">
               Custom Bags<br />Made Simple
             </h1>
-            <p className="mt-5 max-w-md text-lg font-medium leading-7 text-blue/80">
+            <p className="mt-5 max-w-md text-lg font-medium leading-7 text-blue">
               All-in pricing. Free air freight. Nothing hidden. Ready in 5 weeks.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -104,7 +104,7 @@ export default function HomePage() {
                 See the Collection
               </Link>
             </div>
-            <p className="font-accent mt-8 text-xs uppercase tracking-[0.22em] text-blue/55">
+            <p className="font-accent mt-8 text-xs uppercase tracking-[0.22em] text-blue">
               For brands that care what they hand out.
             </p>
           </div>
@@ -200,7 +200,7 @@ export default function HomePage() {
       {/* ── 5. TRUSTED BRANDS ── */}
       <section className="bg-white">
         <div className="mx-auto flex max-w-7xl flex-col items-center gap-10 px-6 py-20 text-center lg:px-10">
-          <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-charcoal/45">
+          <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-charcoal/70">
             Trusted by many
           </p>
           <BrandStrip />
@@ -295,7 +295,7 @@ export default function HomePage() {
                   </div>
                   {/* Card on top */}
                   <div className="relative z-10 card-brand-light p-6 pt-10 h-full">
-                    <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-blue/60">
+                    <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-blue">
                       Step {index + 1}
                     </p>
                     <h3 className="font-display mt-3 text-lg font-bold tracking-tight text-blue">{step.title}</h3>
@@ -331,13 +331,13 @@ export default function HomePage() {
 
       {/* ── 11. READY TO START — final CTA ── */}
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-        <p className="font-accent mb-6 text-center text-sm text-charcoal/40">The finest bags in all the land.</p>
+        <p className="font-accent mb-6 text-center text-sm text-charcoal/70">The finest bags in all the land.</p>
         <div className="relative rounded-[2.5rem] bg-charcoal px-8 py-12 text-bone sm:px-12">
           <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-light-blue">Ready to start?</p>
           <div className="mt-4 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="space-y-2">
               <h2 className="font-display text-4xl font-extrabold tracking-tight">Bring your bag program together.</h2>
-              <p className="max-w-2xl text-base leading-7 text-bone/80">
+              <p className="max-w-2xl text-base leading-7 text-bone/85">
                 Pick a silhouette, choose fabric, color and details, and see your price as you go. Send it through and we follow up with a tech pack. No sales team. No runaround.
               </p>
             </div>

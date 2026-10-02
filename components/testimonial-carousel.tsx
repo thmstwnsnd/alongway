@@ -44,7 +44,7 @@ export function TestimonialCarousel() {
           />
         </div>
         {/* Eyebrow */}
-        <p className="font-display text-xs font-extrabold uppercase tracking-[0.25em] text-white/60 mb-8">
+        <p className="font-display text-xs font-extrabold uppercase tracking-[0.25em] text-white/75 mb-8">
           Real Bags, Real People
         </p>
 
@@ -71,13 +71,13 @@ export function TestimonialCarousel() {
             <div className="font-display text-4xl font-extrabold leading-tight text-white md:text-5xl lg:text-6xl min-h-[200px] md:min-h-[240px] flex flex-col items-center justify-center text-center">
               {lines.map((line, i) => (
                 <div key={i}>
-                  {i === 0 && <span className="font-serif font-normal not-italic text-white/30" aria-hidden="true">“</span>}
+                  {i === 0 && <span className="font-serif font-normal not-italic text-white/75" aria-hidden="true">“</span>}
                   {line}
-                  {i === lines.length - 1 && <span className="font-serif font-normal not-italic text-white/30" aria-hidden="true">”</span>}
+                  {i === lines.length - 1 && <span className="font-serif font-normal not-italic text-white/75" aria-hidden="true">”</span>}
                 </div>
               ))}
             </div>
-            <cite className="mt-4 block font-display text-xs font-extrabold uppercase tracking-[0.2em] text-white/50 not-italic">
+            <cite className="mt-4 block font-display text-xs font-extrabold uppercase tracking-[0.2em] text-white/75 not-italic">
               — {name}, {company}
             </cite>
           </blockquote>

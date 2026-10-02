@@ -31,7 +31,7 @@ export function OrderSummaryCard({
   note = "All orders paid in full. Production begins after artwork approval.",
 }: OrderSummaryCardProps) {
   const ctaClassName =
-    "mt-8 inline-flex w-full items-center justify-center rounded-full bg-blue px-6 py-3 text-sm font-semibold text-white shadow-card hover:-translate-y-0.5 hover:bg-charcoal disabled:cursor-not-allowed disabled:bg-charcoal/20 disabled:text-charcoal/45 disabled:hover:translate-y-0";
+    "mt-8 inline-flex w-full items-center justify-center rounded-full bg-blue px-6 py-3 text-sm font-semibold text-white shadow-card hover:-translate-y-0.5 hover:bg-charcoal disabled:cursor-not-allowed disabled:bg-charcoal/20 disabled:text-charcoal/70 disabled:hover:translate-y-0";
 
   return (
     <aside className="rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card sm:p-8">
@@ -44,7 +44,7 @@ export function OrderSummaryCard({
             bagName ? (
               <span className="font-semibold text-charcoal">{bagName}</span>
             ) : (
-              <span className="text-charcoal/45">No bag selected yet</span>
+              <span className="text-charcoal/70">No bag selected yet</span>
             )
           }
         />
@@ -72,11 +72,11 @@ export function OrderSummaryCard({
       </div>
 
       <div className="mt-8">
-        <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">What&apos;s included</p>
+        <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/70">What&apos;s included</p>
         <ul className="mt-4 space-y-3 text-sm text-charcoal/80">
           {includedOrderItems.map((item) => (
             <li key={item} className="flex items-center gap-3">
-              <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-blue/10 text-sm font-bold text-light-blue">
+              <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-blue/10 text-sm font-bold text-blue">
                 ✓
               </span>
               <span>{item}</span>
@@ -108,7 +108,7 @@ export function OrderSummaryCard({
         )
       ) : null}
 
-      <p className="mt-4 text-sm leading-6 text-charcoal/60">{note}</p>
+      <p className="mt-4 text-sm leading-6 text-charcoal/70">{note}</p>
     </aside>
   );
 }
@@ -122,7 +122,7 @@ function SummaryRow({
 }) {
   return (
     <div className="flex items-start justify-between gap-4 text-sm">
-      <span className="text-charcoal/60">{label}</span>
+      <span className="text-charcoal/70">{label}</span>
       <span className="text-right text-charcoal/80">{value}</span>
     </div>
   );

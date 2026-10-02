@@ -22,7 +22,7 @@ const values = [
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-      <SectionHeading
+      <SectionHeading level={1}
         eyebrow="About"
         title="We built Alongway because good bags should not require a sourcing director."
         body="Alongway is for brands that want custom bags to feel premium, clear, and manageable. The line stays intentionally tight so every silhouette can do more work, hold better shape, and support repeat orders without friction."
@@ -76,22 +76,22 @@ export default function AboutPage() {
         </article>
 
         <article className="rounded-[2rem] border border-charcoal/10 bg-bone p-8">
-          <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-light-blue">Contact</p>
+          <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-blue">Contact</p>
           <p className="mt-5 text-3xl font-extrabold tracking-tight">{site.email}</p>
           <p className="mt-4 text-base leading-7 text-charcoal/72">
             Reach out when you&apos;re ready to launch a new bag, restock a proven style, or get a fast read on fit and pricing.
           </p>
           <div className="mt-8 border-t border-charcoal/10 pt-6">
-            <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/40">A brand by</p>
+            <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/70">A brand by</p>
             <a
               href="https://orangegoods.co"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-charcoal hover:text-light-blue"
+              className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-charcoal hover:text-blue"
             >
               Orange Goods <Image src="/svg/icons/Alongway_Website_Graphic_ArrowRight_Blue.svg" alt="" width={115} height={79} className="inline-block h-4 w-auto ml-1" aria-hidden="true" />
             </a>
-            <p className="mt-1 text-xs text-charcoal/50">Custom branded goods &amp; design studio, Los Angeles.</p>
+            <p className="mt-1 text-xs text-charcoal/70">Custom branded goods &amp; design studio, Los Angeles.</p>
           </div>
         </article>
       </section>
@@ -104,7 +104,7 @@ function TeamMember({ image, name, role, bio }: { image: string; name: string; r
     <div className="rounded-[2rem] border border-charcoal/10 bg-white p-7 shadow-card space-y-4">
       <Image src={image} alt={name} width={80} height={80} className="h-20 w-20 rounded-full object-cover shadow-card ring-4 ring-bone" />
       <div>
-        <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-light-blue">{role}</p>
+        <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-blue">{role}</p>
         <h3 className="font-display mt-1 text-xl font-bold tracking-tight">{name}</h3>
       </div>
       <p className="text-sm leading-7 text-charcoal/70">{bio}</p>

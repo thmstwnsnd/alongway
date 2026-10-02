@@ -36,11 +36,11 @@ export function BagCard({ bag }: { bag: Bag }) {
             <p className="text-sm font-semibold">
               Starting at <span className="text-blue">${bag.startingPrice.toFixed(2)}</span>
             </p>
-            <p className="text-xs text-charcoal/50">Min. 100 units · Mix &amp; match styles OK</p>
+            <p className="text-xs text-charcoal/70">Min. 100 units · Mix &amp; match styles OK</p>
           </div>
           <Link
             href={`/collection/${bag.slug}`}
-            className="text-sm font-semibold text-light-blue hover:text-charcoal"
+            className="text-sm font-semibold text-blue hover:text-charcoal"
           >
             View bag
           </Link>

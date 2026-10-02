@@ -10,11 +10,11 @@ export function StyleGrid({ onSelect }: { onSelect: (slug: string) => void }) {
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-7xl px-6 pb-20 pt-14 lg:px-10">
-        <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-black/35">Build a bag</p>
+        <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-black/70">Build a bag</p>
         <h1 className="mt-2 text-[40px] font-semibold leading-[1.05] tracking-[-0.02em] text-charcoal sm:text-[52px]">
           Start with a silhouette.
         </h1>
-        <p className="mt-4 max-w-xl text-[17px] leading-7 text-black/50">
+        <p className="mt-4 max-w-xl text-[17px] leading-7 text-black/70">
           Factory-spec patterns. Pick one, then size it, choose fabric and color, straps, stitching, pockets and extras.
           The price updates as you go.
         </p>
@@ -42,12 +42,12 @@ export function StyleGrid({ onSelect }: { onSelect: (slug: string) => void }) {
                   )}
                 </div>
                 <div className="px-2 pb-2 pt-3">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-black/35">Bag {style.bagNumber}</p>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-black/70">Bag {style.bagNumber}</p>
                   <h2 className="mt-0.5 text-[19px] font-semibold tracking-[-0.01em] text-charcoal">{style.name}</h2>
-                  <p className="mt-1 text-[13px] leading-5 text-black/45">{style.tagline}</p>
+                  <p className="mt-1 text-[13px] leading-5 text-black/70">{style.tagline}</p>
                   <p className="mt-3 text-[13px] font-medium text-charcoal">
                     From {formatCurrency(from)}
-                    <span className="text-black/40"> / unit · {size.dims.width}&quot; × {size.dims.height}&quot;</span>
+                    <span className="text-black/70"> / unit · {size.dims.width}&quot; × {size.dims.height}&quot;</span>
                   </p>
                 </div>
               </button>

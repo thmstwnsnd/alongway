@@ -20,9 +20,9 @@ export default async function PortalDashboardPage() {
   return (
     <div className="space-y-8">
       <section className="space-y-3">
-        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-light-blue">Customer Portal</p>
+        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-blue">Customer Portal</p>
         <h1 className="font-display text-4xl font-extrabold tracking-tight text-charcoal sm:text-5xl">{firstName ? `Good to see you, ${firstName}.` : "Good to see you."}</h1>
-        <p className="max-w-3xl text-base leading-7 text-charcoal/66">
+        <p className="max-w-3xl text-base leading-7 text-charcoal/70">
           Here&apos;s the current snapshot of your Alongway account, recent orders, and the next steps your team can take.
         </p>
       </section>

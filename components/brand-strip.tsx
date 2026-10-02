@@ -21,7 +21,7 @@ export function BrandStrip() {
             style={{ height: brand.height ?? 28, filter: "brightness(0) saturate(100%) invert(15%)" }}
           />
         ) : (
-          <span key={brand.name} className="font-display text-base font-bold uppercase tracking-[0.12em] text-charcoal/60">
+          <span key={brand.name} className="font-display text-base font-bold uppercase tracking-[0.12em] text-charcoal/70">
             {brand.name}
           </span>
         ),

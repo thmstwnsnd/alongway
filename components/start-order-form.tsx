@@ -22,7 +22,7 @@ export function StartOrderForm() {
   if (submitted) {
     return (
       <div className="rounded-[2rem] border border-charcoal/10 bg-white p-8 shadow-card sm:p-10">
-        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-light-blue">Request received</p>
+        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-blue">Request received</p>
         <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight">Thank you for reaching out.</h2>
         <p className="mt-4 max-w-2xl text-base leading-7 text-charcoal/75">
           We&apos;ll review your bag style, artwork status, and timeline, then follow up with next steps.
@@ -77,7 +77,7 @@ export function StartOrderForm() {
             required
             className="w-full rounded-2xl border border-charcoal/15 bg-light-bone px-4 py-3 text-sm outline-none focus:border-blue"
           />
-          <p className="mt-1 text-xs text-charcoal/50">Typical turnaround is 6–8 weeks. Dates sooner than 6 weeks from today are unavailable.</p>
+          <p className="mt-1 text-xs text-charcoal/70">Typical turnaround is 6–8 weeks. Dates sooner than 6 weeks from today are unavailable.</p>
         </Field>
         <Field label="Artwork ready?" className="md:col-span-2">
           <select
@@ -95,14 +95,14 @@ export function StartOrderForm() {
           </select>
           {artworkReady === "yes" && (
             <div className="mt-3">
-              <label className="block text-xs font-medium text-charcoal/60 mb-1">Upload your artwork</label>
+              <label className="block text-xs font-medium text-charcoal/70 mb-1">Upload your artwork</label>
               <input
                 name="artwork"
                 type="file"
                 accept=".ai,.eps,.pdf"
                 className="w-full rounded-2xl border border-charcoal/15 bg-light-bone px-4 py-3 text-sm outline-none focus:border-blue file:mr-3 file:rounded-full file:border-0 file:bg-blue file:px-4 file:py-1 file:text-xs file:font-semibold file:text-white"
               />
-              <p className="mt-1 text-xs text-charcoal/50">Accepted: .ai, .eps, .pdf — vector files only</p>
+              <p className="mt-1 text-xs text-charcoal/70">Accepted: .ai, .eps, .pdf — vector files only</p>
             </div>
           )}
           {artworkReady === "no" && (

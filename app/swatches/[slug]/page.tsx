@@ -58,7 +58,7 @@ export default async function FabricDetailPage({
       <section className="mt-6 grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
         <div className="space-y-6">
           <div className="space-y-4">
-            <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-light-blue">{fabric.category}</p>
+            <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-blue">{fabric.category}</p>
             <h1 className="font-display text-5xl font-extrabold tracking-tight">{fabric.name}</h1>
             <p className="text-lg leading-8 text-charcoal/72">{fabric.description}</p>
           </div>
@@ -78,14 +78,14 @@ export default async function FabricDetailPage({
           </div>
 
           <div className="rounded-[2rem] border border-charcoal/10 bg-light-bone p-6">
-            <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">Descriptor</p>
+            <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/70">Descriptor</p>
             <p className="mt-3 text-base leading-7 text-charcoal/72">
               {fabric.name} gives you a {fabric.tier === "starter" ? "clean, production-friendly" : "more premium, specification-forward"} option for brands that want {fabric.weightOrStyle ? `${fabric.weightOrStyle.toLowerCase()} texture` : "distinctive material character"} without losing Alongway&apos;s all-in ordering flow.
             </p>
           </div>
 
           <div className="rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card">
-            <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">How it feels</p>
+            <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/70">How it feels</p>
             <div className="relative mt-4 h-[340px] overflow-hidden rounded-[1.75rem]">
               <Image src={getFabricTextureImageUrl(fabric.slug)} alt={`${fabric.name} fabric texture`} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
             </div>
@@ -96,10 +96,10 @@ export default async function FabricDetailPage({
           <section className="rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card">
             <div className="flex items-center justify-between gap-4">
               <div>
-                <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">Swatch grid</p>
+                <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/70">Swatch grid</p>
                 <h2 className="font-display mt-2 text-2xl font-bold tracking-tight">{swatches.length} colorways</h2>
               </div>
-              <p className="text-sm text-charcoal/55">Placeholder library</p>
+              <p className="text-sm text-charcoal/70">Placeholder library</p>
             </div>
             <div className="mt-6 grid grid-cols-3 gap-4 md:grid-cols-4 xl:grid-cols-5">
               {swatches.map((swatch) => (
@@ -114,7 +114,7 @@ export default async function FabricDetailPage({
                   />
                   <div>
                     <p className="text-sm font-semibold text-charcoal">{swatch.name}</p>
-                    <p className="font-accent text-xs uppercase tracking-[0.12em] text-charcoal/45">{swatch.hex}</p>
+                    <p className="font-accent text-xs uppercase tracking-[0.12em] text-charcoal/70">{swatch.hex}</p>
                   </div>
                 </div>
               ))}
@@ -123,7 +123,7 @@ export default async function FabricDetailPage({
 
           <section className="rounded-[2rem] bg-charcoal px-8 py-8 text-bone shadow-card">
             <h2 className="font-display text-2xl font-bold tracking-tight">Want to use {fabric.name} in your order? Start here.</h2>
-            <p className="mt-3 max-w-xl text-base leading-7 text-bone/75">
+            <p className="mt-3 max-w-xl text-base leading-7 text-bone/85">
               Move from swatches to production with the bag, quantity, and artwork details your team already has.
             </p>
             <Link

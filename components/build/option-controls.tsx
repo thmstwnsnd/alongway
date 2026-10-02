@@ -38,14 +38,14 @@ export function Section({
         aria-expanded={open}
         className="flex w-full items-center gap-4 py-5 text-left"
       >
-        <span className={`flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-semibold tabular-nums ${done ? "bg-kelly text-white" : open ? "bg-blue text-white" : "bg-black/[0.06] text-black/40"}`}>
+        <span className={`flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-semibold tabular-nums ${done ? "bg-kelly text-white" : open ? "bg-blue text-white" : "bg-black/[0.06] text-black/70"}`}>
           {done ? "✓" : step}
         </span>
         <span className="min-w-0 flex-1">
           <span className={`block text-[17px] font-semibold tracking-[-0.01em] ${open ? "text-charcoal" : "text-charcoal/90"}`}>{title}</span>
-          {!open ? <span className="mt-0.5 block truncate text-[13px] text-black/45">{summary}</span> : hint ? <span className="mt-0.5 block text-[13px] text-black/45">{hint}</span> : null}
+          {!open ? <span className="mt-0.5 block truncate text-[13px] text-black/70">{summary}</span> : hint ? <span className="mt-0.5 block text-[13px] text-black/70">{hint}</span> : null}
         </span>
-        <svg viewBox="0 0 20 20" className={`h-4 w-4 flex-shrink-0 text-black/35 transition-transform ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" strokeWidth="2">
+        <svg viewBox="0 0 20 20" className={`h-4 w-4 flex-shrink-0 text-black/70 transition-transform ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M5 8l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
@@ -92,9 +92,9 @@ export function OptionCard({
     >
       <span className="min-w-0">
         <span className="block text-[15px] font-semibold leading-5 text-charcoal">{option.label}</span>
-        <span className="mt-0.5 block text-[13px] leading-5 text-black/45">{option.description}</span>
+        <span className="mt-0.5 block text-[13px] leading-5 text-black/70">{option.description}</span>
       </span>
-      <span className={`whitespace-nowrap pt-0.5 text-[13px] font-medium ${selected ? "text-blue" : "text-black/45"}`}>
+      <span className={`whitespace-nowrap pt-0.5 text-[13px] font-medium ${selected ? "text-blue" : "text-black/70"}`}>
         {included ? "Included" : price(option.pricePerUnit)}
       </span>
     </button>
@@ -147,7 +147,7 @@ export function Segmented<T extends string | number>({
           aria-pressed={value === o.value}
           onClick={() => onChange(o.value)}
           className={`rounded-lg px-3.5 py-2 text-[13px] font-semibold transition ${
-            value === o.value ? "bg-white text-charcoal shadow-sm" : "text-black/55 hover:text-charcoal"
+            value === o.value ? "bg-white text-charcoal shadow-sm" : "text-black/70 hover:text-charcoal"
           }`}
         >
           {o.label}

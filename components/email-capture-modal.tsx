@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
 import {
@@ -17,6 +17,7 @@ export function EmailCaptureModal() {
   const [isHydrated, setIsHydrated] = useState(false);
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsHydrated(true);
@@ -49,17 +50,55 @@ export function EmailCaptureModal() {
     };
   }, []);
 
+  // Accessibility: move focus into the dialog, keep it there, close on Escape, restore focus on close.
+  useEffect(() => {
+    if (!isOpen) return;
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    const dialog = dialogRef.current;
+    const focusables = () =>
+      Array.from(
+        dialog?.querySelectorAll<HTMLElement>('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])') ?? [],
+      ).filter((el) => !el.hasAttribute("disabled"));
+    focusables()[0]?.focus();
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        dismissEmailCapture();
+        setIsOpen(false);
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const items = focusables();
+      if (items.length === 0) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      previouslyFocused?.focus?.();
+    };
+  }, [isOpen, isSubmitted]);
+
   if (!isHydrated || pathname.startsWith("/portal") || !isOpen) {
     return null;
   }
 
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center bg-charcoal/35 px-4 py-8">
-      <div className="w-full max-w-xl rounded-3xl bg-bone p-8 text-charcoal shadow-card sm:p-10">
+      <div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="email-capture-title" className="w-full max-w-xl rounded-3xl bg-bone p-8 text-charcoal shadow-card sm:p-10">
         {isSubmitted ? (
           <div className="space-y-4 text-center">
-            <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-light-blue">You&apos;re in</p>
-            <h2 className="font-display text-3xl font-extrabold tracking-tight">Nice. We&apos;ll be in touch when you&apos;re ready to order. 🍊</h2>
+            <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-blue">You&apos;re in</p>
+            <h2 id="email-capture-title" className="font-display text-3xl font-extrabold tracking-tight">Nice. We&apos;ll be in touch when you&apos;re ready to order. 🍊</h2>
             <button
               type="button"
               onClick={() => setIsOpen(false)}
@@ -71,8 +110,8 @@ export function EmailCaptureModal() {
         ) : (
           <div className="space-y-6">
             <div className="space-y-3 text-center">
-              <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-light-blue">First order perk</p>
-              <h2 className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">Get 10 free totes with your first order.</h2>
+              <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-blue">First order perk</p>
+              <h2 id="email-capture-title" className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">Get 10 free totes with your first order.</h2>
               <p className="text-base leading-7 text-charcoal/72">
                 A $150 value added to your first custom run. Enter your email and we&apos;ll reach out.
               </p>
@@ -89,6 +128,7 @@ export function EmailCaptureModal() {
               <input
                 required
                 type="email"
+                aria-label="Email address"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 placeholder="Email address"
@@ -108,7 +148,7 @@ export function EmailCaptureModal() {
                   dismissEmailCapture();
                   setIsOpen(false);
                 }}
-                className="text-sm text-charcoal/60 underline-offset-4 hover:text-charcoal hover:underline"
+                className="text-sm text-charcoal/70 underline-offset-4 hover:text-charcoal hover:underline"
               >
                 Maybe next time
               </button>

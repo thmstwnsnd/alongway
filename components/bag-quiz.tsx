@@ -138,9 +138,9 @@ export function BagQuiz() {
   if (result) {
     return (
       <div className="text-center">
-        <p className="font-accent text-xs font-semibold uppercase tracking-[0.22em] text-blue/60">Your match</p>
+        <p className="font-accent text-xs font-semibold uppercase tracking-[0.22em] text-blue">Your match</p>
         <h2 className="font-display mt-3 text-4xl font-extrabold tracking-tight text-charcoal">{result.name}</h2>
-        <p className="mt-2 text-base text-charcoal/60">{result.tagline}</p>
+        <p className="mt-2 text-base text-charcoal/70">{result.tagline}</p>
         <div className="mt-6 rounded-2xl border-2 border-blue/15 bg-bone/60 px-6 py-5">
           <p className="text-sm leading-6 text-charcoal/70">{result.reason}</p>
         </div>
@@ -154,7 +154,7 @@ export function BagQuiz() {
           </Link>
           <button
             onClick={restart}
-            className="text-sm font-semibold text-blue/60 hover:text-blue underline underline-offset-4"
+            className="text-sm font-semibold text-blue hover:text-blue underline underline-offset-4"
           >
             Start over
           </button>
@@ -175,7 +175,7 @@ export function BagQuiz() {
             />
           ))}
         </div>
-        <p className="font-accent mt-3 text-xs font-semibold uppercase tracking-[0.18em] text-blue/50">
+        <p className="font-accent mt-3 text-xs font-semibold uppercase tracking-[0.18em] text-blue">
           Step {stepIndex + 1} of {steps.length}
         </p>
       </div>
@@ -195,7 +195,7 @@ export function BagQuiz() {
             className="group flex flex-col items-start gap-1 rounded-2xl border-2 border-blue/15 bg-white px-5 py-4 text-left hover:border-blue hover:bg-bone transition-colors"
           >
             <span className="font-display text-sm font-bold text-charcoal group-hover:text-blue">{opt.label}</span>
-            <span className="text-xs text-charcoal/55">{opt.sub}</span>
+            <span className="text-xs text-charcoal/70">{opt.sub}</span>
           </button>
         ))}
       </div>
@@ -204,7 +204,7 @@ export function BagQuiz() {
       {stepIndex > 0 && (
         <button
           onClick={() => setStepIndex(stepIndex - 1)}
-          className="mt-6 text-sm text-charcoal/40 hover:text-charcoal underline underline-offset-4"
+          className="mt-6 text-sm text-charcoal/70 hover:text-charcoal underline underline-offset-4"
         >
           ← Back
         </button>

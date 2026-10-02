@@ -67,7 +67,7 @@ export function ShopPage() {
                     <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-blue text-xs font-bold text-white">✓</span>
                     <p className="text-base font-bold tracking-tight">{selectedBag.name}</p>
                   </div>
-                  <p className="font-accent mt-0.5 text-sm text-charcoal/60">{selectedBag.tagline}</p>
+                  <p className="font-accent mt-0.5 text-sm text-charcoal/70">{selectedBag.tagline}</p>
                 </div>
                 <button
                   type="button"
@@ -103,19 +103,19 @@ export function ShopPage() {
                         <div className="flex items-start justify-between gap-3">
                           <div>
                             <h3 className="font-display text-lg font-bold tracking-tight">{bag.name}</h3>
-                            <p className="font-accent mt-1 text-sm leading-6 text-charcoal/65">{bag.tagline}</p>
+                            <p className="font-accent mt-1 text-sm leading-6 text-charcoal/70">{bag.tagline}</p>
                           </div>
                           <span
                             className={`inline-flex h-7 w-7 items-center justify-center rounded-full border text-sm font-bold ${
                               isSelected
                                 ? "border-blue bg-blue text-white"
-                                : "border-charcoal/15 bg-light-bone text-charcoal/35"
+                                : "border-charcoal/15 bg-light-bone text-charcoal/70"
                             }`}
                           >
                             ✓
                           </span>
                         </div>
-                        <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">
+                        <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/70">
                           Starting at ${bag.startingPrice.toFixed(2)}
                         </p>
                       </div>
@@ -150,7 +150,7 @@ export function ShopPage() {
                       <p className={`text-2xl font-bold tracking-tight ${isSelected ? "text-white" : "text-charcoal"}`}>
                         {quantity.toLocaleString()}
                       </p>
-                      <p className={`mt-1 text-sm ${isSelected ? "text-white/85" : "text-charcoal/65"}`}>
+                      <p className={`mt-1 text-sm ${isSelected ? "text-white/85" : "text-charcoal/70"}`}>
                         {tier?.unitPrice ?? "Custom"} per unit
                       </p>
                     </button>
@@ -169,13 +169,13 @@ export function ShopPage() {
                 <div className="mt-6 rounded-[1.5rem] border border-charcoal/10 bg-light-bone p-5">
                   <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                     <div>
-                      <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">Configured build</p>
+                      <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/70">Configured build</p>
                       <p className="mt-2 text-base font-bold tracking-tight text-charcoal">{fabric.name}</p>
-                      <p className="mt-1 text-sm leading-6 text-charcoal/68">
+                      <p className="mt-1 text-sm leading-6 text-charcoal/70">
                         {fabric.upcharge > 0 ? `Fabric upcharge: +${formatCurrency(fabric.upcharge)} per unit.` : "Starter fabric included."}
                       </p>
-                      <p className="mt-1 text-sm leading-6 text-charcoal/68">{getDecorationSummary(order) || "Decoration not chosen yet."}</p>
-                      <p className="mt-3 text-sm leading-6 text-charcoal/68">
+                      <p className="mt-1 text-sm leading-6 text-charcoal/70">{getDecorationSummary(order) || "Decoration not chosen yet."}</p>
+                      <p className="mt-3 text-sm leading-6 text-charcoal/70">
                         {selectedAddOns.length
                           ? `Add-ons: ${selectedAddOns.map((addOn) => addOn.name).join(", ")}.`
                           : "No add-ons selected yet."}
@@ -266,7 +266,7 @@ export function ShopPage() {
                     }`}
                   >
                     <p className="text-lg font-bold tracking-tight">Yes</p>
-                    <p className={`mt-1 text-sm ${order.artworkReady === "yes" ? "text-white/85" : "text-charcoal/65"}`}>
+                    <p className={`mt-1 text-sm ${order.artworkReady === "yes" ? "text-white/85" : "text-charcoal/70"}`}>
                       Upload production files now
                     </p>
                   </button>
@@ -280,7 +280,7 @@ export function ShopPage() {
                     }`}
                   >
                     <p className="text-lg font-bold tracking-tight">No — I need help</p>
-                    <p className={`mt-1 text-sm ${order.artworkReady === "no" ? "text-white/85" : "text-charcoal/65"}`}>
+                    <p className={`mt-1 text-sm ${order.artworkReady === "no" ? "text-white/85" : "text-charcoal/70"}`}>
                       We&apos;ll coordinate post-order
                     </p>
                   </button>
@@ -296,7 +296,7 @@ export function ShopPage() {
                         className="mt-3 w-full rounded-2xl border border-charcoal/15 bg-white px-4 py-3 text-sm outline-none file:mr-4 file:rounded-full file:border-0 file:bg-blue file:px-4 file:py-2 file:text-xs file:font-semibold file:text-white focus:border-blue"
                       />
                     </label>
-                    <p className="mt-2 text-sm text-charcoal/55">Accepted: .ai, .eps, .pdf — vector files only</p>
+                    <p className="mt-2 text-sm text-charcoal/70">Accepted: .ai, .eps, .pdf — vector files only</p>
                   </div>
                 ) : null}
 
@@ -340,7 +340,7 @@ function StepHeading({
 }) {
   return (
     <div>
-      <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-light-blue">{number}</p>
+      <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-blue">{number}</p>
       <h2 className="font-display mt-3 text-3xl font-bold tracking-tight">{title}</h2>
       <p className="mt-2 max-w-2xl text-base leading-7 text-charcoal/72">{body}</p>
     </div>

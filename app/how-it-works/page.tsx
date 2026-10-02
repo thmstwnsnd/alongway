@@ -166,7 +166,7 @@ const faqs = [
 export default function HowItWorksPage() {
   return (
     <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-      <SectionHeading
+      <SectionHeading level={1}
         eyebrow="How it works"
         title="Simple from first idea to final delivery."
         body="Five steps. No sourcing headaches. We handle everything — you just approve the design and tell us where to ship."
@@ -190,7 +190,7 @@ export default function HowItWorksPage() {
 
       {/* CTA */}
       <div className="mt-10 rounded-[2rem] bg-bone px-8 py-10 text-center">
-        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-light-blue">Ready?</p>
+        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-blue">Ready?</p>
         <h2 className="font-display mt-2 text-3xl font-extrabold tracking-tight">Build your bag in minutes.</h2>
         <p className="mt-3 text-base text-charcoal/70">Pick a silhouette, choose every detail, see your price live. We take it from there.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-4">
@@ -210,7 +210,7 @@ export default function HowItWorksPage() {
         <div className="mt-10 space-y-12">
           {faqs.map((section) => (
             <div key={section.category}>
-              <h3 className="font-display mb-5 text-xs font-bold uppercase tracking-[0.22em] text-light-blue">
+              <h3 className="font-display mb-5 text-xs font-bold uppercase tracking-[0.22em] text-blue">
                 {section.category}
               </h3>
               <div className="space-y-4">
@@ -221,7 +221,7 @@ export default function HowItWorksPage() {
                   >
                     <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
                       {item.q}
-                      <span className="ml-auto flex-shrink-0 text-2xl leading-none text-charcoal/40 transition-transform group-open:rotate-45">+</span>
+                      <span className="ml-auto flex-shrink-0 text-2xl leading-none text-charcoal/70 transition-transform group-open:rotate-45">+</span>
                     </summary>
                     <p className="mt-4 text-sm leading-7 text-charcoal/75">{item.a}</p>
                   </details>

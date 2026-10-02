@@ -118,13 +118,13 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
       <div className="mx-auto flex max-w-7xl items-center gap-4 px-6 py-3 lg:px-10">
         <div className="hidden min-w-0 flex-1 sm:block">
           <p className="truncate text-sm font-semibold text-charcoal">{bag.name}</p>
-          <p className="text-xs text-charcoal/50">{selectedFabric.name} · {decorationSummary} · {quantity.toLocaleString()} units</p>
+          <p className="text-xs text-charcoal/70">{selectedFabric.name} · {decorationSummary} · {quantity.toLocaleString()} units</p>
         </div>
         {/* Inline qty display */}
         <div className="flex items-center gap-2 rounded-full border border-charcoal/15 bg-white px-4 py-2">
-          <span className="text-xs font-semibold text-charcoal/50">Qty</span>
+          <span className="text-xs font-semibold text-charcoal/70">Qty</span>
           <input
-            type="number"
+            type="number" aria-label="Quantity"
             min={100}
             value={isCustomQuote ? "" : qtyInput}
             placeholder={isCustomQuote ? "5,000+" : ""}
@@ -138,11 +138,11 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
           {isCustomQuote ? (
             <div className="text-right">
               <p className="text-sm font-bold text-charcoal">Custom pricing</p>
-              <p className="text-xs text-charcoal/50">Volume quote required</p>
+              <p className="text-xs text-charcoal/70">Volume quote required</p>
             </div>
           ) : (
             <div className="text-right">
-              <p className="text-lg font-extrabold tracking-tight text-charcoal">{formatCurrency(totalPerUnit)}<span className="text-xs font-semibold text-charcoal/50"> / unit</span></p>
+              <p className="text-lg font-extrabold tracking-tight text-charcoal">{formatCurrency(totalPerUnit)}<span className="text-xs font-semibold text-charcoal/70"> / unit</span></p>
               <p className="text-xs font-semibold text-blue">{formatCurrency(orderTotal)} total</p>
             </div>
           )}
@@ -167,7 +167,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
     <section className={compact ? "space-y-0" : "rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card sm:p-8"}>
       {!compact && (
         <div className="space-y-3">
-          <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-light-blue">Configure your order</p>
+          <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-blue">Configure your order</p>
           <h2 className="font-display text-3xl font-bold tracking-tight">Dial in the material, add-ons, and quantity.</h2>
           <p className="max-w-3xl text-base leading-7 text-charcoal/72">
             Start with the standard bag price, then see how upgraded fabrics and extra details change the estimate in real time.
@@ -179,9 +179,9 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
       {compact ? (
         /* Compact inline quantity row for right-column layout */
         <div className="mt-6 flex items-center gap-3 rounded-[1.25rem] border border-charcoal/10 bg-light-bone px-4 py-3">
-          <span className="font-accent text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/50 flex-shrink-0">Qty</span>
+          <span className="font-accent text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/70 flex-shrink-0">Qty</span>
           <input
-            type="range"
+            type="range" aria-label="Quantity slider"
             min={100}
             max={2000}
             step={50}
@@ -190,7 +190,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
             className="flex-1 accent-blue cursor-pointer h-1"
           />
           <input
-            type="number"
+            type="number" aria-label="Quantity"
             min={100}
             value={isCustomQuote ? "" : qtyInput}
             placeholder={isCustomQuote ? "5,000+" : ""}
@@ -206,7 +206,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
           <div className="flex items-center justify-between gap-4 mb-4">
             <h3 className="font-display text-base font-bold tracking-tight">Quantity</h3>
             <input
-              type="number"
+              type="number" aria-label="Quantity"
               min={100}
               value={isCustomQuote ? "" : qtyInput}
               placeholder={isCustomQuote ? "5,000+" : ""}
@@ -216,14 +216,14 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
               className="w-28 rounded-full border border-charcoal/15 bg-white px-4 py-2 text-xl font-extrabold text-charcoal text-center focus:border-blue focus:outline-none"
             />
           </div>
-          <input type="range" min={100} max={2000} step={50}
+          <input type="range" aria-label="Quantity slider" min={100} max={2000} step={50}
             value={isCustomQuote ? 2000 : quantity}
             onChange={(e) => { const v = Number(e.target.value); setIsCustomQuote(false); setQuantity(v); setQtyInput(String(v)); }}
             className="w-full accent-blue cursor-pointer"
           />
           <div className="flex justify-between mt-1">
-            <span className="text-xs text-charcoal/45">100</span>
-            <span className="text-xs text-charcoal/45">2,000</span>
+            <span className="text-xs text-charcoal/70">100</span>
+            <span className="text-xs text-charcoal/70">2,000</span>
           </div>
         </div>
       )}
@@ -256,7 +256,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                   >
                     {tierMeta.label}
                     {tier !== "starter" && (
-                      <span className={`ml-1.5 ${tierActive ? "text-white/70" : "text-charcoal/45"}`}>
+                      <span className={`ml-1.5 ${tierActive ? "text-white/75" : "text-charcoal/70"}`}>
                         +{formatCurrency(tierFabrics[0].upcharge)}
                       </span>
                     )}
@@ -298,9 +298,9 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                       <div className="min-h-[72px] rounded-[1.25rem] border border-blue/20 bg-white px-4 py-3">
                         <div className="flex items-center justify-between gap-3">
                           <p className="text-sm font-bold">{fabric.name}</p>
-                          <p className="text-xs font-semibold text-charcoal/60">{fabric.upcharge > 0 ? `+${formatCurrency(fabric.upcharge)} / unit` : "Included"}</p>
+                          <p className="text-xs font-semibold text-charcoal/70">{fabric.upcharge > 0 ? `+${formatCurrency(fabric.upcharge)} / unit` : "Included"}</p>
                         </div>
-                        <p className="mt-1 text-xs leading-5 text-charcoal/60 line-clamp-2">{fabric.description}</p>
+                        <p className="mt-1 text-xs leading-5 text-charcoal/70 line-clamp-2">{fabric.description}</p>
                       </div>
                     );
                   })()}
@@ -332,7 +332,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
             {decorationType === "Screen Print" && (
               <div className="mt-5 grid gap-5 lg:grid-cols-2">
                 <div className="space-y-3">
-                  <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Front placement</p>
+                  <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/70">Front placement</p>
                   <div className="flex flex-wrap gap-2">
                     {frontColorOptions.map((option) => {
                       const isSelected = frontColors === option.value;
@@ -352,7 +352,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                   </div>
                 </div>
                 <div className="space-y-3">
-                  <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Back placement</p>
+                  <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/70">Back placement</p>
                   <div className="flex flex-wrap gap-2">
                     {backColorOptions.map((option) => {
                       const isSelected = backColors === option.value;
@@ -376,7 +376,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
 
             {decorationType === "Embroidery" && (
               <div className="mt-5 space-y-3">
-                <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Placement</p>
+                <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/70">Placement</p>
                 <div className="flex flex-wrap gap-2">
                   {embroideryPlacementOptions.map((option) => {
                     const isSelected = embroideryPlacements === option.value;
@@ -400,7 +400,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
             {/* ── Color slots ── */}
             {totalColorSlots > 0 && (
               <div className="mt-5 space-y-3">
-                <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Ink colors</p>
+                <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/70">Ink colors</p>
                 <div className="grid gap-3 sm:grid-cols-2">
                   {Array.from({ length: totalColorSlots }).map((_, i) => (
                     <div key={i} className="flex items-center gap-3 rounded-[1.25rem] border border-charcoal/10 bg-white px-4 py-3">
@@ -415,7 +415,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                           value={colorSlots[i]?.hex ?? "#000000"}
                           onChange={(e) => updateSlot(i, { hex: e.target.value, pantone: "" })}
                           className="absolute inset-0 h-8 w-8 cursor-pointer opacity-0"
-                          title="Pick a color"
+                          title="Pick a color" aria-label={`Pick color ${i + 1}`}
                         />
                       </div>
                       <div className="flex-1 min-w-0">
@@ -424,26 +424,26 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                           value={colorSlots[i]?.pantone ?? ""}
                           onChange={(e) => handlePantoneInput(i, e.target.value)}
                           placeholder="Pantone e.g. 286 C"
-                          className="w-full bg-transparent text-sm font-medium text-charcoal placeholder:text-charcoal/35 focus:outline-none"
+                          className="w-full bg-transparent text-sm font-medium text-charcoal placeholder:text-charcoal/70 focus:outline-none"
                         />
                         {!colorSlots[i]?.pantone && (
-                          <p className="text-xs text-charcoal/40">or click circle to pick hex</p>
+                          <p className="text-xs text-charcoal/70">or click circle to pick hex</p>
                         )}
                         {colorSlots[i]?.pantone && lookupPantone(colorSlots[i].pantone) && (
-                          <p className="text-xs text-light-blue font-medium">{colorSlots[i].hex.toUpperCase()} ✔</p>
+                          <p className="text-xs text-blue font-medium">{colorSlots[i].hex.toUpperCase()} ✔</p>
                         )}
                       </div>
-                      <span className="text-xs text-charcoal/40 flex-shrink-0">
+                      <span className="text-xs text-charcoal/70 flex-shrink-0">
                         {i < frontColors ? `F${i + 1}` : `B${i - frontColors + 1}`}
                       </span>
                     </div>
                   ))}
                 </div>
-                <p className="text-xs text-charcoal/45">Type a Pantone code for an exact match, or click the circle to use a hex color picker.</p>
+                <p className="text-xs text-charcoal/70">Type a Pantone code for an exact match, or click the circle to use a hex color picker.</p>
               </div>
             )}
 
-            <p className="mt-4 text-xs leading-5 text-charcoal/55">
+            <p className="mt-4 text-xs leading-5 text-charcoal/70">
               {decorationType === "Screen Print"
                 ? "Each extra front color adds $0.35 per unit. Each back print color adds $0.30 per unit."
                 : decorationType === "Embroidery"
@@ -475,7 +475,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                     title={addOn.description}
                   >
                     {addOn.name}
-                    <span className={`ml-1.5 text-xs ${isSelected ? "text-white/75" : "text-charcoal/45"}`}>
+                    <span className={`ml-1.5 text-xs ${isSelected ? "text-white/75" : "text-charcoal/70"}`}>
                       +{formatCurrency(addOn.pricePerUnit)}
                     </span>
                   </button>
@@ -488,7 +488,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
                   const addOn = addOns.find((a) => a.id === id);
                   if (!addOn) return null;
                   return (
-                    <p key={id} className="text-xs text-charcoal/55">✓ {addOn.name} — {addOn.description}</p>
+                    <p key={id} className="text-xs text-charcoal/70">✓ {addOn.name} — {addOn.description}</p>
                   );
                 })}
               </div>
@@ -497,14 +497,14 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
 
         </div>
 
-        <aside className="h-fit rounded-[2rem] border border-charcoal/10 bg-light-bone p-6 xl:sticky xl:top-28">
+        <section aria-label="Live price calculator" className="h-fit rounded-[2rem] border border-charcoal/10 bg-light-bone p-6 xl:sticky xl:top-28">
           <h3 className="font-display text-xl font-bold tracking-tight">Live price calculator</h3>
 
           <div className="mt-5 space-y-3">
             <div className="flex items-center justify-between gap-3">
-              <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">Quantity</p>
+              <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/70">Quantity</p>
               <input
-                type="number"
+                type="number" aria-label="Quantity"
                 min={100}
                 value={isCustomQuote ? "" : qtyInput}
                 placeholder={isCustomQuote ? "5,000+" : ""}
@@ -515,7 +515,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
               />
             </div>
             <input
-              type="range"
+              type="range" aria-label="Quantity slider"
               min={100}
               max={2000}
               step={50}
@@ -523,7 +523,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
               onChange={(e) => { const v = Number(e.target.value); setIsCustomQuote(false); setQuantity(v); setQtyInput(String(v)); }}
               className="w-full accent-blue cursor-pointer"
             />
-            <div className="flex justify-between text-xs text-charcoal/40">
+            <div className="flex justify-between text-xs text-charcoal/70">
               <span>100</span><span>2,000</span>
             </div>
           </div>
@@ -531,7 +531,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
           {isCustomQuote ? (
             <div className="mt-6 rounded-[1.5rem] border border-blue/20 bg-blue/5 p-5 text-center">
               <p className="text-sm font-bold text-charcoal">Volume pricing available</p>
-              <p className="mt-1 text-sm leading-6 text-charcoal/65">Orders of 5,000+ units are custom quoted. We&apos;ll get back to you fast.</p>
+              <p className="mt-1 text-sm leading-6 text-charcoal/70">Orders of 5,000+ units are custom quoted. We&apos;ll get back to you fast.</p>
             </div>
           ) : (
             <div className="mt-6 space-y-4 rounded-[1.5rem] bg-white p-5">
@@ -561,7 +561,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
             </div>
           )}
 
-          <p className="mt-4 text-sm leading-6 text-charcoal/60">
+          <p className="mt-4 text-sm leading-6 text-charcoal/70">
             {isCustomQuote ? "We\'ll confirm pricing before anything is produced." : "Prices are estimates. Final quote confirmed at checkout."}
           </p>
 
@@ -573,7 +573,7 @@ export function BagConfigurator({ bag, compact = false }: { bag: Bag; compact?: 
           >
             {isCustomQuote ? "Get a quote" : "Build this order"}
           </Link>
-        </aside>
+        </section>
       </div>
     </section>
     </>
@@ -589,7 +589,7 @@ function SummaryRow({
 }) {
   return (
     <div className="flex items-start justify-between gap-4 text-sm">
-      <span className="text-charcoal/60">{label}</span>
+      <span className="text-charcoal/70">{label}</span>
       <span className="text-right text-charcoal/80">{value}</span>
     </div>
   );

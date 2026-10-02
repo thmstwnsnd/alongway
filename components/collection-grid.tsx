@@ -68,6 +68,7 @@ export function CollectionGrid() {
         {/* Sort */}
         <div className="relative">
           <select
+            aria-label="Sort bags"
             value={sort}
             onChange={(e) => setSort(e.target.value as SortKey)}
             className="appearance-none rounded-full border border-charcoal/15 bg-white py-2.5 pl-4 pr-9 text-sm font-semibold text-charcoal focus:outline-none focus:ring-2 focus:ring-blue/30 cursor-pointer"
@@ -76,7 +77,7 @@ export function CollectionGrid() {
               <option key={o.key} value={o.key}>{o.label}</option>
             ))}
           </select>
-          <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-charcoal/40">↓</span>
+          <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-charcoal/70">↓</span>
         </div>
 
         <div className="h-6 w-px bg-charcoal/10" />
@@ -124,7 +125,7 @@ export function CollectionGrid() {
           <button
             type="button"
             onClick={() => { setSizeFilter("all"); setMaterialFilter("all"); }}
-            className="ml-auto text-sm font-semibold text-charcoal/50 hover:text-charcoal"
+            className="ml-auto text-sm font-semibold text-charcoal/70 hover:text-charcoal"
           >
             Clear filters ×
           </button>
@@ -132,7 +133,7 @@ export function CollectionGrid() {
       </div>
 
       {/* Result count */}
-      <p className="mt-4 text-sm text-charcoal/45">
+      <p className="mt-4 text-sm text-charcoal/70">
         {filtered.length} {filtered.length === 1 ? "bag" : "bags"}
       </p>
 
@@ -155,12 +156,12 @@ export function CollectionGrid() {
                   bespoke
                 </span>
               </div>
-              <p className="text-sm leading-6 text-bone/70">
+              <p className="text-sm leading-6 text-bone/85">
                 Got an idea? Build your tote from scratch — specs, fabric, colors, hardware, decoration. All yours.
               </p>
             </div>
             <div className="flex items-center justify-between gap-4">
-              <p className="text-sm font-semibold text-bone/60">
+              <p className="text-sm font-semibold text-bone/85">
                 Starting at <span className="text-light-blue">$18.00</span> / unit
               </p>
               <Link href="/collection/custom" className="text-sm font-semibold text-light-blue hover:text-white">
@@ -177,7 +178,7 @@ export function CollectionGrid() {
           <button
             type="button"
             onClick={() => { setSizeFilter("all"); setMaterialFilter("all"); setSort("popular"); }}
-            className="mt-4 text-sm font-semibold text-light-blue hover:text-charcoal"
+            className="mt-4 text-sm font-semibold text-blue hover:text-charcoal"
           >
             Clear all filters
           </button>

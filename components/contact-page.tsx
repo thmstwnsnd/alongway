@@ -36,7 +36,7 @@ export function ContactPage() {
         {/* Left — info */}
         <div className="space-y-10">
           <div className="space-y-4">
-            <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-light-blue">Get in touch</p>
+            <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-blue">Get in touch</p>
             <h1 className="font-display text-5xl font-extrabold tracking-tight text-charcoal lg:text-6xl">
               Let's talk bags.
             </h1>
@@ -72,7 +72,7 @@ export function ContactPage() {
           </div>
 
           <div className="rounded-[2rem] border border-charcoal/10 bg-bone p-6 space-y-2">
-            <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Response time</p>
+            <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/70">Response time</p>
             <p className="text-sm leading-6 text-charcoal/75">
               We typically reply within a few hours during business hours. For urgent projects, mention it in your message.
             </p>
@@ -87,14 +87,14 @@ export function ContactPage() {
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#94A6D2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
               </div>
               <h2 className="font-display text-2xl font-bold tracking-tight text-charcoal">Got it.</h2>
-              <p className="max-w-sm text-sm leading-7 text-charcoal/65">
+              <p className="max-w-sm text-sm leading-7 text-charcoal/70">
                 We'll be in touch soon. In the meantime, feel free to browse the collection.
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-light-blue mb-4">Send us a message</p>
+                <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-blue mb-4">Send us a message</p>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
@@ -117,7 +117,7 @@ export function ContactPage() {
               </Field>
 
               <Field label="What can we help with?">
-                <select value={form.reason} onChange={(e) => set("reason", e.target.value)} className={inputClass}>
+                <select aria-label="Reason for contacting us" value={form.reason} onChange={(e) => set("reason", e.target.value)} className={inputClass}>
                   <option value="">Select a reason</option>
                   {reasons.map((r) => <option key={r} value={r}>{r}</option>)}
                 </select>
@@ -136,7 +136,7 @@ export function ContactPage() {
                 Send message
               </button>
 
-              <p className="text-center text-xs text-charcoal/40">
+              <p className="text-center text-xs text-charcoal/70">
                 We reply within a few hours during business hours.
               </p>
             </form>
@@ -147,12 +147,12 @@ export function ContactPage() {
   );
 }
 
-const inputClass = "w-full rounded-[1rem] border border-charcoal/15 bg-light-bone px-4 py-3 text-sm text-charcoal placeholder:text-charcoal/35 focus:border-blue focus:outline-none transition-colors";
+const inputClass = "w-full rounded-[1rem] border border-charcoal/15 bg-light-bone px-4 py-3 text-sm text-charcoal placeholder:text-charcoal/70 focus:border-blue focus:outline-none transition-colors";
 
 function Field({ label, children, required }: { label: string; children: React.ReactNode; required?: boolean }) {
   return (
     <div className="space-y-1.5">
-      <label className="text-xs font-semibold uppercase tracking-[0.14em] text-charcoal/55">
+      <label className="text-xs font-semibold uppercase tracking-[0.14em] text-charcoal/70">
         {label}{required && <span className="ml-0.5 text-blue">*</span>}
       </label>
       {children}
@@ -167,9 +167,9 @@ function ContactItem({ icon, label, value, href }: { icon: React.ReactNode; labe
         {icon}
       </div>
       <div>
-        <p className="font-accent text-xs font-semibold uppercase tracking-[0.14em] text-charcoal/45">{label}</p>
+        <p className="font-accent text-xs font-semibold uppercase tracking-[0.14em] text-charcoal/70">{label}</p>
         {href ? (
-          <a href={href} className="mt-0.5 text-sm font-medium text-charcoal hover:text-light-blue">{value}</a>
+          <a href={href} className="mt-0.5 text-sm font-medium text-charcoal hover:text-blue">{value}</a>
         ) : (
           <p className="mt-0.5 text-sm font-medium text-charcoal">{value}</p>
         )}

@@ -20,9 +20,9 @@ export default async function PortalLoginPage() {
       <div className="grid w-full max-w-5xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
         <section className="rounded-[2.25rem] border border-charcoal/10 bg-white p-8 shadow-card sm:p-10">
           <div className="space-y-3">
-            <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-light-blue">Alongway Customer Portal</p>
+            <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-blue">Alongway Customer Portal</p>
             <h1 className="font-display text-4xl font-extrabold tracking-tight text-charcoal">Welcome back.</h1>
-            <p className="text-base leading-7 text-charcoal/68">
+            <p className="text-base leading-7 text-charcoal/70">
               Sign in to check order progress, review past production details, and place your next order faster.
             </p>
           </div>
@@ -33,7 +33,7 @@ export default async function PortalLoginPage() {
             <Link href="/portal/forgot" className="font-medium text-blue hover:text-charcoal">
               Forgot your password?
             </Link>
-            <p className="leading-6 text-charcoal/62">
+            <p className="leading-6 text-charcoal/70">
               New customer? Select Create an account to get started.
             </p>
           </div>
@@ -42,15 +42,15 @@ export default async function PortalLoginPage() {
           <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-light-blue">Inside your portal</p>
           <div className="mt-6 space-y-5">
             <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-5">
-              <p className="font-accent text-sm uppercase tracking-[0.18em] text-bone/55">Track production</p>
+              <p className="font-accent text-sm uppercase tracking-[0.18em] text-bone/85">Track production</p>
               <p className="mt-2 text-2xl font-bold tracking-tight">See every milestone from approval through delivery.</p>
             </div>
             <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-5">
-              <p className="font-accent text-sm uppercase tracking-[0.18em] text-bone/55">Reorder quickly</p>
+              <p className="font-accent text-sm uppercase tracking-[0.18em] text-bone/85">Reorder quickly</p>
               <p className="mt-2 text-2xl font-bold tracking-tight">Jump back into proven styles without hunting down old specs.</p>
             </div>
             <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-5">
-              <p className="font-accent text-sm uppercase tracking-[0.18em] text-bone/55">Account control</p>
+              <p className="font-accent text-sm uppercase tracking-[0.18em] text-bone/85">Account control</p>
               <p className="mt-2 text-2xl font-bold tracking-tight">Keep contact info and shipping details in one place.</p>
             </div>
           </div>

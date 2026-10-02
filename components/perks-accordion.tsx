@@ -43,7 +43,7 @@ export function PerksAccordion() {
             key={perk.label}
             onClick={() => setActive(i)}
             className={`group flex flex-col items-start gap-2 py-5 text-left transition-colors ${
-              active === i ? "text-blue" : "text-charcoal/50 hover:text-charcoal"
+              active === i ? "text-blue" : "text-charcoal/70 hover:text-charcoal"
             }`}
           >
             <div className="flex items-center gap-3">
@@ -60,7 +60,7 @@ export function PerksAccordion() {
               className="overflow-hidden transition-all duration-300 pl-9"
               style={{ maxHeight: active === i ? "80px" : "0px", opacity: active === i ? 1 : 0 }}
             >
-              <p className="text-sm leading-6 text-charcoal/65">{perk.body}</p>
+              <p className="text-sm leading-6 text-charcoal/70">{perk.body}</p>
             </div>
           </button>
         ))}

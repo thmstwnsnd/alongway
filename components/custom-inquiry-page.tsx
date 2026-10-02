@@ -29,7 +29,7 @@ export function CustomInquirePage() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-20 lg:px-10">
       <div className="mb-10">
-        <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-light-blue">Custom inquiry</p>
+        <p className="font-accent text-sm font-semibold uppercase tracking-[0.22em] text-blue">Custom inquiry</p>
         <h1 className="font-display mt-3 text-4xl font-extrabold tracking-tight">Build your tote from scratch.</h1>
         <p className="mt-4 text-base text-charcoal/70">
           Tell us as much or as little as you know. We'll fill in the gaps and come back with a quote.
@@ -198,7 +198,7 @@ function Field({ label, children, required, className = "" }: {
 }) {
   return (
     <label className={`block space-y-2 text-sm font-medium text-charcoal ${className}`}>
-      <span>{label}{required && <span className="ml-1 text-light-blue">*</span>}</span>
+      <span>{label}{required && <span className="ml-1 text-blue">*</span>}</span>
       {children}
     </label>
   );

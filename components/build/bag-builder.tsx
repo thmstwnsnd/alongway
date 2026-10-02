@@ -140,7 +140,7 @@ function Configurator({
               <Swatch key={swatch.name} hex={swatch.hex} name={swatch.name} selected={build.colorName === swatch.name} onClick={() => set("colorName", swatch.name)} />
             ))}
           </div>
-          <p className="mt-3 text-[13px] text-black/45">{r.swatch?.name}</p>
+          <p className="mt-3 text-[13px] text-black/70">{r.swatch?.name}</p>
         </>
       ),
     },
@@ -162,7 +162,7 @@ function Configurator({
               );
             })}
           </div>
-          <p className="mt-2 text-[12px] text-black/35">{fabricTierMeta[r.fabric.tier].label} tier</p>
+          <p className="mt-2 text-[12px] text-black/70">{fabricTierMeta[r.fabric.tier].label} tier</p>
         </>
       ),
     },
@@ -178,7 +178,7 @@ function Configurator({
             <OptionList options={handleAddOns} value={build.handleAddOnIds} onChange={(id) => set("handleAddOnIds", toggle(build.handleAddOnIds, id))} />
           </div>
           {build.handleAddOnIds.includes("pantone-straps") ? (
-            <label className="mt-4 flex items-center gap-3 text-[13px] text-black/55">
+            <label className="mt-4 flex items-center gap-3 text-[13px] text-black/70">
               <input type="color" value={build.strapColor} onChange={(e) => set("strapColor", e.target.value)} className="h-9 w-12 cursor-pointer rounded-lg border-0 bg-transparent" />
               Strap color
             </label>
@@ -194,7 +194,7 @@ function Configurator({
         <>
           <OptionList options={stitchOptions} value={build.stitchId} onChange={(id) => set("stitchId", id)} />
           {build.stitchId !== "standard" ? (
-            <label className="mt-4 flex items-center gap-3 text-[13px] text-black/55">
+            <label className="mt-4 flex items-center gap-3 text-[13px] text-black/70">
               <input type="color" value={build.stitchColor} onChange={(e) => set("stitchColor", e.target.value)} className="h-9 w-12 cursor-pointer rounded-lg border-0 bg-transparent" />
               Thread / accent color
             </label>
@@ -268,9 +268,9 @@ function Configurator({
       <div className="relative flex h-full min-h-0 flex-col bg-[radial-gradient(120%_90%_at_50%_0%,#ffffff_0%,#f3f1ec_70%,#ebe8e1_100%)]">
         <div className="flex items-start justify-between px-6 pt-6 lg:px-12">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-black/35">Bag {r.style.bagNumber}</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-black/70">Bag {r.style.bagNumber}</p>
             <h1 className="mt-1 text-[28px] font-semibold tracking-[-0.02em] text-charcoal lg:text-[34px]">{r.style.name}</h1>
-            <p className="mt-2 text-[15px] text-black/50">
+            <p className="mt-2 text-[15px] text-black/70">
               <span className="font-semibold text-charcoal/70">Size</span> · {dims} ·{" "}
               {r.size.strap.isDrop ? `${r.size.strap.length}" handle drop` : `${r.size.strap.length}" strap`} · {r.size.strap.width}&quot; wide
             </p>
@@ -347,7 +347,7 @@ function Configurator({
         {/* Quantity + price, under the bag */}
         <div className="border-t border-black/[0.06] bg-white/60 px-6 pb-5 pt-4 backdrop-blur lg:px-12">
           <div className="flex items-baseline justify-between gap-4">
-            <label htmlFor="qty" className="text-[11px] font-semibold uppercase tracking-[0.14em] text-black/35">
+            <label htmlFor="qty" className="text-[11px] font-semibold uppercase tracking-[0.14em] text-black/70">
               Quantity
             </label>
             <span className="text-[14px] font-semibold tabular-nums text-charcoal">
@@ -365,7 +365,7 @@ function Configurator({
             className="qty-slider mt-2 w-full"
             aria-valuetext={`${build.quantity} units`}
           />
-          <div className="mt-1 flex justify-between text-[10px] font-medium tabular-nums text-black/30">
+          <div className="mt-1 flex justify-between text-[10px] font-medium tabular-nums text-black/70">
             {[...quantityTiers, customQuoteTier].map((q) => (
               <button key={q} type="button" onClick={() => set("quantity", q)} className="hover:text-charcoal">
                 {q >= customQuoteTier ? `${q.toLocaleString()}+` : q.toLocaleString()}
@@ -381,12 +381,12 @@ function Configurator({
                 <>
                   <p className="text-[26px] font-semibold leading-none tracking-[-0.02em] text-charcoal">
                     {formatCurrency(r.unitPrice)}
-                    <span className="ml-1.5 text-[12px] font-medium text-black/40">/ unit</span>
+                    <span className="ml-1.5 text-[12px] font-medium text-black/70">/ unit</span>
                   </p>
-                  <p className="mt-1 text-[13px] font-medium text-black/45">{formatCurrency(r.total)} total</p>
+                  <p className="mt-1 text-[13px] font-medium text-black/70">{formatCurrency(r.total)} total</p>
                 </>
               )}
-              <details className="mt-1 text-[11px] text-black/40">
+              <details className="mt-1 text-[11px] text-black/70">
                 <summary className="cursor-pointer select-none">Breakdown</summary>
                 <div className="mt-1 grid grid-cols-2 gap-x-4 sm:grid-cols-3">
                   {r.lines.filter((l) => l.amount > 0).map((l) => (
@@ -401,12 +401,12 @@ function Configurator({
                   type="button"
                   onClick={onContinue}
                   disabled={!r.isCustomQuote && !allDone}
-                  className="rounded-full bg-blue px-6 py-3 text-[14px] font-semibold text-white transition hover:bg-charcoal disabled:cursor-not-allowed disabled:bg-black/[0.08] disabled:text-black/35"
+                  className="rounded-full bg-blue px-6 py-3 text-[14px] font-semibold text-white transition hover:bg-charcoal disabled:cursor-not-allowed disabled:bg-black/[0.08] disabled:text-black/70"
                 >
                   {r.isCustomQuote ? "Request quote" : "Continue"}
                 </button>
                 {!r.isCustomQuote ? (
-                  <p className="text-[11px] font-medium text-black/40">
+                  <p className="text-[11px] font-medium text-black/70">
                     {allDone ? "All steps confirmed" : `${doneSteps.length} of ${steps.length} steps confirmed`}
                   </p>
                 ) : null}
@@ -451,7 +451,7 @@ function Configurator({
             aria-hidden
             className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 opacity-20 brightness-[3]"
           />
-          <p className="font-accent text-[11px] font-semibold uppercase tracking-[0.22em] text-light-blue">Included on every bag</p>
+          <p className="font-accent text-[11px] font-semibold uppercase tracking-[0.22em] text-blue">Included on every bag</p>
           <h4 className="font-display mt-1 text-[20px] font-extrabold uppercase tracking-tight">All-in. Nothing hidden.</h4>
           <ul className="mt-5 grid gap-3 sm:grid-cols-2">
             {includedOnEveryBag.map((item) => (
@@ -475,7 +475,7 @@ const priced = (o: { label: string; upcharge: number }) => (o.upcharge > 0 ? `${
 function Field({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div>
-      <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-black/40">{label}</p>
+      <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-black/70">{label}</p>
       {children}
     </div>
   );

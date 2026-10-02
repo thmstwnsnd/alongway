@@ -10,9 +10,9 @@ export default async function PortalAccountPage() {
   return (
     <div className="space-y-8">
       <section className="space-y-3">
-        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-light-blue">Account</p>
+        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-blue">Account</p>
         <h1 className="font-display text-4xl font-extrabold tracking-tight text-charcoal sm:text-5xl">Account settings.</h1>
-        <p className="max-w-3xl text-base leading-7 text-charcoal/66">
+        <p className="max-w-3xl text-base leading-7 text-charcoal/70">
           Manage your profile, addresses, and password.
         </p>
       </section>
@@ -101,7 +101,7 @@ export default async function PortalAccountPage() {
         </section>
       </div>
 
-      <a href="#" className="inline-flex text-sm text-charcoal/45 hover:text-light-blue">
+      <a href="#" className="inline-flex text-sm text-charcoal/70 hover:text-blue">
         Delete account
       </a>
     </div>

@@ -27,7 +27,7 @@ export default function CustomTotePage() {
         <h1 className="font-display mt-4 max-w-3xl text-5xl font-extrabold tracking-tight sm:text-6xl">
           Build your tote from scratch.
         </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-8 text-bone/80">
+        <p className="mt-6 max-w-2xl text-lg leading-8 text-bone/85">
           Got a specific idea? We'll build it. Dimensions, fabric, colors, construction, decoration — every detail is yours to define. If you can sketch it, we can make it.
         </p>
         <div className="mt-8 flex flex-wrap gap-4">
@@ -49,19 +49,19 @@ export default function CustomTotePage() {
       {/* Pricing callout */}
       <div className="mt-8 grid gap-5 sm:grid-cols-3">
         <div className="rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card">
-          <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Starting from</p>
-          <p className="mt-2 text-4xl font-extrabold tracking-tight">$18<span className="text-xl font-semibold text-charcoal/50">/unit</span></p>
-          <p className="mt-2 text-sm text-charcoal/60">At 250+ units. Price varies by specs, materials, and complexity.</p>
+          <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/70">Starting from</p>
+          <p className="mt-2 text-4xl font-extrabold tracking-tight">$18<span className="text-xl font-semibold text-charcoal/70">/unit</span></p>
+          <p className="mt-2 text-sm text-charcoal/70">At 250+ units. Price varies by specs, materials, and complexity.</p>
         </div>
         <div className="rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card">
-          <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Minimum order</p>
-          <p className="mt-2 text-4xl font-extrabold tracking-tight">250 <span className="text-xl font-semibold text-charcoal/50">units</span></p>
-          <p className="mt-2 text-sm text-charcoal/60">Fully custom builds require a higher MOQ than our standard line.</p>
+          <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/70">Minimum order</p>
+          <p className="mt-2 text-4xl font-extrabold tracking-tight">250 <span className="text-xl font-semibold text-charcoal/70">units</span></p>
+          <p className="mt-2 text-sm text-charcoal/70">Fully custom builds require a higher MOQ than our standard line.</p>
         </div>
         <div className="rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card">
-          <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/50">Timeline</p>
-          <p className="mt-2 text-4xl font-extrabold tracking-tight">10–14 <span className="text-xl font-semibold text-charcoal/50">wks</span></p>
-          <p className="mt-2 text-sm text-charcoal/60">From approved techpack to delivery. Longer than standard due to custom sourcing.</p>
+          <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/70">Timeline</p>
+          <p className="mt-2 text-4xl font-extrabold tracking-tight">10–14 <span className="text-xl font-semibold text-charcoal/70">wks</span></p>
+          <p className="mt-2 text-sm text-charcoal/70">From approved techpack to delivery. Longer than standard due to custom sourcing.</p>
         </div>
       </div>
 
@@ -94,9 +94,9 @@ export default function CustomTotePage() {
                   />
                 </div>
                 {/* Step number */}
-                <span className="mb-2 font-display text-xs text-bone/40">{String(i + 1).padStart(2, "0")}</span>
+                <span className="mb-2 font-display text-xs text-bone/85">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="font-display text-sm font-bold text-bone">{step.title}</h3>
-                <p className="mt-2 text-xs leading-5 text-bone/70">{step.body}</p>
+                <p className="mt-2 text-xs leading-5 text-bone/85">{step.body}</p>
               </div>
             );
           })}
@@ -105,7 +105,7 @@ export default function CustomTotePage() {
 
       {/* CTA */}
       <div className="mt-14 rounded-[2rem] bg-bone px-8 py-10 text-center">
-        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-light-blue">Ready to build?</p>
+        <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-blue">Ready to build?</p>
         <h2 className="font-display mt-2 text-3xl font-extrabold tracking-tight">Tell us about your idea.</h2>
         <p className="mt-3 max-w-xl mx-auto text-base text-charcoal/70">
           Fill out our custom inquiry form. No commitment — just tell us what you're thinking and we'll come back with a quote and a direction.

@@ -5,7 +5,7 @@ import type { PortalOrder, PortalOrderStatus } from "@/data/portal";
 
 const statusStyles: Record<PortalOrderStatus, string> = {
   Processing: "bg-blue/10 text-blue border-blue/20",
-  "In Production": "bg-blue/10 text-light-blue border-blue/20",
+  "In Production": "bg-blue/10 text-blue border-blue/20",
   Delivered: "bg-emerald-100 text-emerald-700 border-emerald-200",
 };
 
@@ -25,7 +25,7 @@ export function PortalSummaryCard({
 }) {
   return (
     <div className="rounded-[1.75rem] border border-charcoal/10 bg-white p-5 shadow-card">
-      <p className="text-sm font-medium text-charcoal/60">{label}</p>
+      <p className="text-sm font-medium text-charcoal/70">{label}</p>
       <p className="mt-3 text-2xl font-extrabold tracking-tight text-charcoal">{value}</p>
     </div>
   );
@@ -69,8 +69,8 @@ export function PortalOrderCard({ order }: { order: PortalOrder }) {
             <StatusBadge status={order.status} />
           </div>
           <p className="text-base font-medium text-charcoal">{order.bagName} × {order.quantity}</p>
-          <p className="text-sm text-charcoal/65">Placed: {order.placedDate}</p>
-          <p className="text-sm text-charcoal/65">
+          <p className="text-sm text-charcoal/70">Placed: {order.placedDate}</p>
+          <p className="text-sm text-charcoal/70">
             {order.status === "Delivered" ? `Delivered: ${order.deliveredDate}` : `Est. ship: ${order.estimatedShipDate}`}
           </p>
         </div>
@@ -131,8 +131,8 @@ export function PortalOrderTimeline({ order }: { order: PortalOrder }) {
                   isComplete
                     ? "border-charcoal bg-charcoal text-white"
                     : isCurrent
-                      ? "border-blue bg-blue/10 text-light-blue"
-                      : "border-charcoal/15 bg-white text-charcoal/45"
+                      ? "border-blue bg-blue/10 text-blue"
+                      : "border-charcoal/15 bg-white text-charcoal/70"
                 }`}
               >
                 {step.icon}
@@ -141,7 +141,7 @@ export function PortalOrderTimeline({ order }: { order: PortalOrder }) {
             </div>
             <div className="pb-6 pt-2">
               <p className="text-base font-semibold text-charcoal">{step.label}</p>
-              {step.detail ? <p className="mt-1 text-sm text-charcoal/62">{step.detail}</p> : null}
+              {step.detail ? <p className="mt-1 text-sm text-charcoal/70">{step.detail}</p> : null}
             </div>
           </li>
         );
