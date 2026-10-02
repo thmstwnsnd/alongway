@@ -1,3 +1,4 @@
+import { requireUser } from "@/lib/require-user";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -10,7 +11,8 @@ export const metadata: Metadata = {
 };
 
 
-export default function PortalOrdersPage() {
+export default async function PortalOrdersPage() {
+  await requireUser();
   return (
     <div className="space-y-8">
       <section className="space-y-3">

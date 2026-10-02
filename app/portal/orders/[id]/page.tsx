@@ -1,3 +1,4 @@
+import { requireUser } from "@/lib/require-user";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -20,6 +21,7 @@ export default async function PortalOrderDetailPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  await requireUser();
   const { id } = await params;
   const order = getPortalOrder(id);
 

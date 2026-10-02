@@ -1,5 +1,6 @@
 "use client";
 
+import { requireUser } from "@/lib/require-user";
 import { useState } from "react";
 import { site } from "@/lib/site";
 
@@ -11,7 +12,8 @@ const referralSteps = [
   "You both get $50 off your next order",
 ];
 
-export default function PortalReferralPage() {
+export default async function PortalReferralPage() {
+  await requireUser();
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopy = async () => {

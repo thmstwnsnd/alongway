@@ -1,8 +1,10 @@
 "use client";
 
+import { requireUser } from "@/lib/require-user";
 import { useState } from "react";
 
-export default function PortalAccountPage() {
+export default async function PortalAccountPage() {
+  await requireUser();
   const [billingSameAsShipping, setBillingSameAsShipping] = useState(true);
 
   return (
