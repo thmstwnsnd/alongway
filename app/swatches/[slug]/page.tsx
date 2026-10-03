@@ -99,7 +99,6 @@ export default async function FabricDetailPage({
                 <p className="font-accent text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/70">Swatch grid</p>
                 <h2 className="font-display mt-2 text-2xl font-bold tracking-tight">{swatches.length} colorways</h2>
               </div>
-              <p className="text-sm text-charcoal/70">Placeholder library</p>
             </div>
             <div className="mt-6 grid grid-cols-3 gap-4 md:grid-cols-4 xl:grid-cols-5">
               {swatches.map((swatch) => (

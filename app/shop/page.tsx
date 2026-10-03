@@ -1,19 +1,10 @@
-import type { Metadata } from "next";
-import { Suspense } from "react";
-import { ShopPage } from "@/components/shop-page";
+import { redirect } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "Build Your Order",
-  description:
-    "Review your bag, fabric, decoration and add-ons before checkout.",
-  robots: { index: false },
-};
+import { getCatalogStyle } from "@/data/catalog";
 
-
-export default function Page() {
-  return (
-    <Suspense>
-      <ShopPage />
-    </Suspense>
-  );
+// The old order form is retired: every order now goes through the builder, so the
+// build sheet, initial-and-sign and payment steps are the same for everyone.
+export default async function Page({ searchParams }: { searchParams: Promise<{ bag?: string }> }) {
+  const { bag } = await searchParams;
+  redirect(bag && getCatalogStyle(bag) ? `/build?style=${bag}` : "/build");
 }

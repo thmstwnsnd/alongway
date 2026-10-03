@@ -31,7 +31,7 @@ const steps = [
   },
   {
     title: "Customize it",
-    body: "Color, canvas, carry, threads, pockets, artwork, labels. Watch the bag update as you go, with your price live the whole time.",
+    body: "Color, canvas, handles, threads, pockets, artwork, labels. Watch the bag update as you go, with your price live the whole time.",
   },
   {
     title: "Order it",

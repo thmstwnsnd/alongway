@@ -202,8 +202,11 @@ const bagPhotos: Record<string, string> = Object.fromEntries(
   Object.entries(bagPhotoSets).map(([k, v]) => [k, v[0]])
 );
 
+// Channel Tote sizes share one photo set.
+const photoKey = (slug: string) => (slug in bagPhotoSets ? slug : slug.replace(/-(small|medium|large)$/, ""));
+
 export function getBagPhotoSet(slug: string): string[] {
-  return bagPhotoSets[slug] ?? [bagPhotos[slug] ?? ""];
+  return bagPhotoSets[photoKey(slug)] ?? ["/photos/product-dscf-2980.jpg"];
 }
 
 // Lifestyle photos for home/collection sections
@@ -217,7 +220,7 @@ export const lifestylePhotos = [
 ];
 
 export function getBagImageUrl(slug: string) {
-  return bagPhotos[slug] ?? "/photos/product-dscf-2980.jpg";
+  return bagPhotos[photoKey(slug)] ?? "/photos/product-dscf-2980.jpg";
 }
 
 export function getLifestyleImageUrl(index: number) {

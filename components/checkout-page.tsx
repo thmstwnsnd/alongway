@@ -115,7 +115,7 @@ export function CheckoutPage() {
             router.push("/order-confirmation");
           }}
         >
-          <h1 className="font-display text-4xl font-extrabold tracking-tight text-charcoal">Checkout</h1>
+          <h1 className="font-display text-5xl font-extrabold tracking-tight text-charcoal sm:text-6xl">Checkout</h1>
           {order.build ? <BuildSpecCard build={order.build} /> : null}
           {order.build ? <SignOffSection build={order.build} state={signoff} onChange={setSignoff} /> : null}
 

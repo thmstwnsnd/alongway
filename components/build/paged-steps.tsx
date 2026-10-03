@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from "react";
 
-/** One brand color per step, in order: Color, Canvas, Carry, Threads, Pockets, Artwork, Labels. */
+/** One brand color per step, in order: Color, Canvas, Handles, Threads, Pockets, Artwork, Labels. */
 const stepColors = ["#364FA0", "#B85C1E", "#3A7D44", "#7B4FA0", "#B8433B", "#2F7F86", "#A84D80", "#9A7410"];
 
 export type PagedStep = { id: string; title: string; hint?: string; summary: string; content: ReactNode };

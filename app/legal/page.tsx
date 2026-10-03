@@ -12,7 +12,7 @@ export default function LegalPage() {
       <p className="font-accent text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/70">
         Last Updated: 02/12/2026
       </p>
-      <h1 className="font-display mt-4 text-4xl font-extrabold tracking-tight text-charcoal">
+      <h1 className="font-display mt-4 text-5xl font-extrabold tracking-tight text-charcoal sm:text-6xl">
         Legal
       </h1>
       <p className="mt-4 text-base leading-7 text-charcoal/70">
