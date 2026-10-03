@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { signOut } from "next-auth/react";
 import type { ReactNode } from "react";
 
 const portalLinks = [
@@ -29,9 +30,20 @@ export function PortalShell({ children, signedIn }: { children: ReactNode; signe
                 Customer Portal
               </span>
             </div>
-            <Link href="/" className="text-sm font-medium text-charcoal/70 hover:text-blue">
-              Back to site
-            </Link>
+            <div className="flex items-center gap-5">
+              <Link href="/" className="text-sm font-medium text-charcoal/70 hover:text-blue">
+                Back to site
+              </Link>
+              {signedIn ? (
+                <button
+                  type="button"
+                  onClick={() => signOut({ callbackUrl: "/portal" })}
+                  className="rounded-full border border-charcoal/15 px-4 py-1.5 text-sm font-semibold text-charcoal hover:bg-light-bone"
+                >
+                  Sign out
+                </button>
+              ) : null}
+            </div>
           </div>
           {signedIn ? (
           <nav aria-label="Portal" className="flex flex-col gap-2 text-sm font-medium sm:flex-row sm:items-center sm:gap-3">

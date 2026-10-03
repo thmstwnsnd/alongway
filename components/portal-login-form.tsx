@@ -7,9 +7,9 @@ import { useState } from "react";
 const inputClass =
   "w-full rounded-2xl border border-charcoal/10 bg-light-bone px-4 py-3 text-sm text-charcoal outline-none focus:border-blue focus:bg-white";
 
-export function PortalLoginForm() {
+export function PortalLoginForm({ next = "/portal/dashboard", defaultMode = "signin" }: { next?: string; defaultMode?: "signin" | "signup" }) {
   const router = useRouter();
-  const [mode, setMode] = useState<"signin" | "signup">("signin");
+  const [mode, setMode] = useState<"signin" | "signup">(defaultMode);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,7 +42,7 @@ export function PortalLoginForm() {
       setError("That email and password did not match. Please try again.");
       return;
     }
-    router.push("/portal/dashboard");
+    router.push(next);
     router.refresh();
   }
 

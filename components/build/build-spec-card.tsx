@@ -23,8 +23,8 @@ const fileCount = (build: BuildConfig, role: "logo" | "art") => {
   return n ? `${n} file${n === 1 ? "" : "s"} uploaded` : "";
 };
 
-/** The full spec of a built bag, as a checklist the customer can read before paying. */
-export function BuildSpecCard({ build }: { build: BuildConfig }) {
+/** The build as label/value rows, shared by the spec card and the initial-and-sign sheet. */
+export function getSpecRows(build: BuildConfig): [string, string][] {
   const r = resolveBuild(build);
   const names = (options: { id: string; label: string }[], ids: string[]) =>
     options.filter((o) => ids.includes(o.id)).map((o) => o.label).join(", ") || "None";
@@ -46,6 +46,13 @@ export function BuildSpecCard({ build }: { build: BuildConfig }) {
       : []),
     ["Quantity", `${build.quantity.toLocaleString()} units`],
   ];
+  return rows;
+}
+
+/** The full spec of a built bag, as a checklist the customer can read before paying. */
+export function BuildSpecCard({ build }: { build: BuildConfig }) {
+  const r = resolveBuild(build);
+  const rows = getSpecRows(build);
 
   return (
     <section className="rounded-[2rem] border border-charcoal/10 bg-white p-6 shadow-card sm:p-8">

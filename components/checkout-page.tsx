@@ -8,6 +8,7 @@ import Link from "next/link";
 import { OrderSummaryCard } from "@/components/order-summary-card";
 import { getCheckoutAmounts } from "@/lib/build-flow";
 import { BuildSpecCard } from "@/components/build/build-spec-card";
+import { SignOffSection, isSignedOff, useSignoff } from "@/components/checkout/sign-off";
 import { getBagBySlug } from "@/data/bags";
 import {
   LAST_ORDER_STORAGE_KEY,
@@ -87,7 +88,9 @@ export function CheckoutPage() {
   }, [isHydrated, order]);
 
   const { bag, shippingOption, shippingSavings, unitPrice, total } = useMemo(() => getCheckoutAmounts(order), [order]);
-  const isOrderReady = Boolean(bag && order.quantity && total);
+  const [signoff, setSignoff] = useSignoff(order.build ?? null);
+  const signed = order.build ? isSignedOff(signoff, order.build) : false;
+  const isOrderReady = Boolean(bag && order.quantity && total && signed);
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
@@ -99,6 +102,7 @@ export function CheckoutPage() {
             if (!isOrderReady) {
               return;
             }
+            setSignoff({ ...signoff, signedAt: new Date().toISOString() });
 
             window.localStorage.setItem(ORDER_DRAFT_STORAGE_KEY, JSON.stringify(order));
             window.localStorage.setItem(
@@ -113,6 +117,7 @@ export function CheckoutPage() {
         >
           <h1 className="font-display text-4xl font-extrabold tracking-tight text-charcoal">Checkout</h1>
           {order.build ? <BuildSpecCard build={order.build} /> : null}
+          {order.build ? <SignOffSection build={order.build} state={signoff} onChange={setSignoff} /> : null}
 
           <CheckoutSection title="Contact">
             <div className="grid gap-5 md:grid-cols-2">
@@ -243,7 +248,12 @@ export function CheckoutPage() {
           </CheckoutSection>
 
           <CheckoutSection title="Payment">
-            <div className="space-y-5">
+            {!signed ? (
+              <p className="mb-5 rounded-2xl bg-light-bone px-4 py-3 text-sm font-semibold text-charcoal" role="status">
+                Locked: initial every area and sign the agreement above to pay.
+              </p>
+            ) : null}
+            <fieldset disabled={!signed} className={`space-y-5 border-0 p-0 ${signed ? "" : "opacity-50"}`}>
               <Field label="Card number">
                 <input
                   required
@@ -284,7 +294,7 @@ export function CheckoutPage() {
                 />
               </Field>
               <p className="text-sm text-charcoal/70">🔒 Secured by Stripe</p>
-            </div>
+            </fieldset>
           </CheckoutSection>
 
           <button

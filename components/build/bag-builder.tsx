@@ -481,22 +481,24 @@ function Configurator({
           />
             {hand ? (
               <svg
-                viewBox="0 0 32 38"
+                viewBox="0 0 24 32"
                 aria-hidden
-                className="pointer-events-none absolute z-10 h-11 w-9 drop-shadow-md"
+                className="pointer-events-none absolute z-10 h-16 w-12 drop-shadow-md"
                 style={{
-                  top: `${hand.y - 6}px`,
+                  top: `${hand.y + 2}px`,
                   left: `calc(18px + ${qtyToPos(hand?.q ?? MIN_QUANTITY)} * (100% - 36px))`,
-                  transform: `translateX(-50%) scale(${hand.grab ? 0.92 : 1})`,
+                  transform: `translateX(-21%) scale(${hand.grab ? 0.9 : 1})`,
+                  transformOrigin: "21% 6%",
                 }}
               >
-                <g fill="white" stroke="#262626" strokeWidth="1.6" strokeLinejoin="round">
-                  <rect x="7" y="6" width="5" height="14" rx="2.5" />
-                  <rect x="12" y="3" width="5" height="17" rx="2.5" />
-                  <rect x="17" y="5" width="5" height="15" rx="2.5" />
-                  <rect x="22" y="9" width="5" height="12" rx="2.5" />
-                  <path d="M7 18 C3 17 2 22 5 26 L9 33 C11 36 22 36 24 32 L27 22 L27 18 L7 18 Z" />
-                </g>
+                {/* Standard mouse pointer: tip sits on the bird. */}
+                <path
+                  d="M5 2 L5 26 L10.5 20.5 L14.5 29.5 L18.5 27.7 L14.6 19 L22 19 Z"
+                  fill="white"
+                  stroke="#262626"
+                  strokeWidth="1.8"
+                  strokeLinejoin="round"
+                />
               </svg>
             ) : null}
           </div>

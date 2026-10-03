@@ -3,6 +3,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { auth } from "@/auth";
+import { safeNext } from "@/lib/safe-next";
 import { PortalLoginForm } from "@/components/portal-login-form";
 
 export const metadata: Metadata = {
@@ -11,9 +12,16 @@ export const metadata: Metadata = {
 };
 
 
-export default async function PortalLoginPage() {
+export default async function PortalLoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ next?: string }>;
+}) {
+  const { next } = await searchParams;
+  const dest = safeNext(next);
+  const fromOrder = dest === "/checkout";
   const session = await auth();
-  if (session?.user) redirect("/portal/dashboard");
+  if (session?.user) redirect(dest);
 
   return (
     <div className="flex min-h-[calc(100vh-9rem)] items-center justify-center py-8">
@@ -21,13 +29,17 @@ export default async function PortalLoginPage() {
         <section className="rounded-[2.25rem] border border-charcoal/10 bg-white p-8 shadow-card sm:p-10">
           <div className="space-y-3">
             <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-blue">Alongway Customer Portal</p>
-            <h1 className="font-display text-4xl font-extrabold tracking-tight text-charcoal">Welcome back.</h1>
+            <h1 className="font-display text-4xl font-extrabold tracking-tight text-charcoal">
+              {fromOrder ? "Create an account or sign in to complete your order." : "Welcome back."}
+            </h1>
             <p className="text-base leading-7 text-charcoal/70">
-              Sign in to check order progress, review past production details, and place your next order faster.
+              {fromOrder
+                ? "Your build is saved. Create an account or sign in to see your final price and build sheet, then approve it and pay."
+                : "Sign in to check order progress, review past production details, and place your next order faster."}
             </p>
           </div>
           <div className="mt-8">
-            <PortalLoginForm />
+            <PortalLoginForm next={dest} defaultMode={fromOrder ? "signup" : "signin"} />
           </div>
           <div className="mt-5 flex flex-col gap-3 text-sm">
             <Link href="/portal/forgot" className="font-medium text-blue hover:text-charcoal">
