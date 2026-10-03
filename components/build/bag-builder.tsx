@@ -33,8 +33,11 @@ import {
 
 import { BagPreview } from "./bag-preview";
 import { PagedSteps } from "./paged-steps";
+import { ArtStep } from "./art-step";
+import { placementLabel } from "@/data/placements";
 import { Chip, OptionList, Section, Segmented, Swatch, inputClass } from "./option-controls";
 import { PhotoPreview } from "./photo-preview";
+import { PlacementOverlay } from "./placement-overlay";
 import { StyleGrid } from "./style-grid";
 
 
@@ -338,6 +341,31 @@ function Configurator({
       summary: names(extraOptions, build.extraIds) || "Side-seam label only",
       content: <OptionList compact={paged} options={extraOptions} value={build.extraIds} onChange={(id) => set("extraIds", toggle(build.extraIds, id))} />,
     },
+    // Trial on Mini Tote only: where the logo and art go, plus file uploads. Rolls out to every style once approved.
+    ...(r.style.slug === "mini-tote"
+      ? [
+          {
+            id: "logo",
+            title: "Logo & art",
+            hint: "Pick where your logo and art go, and drop in your files.",
+            summary: [
+              build.logoPlacementIds.length ? `Logo: ${build.logoPlacementIds.map(placementLabel).join(", ")}` : "No logo",
+              build.artPlacementIds.length ? `Art: ${build.artPlacementIds.map(placementLabel).join(", ")}` : "No art",
+              build.artFiles.length ? `${build.artFiles.length} file${build.artFiles.length === 1 ? "" : "s"}` : "",
+            ].filter(Boolean).join(" · "),
+            content: (
+              <ArtStep
+                logoPlacementIds={build.logoPlacementIds}
+                artPlacementIds={build.artPlacementIds}
+                files={build.artFiles}
+                onLogoPlacements={(ids) => set("logoPlacementIds", ids)}
+                onArtPlacements={(ids) => set("artPlacementIds", ids)}
+                onFiles={(files) => set("artFiles", files)}
+              />
+            ),
+          },
+        ]
+      : []),
   ];
 
   const allDone = steps.every((st) => doneSteps.includes(st.id));
@@ -725,8 +753,9 @@ function Configurator({
               <Image src={gallery[galleryIndex]} alt={`${r.style.name} photo ${galleryIndex + 1}`} fill sizes="(min-width: 1024px) 55vw, 100vw" className="object-cover" />
             </div>
           ) : showPhoto ? (
-            <div className="h-full max-w-full" style={{ aspectRatio: `${stagePhoto!.width} / ${stagePhoto!.height}` }}>
+            <div className="relative h-full max-w-full" style={{ aspectRatio: `${stagePhoto!.width} / ${stagePhoto!.height}` }}>
               <PhotoPreview photo={stagePhoto!} bodyHex={r.bodyHex} trimHex={r.strapHex} alt={r.style.name} />
+              {r.style.slug === "mini-tote" ? <PlacementOverlay logoIds={build.logoPlacementIds} artIds={build.artPlacementIds} /> : null}
             </div>
           ) : (
             <div className="aspect-square h-full max-w-full">

@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { closureOptions, extraOptions, handleAddOns, pocketOptions, stitchOptions, strapOptions } from "@/data/build-options";
+import { placementLabel } from "@/data/placements";
 import { resolveBuild, type BuildConfig } from "@/lib/build-flow";
 import { formatCurrency, getDecorationSummary } from "@/lib/order-flow";
 
@@ -13,6 +14,13 @@ const labelColors: Record<string, string> = {
   Pockets: "#B8433B",
   Artwork: "#2F7F86",
   Labels: "#A84D80",
+  Logo: "#9A7410",
+  Art: "#9A7410",
+};
+
+const fileCount = (build: BuildConfig, role: "logo" | "art") => {
+  const n = (build.artFiles ?? []).filter((f) => f.role === role).length;
+  return n ? `${n} file${n === 1 ? "" : "s"} uploaded` : "";
 };
 
 /** The full spec of a built bag, as a checklist the customer can read before paying. */
@@ -30,6 +38,12 @@ export function BuildSpecCard({ build }: { build: BuildConfig }) {
     ["Pockets", [names(pocketOptions, build.pocketIds), closureOptions.find((o) => o.id === build.closureId)?.label].join(" · ")],
     ["Artwork", getDecorationSummary(build)],
     ["Labels", names(extraOptions, build.extraIds) === "None" ? "Side-seam label (included)" : `Side-seam label + ${names(extraOptions, build.extraIds)}`],
+    ...(r.style.slug === "mini-tote"
+      ? ([
+          ["Logo", [(build.logoPlacementIds ?? []).map(placementLabel).join(", ") || "None", fileCount(build, "logo")].filter(Boolean).join(" · ")],
+          ["Art", [(build.artPlacementIds ?? []).map(placementLabel).join(", ") || "None", fileCount(build, "art")].filter(Boolean).join(" · ")],
+        ] as [string, string][])
+      : []),
     ["Quantity", `${build.quantity.toLocaleString()} units`],
   ];
 

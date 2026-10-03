@@ -9,6 +9,7 @@ import {
   type BuildOption,
 } from "@/data/build-options";
 import { catalog, getCatalogStyle, type Dimensions } from "@/data/catalog";
+import { placementLabel, type ArtFileRef } from "@/data/placements";
 import { getFabricBySlug, getFabricSwatches } from "@/data/fabrics";
 import {
   MIN_QUANTITY,
@@ -41,6 +42,10 @@ export type BuildConfig = {
   frontColors: number;
   backColors: number;
   embroideryPlacements: number;
+  /** Where the logo goes (a placement zone id, or "" for none), where art goes, and the uploaded files. */
+  logoPlacementIds: string[];
+  artPlacementIds: string[];
+  artFiles: ArtFileRef[];
   quantity: number;
 };
 
@@ -65,6 +70,9 @@ export function defaultBuild(styleSlug = catalog[0].slug): BuildConfig {
     frontColors: 1,
     backColors: 0,
     embroideryPlacements: 1,
+    logoPlacementIds: ["front"],
+    artPlacementIds: [],
+    artFiles: [],
     quantity: MIN_QUANTITY,
   };
 }
@@ -87,6 +95,9 @@ export function applyStyle(build: BuildConfig, styleSlug: string): BuildConfig {
     frontColors: build.frontColors,
     backColors: build.backColors,
     embroideryPlacements: build.embroideryPlacements,
+    logoPlacementIds: build.logoPlacementIds,
+    artPlacementIds: build.artPlacementIds,
+    artFiles: build.artFiles,
     quantity: build.quantity,
   };
 }
@@ -165,6 +176,9 @@ export function buildSummaryText(build: BuildConfig) {
     `Closure: ${closureOptions.find((o) => o.id === build.closureId)?.label}`,
     `Labels & extras: ${label(extraOptions, build.extraIds)}`,
     `Decoration: ${build.decorationType}`,
+    `Logo placement: ${build.logoPlacementIds.length ? build.logoPlacementIds.map(placementLabel).join(", ") : "None"}`,
+    `Art placement: ${build.artPlacementIds.length ? build.artPlacementIds.map(placementLabel).join(", ") : "None"}`,
+    `Artwork files: ${build.artFiles.length ? build.artFiles.map((f) => `${f.name} (${f.role})`).join(", ") : "None uploaded yet"}`,
     `Quantity: ${build.quantity.toLocaleString()}`,
     r.isCustomQuote ? "Custom quote requested." : `Estimated: ${formatCurrency(r.unitPrice)}/unit, ${formatCurrency(r.total)} total`,
   ].join("\n");
