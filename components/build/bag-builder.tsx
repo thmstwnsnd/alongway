@@ -439,7 +439,7 @@ function Configurator({
   const showPhoto = view === "build" && stagePhoto;
 
   const priceBlock = (
-        <div className="border-t border-black/[0.06] bg-white/60 px-6 pb-5 pt-4 backdrop-blur lg:px-12">
+        <div className="fixed inset-x-0 bottom-0 z-20 border-t border-black/[0.06] bg-white/95 px-4 pb-3 pt-2 backdrop-blur lg:static lg:bg-white/60 lg:px-12 lg:pb-5 lg:pt-4">
           {paged ? null : (
           <div className="flex items-baseline justify-between gap-4">
             <label htmlFor="qty" className="text-[11px] font-semibold uppercase tracking-[0.14em] text-black/70">
@@ -509,11 +509,11 @@ function Configurator({
           </div>
 
           {paged ? (
-            <div className="mt-3 grid grid-cols-[1fr_auto_1fr] items-center gap-4">
+            <div className="mt-2 grid grid-cols-[1fr_auto_1fr] items-center gap-2 lg:mt-3 lg:gap-4">
               <div>
-                <p className="text-[26px] font-bold leading-none tracking-[-0.02em] tabular-nums text-charcoal">
+                <p className="text-[18px] font-bold leading-none tracking-[-0.02em] tabular-nums text-charcoal lg:text-[26px]">
                   {build.quantity.toLocaleString()}
-                  <span className="ml-1.5 text-[16px] font-semibold tracking-normal text-black/60">{r.isCustomQuote ? "+ units" : "units"}</span>
+                  <span className="ml-1 text-[12px] lg:ml-1.5 lg:text-[16px] font-semibold tracking-normal text-black/60">{r.isCustomQuote ? "+ units" : "units"}</span>
                 </p>
                 <details className="text-[12px] text-black/70">
                   <summary className="cursor-pointer select-none">Breakdown</summary>
@@ -526,16 +526,16 @@ function Configurator({
               </div>
               <div className="text-center">
                 {r.isCustomQuote ? (
-                  <p className="text-[32px] font-semibold leading-none tracking-[-0.02em] text-charcoal">Custom quote</p>
+                  <p className="text-[20px] font-semibold leading-none tracking-[-0.02em] text-charcoal lg:text-[32px]">Custom quote</p>
                 ) : (
                   <>
-                    <p className="text-[30px] font-bold leading-none tracking-[-0.02em] tabular-nums text-blue">
+                    <p className="text-[24px] font-bold leading-none tracking-[-0.02em] tabular-nums text-blue lg:text-[30px]">
                       {formatCurrency(r.total)}
-                      <span className="ml-2 text-[16px] font-semibold tracking-normal">total</span>
+                      <span className="ml-1 hidden text-[16px] font-semibold tracking-normal sm:inline lg:ml-2">total</span>
                     </p>
-                    <p className="mt-2 text-[26px] font-medium leading-none tracking-[-0.02em] tabular-nums text-black/60">
+                    <p className="mt-1.5 text-[15px] font-medium leading-none tracking-[-0.02em] tabular-nums text-black/60 lg:mt-2 lg:text-[26px]">
                       {formatCurrency(r.unitPrice)}
-                      <span className="ml-2 text-[16px] tracking-normal">/ unit</span>
+                      <span className="ml-1 text-[13px] tracking-normal lg:ml-2 lg:text-[16px]">/ unit</span>
                     </p>
                   </>
                 )}
@@ -545,13 +545,13 @@ function Configurator({
                   type="button"
                   onClick={onContinue}
                   disabled={!r.isCustomQuote && !allDone}
-                  className="rounded-full bg-blue px-7 py-3.5 text-[15px] font-semibold text-white transition hover:bg-charcoal disabled:cursor-not-allowed disabled:bg-black/[0.08] disabled:text-black/70"
+                  className="rounded-full bg-blue px-5 py-3 text-[15px] font-semibold text-white transition hover:bg-charcoal disabled:cursor-not-allowed disabled:bg-black/[0.08] disabled:text-black/70 lg:px-7 lg:py-3.5"
                 >
                   {r.isCustomQuote ? "Request quote" : "Continue"}
                 </button>
                 {!r.isCustomQuote ? (
                   <p className="text-[11px] font-medium text-black/70">
-                    {allDone ? "All steps confirmed" : `${doneSteps.length} of ${steps.length} steps confirmed`}
+                    {allDone ? "All confirmed" : <><span className="lg:hidden">{doneSteps.length} of {steps.length} steps</span><span className="hidden lg:inline">{doneSteps.length} of {steps.length} steps confirmed</span></>}
                   </p>
                 ) : null}
               </div>
@@ -728,16 +728,16 @@ function Configurator({
 
   return (
     <div
-      className={`relative grid ${paged ? "grid-rows-[40dvh_1fr]" : "grid-rows-[52dvh_1fr]"} overflow-hidden bg-white lg:grid-cols-[minmax(0,1.45fr)_minmax(26rem,1fr)] lg:grid-rows-none`}
-      style={{ height: `calc(100dvh - ${headerH}px)` }}
+      className="relative flex flex-col bg-white lg:h-[var(--bh)] lg:grid lg:grid-cols-[minmax(0,1.45fr)_minmax(26rem,1fr)] lg:grid-rows-none lg:overflow-hidden"
+      style={{ "--bh": `calc(100dvh - ${headerH}px)`, "--hh": `${headerH}px` } as React.CSSProperties}
     >
       {/* Stage: never scrolls */}
-      <div className="relative flex h-full min-h-0 flex-col bg-[radial-gradient(120%_90%_at_50%_0%,#ffffff_0%,#f3f1ec_70%,#ebe8e1_100%)]">
-        <div className="flex items-start justify-between px-6 pt-6 lg:px-12">
+      <div className="sticky top-[var(--hh)] z-10 flex h-[36dvh] min-h-[260px] flex-col bg-[radial-gradient(120%_90%_at_50%_0%,#ffffff_0%,#f3f1ec_70%,#ebe8e1_100%)] lg:relative lg:top-auto lg:z-auto lg:h-full lg:min-h-0">
+        <div className="flex items-start justify-between px-4 pt-3 lg:px-12 lg:pt-6">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-black/70">Bag {r.style.bagNumber}</p>
-            <h1 className="mt-1 text-[28px] font-semibold tracking-[-0.02em] text-charcoal lg:text-[34px]">{r.style.name}</h1>
-            <p className="mt-2 text-[15px] text-black/70">
+            <h1 className="mt-0.5 text-[22px] font-semibold tracking-[-0.02em] text-charcoal lg:mt-1 lg:text-[34px]">{r.style.name}</h1>
+            <p className="mt-2 hidden text-[15px] text-black/70 lg:block">
               <span className="font-semibold text-charcoal/70">Size</span> · {dims} ·{" "}
               {r.size.strap.isDrop ? `${r.size.strap.length}" handle drop` : `${r.size.strap.length}" strap`} · {r.size.strap.width}&quot; wide
             </p>
@@ -747,7 +747,7 @@ function Configurator({
           </button>
         </div>
 
-        <div className="flex min-h-0 flex-1 items-center justify-center px-6 py-4 lg:px-16">
+        <div className="flex min-h-0 flex-1 items-center justify-center px-4 py-2 lg:px-16 lg:py-4">
           {galleryIndex !== null ? (
             <div className="relative h-full w-full overflow-hidden rounded-2xl">
               <Image src={gallery[galleryIndex]} alt={`${r.style.name} photo ${galleryIndex + 1}`} fill sizes="(min-width: 1024px) 55vw, 100vw" className="object-cover" />
@@ -768,7 +768,7 @@ function Configurator({
       </div>
 
       {/* Options: the only thing that scrolls */}
-      <div className={paged ? "h-full min-h-0 px-5 pb-3 pt-4 lg:px-10 lg:pb-10 lg:pt-12" : "h-full min-h-0 overflow-y-auto px-6 pb-16 pt-2 lg:px-10"}>
+      <div className={paged ? "px-5 pb-44 pt-4 lg:h-full lg:min-h-0 lg:px-10 lg:pb-10 lg:pt-12" : "h-full min-h-0 overflow-y-auto px-6 pb-16 pt-2 lg:px-10"}>
         {stepsBlock}
       </div>
 
