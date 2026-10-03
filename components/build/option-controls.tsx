@@ -75,26 +75,29 @@ export function OptionCard({
   selected,
   onClick,
   included = false,
+  compact = false,
 }: {
   option: BuildOption;
   selected: boolean;
   onClick: () => void;
   included?: boolean;
+  compact?: boolean;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
       aria-pressed={selected}
-      className={`flex w-full items-start justify-between gap-4 rounded-xl px-4 py-3.5 text-left transition-[background-color,box-shadow] duration-150 ${
+      title={compact ? option.description : undefined}
+      className={`flex w-full items-start justify-between gap-3 rounded-xl text-left transition-[background-color,box-shadow] duration-150 ${compact ? "h-9 items-center px-3.5" : "px-4 py-3.5"} ${
         selected ? "bg-white shadow-[inset_0_0_0_2px_#364FA0]" : "bg-black/[0.04] hover:bg-black/[0.06]"
       }`}
     >
       <span className="min-w-0">
-        <span className="block text-[15px] font-semibold leading-5 text-charcoal">{option.label}</span>
-        <span className="mt-0.5 block text-[13px] leading-5 text-black/70">{option.description}</span>
+        <span className={`block font-semibold leading-5 text-charcoal ${compact ? "truncate text-[14px]" : "text-[15px]"}`}>{option.label}</span>
+        {compact ? null : <span className="mt-0.5 block text-[13px] leading-5 text-black/70">{option.description}</span>}
       </span>
-      <span className={`whitespace-nowrap pt-0.5 text-[13px] font-medium ${selected ? "text-blue" : "text-black/70"}`}>
+      <span className={`whitespace-nowrap ${compact ? "" : "pt-0.5"} text-[13px] font-medium ${selected ? "text-blue" : "text-black/70"}`}>
         {included ? "Included" : price(option.pricePerUnit)}
       </span>
     </button>
@@ -106,21 +109,26 @@ export function OptionList({
   value,
   onChange,
   includedIds = [],
+  compact = false,
 }: {
   options: BuildOption[];
   value: string | string[];
   onChange: (id: string) => void;
   includedIds?: string[];
+  compact?: boolean;
 }) {
   const multi = Array.isArray(value);
+  // Compact lists always put what is included at the top.
+  const ordered = compact ? [...options].sort((a, b) => Number(includedIds.includes(b.id)) - Number(includedIds.includes(a.id))) : options;
   return (
-    <div className="grid gap-2">
-      {options.map((option) => (
+    <div className={compact ? "grid gap-1.5" : "grid gap-2"}>
+      {ordered.map((option) => (
         <OptionCard
           key={option.id}
           option={option}
           selected={multi ? value.includes(option.id) : value === option.id}
           included={includedIds.includes(option.id)}
+          compact={compact}
           onClick={() => onChange(option.id)}
         />
       ))}
@@ -157,13 +165,13 @@ export function Segmented<T extends string | number>({
   );
 }
 
-export function Chip({ selected, onClick, children }: { selected: boolean; onClick: () => void; children: ReactNode }) {
+export function Chip({ selected, onClick, children, block = false }: { selected: boolean; onClick: () => void; children: ReactNode; block?: boolean }) {
   return (
     <button
       type="button"
       onClick={onClick}
       aria-pressed={selected}
-      className={`rounded-full px-4 py-2 text-[13px] font-semibold transition ${
+      className={`${block ? "flex h-9 w-full items-center justify-between rounded-xl px-3.5 text-[14px]" : "rounded-full px-4 py-2 text-[13px]"} font-semibold transition ${
         selected ? "bg-charcoal text-white" : "bg-black/[0.05] text-charcoal hover:bg-black/[0.08]"
       }`}
     >

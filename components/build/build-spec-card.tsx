@@ -4,6 +4,17 @@ import { closureOptions, extraOptions, handleAddOns, pocketOptions, stitchOption
 import { resolveBuild, type BuildConfig } from "@/lib/build-flow";
 import { formatCurrency, getDecorationSummary } from "@/lib/order-flow";
 
+/** Same per-step colors as the paged builder (components/build/paged-steps.tsx). */
+const labelColors: Record<string, string> = {
+  Color: "#364FA0",
+  Canvas: "#B85C1E",
+  Handles: "#3A7D44",
+  Threads: "#7B4FA0",
+  Pockets: "#B8433B",
+  Artwork: "#2F7F86",
+  Labels: "#A84D80",
+};
+
 /** The full spec of a built bag, as a checklist the customer can read before paying. */
 export function BuildSpecCard({ build }: { build: BuildConfig }) {
   const r = resolveBuild(build);
@@ -14,7 +25,7 @@ export function BuildSpecCard({ build }: { build: BuildConfig }) {
     ["Size", `${r.dims.width}" × ${r.dims.height}" × ${r.dims.depth}"`],
     ["Color", r.swatch?.name ?? build.colorName],
     ["Canvas", r.fabric.name],
-    ["Carry", [strapOptions.find((o) => o.id === build.strapId)?.label, names(handleAddOns, build.handleAddOnIds)].filter((x) => x && x !== "None").join(" · ")],
+    ["Handles", [strapOptions.find((o) => o.id === build.strapId)?.label, names(handleAddOns, build.handleAddOnIds)].filter((x) => x && x !== "None").join(" · ")],
     ["Threads", `${stitchOptions.find((o) => o.id === build.stitchId)?.label}${build.stitchId === "standard" ? "" : ` (${build.stitchColor})`}`],
     ["Pockets", [names(pocketOptions, build.pocketIds), closureOptions.find((o) => o.id === build.closureId)?.label].join(" · ")],
     ["Artwork", getDecorationSummary(build)],
@@ -36,7 +47,7 @@ export function BuildSpecCard({ build }: { build: BuildConfig }) {
       <dl className="mt-6 divide-y divide-charcoal/10">
         {rows.map(([label, value]) => (
           <div key={label} className="flex items-baseline justify-between gap-6 py-2.5 text-sm">
-            <dt className="w-24 flex-shrink-0 font-semibold text-charcoal/70">{label}</dt>
+            <dt className="w-24 flex-shrink-0 font-semibold text-charcoal/70" style={labelColors[label] ? { color: labelColors[label] } : undefined}>{label}</dt>
             <dd className="text-right text-charcoal">{value}</dd>
           </div>
         ))}

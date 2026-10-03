@@ -283,3 +283,12 @@ input[type="range"]::-moz-range-thumb {
   }
   .icon-drop-ready, .card-pop-ready { opacity: 1 !important; }
 }
+
+/* Build a Bag start prompt */
+@keyframes start-hop { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes start-wiggle { 0%,86%,100% { transform: rotate(0); } 90% { transform: rotate(-4deg); } 94% { transform: rotate(4deg); } 98% { transform: rotate(-2deg); } }
+@keyframes start-ring { 0% { transform: scale(1); opacity: .55; } 100% { transform: scale(1.35); opacity: 0; } }
+.start-dot { animation: start-hop 1.4s ease-in-out infinite; }
+.start-wiggle { animation: start-wiggle 3s ease-in-out infinite; }
+.start-ring { position: absolute; inset: 0; border-radius: 9999px; background: #364FA0; z-index: -1; animation: start-ring 1.8s ease-out infinite; }
+@media (prefers-reduced-motion: reduce) { .start-dot, .start-wiggle, .start-ring { animation: none !important; } }

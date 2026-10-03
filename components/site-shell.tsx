@@ -148,6 +148,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <Link href="/" className="flex items-center">
             <Image src="/logo-tan.svg" alt="Alongway" width={200} height={48} className="h-9 w-auto object-contain" priority />
           </Link>
+          {isBuildRoute ? null : (
+          <>
           <nav aria-label="Main" className="hidden items-center gap-7 text-sm font-display font-extrabold uppercase tracking-wide text-bone md:flex">
             <div
               ref={collectionMenuRef}
@@ -338,7 +340,10 @@ export function SiteShell({ children }: { children: ReactNode }) {
               Build Your Bag
             </Link>
           </div>
+          </>
+          )}
         </div>
+        {isBuildRoute ? null : (
         <nav aria-label="Mobile" className="flex gap-5 overflow-x-auto border-t border-charcoal/10 px-6 py-3 text-sm font-display font-extrabold md:hidden">
           {mobileNavLinks.map((link) => (
             <Link key={link.href} href={link.href} className="whitespace-nowrap hover:text-blue">
@@ -352,6 +357,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             Sign in
           </Link>
         </nav>
+        )}
       </header>
       <main id="main">{children}</main>
 

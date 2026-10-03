@@ -16,9 +16,23 @@ const channelToteSizes = [
 const isChannelTote = (slug: string) => slug.startsWith("channel-tote");
 
 
+const buildStyleFor: Record<string, string> = {
+  "beach-tote": "zuma-tote",
+  "shoulder-tote": "drifter-tote",
+  "oversized-tote": "carry-all-tote",
+  "basic-tote": "common-tote",
+  "the-sunday": "sunday-tote",
+  "channel-tote-small": "channel-tote",
+  "channel-tote-medium": "channel-tote",
+  "channel-tote-large": "channel-tote",
+  "camper-pouch": "mini-tote",
+};
+
 export function BagDetail({ bag }: { bag: Bag }) {
   // Open Build a Bag with this style already chosen when the build tool has a matching style.
-  const buildHref = getCatalogStyle(bag.slug) ? `/build?style=${bag.slug}` : "/build";
+  // Older collection bags map to the closest build-tool style (placeholders until Easton confirms).
+  const styleSlug = getCatalogStyle(bag.slug) ? bag.slug : buildStyleFor[bag.slug];
+  const buildHref = styleSlug ? `/build?style=${styleSlug}` : "/build";
   const photos = getBagPhotoSet(bag.slug);
   const [activeIdx, setActiveIdx] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
