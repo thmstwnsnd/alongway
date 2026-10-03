@@ -18,9 +18,11 @@ export function PlacementOverlay({ logoIds, artIds }: { logoIds: string[]; artId
           <div
             key={i.id}
             className="absolute flex items-center justify-center rounded-sm border-2 border-dashed text-center text-[11px] font-bold tracking-wide transition-all duration-300"
-            style={{ left: `${b.l}%`, top: `${b.t}%`, width: `${b.w}%`, height: `${b.h}%`, borderColor: i.color, color: i.color, background: `${i.color}22` }}
+            style={{ left: `${b.l}%`, top: `${b.t}%`, width: `${b.w}%`, height: `${b.h}%`, borderColor: i.color, boxShadow: "0 0 0 2px rgba(255,255,255,0.95), inset 0 0 0 2px rgba(255,255,255,0.95)", background: "rgba(255,255,255,0.28)" }}
           >
-            {i.kind === "LOGO" && artIds.includes(i.id) ? "LOGO + ART" : i.kind}
+            <span className="rounded-full px-2 py-0.5 text-white shadow" style={{ background: i.color }}>
+              {i.kind === "LOGO" && artIds.includes(i.id) ? "LOGO + ART" : i.kind}
+            </span>
           </div>
         );
       })}
