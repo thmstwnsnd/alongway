@@ -296,7 +296,7 @@ export function CheckoutPage() {
           </button>
         </form>
 
-        <div className="lg:sticky lg:top-28">
+        <div className="lg:sticky lg:top-28 lg:mt-[4.75rem]">
           <OrderSummaryCard
             bagName={bag?.name}
             quantity={order.quantity}

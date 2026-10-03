@@ -12,29 +12,28 @@ export const metadata: Metadata = {
 
 const steps = [
   {
-    emoji: "🛍️",
-    title: "Choose your bag",
-    body: "Browse our curated line of 12 silhouettes. Pick the one that fits your brand — size, material, and carry style. Not sure? Request a free swatch kit and feel the fabrics before you commit.",
+    title: "Pick your bag",
+    body: "Start in Build a Bag and choose your style from the full lineup. Every style opens straight into the builder.",
   },
   {
-    emoji: "🎨",
-    title: "Share your artwork",
-    body: "Upload your artwork files (.ai, .pdf, or .eps). Choose your decoration type — screen print, embroidery, patch, or woven label. Pick your fabric color and strap color. No artwork yet? Our design team can help.",
+    title: "Build it, one step at a time",
+    body: "Walk through seven steps: Color, Canvas, Handles, Threads, Pockets, Artwork and Labels. Each one shows what's included first, and your price updates as you go.",
   },
   {
-    emoji: "📐",
+    title: "Set your quantity",
+    body: "Drag the bird to see how the price per bag changes from 100 bags up. Orders of 5,000 or more get a custom quote.",
+  },
+  {
+    title: "Review and place your order",
+    body: "Create an account, check your build sheet area by area, initial it, and sign the order agreement. Orders are paid in full to start production.",
+  },
+  {
     title: "Approve your techpack",
     body: "Within two business days of your order, we send a detailed techpack showing your exact bag with artwork placement, print areas, and size specs. Nothing goes to production until you sign off.",
   },
   {
-    emoji: "🏭",
-    title: "We handle production",
-    body: "Your bags are produced in our China factory — the same facilities supplying major retail brands. Typical production timeline is 30 days from artwork approval.",
-  },
-  {
-    emoji: "📦",
-    title: "Delivered to your door",
-    body: "We ship to one address per order. US shipping is always free. International shipping available — pricing depends on destination. Tracking info sent as soon as your order ships.",
+    title: "Production and delivery",
+    body: "Your bags are produced in our China factory, typically about 30 days from artwork approval. We ship to one address per order, US shipping is always free, and you get tracking as soon as it ships.",
   },
 ];
 
@@ -169,18 +168,17 @@ export default function HowItWorksPage() {
       <SectionHeading level={1}
         eyebrow="How it works"
         title="Simple from first idea to final delivery."
-        body="Five steps. No sourcing headaches. We handle everything — you just approve the design and tell us where to ship."
+        body="Six steps. No sourcing headaches. We handle everything — you just approve the design and tell us where to ship."
       />
 
       {/* Steps */}
-      <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-5">
+      <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {steps.map((step, i) => (
           <div key={step.title} className="rounded-[1.75rem] border border-charcoal/10 bg-white p-6 shadow-card">
             <div className="mb-4 flex items-center gap-3">
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blue text-sm font-bold text-white">
                 {i + 1}
               </span>
-              <span className="text-2xl">{step.emoji}</span>
             </div>
             <h3 className="font-display text-lg font-bold tracking-tight">{step.title}</h3>
             <p className="mt-2 text-sm leading-6 text-charcoal/70">{step.body}</p>
@@ -192,7 +190,7 @@ export default function HowItWorksPage() {
       <div className="mt-10 rounded-[2rem] bg-bone px-8 py-10 text-center">
         <p className="font-accent text-sm font-semibold uppercase tracking-[0.2em] text-blue">Ready?</p>
         <h2 className="font-display mt-2 text-3xl font-extrabold tracking-tight">Build your bag in minutes.</h2>
-        <p className="mt-3 text-base text-charcoal/70">Pick a silhouette, choose every detail, see your price live. We take it from there.</p>
+        <p className="mt-3 text-base text-charcoal/70">Pick a style, choose every detail, see your price live. We take it from there.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-4">
           <Link href="/build" className="rounded-full bg-blue px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-charcoal">
             Build Your Bag

@@ -53,10 +53,10 @@ export function BagDetail({ bag }: { bag: Bag }) {
   }, [lightboxOpen, closeLightbox, prevPhoto, nextPhoto]);
 
   return (
-    <div className="mx-auto max-w-7xl px-6 py-12 pb-16 lg:px-10">
+    <div className="mx-auto max-w-[86rem] px-6 pt-24 pb-24 lg:px-10">
 
       {/* ── Hero grid: image LEFT, config RIGHT ── */}
-      <div className="grid gap-8 lg:grid-cols-[2fr_1fr] lg:items-start">
+      <div className="grid gap-8 lg:gap-28 lg:grid-cols-[2fr_1fr] lg:items-start">
 
         {/* Left: vertical scroll gallery + key specs */}
         <div className="space-y-3">
@@ -115,7 +115,7 @@ export function BagDetail({ bag }: { bag: Bag }) {
         </div>
 
         {/* Right: name + compact configurator */}
-        <div className="space-y-5 lg:sticky lg:top-6">
+        <div className="space-y-5 lg:sticky lg:top-32">
           <div className="flex justify-end">
             <Image
               src="/svg/illustrations/Alongway_Website_Graphic_BirdTote_Blue.svg"

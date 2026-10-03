@@ -46,22 +46,22 @@ export function BuildSpecCard({ build }: { build: BuildConfig }) {
       </div>
       <dl className="mt-6 divide-y divide-charcoal/10">
         {rows.map(([label, value]) => (
-          <div key={label} className="flex items-baseline justify-between gap-6 py-2.5 text-sm">
-            <dt className="w-24 flex-shrink-0 font-semibold text-charcoal/70" style={labelColors[label] ? { color: labelColors[label] } : undefined}>{label}</dt>
-            <dd className="text-right text-charcoal">{value}</dd>
+          <div key={label} className="flex items-baseline justify-between gap-6 py-3 text-base">
+            <dt className="w-28 flex-shrink-0 font-bold text-charcoal/80" style={labelColors[label] ? { color: labelColors[label] } : undefined}>{label}</dt>
+            <dd className="text-right font-semibold text-charcoal">{value}</dd>
           </div>
         ))}
       </dl>
-      <div className="mt-5 rounded-[1.25rem] bg-light-bone p-4 text-sm">
+      <div className="mt-5 rounded-[1.25rem] bg-light-bone p-5 text-[15px]">
         <div className="grid grid-cols-2 gap-x-6 gap-y-1 sm:grid-cols-3">
           {r.lines.map((l) => (
             <div key={l.label} className="flex justify-between gap-2">
-              <span className="text-charcoal/70">{l.label}</span>
-              <span className="font-medium">{l.amount > 0 ? formatCurrency(l.amount) : "Incl."}</span>
+              <span className="font-medium text-charcoal/85">{l.label}</span>
+              <span className="font-bold">{l.amount > 0 ? formatCurrency(l.amount) : "Incl."}</span>
             </div>
           ))}
         </div>
-        <p className="mt-3 text-right font-semibold text-charcoal">{formatCurrency(r.unitPrice)} / unit before shipping</p>
+        <p className="mt-4 text-right text-lg font-bold text-charcoal">{formatCurrency(r.unitPrice)} / unit before shipping</p>
       </div>
     </section>
   );

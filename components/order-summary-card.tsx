@@ -52,7 +52,7 @@ export function OrderSummaryCard({
         <SummaryRow label="Per-unit price" value={unitPrice ? formatCurrency(unitPrice) : "Not selected"} />
         {showCheckoutBreakdown ? (
           <>
-            <div className="border-t border-charcoal/10 pt-4">
+            <div className="space-y-4 border-t border-charcoal/10 pt-4">
               <SummaryRow label="Subtotal" value={total ? formatCurrency(total) : "TBD"} />
               <SummaryRow label="Shipping" value={shippingLabel} />
               <SummaryRow label="Setup" value="Free" />

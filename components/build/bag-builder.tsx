@@ -42,6 +42,26 @@ import { StyleGrid } from "./style-grid";
 
 const toggle = (ids: string[], id: string) => (ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id]);
 
+// The slider's tick labels are evenly spaced (100, 250, 500, 1,000, 2,000, 5,000+),
+// so quantity maps to slider position piecewise between those stops, not linearly.
+const qtyStops = [...quantityTiers, customQuoteTier];
+function qtyToPos(q: number): number {
+  const last = qtyStops.length - 1;
+  if (q <= qtyStops[0]) return 0;
+  if (q >= qtyStops[last]) return 1;
+  for (let i = 0; i < last; i++) {
+    if (q <= qtyStops[i + 1]) return (i + (q - qtyStops[i]) / (qtyStops[i + 1] - qtyStops[i])) / last;
+  }
+  return 1;
+}
+function posToQty(pos: number): number {
+  const last = qtyStops.length - 1;
+  const x = Math.min(Math.max(pos, 0), 1) * last;
+  const i = Math.min(Math.floor(x), last - 1);
+  const q = qtyStops[i] + (x - i) * (qtyStops[i + 1] - qtyStops[i]);
+  return Math.min(Math.round(q / 50) * 50, customQuoteTier);
+}
+
 export function BagBuilder() {
   const router = useRouter();
   const params = useSearchParams();
@@ -150,7 +170,8 @@ function Configurator({
   const dims = `${r.dims.width}" × ${r.dims.height}" × ${r.dims.depth}"`;
 
   // Trial: Mini Tote shows one step per page, compact. Other styles keep the accordion for now.
-  const paged = r.style.slug === "mini-tote";
+  // The paged one-step-per-page panel is now the builder for every style.
+  const paged = true;
   const steps: { id: string; title: string; hint?: string; summary: string; content: ReactNode }[] = [
     {
       id: "color",
@@ -391,6 +412,7 @@ function Configurator({
 
   const priceBlock = (
         <div className="border-t border-black/[0.06] bg-white/60 px-6 pb-5 pt-4 backdrop-blur lg:px-12">
+          {paged ? null : (
           <div className="flex items-baseline justify-between gap-4">
             <label htmlFor="qty" className="text-[11px] font-semibold uppercase tracking-[0.14em] text-black/70">
               Quantity
@@ -399,6 +421,7 @@ function Configurator({
               {r.isCustomQuote ? `${customQuoteTier.toLocaleString()}+ · custom quote` : `${build.quantity.toLocaleString()} units`}
             </span>
           </div>
+          )}
           <div className="relative">
             {qtyCaption ? (
               <div className="pointer-events-none absolute -top-11 left-0 z-10 rounded-full bg-charcoal px-4 py-1.5 text-[13px] font-semibold text-white shadow-card">
@@ -408,16 +431,17 @@ function Configurator({
             ) : null}
           <input
             id="qty"
+            aria-label="Quantity"
             type="range"
-            min={MIN_QUANTITY}
-            max={customQuoteTier}
-            step={50}
-            value={build.quantity}
+            min={0}
+            max={1000}
+            step={10}
+            value={Math.round(qtyToPos(build.quantity) * 1000)}
             onChange={(e) => {
               hintShown.current = true;
               setQtyCaption(false);
               setHand(null);
-              set("quantity", Number(e.target.value));
+              set("quantity", posToQty(Number(e.target.value) / 1000));
             }}
             onPointerDown={() => {
               hintShown.current = true;
@@ -434,7 +458,7 @@ function Configurator({
                 className="pointer-events-none absolute z-10 h-11 w-9 drop-shadow-md"
                 style={{
                   top: `${hand.y - 6}px`,
-                  left: `calc(18px + ${(((hand?.q ?? MIN_QUANTITY) - MIN_QUANTITY) / (customQuoteTier - MIN_QUANTITY))} * (100% - 36px))`,
+                  left: `calc(18px + ${qtyToPos(hand?.q ?? MIN_QUANTITY)} * (100% - 36px))`,
                   transform: `translateX(-50%) scale(${hand.grab ? 0.92 : 1})`,
                 }}
               >
@@ -458,14 +482,20 @@ function Configurator({
 
           {paged ? (
             <div className="mt-3 grid grid-cols-[1fr_auto_1fr] items-center gap-4">
-              <details className="text-[12px] text-black/70">
-                <summary className="cursor-pointer select-none">Breakdown</summary>
-                <div className="mt-1 grid gap-0.5">
-                  {r.lines.filter((l) => l.amount > 0).map((l) => (
-                    <span key={l.label}>{l.label} {formatCurrency(l.amount)}</span>
-                  ))}
-                </div>
-              </details>
+              <div>
+                <p className="text-[26px] font-bold leading-none tracking-[-0.02em] tabular-nums text-charcoal">
+                  {build.quantity.toLocaleString()}
+                  <span className="ml-1.5 text-[16px] font-semibold tracking-normal text-black/60">{r.isCustomQuote ? "+ units" : "units"}</span>
+                </p>
+                <details className="text-[12px] text-black/70">
+                  <summary className="cursor-pointer select-none">Breakdown</summary>
+                  <div className="mt-1 grid gap-0.5">
+                    {r.lines.filter((l) => l.amount > 0).map((l) => (
+                      <span key={l.label}>{l.label} {formatCurrency(l.amount)}</span>
+                    ))}
+                  </div>
+                </details>
+              </div>
               <div className="text-center">
                 {r.isCustomQuote ? (
                   <p className="text-[32px] font-semibold leading-none tracking-[-0.02em] text-charcoal">Custom quote</p>
